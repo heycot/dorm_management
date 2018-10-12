@@ -15,4 +15,9 @@ public class AccountServiceImpl implements AccountService {
     public List<Account> findUserByRoomId(Integer roomId) {
         return accountRepository.findUserByRoomId(roomId);
     }
+
+    @Override
+    public Account findUserById(Integer id) {
+        return accountRepository.findUserById(id);
+    }
 }

@@ -3,6 +3,7 @@ package com.example.dorm_management.entities;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Data
 @Entity
@@ -22,6 +23,18 @@ public class Account {
 
     @Column(name = "role_id")
     private Integer roleId;
+
+    @OneToMany
+    @JoinColumn(name = "role_id")
+    private Set<Role> roles;
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
 
     @Column(name = "student_code")
     private Integer studentCode;
@@ -85,6 +98,15 @@ public class Account {
     }
 
     public Account(String userName, String password, Integer gender, Integer roleId, Integer studentCode, Integer status) {
+        this.userName = userName;
+        this.password = password;
+        this.gender = gender;
+        this.roleId = roleId;
+        this.studentCode = studentCode;
+        this.status = status;
+    }
+    public Account(Integer userId, String userName, String password, Integer gender, Integer roleId, Integer studentCode, Integer status) {
+        this.id = userId;
         this.userName = userName;
         this.password = password;
         this.gender = gender;

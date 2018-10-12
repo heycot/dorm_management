@@ -29,7 +29,7 @@ public class AreaController {
 
 
     @GetMapping
-    public JsonResponse getAllAreas(){
+     public JsonResponse getAllAreas(){
         try {
             List<Area> areas = areaService.findAllAreas();
 
