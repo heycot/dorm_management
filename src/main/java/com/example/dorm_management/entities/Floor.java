@@ -1,20 +1,23 @@
 package com.example.dorm_management.entities;
 
-
 import lombok.Data;
 
 import javax.persistence.*;
 
-
 @Entity
 @Data
-@Table(name = "area", schema = "dorm")
-public class AreaEntity {
+@Table(name = "floor")
+public class Floor {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     private String name;
-    private Integer numberFloor;
+
+    @Column(name = "area_id")
+    private Integer areaId;
+
     private Integer status;
 
     public Integer getId() {
@@ -33,12 +36,12 @@ public class AreaEntity {
         this.name = name;
     }
 
-    public Integer getNumberFloor() {
-        return numberFloor;
+    public Integer getAreaId() {
+        return areaId;
     }
 
-    public void setNumberFloor(Integer numberFloor) {
-        this.numberFloor = numberFloor;
+    public void setAreaId(Integer areaId) {
+        this.areaId = areaId;
     }
 
     public Integer getStatus() {
@@ -49,13 +52,12 @@ public class AreaEntity {
         this.status = status;
     }
 
-    public AreaEntity(Integer id, String name, Integer numberFloor, Integer status) {
-        this.id = id;
+    public Floor(String name, Integer areaId, Integer status) {
         this.name = name;
-        this.numberFloor = numberFloor;
+        this.areaId = areaId;
         this.status = status;
     }
 
-    public AreaEntity() {
+    public Floor() {
     }
 }
