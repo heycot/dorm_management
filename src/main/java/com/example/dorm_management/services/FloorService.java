@@ -10,4 +10,6 @@ public interface FloorService  {
     List<Floor> findFloorsByAreaId(Integer areaId);
 
     Floor findOneById(Integer id);
+
+    Floor addOneFloor(Floor floor);
 }

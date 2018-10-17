@@ -21,4 +21,10 @@ public class FloorServiceImpl implements FloorService {
     public Floor findOneById(Integer id) {
         return floorRepository.findOneById(id);
     }
+
+    @Override
+    public Floor addOneFloor(Floor floor) {
+
+        return floorRepository.save(floor);
+    }
 }
