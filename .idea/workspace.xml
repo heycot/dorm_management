@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="133db1dc-d267-4d81-8804-bef7e21ae78f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -252,8 +252,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="237">
-              <caret line="120" column="45" selection-start-line="120" selection-start-column="40" selection-end-line="120" selection-end-column="45" />
+            <state relative-caret-position="283">
+              <caret line="77" column="21" selection-start-line="77" selection-start-column="21" selection-end-line="77" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -335,6 +335,8 @@
     <findStrings>
       <find>, catalog = &quot;&quot;</find>
       <find>spring-boot</find>
+      <find>maven</find>
+      <find>hibernate</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -379,7 +381,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/example/dorm_management/services/UserDetailService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/dorm_management/respositories/UserDetailRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/dorm_management/services/UserDetailServiceImpl.java" />
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/dorm_management/controllers/AreaController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/dorm_management/services/FloorServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/dorm_management/services/FloorService.java" />
@@ -405,6 +406,7 @@
         <option value="$PROJECT_DIR$/src/main/java/com/example/dorm_management/services/SubsistenceFeeService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/dorm_management/services/SubsistenceFeeServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
+        <option value="$PROJECT_DIR$/pom.xml" />
       </list>
     </option>
   </component>
@@ -438,8 +440,8 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="406" />
-    <option name="y" value="67" />
+    <option name="x" value="613" />
+    <option name="y" value="78" />
     <option name="width" value="1385" />
     <option name="height" value="817" />
   </component>
@@ -551,7 +553,7 @@
     <property name="RequestMappingsPanelWidth2" value="75" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1539866133770" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1539867833595" />
     <property name="dynamic.classpath" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -709,12 +711,12 @@
       <workItem from="1539784668097" duration="85000" />
       <workItem from="1539784781472" duration="1475000" />
       <workItem from="1539790524234" duration="2252000" />
-      <workItem from="1539849566130" duration="7610000" />
+      <workItem from="1539849566130" duration="8260000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="118704000" />
+    <option name="totallyTimeSpent" value="119354000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -726,10 +728,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="325" y="54" width="1108" height="653" extended-state="0" />
+    <frame x="491" y="63" width="1108" height="653" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.9144927" visible="true" weight="0.053435113" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.9144927" visible="true" weight="0.07538168" />
       <window_info id="Structure" order="1" sideWeight="0.23376623" side_tool="true" weight="0.2409396" />
       <window_info id="Persistence" order="2" sideWeight="0.08625731" side_tool="true" weight="0.22281879" />
       <window_info id="UI Designer" order="3" />
@@ -1267,8 +1269,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="120" column="45" selection-start-line="120" selection-start-column="40" selection-end-line="120" selection-end-column="45" />
+        <state relative-caret-position="283">
+          <caret line="77" column="21" selection-start-line="77" selection-start-column="21" selection-end-line="77" selection-end-column="21" />
         </state>
       </provider>
     </entry>
