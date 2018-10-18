@@ -22,4 +22,26 @@ public class SubsistenceFeeServiceImpl implements SubsistenceFeeService {
     public SubsistenceFee addOne(SubsistenceFee subsistenceFee){
         return subsistenceFeeRepository.save(subsistenceFee);
     }
+
+    @Override
+    public SubsistenceFee editOne(SubsistenceFee subsistenceFee, Integer id){
+       try {
+           SubsistenceFee subsistenceFeeEdit = subsistenceFeeRepository.findOne(id);
+           subsistenceFeeEdit.setCostId(subsistenceFee.getCostId());
+           subsistenceFeeEdit.setLevel(subsistenceFee.getLevel());
+           subsistenceFeeEdit.setMonth(subsistenceFee.getMonth());
+           subsistenceFeeEdit.setNewNumber(subsistenceFee.getNewNumber());
+           subsistenceFeeEdit.setOldNumber(subsistenceFee.getOldNumber());
+           subsistenceFeeEdit.setRoomId(subsistenceFee.getRoomId());
+           subsistenceFeeEdit.setType(subsistenceFee.getType());
+           subsistenceFeeEdit.setYear(subsistenceFee.getYear());
+           subsistenceFeeEdit.setStatus(subsistenceFee.getStatus());
+
+           subsistenceFeeRepository.save(subsistenceFeeEdit);
+
+           return subsistenceFeeEdit;
+       } catch (Exception e) {
+           return null;
+       }
+    }
 }

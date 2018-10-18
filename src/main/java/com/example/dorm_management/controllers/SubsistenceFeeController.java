@@ -1,6 +1,5 @@
 package com.example.dorm_management.controllers;
 
-import com.example.dorm_management.entities.RegisterRoom;
 import com.example.dorm_management.entities.SubsistenceFee;
 import com.example.dorm_management.json.API;
 import com.example.dorm_management.json.JsonResponse;
@@ -30,12 +29,12 @@ public class SubsistenceFeeController {
 
             if (subsistenceFeeList.size() > 0) {
                 jsonResponse = return_List_Object_JsonPresonse(API.CODE_API_YES, "success", subsistenceFeeList);
-                return jsonResponse;
 
             } else {
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_NOTFOUND, "not found", null);
-                return jsonResponse;
             }
+
+            return jsonResponse;
         } catch (Exception e) {
             jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_ERROR, "error exception", null);
             return jsonResponse;
@@ -48,11 +47,28 @@ public class SubsistenceFeeController {
             SubsistenceFee subsistenceFee1 = subsistenceFeeService.addOne(subsistenceFee);
             if (subsistenceFee1 == null) {
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_NO, "error add", null);
-                return jsonResponse;
             } else {
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_YES, "success", subsistenceFee1);
-                return jsonResponse;
             }
+
+            return jsonResponse;
+        } catch (Exception e){
+            jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_ERROR, "error exception", null);
+            return jsonResponse;
+        }
+    }
+
+    @PutMapping("/edit/{id}")
+    public JsonResponse editOne(@Valid @RequestBody SubsistenceFee subsistenceFee, @PathVariable(value = "id") Integer id){
+        try {
+            SubsistenceFee subsistenceFeeEdit = subsistenceFeeService.editOne(subsistenceFee, id);
+            if (subsistenceFeeEdit == null) {
+                jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_NO, "error edit", null);
+            } else {
+                jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_EDIT_SUCCESS, "success", subsistenceFeeEdit);
+            }
+
+            return jsonResponse;
         } catch (Exception e){
             jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_ERROR, "error exception", null);
             return jsonResponse;

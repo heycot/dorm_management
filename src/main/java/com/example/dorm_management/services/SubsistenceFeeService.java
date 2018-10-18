@@ -9,4 +9,6 @@ public interface SubsistenceFeeService {
     List<SubsistenceFee> findALlByRoomId(Integer roomId);
 
     SubsistenceFee addOne(SubsistenceFee subsistenceFee);
+
+    SubsistenceFee editOne(SubsistenceFee subsistenceFee, Integer id);
 }
