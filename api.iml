@@ -19,7 +19,7 @@
         <setting name="provider-name" value="Hibernate" />
         <datasource-mapping>
           <factory-entry name="Entities" value="64a77b19-7a7f-4341-87c5-8711d8b7f278" />
-          <factory-entry name="entityManagerFactory" value="11590706-0245-4819-8e30-18397aa5d1a2" />
+          <factory-entry name="entityManagerFactory" value="17f6e21b-5adf-4592-97d7-144b273ef6e0" />
           <factory-entry name="noname-a.xml@0" value="5b50d21d-2ecb-41a8-a6f6-f26ae76b0d80" />
         </datasource-mapping>
       </configuration>

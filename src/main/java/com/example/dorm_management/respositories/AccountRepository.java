@@ -10,7 +10,8 @@ import java.util.List;
 @Repository
 public interface AccountRepository extends JpaRepository<Account, Integer> {
 
-    @Query(value = "SELECT * FROM user WHERE id in (SELECT user_id FROM rent_room WHERE room_id = ?)", nativeQuery = true)
+    @Query(value = "SELECT * FROM user WHERE id in (SELECT user_id FROM rent_room WHERE room_id = ?) order by id desc", nativeQuery = true)
     List<Account> findUserByRoomId(Integer roomId);
+
     Account findUserById(Integer id);
 }

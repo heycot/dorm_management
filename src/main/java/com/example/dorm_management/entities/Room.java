@@ -56,6 +56,9 @@ public class Room {
         this.name = name;
     }
 
+    public Room() {
+    }
+
     public Integer getId() {
         return id;
     }

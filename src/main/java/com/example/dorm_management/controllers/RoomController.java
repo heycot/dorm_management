@@ -3,10 +3,12 @@ package com.example.dorm_management.controllers;
 import com.example.dorm_management.entities.Area;
 import com.example.dorm_management.entities.Floor;
 import com.example.dorm_management.entities.Room;
+import com.example.dorm_management.entities.RoomFunction;
 import com.example.dorm_management.json.API;
 import com.example.dorm_management.json.JsonResponse;
 import com.example.dorm_management.services.AreaService;
 import com.example.dorm_management.services.FloorService;
+import com.example.dorm_management.services.RoomFunctionService;
 import com.example.dorm_management.services.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -22,10 +24,11 @@ import java.util.List;
 @RequestMapping(RoomController.BASE_URL)
 public class RoomController {
 
-    public final static String BASE_URL               = "/api/room";
+    public final static String BASE_URL   = "/api/room";
 
     @Autowired
     private RoomService roomService;
+
 
     @Autowired
     private FloorService floorService;
@@ -78,6 +81,7 @@ public class RoomController {
             }
         }
     }
+
 
 
     public JsonResponse return_No_Object_JsonPresonse(Integer code, String message){
