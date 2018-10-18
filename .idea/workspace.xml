@@ -142,7 +142,7 @@
           <entry key="java" value="3160" />
           <entry key="properties" value="48" />
           <entry key="txt" value="6" />
-          <entry key="xml" value="4" />
+          <entry key="xml" value="8" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
@@ -150,7 +150,7 @@
           <entry key="JAVA" value="3160" />
           <entry key="PLAIN_TEXT" value="86" />
           <entry key="Properties" value="48" />
-          <entry key="XML" value="4" />
+          <entry key="XML" value="8" />
         </counts>
       </usages-collector>
     </session>
@@ -164,7 +164,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/controllers/RegisterRoomController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="164">
-              <caret line="38" column="3" lean-forward="true" selection-start-line="38" selection-start-column="3" selection-end-line="53" selection-end-column="5" />
+              <caret line="38" column="3" selection-start-line="38" selection-start-column="3" selection-end-line="53" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -232,7 +232,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/controllers/SubsistenceFeeController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="130">
-              <caret line="45" column="28" lean-forward="true" selection-start-line="45" selection-start-column="28" selection-end-line="45" selection-end-column="28" />
+              <caret line="45" column="28" selection-start-line="45" selection-start-column="28" selection-end-line="45" selection-end-column="28" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -252,8 +252,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="283">
-              <caret line="77" column="21" selection-start-line="77" selection-start-column="21" selection-end-line="77" selection-end-column="21" />
+            <state relative-caret-position="266">
+              <caret line="76" column="26" selection-start-line="76" selection-start-column="26" selection-end-line="76" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -286,7 +286,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/services/SubsistenceFeeServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="323">
-              <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+              <caret line="19" selection-start-line="19" selection-end-line="19" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -440,8 +440,8 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="613" />
-    <option name="y" value="78" />
+    <option name="x" value="697" />
+    <option name="y" value="98" />
     <option name="width" value="1385" />
     <option name="height" value="817" />
   </component>
@@ -553,7 +553,7 @@
     <property name="RequestMappingsPanelWidth2" value="75" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1539867833595" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1539868080476" />
     <property name="dynamic.classpath" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -711,12 +711,12 @@
       <workItem from="1539784668097" duration="85000" />
       <workItem from="1539784781472" duration="1475000" />
       <workItem from="1539790524234" duration="2252000" />
-      <workItem from="1539849566130" duration="8260000" />
+      <workItem from="1539849566130" duration="8516000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="119354000" />
+    <option name="totallyTimeSpent" value="119610000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -728,7 +728,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="491" y="63" width="1108" height="653" extended-state="0" />
+    <frame x="558" y="79" width="1108" height="653" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.9144927" visible="true" weight="0.07538168" />
@@ -1223,7 +1223,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/controllers/RegisterRoomController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="164">
-          <caret line="38" column="3" lean-forward="true" selection-start-line="38" selection-start-column="3" selection-end-line="53" selection-end-column="5" />
+          <caret line="38" column="3" selection-start-line="38" selection-start-column="3" selection-end-line="53" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1243,7 +1243,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/services/SubsistenceFeeServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
-          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1253,7 +1253,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/controllers/SubsistenceFeeController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="130">
-          <caret line="45" column="28" lean-forward="true" selection-start-line="45" selection-start-column="28" selection-end-line="45" selection-end-column="28" />
+          <caret line="45" column="28" selection-start-line="45" selection-start-column="28" selection-end-line="45" selection-end-column="28" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1269,8 +1269,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
-          <caret line="77" column="21" selection-start-line="77" selection-start-column="21" selection-end-line="77" selection-end-column="21" />
+        <state relative-caret-position="266">
+          <caret line="76" column="26" selection-start-line="76" selection-start-column="26" selection-end-line="76" selection-end-column="26" />
         </state>
       </provider>
     </entry>
