@@ -252,8 +252,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="215">
-              <caret line="70" column="60" selection-start-line="70" selection-start-column="60" selection-end-line="70" selection-end-column="60" />
+            <state relative-caret-position="221">
+              <caret line="97" column="44" selection-start-line="97" selection-start-column="44" selection-end-line="97" selection-end-column="44" />
             </state>
           </provider>
         </entry>
@@ -439,7 +439,7 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="272" />
     <option name="y" value="127" />
     <option name="width" value="1385" />
@@ -553,7 +553,7 @@
     <property name="RequestMappingsPanelWidth2" value="75" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1539868398526" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1539868624031" />
     <property name="dynamic.classpath" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -711,12 +711,12 @@
       <workItem from="1539784668097" duration="85000" />
       <workItem from="1539784781472" duration="1475000" />
       <workItem from="1539790524234" duration="2252000" />
-      <workItem from="1539849566130" duration="8791000" />
+      <workItem from="1539849566130" duration="9036000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="119885000" />
+    <option name="totallyTimeSpent" value="120130000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -728,10 +728,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="558" y="79" width="1108" height="653" extended-state="0" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.9144927" visible="true" weight="0.07538168" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.9144927" visible="true" weight="0.053020135" />
       <window_info id="Structure" order="1" sideWeight="0.23376623" side_tool="true" weight="0.2409396" />
       <window_info id="Persistence" order="2" sideWeight="0.08625731" side_tool="true" weight="0.22281879" />
       <window_info id="UI Designer" order="3" />
@@ -1269,8 +1269,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="215">
-          <caret line="70" column="60" selection-start-line="70" selection-start-column="60" selection-end-line="70" selection-end-column="60" />
+        <state relative-caret-position="221">
+          <caret line="97" column="44" selection-start-line="97" selection-start-column="44" selection-end-line="97" selection-end-column="44" />
         </state>
       </provider>
     </entry>
