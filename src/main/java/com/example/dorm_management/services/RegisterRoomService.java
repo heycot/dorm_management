@@ -13,4 +13,12 @@ public interface RegisterRoomService {
     RegisterRoom addOne(RegisterRoom registerRoom);
 
     RegisterRoom edditOne(RegisterRoom registerRoom, Integer id);
+
+    RegisterRoom acceptOne(RegisterRoom x);
+
+    List<RegisterRoom> findAllAcceptedByRoomId(Integer id);
+
+
+    List<RegisterRoom> findAllNotAcceptedByRoomId(Integer id);
+
 }

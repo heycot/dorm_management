@@ -4,12 +4,13 @@ import com.example.dorm_management.entities.RegisterRoom;
 import com.example.dorm_management.json.API;
 import com.example.dorm_management.json.JsonResponse;
 import com.example.dorm_management.services.RegisterRoomService;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.sql.Timestamp;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.List;
@@ -26,16 +27,66 @@ public class RegisterRoomController {
     private JsonResponse jsonResponse;
 
     @GetMapping("/room/{id}")
-    public JsonResponse findOneByRoomId(@PathVariable(value = "id") Integer id) {
+    public JsonResponse findAllByRoomId(@PathVariable(value = "id") Integer id) {
         try {
 
             List<RegisterRoom> registerRooms = registerRoomService.findAllByRoomId(id);
 
-            jsonResponse = return_List_Object_JsonPresonse(API.CODE_API_NOTFOUND, "not found", registerRooms);
+            if (registerRooms.size() > 0) {
+                jsonResponse = return_List_Object_JsonPresonse(API.CODE_API_YES, "success", registerRooms);
+            } else {
+                jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_NOTFOUND, "not found", null);
+            }
+
             return  jsonResponse;
         } catch (Exception e) {
             System.out.println(e.getCause());
             jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_ERROR, "error exception", null);
+
+            return jsonResponse;
+        }
+    }
+
+    @GetMapping("/room-accepted/{id}")
+    public JsonResponse findAllAcceptedByRoomId(@PathVariable(value = "id") Integer id) {
+        try {
+
+            List<RegisterRoom> registerRooms = registerRoomService.findAllAcceptedByRoomId(id);
+
+            if (registerRooms.size() > 0) {
+                jsonResponse = return_List_Object_JsonPresonse(API.CODE_API_YES, "success", registerRooms);
+            } else {
+                jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_NOTFOUND, "not found", null);
+            }
+
+            return  jsonResponse;
+
+        } catch (Exception e) {
+            System.out.println(e.getCause());
+            jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_ERROR, "error exception", null);
+
+            return jsonResponse;
+        }
+    }
+
+    @GetMapping("/room-not-accepted/{id}")
+    public JsonResponse findAllNotAcceptedByRoomId(@PathVariable(value = "id") Integer id) {
+        try {
+
+            List<RegisterRoom> registerRooms = registerRoomService.findAllNotAcceptedByRoomId(id);
+
+            if (registerRooms.size() > 0) {
+                jsonResponse = return_List_Object_JsonPresonse(API.CODE_API_YES, "success", registerRooms);
+            } else {
+                jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_NOTFOUND, "not found", null);
+            }
+
+            return  jsonResponse;
+
+        } catch (Exception e) {
+            System.out.println(e.getCause());
+            jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_ERROR, "error exception", null);
+
             return jsonResponse;
         }
     }
@@ -75,6 +126,40 @@ public class RegisterRoomController {
         } catch (Exception e){
             System.out.println(e.getCause());
             jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_ERROR, "error exception", null);
+            return jsonResponse;
+        }
+    }
+
+    @PutMapping("/accept")
+    public JsonResponse accept(@Valid @RequestBody String jsonString){
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
+            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+
+            ObjectMapper mapper = new ObjectMapper();
+            List<RegisterRoom> registerRoomList = mapper.readValue(jsonString, new TypeReference<List<RegisterRoom>>(){});
+
+            int check = 0;
+
+            for (RegisterRoom x : registerRoomList) {
+                System.out.println(x);
+                x.setStatus(0);
+                x.setTimeCensor(timestamp);
+                if (registerRoomService.acceptOne(x) != null){
+                    check++;
+                }
+            }
+            if (check != registerRoomList.size()) {
+                jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_NO, "error accept", null);
+            } else {
+                jsonResponse = return_List_Object_JsonPresonse(API.CODE_API_YES, "success", registerRoomList);
+            }
+
+            return jsonResponse;
+        } catch (Exception e){
+            System.out.println(e.getCause());
+            jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_ERROR, "error exception", null);
+
             return jsonResponse;
         }
     }

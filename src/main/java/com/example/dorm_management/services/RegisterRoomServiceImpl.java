@@ -48,4 +48,31 @@ public class RegisterRoomServiceImpl implements RegisterRoomService {
             return null;
         }
     }
+
+
+    @Override
+    public RegisterRoom acceptOne(RegisterRoom x){
+        try {
+            RegisterRoom registerRoom = registerRoomRepository.findOneById(x.getId());
+
+            registerRoom.setStatus(x.getStatus());
+            registerRoom.setTimeCensor(x.getTimeCensor());
+
+            RegisterRoom result = registerRoomRepository.save(registerRoom);
+            return result;
+        } catch (Exception e) {
+            System.out.println(e.getCause());
+            return null;
+        }
+    }
+
+    @Override
+    public List<RegisterRoom> findAllAcceptedByRoomId(Integer id){
+        return registerRoomRepository.findAllByRoomIdAndStatus(id, 1);
+    }
+
+    @Override
+    public List<RegisterRoom> findAllNotAcceptedByRoomId(Integer id){
+        return registerRoomRepository.findAllByRoomIdAndStatus(id, 0);
+    }
 }

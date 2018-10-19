@@ -16,4 +16,6 @@ public interface RegisterRoomRepository extends JpaRepository<RegisterRoom, Inte
     @Query(value = "select * from register_room where room_id = ?1 order by id desc", nativeQuery = true)
     List<RegisterRoom> findAllByRoomId(Integer roomId);
 
+    @Query(value = "select * from register_room where room_id = ?1 and status = ?2 order by id desc ", nativeQuery = true)
+    List<RegisterRoom> findAllByRoomIdAndStatus(Integer id, Integer status);
 }
