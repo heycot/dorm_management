@@ -60,6 +60,26 @@ public class RegisterRoomController {
         }
     }
 
+    @PutMapping("/edit/{id}")
+    public JsonResponse editOne(@Valid @RequestBody RegisterRoom registerRoom, @PathVariable(value = "id") Integer id){
+        try {
+
+            RegisterRoom registerRoom1 = registerRoomService.edditOne(registerRoom, id);
+            if (registerRoom1 == null) {
+                jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_NO, "error add", null);
+            } else {
+                jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_YES, "success", registerRoom1);
+            }
+
+            return jsonResponse;
+        } catch (Exception e){
+            System.out.println(e.getCause());
+            jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_ERROR, "error exception", null);
+            return jsonResponse;
+        }
+    }
+
+
     public JsonResponse return_No_Object_JsonPresonse(Integer code, String message){
         JsonResponse jsonResponse = new JsonResponse();
 

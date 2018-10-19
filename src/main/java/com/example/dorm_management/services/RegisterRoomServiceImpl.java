@@ -27,4 +27,25 @@ public class RegisterRoomServiceImpl implements RegisterRoomService {
     public RegisterRoom addOne(RegisterRoom registerRoom) {
         return registerRoomRepository.save(registerRoom);
     }
+
+    @Override
+    public RegisterRoom edditOne(RegisterRoom registerRoom, Integer id) {
+        try {
+
+            RegisterRoom registerRoomEdit = registerRoomRepository.findOneById(id);
+
+            registerRoomEdit.setNumber(registerRoom.getNumber());
+            registerRoomEdit.setStatus(registerRoom.getStatus());
+            registerRoomEdit.setRoomId(registerRoom.getRoomId());
+            registerRoomEdit.setSemesterId(registerRoom.getSemesterId());
+            registerRoomEdit.setUserId(registerRoom.getUserId());
+            registerRoomEdit.setYear(registerRoom.getYear());
+
+            registerRoomRepository.save(registerRoomEdit);
+            return  registerRoomEdit;
+        } catch (Exception e) {
+            System.out.println(e.getCause());
+            return null;
+        }
+    }
 }
