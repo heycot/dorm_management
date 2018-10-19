@@ -5,6 +5,8 @@ import com.example.dorm_management.respositories.RegisterRoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class RegisterRoomServiceImpl implements RegisterRoomService {
 
@@ -12,12 +14,17 @@ public class RegisterRoomServiceImpl implements RegisterRoomService {
     private RegisterRoomRepository registerRoomRepository;
 
     @Override
-    public RegisterRoom findOneByRoomId(Integer roomId) {
-        return registerRoomRepository.findOneByRoomId(roomId);
+    public RegisterRoom findOneById(Integer id) {
+        return registerRoomRepository.findOneById(id);
+    }
+
+    @Override
+    public List<RegisterRoom> findAllByRoomId(Integer roomId) {
+        return registerRoomRepository.findAllByRoomId(roomId);
     }
 
     @Override
     public RegisterRoom addOne(RegisterRoom registerRoom) {
-        return null;
+        return registerRoomRepository.save(registerRoom);
     }
 }

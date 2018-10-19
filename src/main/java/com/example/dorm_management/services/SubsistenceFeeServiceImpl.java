@@ -35,6 +35,7 @@ public class SubsistenceFeeServiceImpl implements SubsistenceFeeService {
            subsistenceFeeEdit.setRoomId(subsistenceFee.getRoomId());
            subsistenceFeeEdit.setType(subsistenceFee.getType());
            subsistenceFeeEdit.setYear(subsistenceFee.getYear());
+           subsistenceFeeEdit.setTotal(subsistenceFee.getTotal());
            subsistenceFeeEdit.setStatus(subsistenceFee.getStatus());
 
            subsistenceFeeRepository.save(subsistenceFeeEdit);

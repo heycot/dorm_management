@@ -1,8 +1,10 @@
 package com.example.dorm_management.controllers;
 
+import com.example.dorm_management.entities.Cost;
 import com.example.dorm_management.entities.SubsistenceFee;
 import com.example.dorm_management.json.API;
 import com.example.dorm_management.json.JsonResponse;
+import com.example.dorm_management.services.CostService;
 import com.example.dorm_management.services.SubsistenceFeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +21,9 @@ public class SubsistenceFeeController {
 
     @Autowired
     private SubsistenceFeeService subsistenceFeeService;
+
+    @Autowired
+    private CostService costService;
 
     private JsonResponse jsonResponse;
 
@@ -44,7 +49,21 @@ public class SubsistenceFeeController {
     @PutMapping("/add")
     public JsonResponse addOne(@Valid @RequestBody SubsistenceFee subsistenceFee){
         try {
+            if (subsistenceFee.getNewNumber() - subsistenceFee.getOldNumber() >= 100) {
+                subsistenceFee.setLevel(2);
+            } else {
+                subsistenceFee.setLevel(1);
+            }
+
+            Cost cost = costService.findOneByTypeAndLevel(subsistenceFee.getType(), subsistenceFee.getLevel(), 1);
+            Float total = (subsistenceFee.getNewNumber() - subsistenceFee.getOldNumber()) * cost.getValue();
+
+            subsistenceFee.setCostId(cost.getId());
+            subsistenceFee.setTotal(total);
+            subsistenceFee.setStatus(0);
+
             SubsistenceFee subsistenceFee1 = subsistenceFeeService.addOne(subsistenceFee);
+
             if (subsistenceFee1 == null) {
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_NO, "error add", null);
             } else {
@@ -61,6 +80,18 @@ public class SubsistenceFeeController {
     @PutMapping("/edit/{id}")
     public JsonResponse editOne(@Valid @RequestBody SubsistenceFee subsistenceFee, @PathVariable(value = "id") Integer id){
         try {
+            if (subsistenceFee.getNewNumber() - subsistenceFee.getOldNumber() >= 100) {
+                subsistenceFee.setLevel(2);
+            } else {
+                subsistenceFee.setLevel(1);
+            }
+
+            Cost cost = costService.findOneByTypeAndLevel(subsistenceFee.getType(), subsistenceFee.getLevel(), 1);
+            Float total = (subsistenceFee.getNewNumber() - subsistenceFee.getOldNumber()) * cost.getValue();
+
+            subsistenceFee.setCostId(cost.getId());
+            subsistenceFee.setTotal(total);
+
             SubsistenceFee subsistenceFeeEdit = subsistenceFeeService.editOne(subsistenceFee, id);
             if (subsistenceFeeEdit == null) {
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_NO, "error edit", null);

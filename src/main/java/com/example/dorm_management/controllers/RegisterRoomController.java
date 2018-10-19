@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.List;
 
@@ -26,11 +29,12 @@ public class RegisterRoomController {
     public JsonResponse findOneByRoomId(@PathVariable(value = "id") Integer id) {
         try {
 
-            RegisterRoom registerRoom = registerRoomService.findOneByRoomId(id);
+            List<RegisterRoom> registerRooms = registerRoomService.findAllByRoomId(id);
 
-                jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_NOTFOUND, "not found", registerRoom);
-                return  jsonResponse;
+            jsonResponse = return_List_Object_JsonPresonse(API.CODE_API_NOTFOUND, "not found", registerRooms);
+            return  jsonResponse;
         } catch (Exception e) {
+            System.out.println(e.getCause());
             jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_ERROR, "error exception", null);
             return jsonResponse;
         }
@@ -39,15 +43,18 @@ public class RegisterRoomController {
     @PutMapping("/add")
     public JsonResponse addOne(@Valid @RequestBody RegisterRoom registerRoom){
         try {
+
+            registerRoom.setStatus(0);
             RegisterRoom registerRoom1 = registerRoomService.addOne(registerRoom);
             if (registerRoom1 == null) {
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_NO, "error add", null);
-                return jsonResponse;
             } else {
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_YES, "success", registerRoom1);
-                return jsonResponse;
             }
+
+            return jsonResponse;
         } catch (Exception e){
+            System.out.println(e.getCause());
             jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_ERROR, "error exception", null);
             return jsonResponse;
         }

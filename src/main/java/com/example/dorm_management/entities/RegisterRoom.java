@@ -4,7 +4,7 @@ import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Timestamp;
 
 @Data
 @Entity
@@ -30,15 +30,14 @@ public class RegisterRoom {
 
     private Integer status;
 
-    @DateTimeFormat
+//    @DateTimeFormat
     @Column(name = "time_censor")
-    private Date timeCensor;
+    private Timestamp timeCensor;
 
-    @DateTimeFormat
     @Column(name = "time_register")
-    private Date timeRegister;
+    private Timestamp timeRegister;
 
-    public RegisterRoom(Integer userId, Integer number, Integer semesterId, Integer roomId, String year, Integer status, Date timeCensor, Date timeRegister) {
+    public RegisterRoom(Integer userId, Integer number, Integer semesterId, Integer roomId, String year, Integer status, Timestamp timeCensor, Timestamp timeRegister) {
         this.userId = userId;
         this.number = number;
         this.semesterId = semesterId;
@@ -108,19 +107,19 @@ public class RegisterRoom {
         this.status = status;
     }
 
-    public Date getTimeCensor() {
+    public Timestamp getTimeCensor() {
         return timeCensor;
     }
 
-    public void setTimeCensor(Date timeCensor) {
+    public void setTimeCensor(Timestamp timeCensor) {
         this.timeCensor = timeCensor;
     }
 
-    public Date getTimeRegister() {
+    public Timestamp getTimeRegister() {
         return timeRegister;
     }
 
-    public void setTimeRegister(Date timeRegister) {
+    public void setTimeRegister(Timestamp timeRegister) {
         this.timeRegister = timeRegister;
     }
 }

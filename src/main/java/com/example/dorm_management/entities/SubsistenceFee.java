@@ -1,8 +1,10 @@
 package com.example.dorm_management.entities;
 
 import lombok.Data;
+import lombok.NonNull;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Data
 @Entity
@@ -25,15 +27,18 @@ public class SubsistenceFee {
 
     private  Integer status;
 
+    @NotNull
     @Column(name = "new_number")
     private Integer newNumber;
 
+    @NotNull
     @Column(name = "old_number")
     private Integer oldNumber;
 
     @Column(name = "cost_id")
     private Integer costId;
 
+    @NotNull
     @Column(name = "room_id")
     private Integer roomId;
 
