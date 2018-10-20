@@ -1,11 +1,13 @@
 package com.example.dorm_management.services;
 
 import com.example.dorm_management.entities.Account;
+import com.example.dorm_management.entities.Group;
 import com.example.dorm_management.respositories.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class AccountServiceImpl implements AccountService {
 
     @Autowired
@@ -22,7 +24,7 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public boolean checkUserByNameAndPassword(String name, String password){
+    public boolean isExistedUserByNameAndPassword(String name, String password){
         try{
             Account account = accountRepository.findByUserNameAndPassword(name, password);
             if(account != null){
@@ -52,6 +54,15 @@ public class AccountServiceImpl implements AccountService {
         }catch (Exception e){
             return false;
         }
+    }
+
+    @Override
+    public List<Group> findGroupByUserId(Integer id) {
+        List<Group> groups = accountRepository.findGroupByUserId(id);
+        if(groups.size() > 0){
+            return groups;
+        }
+        return null;
     }
 
 }

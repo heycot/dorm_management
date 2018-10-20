@@ -5,6 +5,7 @@ import com.example.dorm_management.entities.RoleUser;
 import com.example.dorm_management.json.API;
 import com.example.dorm_management.json.JsonResponse;
 import com.example.dorm_management.libararies.Utility;
+import com.example.dorm_management.services.RoleUserService;
 import com.example.dorm_management.services.RoleUserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,7 +24,7 @@ public class RoleUserController {
     public final  static String BASE_URL = "/api/role_user";
 
     @Autowired
-    private RoleUserServiceImpl roleUserService;
+    private RoleUserService roleUserService;
 
     @GetMapping
     public JsonResponse getAllRoleUser(){
