@@ -8,4 +8,8 @@ import java.util.List;
 public interface AccountService {
     List<Account> findUserByRoomId(Integer roomId);
     Account findUserById(Integer id);
+    boolean checkUserByNameAndPassword(String name, String password);
+    boolean saveAccount(Account account);
+    boolean deleteAccount(Integer id);
+
 }

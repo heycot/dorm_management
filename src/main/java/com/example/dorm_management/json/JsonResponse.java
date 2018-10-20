@@ -3,10 +3,9 @@ package com.example.dorm_management.json;
 import java.util.Collection;
 
 public class JsonResponse {
-
     private Integer code;
     private String  message;
-    private Collection<Object> data;
+    private Object data;
 
     public Integer getCode() {
         return code;
@@ -24,11 +23,11 @@ public class JsonResponse {
         this.message = message;
     }
 
-    public Collection<Object> getData() {
+    public Object getData() {
         return data;
     }
 
-    public void setData(Collection<Object> data) {
+    public void setData(Object data) {
         this.data = data;
     }
 
