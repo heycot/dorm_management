@@ -1,7 +1,7 @@
 package com.example.dorm_management.services;
 
-import com.example.dorm_management.entities.AreaEntity;
-import com.example.dorm_management.respositories.AreaRespository;
+import com.example.dorm_management.entities.Area;
+import com.example.dorm_management.respositories.AreaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,19 +11,42 @@ import java.util.List;
 public class AreaServiceImpl implements AreaService {
 
     @Autowired
-    private AreaRespository areaRespository;
+    private AreaRepository areaRepository;
 
-    public AreaServiceImpl(AreaRespository areaRespository) {
-        this.areaRespository = areaRespository;
+    @Override
+    public List<Area> findAllAreas() {
+        return areaRepository.findAll();
     }
 
     @Override
-    public List<AreaEntity> findAllAreas() {
-        return areaRespository.findAll();
+    public Area findAreaById(Integer id) {
+        return areaRepository.findOne(id);
     }
 
     @Override
-    public AreaEntity findAreaById(Integer id) {
-        return areaRespository.findOne(id);
+    public Area addNewArea(Area areaEntity) {
+        try{
+            return areaRepository.save(areaEntity);
+        } catch (Exception e) {
+            System.out.println(e.getCause());
+            return null;
+        }
+
+    }
+
+    @Override
+    public boolean editArea(Area areaEntity, Area areaEntityEdit) {
+        try{
+
+            areaEntityEdit.setName(areaEntity.getName());
+            areaEntityEdit.setNumberFloor(areaEntity.getNumberFloor());
+            areaEntityEdit.setStatus(areaEntity.getStatus());
+
+            areaRepository.save(areaEntityEdit);
+            return  true;
+        } catch (Exception e) {
+            System.out.println(e.getCause());
+            return false;
+        }
     }
 }
