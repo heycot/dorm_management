@@ -21,20 +21,20 @@ public class Account {
 
     private Integer gender;
 
-    @Column(name = "role_id")
-    private Integer roleId;
+//    @Column(name = "role_id")
+//    private Integer roleId;
 
-    @OneToMany
+  /*  @OneToMany
     @JoinColumn(name = "role_id")
-    private Set<Role> roles;
+    private Set<Role> roles;*/
 
-    public Set<Role> getRoles() {
+/*    public Set<Role> getRoles() {
         return roles;
     }
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
-    }
+    }*/
 
     @Column(name = "student_code")
     private Integer studentCode;
@@ -73,13 +73,13 @@ public class Account {
         this.gender = gender;
     }
 
-    public Integer getRoleId() {
+    /*public Integer getRoleId() {
         return roleId;
     }
 
     public void setRoleId(Integer roleId) {
         this.roleId = roleId;
-    }
+    }*/
 
     public Integer getStudentCode() {
         return studentCode;
@@ -101,7 +101,7 @@ public class Account {
         this.userName = userName;
         this.password = password;
         this.gender = gender;
-        this.roleId = roleId;
+//        this.roleId = roleId;
         this.studentCode = studentCode;
         this.status = status;
     }
@@ -110,7 +110,7 @@ public class Account {
         this.userName = userName;
         this.password = password;
         this.gender = gender;
-        this.roleId = roleId;
+//        this.roleId = roleId;
         this.studentCode = studentCode;
         this.status = status;
     }
