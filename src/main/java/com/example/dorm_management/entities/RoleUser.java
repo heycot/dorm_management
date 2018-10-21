@@ -27,7 +27,7 @@ public class RoleUser {
 
    /* @ManyToOne
     @JoinColumn(name = "user_id")
-    private Account user;
+    private User user;
 
     @OneToMany
     @JoinColumn(name = "role_id")
@@ -65,11 +65,11 @@ public class RoleUser {
         this.roleId = roleId;
     }
 
-   /* public Account getUser() {
+   /* public User getUser() {
         return user;
     }
 
-    public void setUser(Account user) {
+    public void setUser(User user) {
         this.user = user;
     }
 
@@ -81,7 +81,7 @@ public class RoleUser {
         this.role = role;
     }*/
 
-   /* public RoleUser(Integer status, Account user, Set<Role> role) {
+   /* public RoleUser(Integer status, User user, Set<Role> role) {
 
         this.status = status;
         this.user = user;

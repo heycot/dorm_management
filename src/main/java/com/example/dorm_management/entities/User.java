@@ -8,7 +8,7 @@ import java.util.Set;
 @Data
 @Entity
 @Table(name = "user")
-public class Account {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,8 +36,8 @@ public class Account {
         this.roles = roles;
     }*/
 
-    @Column(name = "student_code")
-    private Integer studentCode;
+    @OneToOne(mappedBy = "user")
+    private StudentCode studentCode;
 
     private Integer status;
 
@@ -80,14 +80,14 @@ public class Account {
     public void setRoleId(Integer roleId) {
         this.roleId = roleId;
     }*/
-
+/*
     public Integer getStudentCode() {
         return studentCode;
     }
 
     public void setStudentCode(Integer studentCode) {
         this.studentCode = studentCode;
-    }
+    }*/
 
     public Integer getStatus() {
         return status;
@@ -97,24 +97,14 @@ public class Account {
         this.status = status;
     }
 
-    public Account(String userName, String password, Integer gender, Integer roleId, Integer studentCode, Integer status) {
+    public User(String userName, String password, Integer gender, StudentCode studentCode, Integer status) {
         this.userName = userName;
         this.password = password;
         this.gender = gender;
-//        this.roleId = roleId;
-        this.studentCode = studentCode;
-        this.status = status;
-    }
-    public Account(Integer userId, String userName, String password, Integer gender, Integer roleId, Integer studentCode, Integer status) {
-        this.id = userId;
-        this.userName = userName;
-        this.password = password;
-        this.gender = gender;
-//        this.roleId = roleId;
         this.studentCode = studentCode;
         this.status = status;
     }
 
-    public Account() {
+    public User() {
     }
 }
