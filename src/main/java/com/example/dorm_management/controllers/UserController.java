@@ -4,6 +4,7 @@ import com.example.dorm_management.entities.*;
 import com.example.dorm_management.json.API;
 import com.example.dorm_management.json.JsonResponse;
 import com.example.dorm_management.libararies.Utility;
+import com.example.dorm_management.respositories.StudentCodeRepository;
 import com.example.dorm_management.respositories.UserRepository;
 import com.example.dorm_management.respositories.RoomRepository;
 import com.example.dorm_management.services.AccountService;
@@ -11,6 +12,7 @@ import com.example.dorm_management.services.UserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.xml.bind.SchemaOutputResolver;
 import java.util.Collections;
 import java.util.List;
 @CrossOrigin(origins = { "*" }, maxAge = 6000)
@@ -33,12 +35,19 @@ public class UserController {
     @Autowired
     private RoomRepository roomRepository;
 
+    @Autowired
+    private StudentCodeRepository studentCodeRepository;
     @GetMapping("/generate")
     public JsonResponse generateUser(){
-        User user = new User("vuong", "vuong", 1, new StudentCode("asdf", "asf", "asdf"), 1);
-        userRepository.save(user);
-        return Utility.convertObjectToJSON(API.CODE_API_ADD_SUCCESS, "", user);
+//        User user = new User("vuong", "vuong", 1, 1);
+//        userRepository.save(user);
+//        StudentCode studentCode = new StudentCode("sadf", "safs", "saf",9);
+//        studentCodeRepository.save(studentCode);
+        StudentCode studentCode = studentCodeRepository.findById(5);
+        System.out.println(studentCode.getUser().getUserName());
+        return Utility.convertObjectToJSON(API.CODE_API_ADD_SUCCESS, "", studentCode);
     }
+
 
     @GetMapping("/user_detail/{id}")
     public JsonResponse findUserDetailById(@PathVariable(value = "id") Integer id){

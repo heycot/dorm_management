@@ -3,6 +3,7 @@ package com.example.dorm_management.entities;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -11,7 +12,7 @@ import java.util.Set;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @Column(name = "user_name")
@@ -21,8 +22,8 @@ public class User {
 
     private Integer gender;
 
-//    @Column(name = "role_id")
-//    private Integer roleId;
+    @Column(name = "role_id")
+    private Integer roleId;
 
   /*  @OneToMany
     @JoinColumn(name = "role_id")
@@ -36,8 +37,39 @@ public class User {
         this.roles = roles;
     }*/
 
-    @OneToOne(mappedBy = "user")
+    @OneToOne(cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            mappedBy = "user")
     private StudentCode studentCode;
+
+    @OneToMany(cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            mappedBy = "user")
+    private Set<Notification> notifications;
+
+    public Set<Notification> getNotifications() {
+        return notifications;
+    }
+
+    public void setNotifications(Set<Notification> notifications) {
+        this.notifications = notifications;
+    }
+
+    public StudentCode getStudentCode() {
+        return studentCode;
+    }
+
+    public void setStudentCode(StudentCode studentCode) {
+        this.studentCode = studentCode;
+    }
+
+    public Integer getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(Integer roleId) {
+        this.roleId = roleId;
+    }
 
     private Integer status;
 
@@ -97,14 +129,15 @@ public class User {
         this.status = status;
     }
 
-    public User(String userName, String password, Integer gender, StudentCode studentCode, Integer status) {
+    public User(String userName, String password, Integer gender, Integer status) {
         this.userName = userName;
         this.password = password;
         this.gender = gender;
-        this.studentCode = studentCode;
         this.status = status;
     }
 
     public User() {
     }
+
+
 }
