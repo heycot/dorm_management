@@ -17,7 +17,7 @@ public class SubsistenceFee {
 
     private Integer month;
 
-    private String year;
+    private Integer year;
 
     private Float total;
 
@@ -42,7 +42,7 @@ public class SubsistenceFee {
     @Column(name = "room_id")
     private Integer roomId;
 
-    public SubsistenceFee(Integer month, String year, Float total, Integer type, Integer level, Integer status, Integer newNumber, Integer oldNumber, Integer costId, Integer roomId) {
+    public SubsistenceFee(Integer month, Integer year, Float total, Integer type, Integer level, Integer status, Integer newNumber, Integer oldNumber, Integer costId, Integer roomId) {
         this.month = month;
         this.year = year;
         this.total = total;
@@ -75,11 +75,11 @@ public class SubsistenceFee {
         this.month = month;
     }
 
-    public String getYear() {
+    public Integer getYear() {
         return year;
     }
 
-    public void setYear(String year) {
+    public void setYear(Integer year) {
         this.year = year;
     }
 

@@ -11,4 +11,8 @@ public interface NotificationService {
     List<Notification> findOneBYUserId(Integer user_id);
 
     List<Notification> findAllOfUser(Integer user_id, Integer room_id);
+
+    public boolean addNotification(Notification notification);
+    public boolean deleteNotification(Integer id);
+    public boolean updateNotification(Integer id, Notification notification);
 }

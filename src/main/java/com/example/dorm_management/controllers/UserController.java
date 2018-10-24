@@ -1,31 +1,29 @@
 package com.example.dorm_management.controllers;
 
-import com.example.dorm_management.entities.Account;
-import com.example.dorm_management.entities.Group;
-import com.example.dorm_management.entities.Room;
-import com.example.dorm_management.entities.UserDetail;
+import com.example.dorm_management.entities.*;
 import com.example.dorm_management.json.API;
 import com.example.dorm_management.json.JsonResponse;
 import com.example.dorm_management.libararies.Utility;
-import com.example.dorm_management.respositories.AccountRepository;
+import com.example.dorm_management.respositories.StudentCodeRepository;
+import com.example.dorm_management.respositories.UserRepository;
 import com.example.dorm_management.respositories.RoomRepository;
 import com.example.dorm_management.services.AccountService;
 import com.example.dorm_management.services.UserDetailService;
-import com.example.dorm_management.services.UserDetailServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.xml.bind.SchemaOutputResolver;
 import java.util.Collections;
 import java.util.List;
-
+@CrossOrigin(origins = { "*" }, maxAge = 6000)
 @RestController
-@RequestMapping(AccountController.BASE_URL)
-public class AccountController {
+@RequestMapping(UserController.BASE_URL)
+public class UserController {
 
     public final  static String BASE_URL = "/api/user";
 
     @Autowired
-    private AccountRepository accountRepository;
+    private UserRepository userRepository;
 
     @Autowired
     private UserDetailService userDetailService;
@@ -36,6 +34,20 @@ public class AccountController {
 
     @Autowired
     private RoomRepository roomRepository;
+
+    @Autowired
+    private StudentCodeRepository studentCodeRepository;
+    @GetMapping("/generate")
+    public JsonResponse generateUser(){
+//        User user = new User("vuong", "vuong", 1, 1);
+//        userRepository.save(user);
+//        StudentCode studentCode = new StudentCode("sadf", "safs", "saf",9);
+//        studentCodeRepository.save(studentCode);
+        StudentCode studentCode = studentCodeRepository.findById(5);
+        System.out.println(studentCode.getUser().getUserName());
+        return Utility.convertObjectToJSON(API.CODE_API_ADD_SUCCESS, "", studentCode);
+    }
+
 
     @GetMapping("/user_detail/{id}")
     public JsonResponse findUserDetailById(@PathVariable(value = "id") Integer id){
@@ -52,13 +64,13 @@ public class AccountController {
     }
 
     @PostMapping("/user/add_user")
-    public JsonResponse addUser(@RequestBody Account account){
+    public JsonResponse addUser(@RequestBody User user){
         try{
-            if(accountService.isExistedUserByNameAndPassword(account.getUserName(), account.getPassword())){
+            if(accountService.isExistedUserByNameAndPassword(user.getUserName(), user.getPassword())){
                 return Utility.convertObjectToJSON(API.CODE_API_EXISTED, "Da ton tai user");
             }
-            if(accountService.saveAccount(account)){
-                return Utility.convertObjectToJSON(API.CODE_API_YES, "Them thanh cong", account);
+            if(accountService.saveAccount(user)){
+                return Utility.convertObjectToJSON(API.CODE_API_YES, "Them thanh cong", user);
             }
             return Utility.convertObjectToJSON(API.CODE_API_NO, "Them khong thanh cong");
         }catch (Exception e){
@@ -81,9 +93,9 @@ public class AccountController {
     @GetMapping("/get_user/{id}")
     public JsonResponse findUserById(@PathVariable(value = "id") Integer id){
         try{
-            Account account = accountService.findUserById(id);
-            if(account != null){
-                return Utility.convertObjectToJSON(API.CODE_API_YES, "successfully", account);
+            User user = accountService.findUserById(id);
+            if(user != null){
+                return Utility.convertObjectToJSON(API.CODE_API_YES, "successfully", user);
             }
             return Utility.convertObjectToJSON(API.CODE_API_NOTFOUND, "Khong tim thay user");
         }catch (Exception e){
@@ -115,9 +127,9 @@ public class AccountController {
 
                 return jsonResponse;
             } else {
-                List<Account> accounts = accountRepository.findUserByRoomId(id);
-                if (accounts.size() > 0) {
-                    jsonResponse = return_List_Object_JsonPresonse(API.CODE_API_YES, "", accounts);
+                List<User> users = userRepository.findUserByRoomId(id);
+                if (users.size() > 0) {
+                    jsonResponse = return_List_Object_JsonPresonse(API.CODE_API_YES, "", users);
 
                     return jsonResponse;
                 } else {
@@ -143,22 +155,22 @@ public class AccountController {
         return jsonResponse;
     }
 
-    public JsonResponse return_One_Object_JsonPresonse(Integer code, String message, Account account){
+    public JsonResponse return_One_Object_JsonPresonse(Integer code, String message, User user){
         JsonResponse jsonResponse = new JsonResponse();
 
         jsonResponse.setCode(code);
         jsonResponse.setMessage(message);
-        jsonResponse.setData(Collections.singletonList(account));
+        jsonResponse.setData(Collections.singletonList(user));
 
         return jsonResponse;
     }
 
-    public JsonResponse return_List_Object_JsonPresonse(Integer code, String message, List<Account> accounts){
+    public JsonResponse return_List_Object_JsonPresonse(Integer code, String message, List<User> users){
         JsonResponse jsonResponse = new JsonResponse();
 
         jsonResponse.setCode(code);
         jsonResponse.setMessage(message);
-        jsonResponse.setData(Collections.unmodifiableCollection(accounts));
+        jsonResponse.setData(Collections.unmodifiableCollection(users));
 
         return jsonResponse;
     }
