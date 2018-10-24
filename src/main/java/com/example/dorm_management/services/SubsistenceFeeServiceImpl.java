@@ -45,4 +45,26 @@ public class SubsistenceFeeServiceImpl implements SubsistenceFeeService {
            return null;
        }
     }
+
+    @Override
+    public SubsistenceFee findOneById(Integer id) {
+        return subsistenceFeeRepository.findOne(id);
+    }
+
+    @Override
+    public SubsistenceFee changeStatusOne(Integer id, Integer status) {
+        try {
+            SubsistenceFee subsistenceFee1 = subsistenceFeeRepository.findOne(id);
+
+            subsistenceFee1.setStatus(status);
+
+            subsistenceFeeRepository.save(subsistenceFee1);
+
+            return subsistenceFee1;
+        } catch (Exception e) {
+            System.out.println(e.getCause());
+
+            return  null;
+        }
+    }
 }

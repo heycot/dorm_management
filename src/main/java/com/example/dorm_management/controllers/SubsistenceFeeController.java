@@ -1,6 +1,7 @@
 package com.example.dorm_management.controllers;
 
 import com.example.dorm_management.entities.Cost;
+import com.example.dorm_management.entities.Notification;
 import com.example.dorm_management.entities.SubsistenceFee;
 import com.example.dorm_management.json.API;
 import com.example.dorm_management.json.JsonResponse;
@@ -97,6 +98,35 @@ public class SubsistenceFeeController {
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_NO, "error edit", null);
             } else {
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_EDIT_SUCCESS, "success", subsistenceFeeEdit);
+            }
+
+            return jsonResponse;
+        } catch (Exception e){
+            jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_ERROR, "error exception", null);
+            return jsonResponse;
+        }
+    }
+
+    @PutMapping("/pay/{room_id}/{sub_id_1}/{sub_id_2}")
+    public JsonResponse payOne(@PathVariable(value = "room_id") Integer room_id, @PathVariable(value = "sub_id_1") Integer sub_id_1
+                                ,  @PathVariable(value = "sub_id_1") Integer sub_id_2){
+        try {
+
+            SubsistenceFee sb1 = subsistenceFeeService.changeStatusOne(sub_id_1, 1);
+            SubsistenceFee sb2 = subsistenceFeeService.changeStatusOne(sub_id_2, 1);
+            if ( sb1 == null || sb2 == null) {
+                jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_ERROR, "edit fail", null);
+            } else {
+
+                String content = "Phòng của bạn đã thanh toán hóa đơn điện nước thành công: \n"
+                                + " tháng :" + sb1.getMonth() + " - " + sb1.getYear() + "\n"
+                                + " "
+
+                Notification notification = new Notification();
+                notification.setTitle("Thanh toán hóa đơn thành công!");
+                notification.setContent();
+
+                jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_EDIT_SUCCESS, "edit fail", null);
             }
 
             return jsonResponse;

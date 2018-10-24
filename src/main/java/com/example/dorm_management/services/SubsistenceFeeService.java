@@ -11,4 +11,8 @@ public interface SubsistenceFeeService {
     SubsistenceFee addOne(SubsistenceFee subsistenceFee);
 
     SubsistenceFee editOne(SubsistenceFee subsistenceFee, Integer id);
+
+    SubsistenceFee findOneById(Integer id);
+
+    SubsistenceFee changeStatusOne(Integer id, Integer status);
 }
