@@ -4,10 +4,10 @@ import lombok.Data;
 
 import javax.persistence.*;
 
-@Entity
 @Data
-@Table(name = "floor")
-public class Floor {
+@Entity
+@Table(name = "room_function")
+public class RoomFunction {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,10 +15,15 @@ public class Floor {
 
     private String name;
 
-    @Column(name = "are_id")
-    private Integer areaId;
-
     private Integer status;
+
+    public RoomFunction(String name, Integer status) {
+        this.name = name;
+        this.status = status;
+    }
+
+    public RoomFunction() {
+    }
 
     public Integer getId() {
         return id;
@@ -36,28 +41,11 @@ public class Floor {
         this.name = name;
     }
 
-    public Integer getAreaId() {
-        return areaId;
-    }
-
-    public void setAreaId(Integer areaId) {
-        this.areaId = areaId;
-    }
-
     public Integer getStatus() {
         return status;
     }
 
     public void setStatus(Integer status) {
         this.status = status;
-    }
-
-    public Floor(String name, Integer areaId, Integer status) {
-        this.name = name;
-        this.areaId = areaId;
-        this.status = status;
-    }
-
-    public Floor() {
     }
 }

@@ -87,10 +87,8 @@
             <artifactId>spring-boot</artifactId>
             <version>1.5.9.RELEASE</version>
         </dependency>
-        <dependency>
-            <groupId>org.activiti</groupId>
-            <artifactId>activiti-spring-boot-starter-rest-api</artifactId>
-        </dependency>
+
+
         <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>

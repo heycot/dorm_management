@@ -8,11 +8,9 @@ import com.example.dorm_management.services.AreaService;
 import com.example.dorm_management.services.FloorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.Collections;
 import java.util.List;
 
@@ -50,6 +48,22 @@ public class FloorController {
                 return jsonResponse;
             }
 //        }
+    }
+
+    @PutMapping("/add-one")
+    public JsonResponse addOneFloor(@Valid @RequestBody Floor floor) {
+        try {
+            if (floorService.addOneFloor(floor) != null){
+                jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_ADD_SUCCESS, "successfull", floor);
+                return jsonResponse;
+            } else {
+                jsonResponse = return_No_Object_JsonPresonse(API.CODE_API_NO, "fail");
+                return jsonResponse;
+            }
+        } catch (Exception e) {
+            jsonResponse = return_No_Object_JsonPresonse(API.CODE_API_ERROR, "fail");
+            return jsonResponse;
+        }
     }
 
     public JsonResponse return_No_Object_JsonPresonse(Integer code, String message){

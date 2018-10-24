@@ -26,16 +26,20 @@ public class Room {
     @Column(name = "function_id")
     private Integer functionId;
 
+    @Column(name = "number_bed")
     private Integer numberBed;
 
     private Integer gender;
 
     private Integer status;
 
+    @Column(name = "student_max")
     private Integer studentMax;
 
+    @Column(name = "student_present")
     private Integer studentPresent;
 
+    @Column(name = "student_register")
     private Integer studentRegister;
 
     public Room(String name, Integer areaId, Integer floorId, Integer numberBed, Integer gender, Integer costId, Integer status, Integer studentMax, Integer studentPresent, Integer studentRegister, Integer functionId) {
@@ -54,6 +58,9 @@ public class Room {
 
     public Room(String name) {
         this.name = name;
+    }
+
+    public Room() {
     }
 
     public Integer getId() {
