@@ -3,8 +3,10 @@ package com.example.dorm_management.entities;
 import lombok.Data;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 
 @Data
+@Entity
 public class ViewSubsistence {
 
     private Integer id;
@@ -22,18 +24,18 @@ public class ViewSubsistence {
     private  Integer status;
 
     @Column(name = "new_number")
-    private Integer newNumberElect;
+    private Integer newNumber;
 
     @Column(name = "old_number")
-    private Integer oldNumberElect;
+    private Integer oldNumber;
 
     @Column(name = "cost_id")
-    private Integer costIdElect;
+    private Integer costId;
 
     @Column(name = "name_cost")
     private String nameCost;
 
-    @Column(name = "cost_value")
+    @Column(name = "value_cost")
     private Float costValue;
 
     @Column(name = "room_id")
@@ -98,28 +100,28 @@ public class ViewSubsistence {
         this.status = status;
     }
 
-    public Integer getNewNumberElect() {
-        return newNumberElect;
+    public Integer getNewNumber() {
+        return newNumber;
     }
 
-    public void setNewNumberElect(Integer newNumberElect) {
-        this.newNumberElect = newNumberElect;
+    public void setNewNumber(Integer newNumber) {
+        this.newNumber = newNumber;
     }
 
-    public Integer getOldNumberElect() {
-        return oldNumberElect;
+    public Integer getOldNumber() {
+        return oldNumber;
     }
 
-    public void setOldNumberElect(Integer oldNumberElect) {
-        this.oldNumberElect = oldNumberElect;
+    public void setOldNumber(Integer oldNumber) {
+        this.oldNumber = oldNumber;
     }
 
-    public Integer getCostIdElect() {
-        return costIdElect;
+    public Integer getCostId() {
+        return costId;
     }
 
-    public void setCostIdElect(Integer costIdElect) {
-        this.costIdElect = costIdElect;
+    public void setCostId(Integer costId) {
+        this.costId = costId;
     }
 
     public String getNameCost() {

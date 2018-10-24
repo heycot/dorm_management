@@ -1,6 +1,7 @@
 package com.example.dorm_management.services;
 
 import com.example.dorm_management.entities.SubsistenceFee;
+import com.example.dorm_management.entities.ViewSubsistence;
 import com.example.dorm_management.respositories.SubsistenceFeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,7 +15,7 @@ public class SubsistenceFeeServiceImpl implements SubsistenceFeeService {
     private SubsistenceFeeRepository subsistenceFeeRepository;
 
     @Override
-    public List<SubsistenceFee> findALlByRoomId(Integer roomId) {
+    public List<ViewSubsistence> findALlByRoomId(Integer roomId) {
         return subsistenceFeeRepository.findALlByRoomId(roomId);
     }
 
@@ -52,19 +53,26 @@ public class SubsistenceFeeServiceImpl implements SubsistenceFeeService {
     }
 
     @Override
-    public SubsistenceFee changeStatusOne(Integer id, Integer status) {
+    public ViewSubsistence changeStatusOne(Integer id, Integer status) {
         try {
             SubsistenceFee subsistenceFee1 = subsistenceFeeRepository.findOne(id);
 
             subsistenceFee1.setStatus(status);
 
+
             subsistenceFeeRepository.save(subsistenceFee1);
 
-            return subsistenceFee1;
+            ViewSubsistence viewSubsistence = subsistenceFeeRepository.findViewOne(id);
+            return viewSubsistence;
         } catch (Exception e) {
             System.out.println(e.getCause());
 
             return  null;
         }
+    }
+
+    @Override
+    public ViewSubsistence findViewOneById(Integer id) {
+        return subsistenceFeeRepository.findViewOne(id);
     }
 }

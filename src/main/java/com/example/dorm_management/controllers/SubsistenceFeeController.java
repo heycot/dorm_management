@@ -3,9 +3,11 @@ package com.example.dorm_management.controllers;
 import com.example.dorm_management.entities.Cost;
 import com.example.dorm_management.entities.Notification;
 import com.example.dorm_management.entities.SubsistenceFee;
+import com.example.dorm_management.entities.ViewSubsistence;
 import com.example.dorm_management.json.API;
 import com.example.dorm_management.json.JsonResponse;
 import com.example.dorm_management.services.CostService;
+import com.example.dorm_management.services.NotificationService;
 import com.example.dorm_management.services.SubsistenceFeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -23,6 +25,11 @@ public class SubsistenceFeeController {
     @Autowired
     private SubsistenceFeeService subsistenceFeeService;
 
+
+    @Autowired
+    private NotificationService notificationService;
+
+
     @Autowired
     private CostService costService;
 
@@ -31,7 +38,7 @@ public class SubsistenceFeeController {
     @GetMapping("/room/{id}")
     public JsonResponse findOneByRoomId(@PathVariable(value = "id") Integer roomId) {
         try {
-            List<SubsistenceFee> subsistenceFeeList = subsistenceFeeService.findALlByRoomId(roomId);
+            List<ViewSubsistence> subsistenceFeeList = subsistenceFeeService.findALlByRoomId(roomId);
 
             if (subsistenceFeeList.size() > 0) {
                 jsonResponse = return_List_Object_JsonPresonse(API.CODE_API_YES, "success", subsistenceFeeList);
@@ -68,6 +75,24 @@ public class SubsistenceFeeController {
             if (subsistenceFee1 == null) {
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_NO, "error add", null);
             } else {
+
+                ViewSubsistence sb1 = subsistenceFeeService.findViewOneById()
+                String content = "Phòng của bạn đã thanh toán hóa đơn điện nước thành công: \n"
+                        + " tháng :" + sb1.getMonth() + " - " + sb1.getYear() + "\n"
+                        + sb1.getNameCost() + " : \n"
+                        + " Số cũ: " + sb1.getOldNumber() + " số mới: " + sb1.getNewNumber() + " = " + sb1.getTotal() + "\n"
+                        + sb2.getNameCost() + " : \n"
+                        + " Số cũ: " + sb1.getOldNumber() + " số mới: " + sb1.getNewNumber() + " = " + sb2.getTotal() + "\n"
+                        + "Tổng tiền : " + ( sb1.getTotal() + sb2.getTotal()) + "VND";
+
+                Notification notification = new Notification();
+                notification.setTitle("Thanh toán hóa đơn thành công!");
+                notification.setContent(content);
+                notification.setRoomId(room_id);
+                notification.setStatus(0);
+
+                notificationService.addNotification(notification);
+
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_YES, "success", subsistenceFee1);
             }
 
@@ -112,20 +137,27 @@ public class SubsistenceFeeController {
                                 ,  @PathVariable(value = "sub_id_1") Integer sub_id_2){
         try {
 
-            SubsistenceFee sb1 = subsistenceFeeService.changeStatusOne(sub_id_1, 1);
-            SubsistenceFee sb2 = subsistenceFeeService.changeStatusOne(sub_id_2, 1);
+            ViewSubsistence sb1 = subsistenceFeeService.changeStatusOne(sub_id_1, 1);
+            ViewSubsistence sb2 = subsistenceFeeService.changeStatusOne(sub_id_2, 1);
             if ( sb1 == null || sb2 == null) {
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_ERROR, "edit fail", null);
             } else {
 
                 String content = "Phòng của bạn đã thanh toán hóa đơn điện nước thành công: \n"
                                 + " tháng :" + sb1.getMonth() + " - " + sb1.getYear() + "\n"
-                                + " "
+                                + sb1.getNameCost() + " : \n"
+                                + " Số cũ: " + sb1.getOldNumber() + " số mới: " + sb1.getNewNumber() + " = " + sb1.getTotal() + "\n"
+                                + sb2.getNameCost() + " : \n"
+                                + " Số cũ: " + sb1.getOldNumber() + " số mới: " + sb1.getNewNumber() + " = " + sb2.getTotal() + "\n"
+                                + "Tổng tiền : " + ( sb1.getTotal() + sb2.getTotal()) + "VND";
 
                 Notification notification = new Notification();
                 notification.setTitle("Thanh toán hóa đơn thành công!");
-                notification.setContent();
+                notification.setContent(content);
+                notification.setRoomId(room_id);
+                notification.setStatus(0);
 
+                notificationService.addNotification(notification);
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_EDIT_SUCCESS, "edit fail", null);
             }
 
@@ -147,7 +179,7 @@ public class SubsistenceFeeController {
         return jsonResponse;
     }
 
-    public JsonResponse return_List_Object_JsonPresonse(Integer code, String message, List<SubsistenceFee> subsistenceFeeList){
+    public JsonResponse return_List_Object_JsonPresonse(Integer code, String message, List<ViewSubsistence> subsistenceFeeList){
         JsonResponse jsonResponse = new JsonResponse();
 
         jsonResponse.setCode(code);

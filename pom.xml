@@ -86,18 +86,14 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot</artifactId>
-<<<<<<< HEAD
             <version>1.5.16.RELEASE</version>
         </dependency>
-
 
         <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-commons-annotations -->
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-commons-annotations</artifactId>
-=======
-            <version>1.5.9.RELEASE</version>
->>>>>>> 61d060de920f6829937ff81e1ff414382e63e751
+            <!--<version>1.5.9.RELEASE</version>-->
         </dependency>
 
 
