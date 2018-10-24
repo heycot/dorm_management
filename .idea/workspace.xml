@@ -109,52 +109,30 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Area.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/entities/Area.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="10" selection-end-column="21" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CodeStudentServiceImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/services/CodeStudentServiceImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="47" column="25" selection-start-line="47" selection-start-column="25" selection-end-line="47" selection-end-column="25" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DATABASE/20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3" pinned="false" current-in-tab="true">
+      <file leaf-file-name="DATABASE/20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3" pinned="false" current-in-tab="false">
         <entry file="uml://DATABASE/20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3">
           <provider selected="true" editor-type-id="UmlEditorProvider">
             <state>
               <ID>DATABASE</ID>
               <OriginalElement>20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3</OriginalElement>
               <nodes>
-                <node x="1047.1052631578946" y="860.0">20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.user_detail</node>
+                <node x="1227.1052631578946" y="860.0">20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.user_detail</node>
                 <node x="165.83333333333326" y="380.0">20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.room</node>
                 <node x="1407.1052631578946" y="871.0">20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.role_user</node>
-                <node x="327.1052631578947" y="827.0">20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.rent</node>
-                <node x="607.1052631578947" y="457.0">20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.semester</node>
-                <node x="1227.1052631578946" y="860.0">20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.student_code</node>
+                <node x="327.1052631578946" y="827.0">20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.rent</node>
+                <node x="607.1052631578946" y="457.0">20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.semester</node>
+                <node x="1047.1052631578946" y="860.0">20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.student_code</node>
+                <node x="827.1052631578946" y="838.0">20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.rent_room</node>
                 <node x="1218.9780701754385" y="201.0">20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.role</node>
-                <node x="827.1052631578947" y="838.0">20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.rent_room</node>
-                <node x="567.1052631578947" y="816.0">20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.register_room</node>
+                <node x="567.1052631578946" y="816.0">20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.register_room</node>
                 <node x="0.0" y="1111.0">20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.notification</node>
                 <node x="0.0" y="794.0">20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.subsistence_fee</node>
                 <node x="1013.8728070175437" y="446.0">20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.user</node>
                 <node x="225.0" y="1111.0">20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.room_function</node>
-                <node x="1168.9780701754385" y="22.0">20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.action</node>
-                <node x="1288.9780701754385" y="22.0">20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.groups</node>
+                <node x="1168.9780701754385" y="22.0">20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.groups</node>
+                <node x="1288.9780701754385" y="22.0">20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.action</node>
                 <node x="255.58333333333326" y="190.0">20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.floor</node>
-                <node x="343.77192982456125" y="0.0">20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.area</node>
+                <node x="343.77192982456137" y="0.0">20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.area</node>
                 <node x="25.0" y="168.0">20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.cost</node>
               </nodes>
               <notes />
@@ -165,35 +143,35 @@
                   <point x="255.83333333333326" y="774.0" />
                   <point x="-60.0" y="147.0" />
                 </edge>
-                <edge source="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.register_room" target="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.user">
-                  <point x="80.0" y="-114.0" />
-                  <point x="767.1052631578947" y="764.0" />
-                  <point x="1058.8728070175437" y="764.0" />
-                  <point x="-45.0" y="81.0" />
-                </edge>
-                <edge source="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.rent" target="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.user">
-                  <point x="73.33333333333326" y="-103.0" />
-                  <point x="510.43859649122794" y="754.0" />
-                  <point x="1028.8728070175437" y="754.0" />
-                  <point x="-75.0" y="81.0" />
-                </edge>
                 <edge source="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.role_user" target="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.role">
                   <point x="35.0" y="-59.0" />
                   <point x="1512.1052631578946" y="355.0" />
                   <point x="1308.9780701754385" y="355.0" />
-                  <point x="30.0" y="48.0" />
+                  <point x="30.000000000000057" y="48.0" />
                 </edge>
-                <edge source="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.student_code" target="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.user">
-                  <point x="0.0" y="-70.0" />
-                  <point x="1307.1052631578946" y="774.0" />
-                  <point x="1148.8728070175437" y="774.0" />
-                  <point x="45.0" y="81.0" />
+                <edge source="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.register_room" target="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.user">
+                  <point x="80.0" y="-114.0" />
+                  <point x="767.1052631578946" y="764.0" />
+                  <point x="1058.8728070175437" y="764.0" />
+                  <point x="-45.0" y="81.0" />
+                </edge>
+                <edge source="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.rent" target="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.user">
+                  <point x="73.33333333333337" y="-103.0" />
+                  <point x="510.438596491228" y="754.0" />
+                  <point x="1028.8728070175437" y="754.0" />
+                  <point x="-75.0" y="81.0" />
                 </edge>
                 <edge source="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.rent_room" target="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.user">
                   <point x="66.66666666666663" y="-92.0" />
                   <point x="993.7719298245613" y="774.0" />
                   <point x="1088.8728070175437" y="774.0" />
                   <point x="-15.0" y="81.0" />
+                </edge>
+                <edge source="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.student_code" target="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.user">
+                  <point x="0.0" y="-70.0" />
+                  <point x="1127.1052631578946" y="774.0" />
+                  <point x="1118.8728070175437" y="774.0" />
+                  <point x="15.0" y="81.0" />
                 </edge>
                 <edge source="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.user" target="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.role">
                   <point x="0.0" y="-81.0" />
@@ -203,25 +181,25 @@
                 </edge>
                 <edge source="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.user_detail" target="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.user">
                   <point x="0.0" y="-70.0" />
-                  <point x="1127.1052631578946" y="774.0" />
-                  <point x="1118.8728070175437" y="774.0" />
-                  <point x="15.0" y="81.0" />
+                  <point x="1307.1052631578946" y="774.0" />
+                  <point x="1148.8728070175437" y="774.0" />
+                  <point x="45.0" y="81.0" />
                 </edge>
                 <edge source="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.rent_room" target="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.semester">
                   <point x="0.0" y="-92.0" />
-                  <point x="927.1052631578947" y="714.0" />
+                  <point x="927.1052631578946" y="714.0" />
                   <point x="740.438596491228" y="714.0" />
                   <point x="53.33333333333337" y="70.0" />
-                </edge>
-                <edge source="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.rent" target="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.semester">
-                  <point x="-5.6843418860808015E-14" y="-103.0" />
-                  <point x="437.1052631578946" y="744.0" />
-                  <point x="633.7719298245613" y="744.0" />
-                  <point x="-53.33333333333337" y="70.0" />
                 </edge>
                 <edge source="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.register_room" target="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.semester">
                   <point x="0.0" y="-114.0" />
                   <point x="0.0" y="70.0" />
+                </edge>
+                <edge source="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.rent" target="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.semester">
+                  <point x="5.6843418860808015E-14" y="-103.0" />
+                  <point x="437.1052631578947" y="744.0" />
+                  <point x="633.7719298245613" y="744.0" />
+                  <point x="-53.33333333333337" y="70.0" />
                 </edge>
                 <edge source="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.role_user" target="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.user">
                   <point x="-35.0" y="-59.0" />
@@ -229,34 +207,34 @@
                   <point x="1178.8728070175437" y="764.0" />
                   <point x="75.0" y="81.0" />
                 </edge>
-                <edge source="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.rent_room" target="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.room">
-                  <point x="-66.66666666666674" y="-92.0" />
-                  <point x="860.4385964912279" y="724.0" />
-                  <point x="435.83333333333326" y="724.0" />
-                  <point x="120.0" y="147.0" />
-                </edge>
                 <edge source="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.register_room" target="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.room">
                   <point x="-80.0" y="-114.0" />
-                  <point x="607.1052631578947" y="734.0" />
+                  <point x="607.1052631578946" y="734.0" />
                   <point x="375.83333333333326" y="734.0" />
                   <point x="60.0" y="147.0" />
                 </edge>
+                <edge source="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.rent_room" target="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.room">
+                  <point x="-66.66666666666674" y="-92.0" />
+                  <point x="860.4385964912278" y="724.0" />
+                  <point x="435.83333333333326" y="724.0" />
+                  <point x="120.0" y="147.0" />
+                </edge>
                 <edge source="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.rent" target="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.room">
-                  <point x="-73.33333333333337" y="-103.0" />
-                  <point x="363.7719298245613" y="774.0" />
+                  <point x="-73.33333333333326" y="-103.0" />
+                  <point x="363.77192982456137" y="774.0" />
                   <point x="315.83333333333326" y="774.0" />
                   <point x="0.0" y="147.0" />
                 </edge>
                 <edge source="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.role" target="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.groups">
-                  <point x="30.0" y="-48.0" />
-                  <point x="1308.9780701754385" y="143.0" />
-                  <point x="1338.9780701754385" y="143.0" />
+                  <point x="-30.0" y="-48.0" />
+                  <point x="1248.9780701754385" y="143.0" />
+                  <point x="1218.9780701754385" y="143.0" />
                   <point x="0.0" y="37.0" />
                 </edge>
                 <edge source="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.floor" target="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.area">
                   <point x="0.0" y="-59.0" />
                   <point x="325.58333333333326" y="143.0" />
-                  <point x="378.77192982456125" y="143.0" />
+                  <point x="378.77192982456137" y="143.0" />
                   <point x="-35.0" y="59.0" />
                 </edge>
                 <edge source="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.room" target="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.room">
@@ -285,19 +263,19 @@
                 <edge source="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.room" target="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.area">
                   <point x="100.0" y="-147.0" />
                   <point x="415.83333333333326" y="355.0" />
-                  <point x="454.0219298245613" y="355.0" />
-                  <point x="454.0219298245613" y="143.0" />
-                  <point x="448.77192982456125" y="143.0" />
+                  <point x="454.02192982456137" y="355.0" />
+                  <point x="454.02192982456137" y="143.0" />
+                  <point x="448.77192982456137" y="143.0" />
                   <point x="35.0" y="59.0" />
                 </edge>
                 <edge source="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.role" target="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.action">
-                  <point x="-30.0" y="-48.0" />
-                  <point x="1248.9780701754385" y="143.0" />
-                  <point x="1218.9780701754385" y="143.0" />
+                  <point x="30.0" y="-48.0" />
+                  <point x="1308.9780701754385" y="143.0" />
+                  <point x="1338.9780701754385" y="143.0" />
                   <point x="0.0" y="37.0" />
                 </edge>
               </edges>
-              <settings layout="Hierarchic Group" zoom="0.7753286929621036" x="551.9102244389028" y="873.5800498753117" />
+              <settings layout="Hierarchic Group" zoom="0.8307811291569992" x="1115.8847514429342" y="253.88475144293426" />
               <SelectedNodes>
                 <node>20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.cost</node>
               </SelectedNodes>
@@ -309,67 +287,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Notification.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/entities/Notification.java">
+      <file leaf-file-name="RoleController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/controllers/RoleController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="42" column="5" selection-start-line="42" selection-start-column="5" selection-end-line="42" selection-end-column="5" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#993#994#0" expanded="true" />
-                <element signature="e#1018#1019#0" expanded="true" />
-                <element signature="e#1055#1056#0" expanded="true" />
-                <element signature="e#1083#1084#0" expanded="true" />
-                <element signature="e#1115#1116#0" expanded="true" />
-                <element signature="e#1143#1144#0" expanded="true" />
-                <element signature="e#1185#1186#0" expanded="true" />
-                <element signature="e#1219#1220#0" expanded="true" />
-                <element signature="e#1253#1254#0" expanded="true" />
-                <element signature="e#1283#1284#0" expanded="true" />
-                <element signature="e#1329#1330#0" expanded="true" />
-                <element signature="e#1367#1368#0" expanded="true" />
-                <element signature="e#1401#1402#0" expanded="true" />
-                <element signature="e#1430#1431#0" expanded="true" />
-                <element signature="e#1475#1476#0" expanded="true" />
-                <element signature="e#1511#1512#0" expanded="true" />
-                <element signature="e#1540#1541#0" expanded="true" />
-                <element signature="e#1567#1568#0" expanded="true" />
-                <element signature="e#1605#1606#0" expanded="true" />
-                <element signature="e#1637#1638#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="User.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/entities/User.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="9" column="7" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1042#1043#0" expanded="true" />
-                <element signature="e#1078#1079#0" expanded="true" />
-                <element signature="e#1147#1148#0" expanded="true" />
-                <element signature="e#1197#1198#0" expanded="true" />
-                <element signature="e#1240#1241#0" expanded="true" />
-                <element signature="e#1274#1275#0" expanded="true" />
-                <element signature="e#1333#1334#0" expanded="true" />
-                <element signature="e#1379#1380#0" expanded="true" />
-                <element signature="e#1413#1414#0" expanded="true" />
-                <element signature="e#1442#1443#0" expanded="true" />
-                <element signature="e#1487#1488#0" expanded="true" />
-                <element signature="e#1523#1524#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="NotificationRepositoty.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/respositories/NotificationRepositoty.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="8" column="85" selection-start-line="8" selection-start-column="85" selection-end-line="8" selection-end-column="85" />
+              <caret line="71" column="13" selection-start-line="66" selection-start-column="12" selection-end-line="71" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -377,66 +299,85 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NotificationService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/services/NotificationService.java">
+      <file leaf-file-name="UserController.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/controllers/UserController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="10" column="75" selection-start-line="10" selection-start-column="75" selection-end-line="10" selection-end-column="75" />
+            <state vertical-scroll-proportion="0.73368144">
+              <caret line="202" column="4" selection-start-line="202" selection-start-column="4" selection-end-line="202" selection-end-column="4" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NotificationServiceImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/services/NotificationServiceImpl.java">
+      <file leaf-file-name="Action.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/entities/Action.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="37" column="13" selection-start-line="37" selection-start-column="13" selection-end-line="37" selection-end-column="13" />
+              <caret line="18" column="11" selection-start-line="18" selection-start-column="11" selection-end-line="18" selection-end-column="11" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#345#346#0" expanded="true" />
+                <element signature="e#377#378#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Cost.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/entities/Cost.java">
+      <file leaf-file-name="API.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/json/API.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="13" selection-end-column="23" />
+              <caret line="14" column="42" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="42" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StudentCode.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/entities/StudentCode.java">
+      <file leaf-file-name="ActionRepository.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/respositories/ActionRepository.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="3" selection-end-column="19" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1004#1005#0" expanded="true" />
-                <element signature="e#1029#1030#0" expanded="true" />
-                <element signature="e#1066#1067#0" expanded="true" />
-                <element signature="e#1094#1095#0" expanded="true" />
-                <element signature="e#1125#1126#0" expanded="true" />
-                <element signature="e#1152#1153#0" expanded="true" />
-                <element signature="e#1192#1193#0" expanded="true" />
-                <element signature="e#1224#1225#0" expanded="true" />
-                <element signature="e#1256#1257#0" expanded="true" />
-                <element signature="e#1284#1285#0" expanded="true" />
-                <element signature="e#1326#1327#0" expanded="true" />
-                <element signature="e#1360#1361#0" expanded="true" />
-                <element signature="e#1392#1393#0" expanded="true" />
-                <element signature="e#1420#1421#0" expanded="true" />
-                <element signature="e#1462#1463#0" expanded="true" />
-                <element signature="e#1496#1497#0" expanded="true" />
-                <element signature="e#1525#1526#0" expanded="true" />
-                <element signature="e#1552#1553#0" expanded="true" />
-                <element signature="e#1590#1591#0" expanded="true" />
-                <element signature="e#1622#1623#0" expanded="true" />
-              </folding>
+              <caret line="8" column="28" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="33" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserServiceImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/services/UserServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="69" column="26" selection-start-line="69" selection-start-column="26" selection-end-line="69" selection-end-column="26" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserRepository.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/respositories/UserRepository.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/services/UserService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="19" column="23" selection-start-line="19" selection-start-column="12" selection-end-line="19" selection-end-column="23" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Group.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/entities/Group.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -483,11 +424,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/example/dorm_management/json/JsonResponse.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/dorm_management/respositories/RoomREpository.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/dorm_management/respositories/RoomRepository.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/dorm_management/services/RoomService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/dorm_management/respositories/FloorRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/dorm_management/services/RoomServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/dorm_management/services/FloorServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/dorm_management/services/FloorService.java" />
@@ -504,7 +440,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/example/dorm_management/services/RoleUserServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/dorm_management/controllers/RoleUserController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/dorm_management/entities/RoleUser.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/dorm_management/entities/Role.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/dorm_management/services/UserDetailService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/dorm_management/respositories/UserDetailRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/dorm_management/services/UserDetailServiceImpl.java" />
@@ -526,7 +461,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/example/dorm_management/entities/SubsistenceFee.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/dorm_management/respositories/StudentCodeRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/dorm_management/entities/StudentCode.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/dorm_management/controllers/UserController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/dorm_management/services/CodeStudentService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/dorm_management/services/CodeStudentServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/dorm_management/entities/Notification.java" />
@@ -534,6 +468,13 @@
         <option value="$PROJECT_DIR$/src/main/java/com/example/dorm_management/respositories/NotificationRepositoty.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/dorm_management/services/NotificationService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/dorm_management/services/NotificationServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/dorm_management/respositories/RoleRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/dorm_management/entities/Role.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/dorm_management/services/RoleService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/dorm_management/services/RoleServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/dorm_management/controllers/RoleController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/dorm_management/services/UserService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/dorm_management/controllers/UserController.java" />
       </list>
     </option>
   </component>
@@ -602,6 +543,9 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope">
+        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope" />
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -834,11 +778,8 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scratches" />
-      <pane id="Scope">
-        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope" />
-      </pane>
+      <pane id="PackagesPane" />
       <pane id="AndroidView" />
     </panes>
   </component>
@@ -869,8 +810,9 @@
     <property name="OverrideImplement.combined" value="true" />
     <property name="OverrideImplement.overriding.sorted" value="false" />
     <property name="restartRequiresConfirmation" value="true" />
-    <property name="SearchEverywhereHistoryKey" value="User&#9;FILE&#9;file://F:/Document Java/project/dorm_management/src/main/java/com/example/dorm_management/entities/User.java" />
+    <property name="SearchEverywhereHistoryKey" value="Role&#9;FILE&#9;file://F:/Document Java/project/dorm_management/src/main/java/com/example/dorm_management/services/RoleService.java&#10;User&#9;FILE&#9;file://F:/Document Java/project/dorm_management/src/main/java/com/example/dorm_management/entities/User.java" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
+    <property name="FullScreen" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
@@ -1167,12 +1109,13 @@
       <workItem from="1539350111353" duration="161000" />
       <workItem from="1539350668096" duration="6731000" />
       <workItem from="1540093992141" duration="8856000" />
-      <workItem from="1540211711552" duration="12648000" />
+      <workItem from="1540211711552" duration="12890000" />
+      <workItem from="1540388045249" duration="5088000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="120503000" />
+    <option name="totallyTimeSpent" value="125833000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1189,14 +1132,13 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843137" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32843137" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843137" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22281879" sideWeight="0.08625731" order="2" side_tool="true" content_ui="tabs" />
@@ -1206,6 +1148,7 @@
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.13842663" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32843137" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2409396" sideWeight="0.23376623" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1215,8 +1158,8 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843137" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843137" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1251,136 +1194,10 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/respositories/RoleUserRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="13" column="38" selection-start-line="13" selection-start-column="38" selection-end-line="13" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/respositories/FloorRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/respositories/GroupRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="8" column="32" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/services/RoleUserService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="9" column="3" selection-start-line="9" selection-start-column="3" selection-end-line="9" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/services/RoleUserServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="12" column="8" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/285d5802-d803-4610-b21c-5076a0595d05/console.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-commons/1.13.9.RELEASE/spring-data-commons-1.13.9.RELEASE-sources.jar!/org/springframework/data/repository/CrudRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.41952056">
-          <caret line="92" column="13" selection-start-line="92" selection-start-column="13" selection-end-line="92" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="uml://DATABASE/285d5802-d803-4610-b21c-5076a0595d05.schema:dorm_management1">
-      <provider selected="true" editor-type-id="UmlEditorProvider">
-        <state>
-          <ID>DATABASE</ID>
-          <OriginalElement>285d5802-d803-4610-b21c-5076a0595d05.schema:dorm_management1</OriginalElement>
-          <nodes>
-            <node x="" y="">285d5802-d803-4610-b21c-5076a0595d05.table:dorm_management1.semester</node>
-            <node x="" y="">285d5802-d803-4610-b21c-5076a0595d05.table:dorm_management1.groups</node>
-            <node x="" y="">285d5802-d803-4610-b21c-5076a0595d05.table:dorm_management1.room</node>
-            <node x="" y="">285d5802-d803-4610-b21c-5076a0595d05.table:dorm_management1.register_room</node>
-            <node x="" y="">285d5802-d803-4610-b21c-5076a0595d05.table:dorm_management1.rent</node>
-            <node x="" y="">285d5802-d803-4610-b21c-5076a0595d05.table:dorm_management1.role_user</node>
-            <node x="" y="">285d5802-d803-4610-b21c-5076a0595d05.table:dorm_management1.role</node>
-            <node x="" y="">285d5802-d803-4610-b21c-5076a0595d05.table:dorm_management1.student_code</node>
-            <node x="" y="">285d5802-d803-4610-b21c-5076a0595d05.table:dorm_management1.user_detail</node>
-            <node x="" y="">285d5802-d803-4610-b21c-5076a0595d05.table:dorm_management1.user</node>
-            <node x="" y="">285d5802-d803-4610-b21c-5076a0595d05.table:dorm_management1.rent_room</node>
-            <node x="" y="">285d5802-d803-4610-b21c-5076a0595d05.table:dorm_management1.floor</node>
-            <node x="" y="">285d5802-d803-4610-b21c-5076a0595d05.table:dorm_management1.room_function</node>
-            <node x="" y="">285d5802-d803-4610-b21c-5076a0595d05.table:dorm_management1.subsistence_fee</node>
-            <node x="" y="">285d5802-d803-4610-b21c-5076a0595d05.table:dorm_management1.cost</node>
-            <node x="" y="">285d5802-d803-4610-b21c-5076a0595d05.table:dorm_management1.area</node>
-            <node x="" y="">285d5802-d803-4610-b21c-5076a0595d05.table:dorm_management1.notification</node>
-            <node x="" y="">285d5802-d803-4610-b21c-5076a0595d05.table:dorm_management1.action</node>
-          </nodes>
-          <notes />
-          <edges />
-          <settings layout="Hierarchic Group" zoom="0.7459835547122075" x="333.0" y="615.0" />
-          <SelectedNodes />
-          <Categories>
-            <Category>Columns</Category>
-            <Category>Key columns</Category>
-          </Categories>
-          <SCOPE>All</SCOPE>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/d1475b03-40fe-4eda-b218-935aaafd76b6/console.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/entities/RoleUser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.29109588">
-          <caret line="16" column="23" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/services/AccountServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.1849315">
-          <caret line="120" column="13" selection-start-line="120" selection-start-column="13" selection-end-line="120" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/respositories/UserDetailRepository.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/respositories/ActionRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.23287672">
-          <caret line="8" column="23" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/entities/Role.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.20376712">
-          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="12" selection-end-column="21" />
         </state>
       </provider>
     </entry>
@@ -1396,7 +1213,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3321918">
           <caret line="34" column="17" selection-start-line="34" selection-start-column="17" selection-end-line="34" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1429,16 +1245,6 @@
           <caret line="9" column="11" selection-start-line="9" selection-start-column="11" selection-end-line="9" selection-end-column="11" />
           <folding>
             <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/services/AccountService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="23" column="52" selection-start-line="23" selection-start-column="52" selection-end-line="23" selection-end-column="52" />
-          <folding>
-            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1502,12 +1308,13 @@
           </nodes>
           <notes />
           <edges />
-          <settings layout="Hierarchic Group" zoom="0.9307811291569992" x="356.9239717490652" y="831.8707935189032" />
+          <settings layout="Hierarchic Group" zoom="0.9307811291569992" x="357.0" y="832.0" />
           <SelectedNodes />
           <Categories>
-            <Category>Key columns</Category>
             <Category>Columns</Category>
+            <Category>Key columns</Category>
           </Categories>
+          <SCOPE>All</SCOPE>
         </state>
       </provider>
     </entry>
@@ -1515,7 +1322,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1686,14 +1492,15 @@
               <point x="0.0" y="147.0" />
             </edge>
           </edges>
-          <settings layout="Hierarchic Group" zoom="1.1307811291569991" x="263.24266466041996" y="600.2426646604199" />
+          <settings layout="Hierarchic Group" zoom="1.1307811291569991" x="263.0" y="600.0" />
           <SelectedNodes>
             <node>b01c67a7-1681-4589-8b8f-becb8449eb1e.table:dorm_management1.rent_room</node>
           </SelectedNodes>
           <Categories>
-            <Category>Key columns</Category>
             <Category>Columns</Category>
+            <Category>Key columns</Category>
           </Categories>
+          <SCOPE>All</SCOPE>
         </state>
       </provider>
     </entry>
@@ -1701,7 +1508,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1712,14 +1518,6 @@
           <folding>
             <element signature="e#568#569#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/respositories/UserRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.43664384">
-          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1760,12 +1558,13 @@
           </nodes>
           <notes />
           <edges />
-          <settings layout="Hierarchic Group" zoom="1.0307811291569993" x="502.05522208883554" y="833.1834483793517" />
+          <settings layout="Hierarchic Group" zoom="1.0307811291569993" x="502.0" y="833.0" />
           <SelectedNodes />
           <Categories>
-            <Category>Key columns</Category>
             <Category>Columns</Category>
+            <Category>Key columns</Category>
           </Categories>
+          <SCOPE>All</SCOPE>
         </state>
       </provider>
     </entry>
@@ -1773,7 +1572,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1944,12 +1742,13 @@
               <point x="45.0" y="81.0" />
             </edge>
           </edges>
-          <settings layout="Hierarchic Group" zoom="1.2307811291569992" x="210.99811486741234" y="753.9981148674124" />
+          <settings layout="Hierarchic Group" zoom="1.2307811291569992" x="211.0" y="754.0" />
           <SelectedNodes />
           <Categories>
-            <Category>Key columns</Category>
             <Category>Columns</Category>
+            <Category>Key columns</Category>
           </Categories>
+          <SCOPE>All</SCOPE>
         </state>
       </provider>
     </entry>
@@ -1957,7 +1756,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-2.5185184">
           <caret line="7" column="12" selection-start-line="7" selection-start-column="12" selection-end-line="7" selection-end-column="12" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1965,7 +1763,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1983,15 +1780,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="11" column="88" selection-start-line="11" selection-start-column="84" selection-end-line="11" selection-end-column="88" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/controllers/UserController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="44" column="50" selection-start-line="44" selection-start-column="50" selection-end-line="44" selection-end-column="50" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2016,7 +1804,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/entities/Area.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="10" selection-end-column="21" />
+          <caret line="36" column="21" selection-start-line="36" selection-start-column="21" selection-end-line="36" selection-end-column="21" />
           <folding />
         </state>
       </provider>
@@ -2139,29 +1927,135 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/services/CostService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/entities/Role.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="40" column="31" selection-start-line="40" selection-start-column="31" selection-end-line="40" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/respositories/RoleRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="8" column="70" selection-start-line="8" selection-start-column="70" selection-end-line="8" selection-end-column="70" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/services/RoleServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="63" column="33" selection-start-line="63" selection-start-column="22" selection-end-line="63" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1691#1692#0" expanded="true" />
+            <element signature="e#1738#1739#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/controllers/AreaController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="43" column="5" selection-start-line="30" selection-start-column="4" selection-end-line="43" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/controllers/RoleUserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="48" column="5" selection-start-line="39" selection-start-column="3" selection-end-line="48" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/services/RoleService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="13" column="12" selection-start-line="13" selection-start-column="12" selection-end-line="13" selection-end-column="12" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/respositories/ActionRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="8" column="28" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/entities/Group.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/respositories/UserRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/services/UserServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="69" column="26" selection-start-line="69" selection-start-column="26" selection-end-line="69" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/controllers/RoleController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="71" column="13" selection-start-line="66" selection-start-column="12" selection-end-line="71" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="uml://DATABASE/20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3">
       <provider selected="true" editor-type-id="UmlEditorProvider">
         <state>
           <ID>DATABASE</ID>
           <OriginalElement>20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3</OriginalElement>
           <nodes>
-            <node x="1047.1052631578946" y="860.0">20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.user_detail</node>
+            <node x="1227.1052631578946" y="860.0">20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.user_detail</node>
             <node x="165.83333333333326" y="380.0">20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.room</node>
             <node x="1407.1052631578946" y="871.0">20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.role_user</node>
-            <node x="327.1052631578947" y="827.0">20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.rent</node>
-            <node x="607.1052631578947" y="457.0">20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.semester</node>
-            <node x="1227.1052631578946" y="860.0">20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.student_code</node>
+            <node x="327.1052631578946" y="827.0">20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.rent</node>
+            <node x="607.1052631578946" y="457.0">20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.semester</node>
+            <node x="1047.1052631578946" y="860.0">20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.student_code</node>
+            <node x="827.1052631578946" y="838.0">20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.rent_room</node>
             <node x="1218.9780701754385" y="201.0">20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.role</node>
-            <node x="827.1052631578947" y="838.0">20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.rent_room</node>
-            <node x="567.1052631578947" y="816.0">20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.register_room</node>
+            <node x="567.1052631578946" y="816.0">20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.register_room</node>
             <node x="0.0" y="1111.0">20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.notification</node>
             <node x="0.0" y="794.0">20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.subsistence_fee</node>
             <node x="1013.8728070175437" y="446.0">20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.user</node>
             <node x="225.0" y="1111.0">20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.room_function</node>
-            <node x="1168.9780701754385" y="22.0">20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.action</node>
-            <node x="1288.9780701754385" y="22.0">20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.groups</node>
+            <node x="1168.9780701754385" y="22.0">20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.groups</node>
+            <node x="1288.9780701754385" y="22.0">20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.action</node>
             <node x="255.58333333333326" y="190.0">20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.floor</node>
-            <node x="343.77192982456125" y="0.0">20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.area</node>
+            <node x="343.77192982456137" y="0.0">20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.area</node>
             <node x="25.0" y="168.0">20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.cost</node>
           </nodes>
           <notes />
@@ -2172,35 +2066,35 @@
               <point x="255.83333333333326" y="774.0" />
               <point x="-60.0" y="147.0" />
             </edge>
-            <edge source="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.register_room" target="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.user">
-              <point x="80.0" y="-114.0" />
-              <point x="767.1052631578947" y="764.0" />
-              <point x="1058.8728070175437" y="764.0" />
-              <point x="-45.0" y="81.0" />
-            </edge>
-            <edge source="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.rent" target="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.user">
-              <point x="73.33333333333326" y="-103.0" />
-              <point x="510.43859649122794" y="754.0" />
-              <point x="1028.8728070175437" y="754.0" />
-              <point x="-75.0" y="81.0" />
-            </edge>
             <edge source="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.role_user" target="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.role">
               <point x="35.0" y="-59.0" />
               <point x="1512.1052631578946" y="355.0" />
               <point x="1308.9780701754385" y="355.0" />
-              <point x="30.0" y="48.0" />
+              <point x="30.000000000000057" y="48.0" />
             </edge>
-            <edge source="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.student_code" target="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.user">
-              <point x="0.0" y="-70.0" />
-              <point x="1307.1052631578946" y="774.0" />
-              <point x="1148.8728070175437" y="774.0" />
-              <point x="45.0" y="81.0" />
+            <edge source="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.register_room" target="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.user">
+              <point x="80.0" y="-114.0" />
+              <point x="767.1052631578946" y="764.0" />
+              <point x="1058.8728070175437" y="764.0" />
+              <point x="-45.0" y="81.0" />
+            </edge>
+            <edge source="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.rent" target="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.user">
+              <point x="73.33333333333337" y="-103.0" />
+              <point x="510.438596491228" y="754.0" />
+              <point x="1028.8728070175437" y="754.0" />
+              <point x="-75.0" y="81.0" />
             </edge>
             <edge source="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.rent_room" target="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.user">
               <point x="66.66666666666663" y="-92.0" />
               <point x="993.7719298245613" y="774.0" />
               <point x="1088.8728070175437" y="774.0" />
               <point x="-15.0" y="81.0" />
+            </edge>
+            <edge source="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.student_code" target="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.user">
+              <point x="0.0" y="-70.0" />
+              <point x="1127.1052631578946" y="774.0" />
+              <point x="1118.8728070175437" y="774.0" />
+              <point x="15.0" y="81.0" />
             </edge>
             <edge source="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.user" target="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.role">
               <point x="0.0" y="-81.0" />
@@ -2210,25 +2104,25 @@
             </edge>
             <edge source="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.user_detail" target="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.user">
               <point x="0.0" y="-70.0" />
-              <point x="1127.1052631578946" y="774.0" />
-              <point x="1118.8728070175437" y="774.0" />
-              <point x="15.0" y="81.0" />
+              <point x="1307.1052631578946" y="774.0" />
+              <point x="1148.8728070175437" y="774.0" />
+              <point x="45.0" y="81.0" />
             </edge>
             <edge source="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.rent_room" target="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.semester">
               <point x="0.0" y="-92.0" />
-              <point x="927.1052631578947" y="714.0" />
+              <point x="927.1052631578946" y="714.0" />
               <point x="740.438596491228" y="714.0" />
               <point x="53.33333333333337" y="70.0" />
-            </edge>
-            <edge source="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.rent" target="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.semester">
-              <point x="-5.6843418860808015E-14" y="-103.0" />
-              <point x="437.1052631578946" y="744.0" />
-              <point x="633.7719298245613" y="744.0" />
-              <point x="-53.33333333333337" y="70.0" />
             </edge>
             <edge source="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.register_room" target="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.semester">
               <point x="0.0" y="-114.0" />
               <point x="0.0" y="70.0" />
+            </edge>
+            <edge source="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.rent" target="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.semester">
+              <point x="5.6843418860808015E-14" y="-103.0" />
+              <point x="437.1052631578947" y="744.0" />
+              <point x="633.7719298245613" y="744.0" />
+              <point x="-53.33333333333337" y="70.0" />
             </edge>
             <edge source="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.role_user" target="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.user">
               <point x="-35.0" y="-59.0" />
@@ -2236,34 +2130,34 @@
               <point x="1178.8728070175437" y="764.0" />
               <point x="75.0" y="81.0" />
             </edge>
-            <edge source="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.rent_room" target="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.room">
-              <point x="-66.66666666666674" y="-92.0" />
-              <point x="860.4385964912279" y="724.0" />
-              <point x="435.83333333333326" y="724.0" />
-              <point x="120.0" y="147.0" />
-            </edge>
             <edge source="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.register_room" target="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.room">
               <point x="-80.0" y="-114.0" />
-              <point x="607.1052631578947" y="734.0" />
+              <point x="607.1052631578946" y="734.0" />
               <point x="375.83333333333326" y="734.0" />
               <point x="60.0" y="147.0" />
             </edge>
+            <edge source="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.rent_room" target="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.room">
+              <point x="-66.66666666666674" y="-92.0" />
+              <point x="860.4385964912278" y="724.0" />
+              <point x="435.83333333333326" y="724.0" />
+              <point x="120.0" y="147.0" />
+            </edge>
             <edge source="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.rent" target="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.room">
-              <point x="-73.33333333333337" y="-103.0" />
-              <point x="363.7719298245613" y="774.0" />
+              <point x="-73.33333333333326" y="-103.0" />
+              <point x="363.77192982456137" y="774.0" />
               <point x="315.83333333333326" y="774.0" />
               <point x="0.0" y="147.0" />
             </edge>
             <edge source="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.role" target="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.groups">
-              <point x="30.0" y="-48.0" />
-              <point x="1308.9780701754385" y="143.0" />
-              <point x="1338.9780701754385" y="143.0" />
+              <point x="-30.0" y="-48.0" />
+              <point x="1248.9780701754385" y="143.0" />
+              <point x="1218.9780701754385" y="143.0" />
               <point x="0.0" y="37.0" />
             </edge>
             <edge source="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.floor" target="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.area">
               <point x="0.0" y="-59.0" />
               <point x="325.58333333333326" y="143.0" />
-              <point x="378.77192982456125" y="143.0" />
+              <point x="378.77192982456137" y="143.0" />
               <point x="-35.0" y="59.0" />
             </edge>
             <edge source="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.room" target="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.room">
@@ -2292,19 +2186,19 @@
             <edge source="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.room" target="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.area">
               <point x="100.0" y="-147.0" />
               <point x="415.83333333333326" y="355.0" />
-              <point x="454.0219298245613" y="355.0" />
-              <point x="454.0219298245613" y="143.0" />
-              <point x="448.77192982456125" y="143.0" />
+              <point x="454.02192982456137" y="355.0" />
+              <point x="454.02192982456137" y="143.0" />
+              <point x="448.77192982456137" y="143.0" />
               <point x="35.0" y="59.0" />
             </edge>
             <edge source="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.role" target="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.action">
-              <point x="-30.0" y="-48.0" />
-              <point x="1248.9780701754385" y="143.0" />
-              <point x="1218.9780701754385" y="143.0" />
+              <point x="30.0" y="-48.0" />
+              <point x="1308.9780701754385" y="143.0" />
+              <point x="1338.9780701754385" y="143.0" />
               <point x="0.0" y="37.0" />
             </edge>
           </edges>
-          <settings layout="Hierarchic Group" zoom="0.7753286929621036" x="551.9102244389028" y="873.5800498753117" />
+          <settings layout="Hierarchic Group" zoom="0.8307811291569992" x="1115.8847514429342" y="253.88475144293426" />
           <SelectedNodes>
             <node>20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3.table:dorm_management1.cost</node>
           </SelectedNodes>
@@ -2312,6 +2206,41 @@
             <Category>Key columns</Category>
             <Category>Columns</Category>
           </Categories>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/entities/Action.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="18" column="11" selection-start-line="18" selection-start-column="11" selection-end-line="18" selection-end-column="11" />
+          <folding>
+            <element signature="e#345#346#0" expanded="true" />
+            <element signature="e#377#378#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/services/UserService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="19" column="23" selection-start-line="19" selection-start-column="12" selection-end-line="19" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/json/API.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="14" column="42" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/controllers/UserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.73368144">
+          <caret line="202" column="4" selection-start-line="202" selection-start-column="4" selection-end-line="202" selection-end-column="4" />
+          <folding />
         </state>
       </provider>
     </entry>

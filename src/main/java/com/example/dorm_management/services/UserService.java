@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
-public interface AccountService {
+public interface UserService {
     List<User> findUserByRoomId(Integer roomId);
     User findUserById(Integer id);
     boolean isExistedUserByNameAndPassword(String name, String password);
