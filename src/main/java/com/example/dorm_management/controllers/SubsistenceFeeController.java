@@ -76,22 +76,22 @@ public class SubsistenceFeeController {
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_NO, "error add", null);
             } else {
 
-                ViewSubsistence sb1 = subsistenceFeeService.findViewOneById()
-                String content = "Phòng của bạn đã thanh toán hóa đơn điện nước thành công: \n"
-                        + " tháng :" + sb1.getMonth() + " - " + sb1.getYear() + "\n"
-                        + sb1.getNameCost() + " : \n"
-                        + " Số cũ: " + sb1.getOldNumber() + " số mới: " + sb1.getNewNumber() + " = " + sb1.getTotal() + "\n"
-                        + sb2.getNameCost() + " : \n"
-                        + " Số cũ: " + sb1.getOldNumber() + " số mới: " + sb1.getNewNumber() + " = " + sb2.getTotal() + "\n"
-                        + "Tổng tiền : " + ( sb1.getTotal() + sb2.getTotal()) + "VND";
+//                ViewSubsistence sb1 = subsistenceFeeService.findViewOneById()
+//                String content = "Phòng của bạn đã thanh toán hóa đơn điện nước thành công: \n"
+//                        + " tháng :" + sb1.getMonth() + " - " + sb1.getYear() + "\n"
+//                        + sb1.getNameCost() + " : \n"
+//                        + " Số cũ: " + sb1.getOldNumber() + " số mới: " + sb1.getNewNumber() + " = " + sb1.getTotal() + "\n"
+//                        + sb2.getNameCost() + " : \n"
+//                        + " Số cũ: " + sb1.getOldNumber() + " số mới: " + sb1.getNewNumber() + " = " + sb2.getTotal() + "\n"
+//                        + "Tổng tiền : " + ( sb1.getTotal() + sb2.getTotal()) + "VND";
+//
+//                Notification notification = new Notification();
+//                notification.setTitle("Thanh toán hóa đơn thành công!");
+//                notification.setContent(content);
+//                notification.setRoomId(room_id);
+//                notification.setStatus(0);
 
-                Notification notification = new Notification();
-                notification.setTitle("Thanh toán hóa đơn thành công!");
-                notification.setContent(content);
-                notification.setRoomId(room_id);
-                notification.setStatus(0);
-
-                notificationService.addNotification(notification);
+//                notificationService.addNotification(notification);
 
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_YES, "success", subsistenceFee1);
             }
