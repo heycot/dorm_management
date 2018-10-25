@@ -15,4 +15,6 @@ public interface NotificationService {
     public boolean addNotification(Notification notification);
     public boolean deleteNotification(Integer id);
     public boolean updateNotification(Integer id, Notification notification);
+
+    Notification readOne(Integer id, int i);
 }

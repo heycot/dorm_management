@@ -1,8 +1,8 @@
 package com.example.dorm_management.controllers;
 
-import com.example.dorm_management.entities.Floor;
 import com.example.dorm_management.entities.Notification;
 import com.example.dorm_management.entities.RentRoom;
+import com.example.dorm_management.entities.SubsistenceFee;
 import com.example.dorm_management.json.API;
 import com.example.dorm_management.json.JsonResponse;
 import com.example.dorm_management.services.NotificationService;
@@ -55,6 +55,28 @@ public class NotificationController {
             return jsonResponse;
         }
 
+    }
+
+    @GetMapping("user/read/{id}")
+    public JsonResponse readOne(@PathVariable(value = "id") Integer id) {
+        try {
+
+            Notification notification = notificationService.readOne(id, 1);
+            if (notification ==  null ){
+                jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_NO, "fail", null);
+            } else {
+
+                jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_YES, "success", notification);
+            }
+
+            return  jsonResponse;
+
+        } catch (Exception e) {
+            System.out.println(e.getCause());
+
+            jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_ERROR, "error exception", null);
+            return  jsonResponse;
+        }
     }
 
 

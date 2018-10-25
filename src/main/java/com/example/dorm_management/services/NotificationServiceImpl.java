@@ -64,4 +64,18 @@ public class NotificationServiceImpl implements NotificationService {
         }
         return false;
     }
+
+    @Override
+    public Notification readOne(Integer id, int status){
+        try{
+            Notification notification = notificationRepository.findOne(id);
+
+            notification.setStatus(status);
+
+            notificationRepository.save(notification);
+            return  notification;
+        } catch (Exception e) {
+            return  null;
+        }
+    }
 }

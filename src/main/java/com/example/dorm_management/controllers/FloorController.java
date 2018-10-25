@@ -31,6 +31,8 @@ public class FloorController {
 
     @GetMapping("/{id}")
     public JsonResponse getFloorsByAreaId(@PathVariable(value = "id") Integer areaId) {
+        try {
+
         /*Area area = areaService.findAreaById(areaId);
         if (area == null) {
             jsonResponse = return_No_Object_JsonPresonse(API.CODE_API_ID_NOTFOUND,
@@ -39,15 +41,22 @@ public class FloorController {
             return jsonResponse;
         } else {*/
             List<Floor> floors = floorService.findFloorsByAreaId(areaId);
-            if ( floors.size() > 0) {
+            if (floors.size() > 0) {
 
                 jsonResponse = return_List_Object_JsonPresonse(API.CODE_API_NOTFOUND, "", floors);
-                return  jsonResponse;
-            }else {
+            } else {
                 jsonResponse = return_No_Object_JsonPresonse(API.CODE_API_NOTFOUND, "Không có tầng nào của nhà có id = " + areaId);
-                return jsonResponse;
             }
+            return jsonResponse;
+
 //        }
+        } catch (Exception e){
+            System.out.println(e.getCause());
+
+            jsonResponse = return_No_Object_JsonPresonse(API.CODE_API_ERROR, "error exception");
+
+            return jsonResponse;
+        }
     }
 
     @PutMapping("/add-one")

@@ -75,4 +75,14 @@ public class SubsistenceFeeServiceImpl implements SubsistenceFeeService {
     public ViewSubsistence findViewOneById(Integer id) {
         return subsistenceFeeRepository.findViewOne(id);
     }
+
+    @Override
+    public List<ViewSubsistence> getAllSubsistenceNotPayBYMonthAndYear(Integer month, Integer year) {
+        return subsistenceFeeRepository.getAllSubsistenceNotPayBYMonthAndYear(month, year);
+    }
+
+    @Override
+    public List<ViewSubsistence> getAllSubsistenceNotPay(Integer status){
+        return subsistenceFeeRepository.getAllSubsistenceNotPay(status);
+    }
 }

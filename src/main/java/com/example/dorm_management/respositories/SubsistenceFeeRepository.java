@@ -20,4 +20,14 @@ public interface SubsistenceFeeRepository extends JpaRepository<SubsistenceFee, 
             "INNER JOIN cost ON sb.cost_id = cost.id " +
             "where sb.id = ?1", nativeQuery = true)
     ViewSubsistence findViewOne(Integer id);
+
+    @Query(value = "select sb.*, cost.name as name_cost, cost.value as value_cost from subsistence_fee as sb  " +
+            "INNER JOIN cost ON sb.cost_id = cost.id " +
+            "where sb.month = ?1 and sb.year like ?2", nativeQuery = true)
+    List<ViewSubsistence> getAllSubsistenceNotPayBYMonthAndYear(Integer month, Integer year);
+
+    @Query(value = "select sb.*, cost.name as name_cost, cost.value as value_cost from subsistence_fee as sb  " +
+            "INNER JOIN cost ON sb.cost_id = cost.id " +
+            "where sb.status = ?1", nativeQuery = true)
+    List<ViewSubsistence> getAllSubsistenceNotPay(Integer status);
 }

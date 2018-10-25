@@ -13,7 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -164,6 +167,80 @@ public class SubsistenceFeeController {
             return jsonResponse;
         } catch (Exception e){
             jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_ERROR, "error exception", null);
+            return jsonResponse;
+        }
+    }
+
+
+    @GetMapping("/send")
+    public JsonResponse sendNotificationSubsistence() {
+        try {
+            Date date = new Date();
+            LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            Integer month = localDate.getMonthValue();
+            Integer year  = localDate.getYear();
+
+            List<ViewSubsistence> subsistenceFeeList = subsistenceFeeService.getAllSubsistenceNotPayBYMonthAndYear(month, year);
+
+            if (subsistenceFeeList.size() <= 0){
+                jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_ERROR, "không có hóa đơn nào chưa thanh toán", null);
+            } else {
+                for(ViewSubsistence sb1 : subsistenceFeeList) {
+                    for (ViewSubsistence sb2 : subsistenceFeeList) {
+                        if(sb1.getRoomId() == sb2.getRoomId()) {
+
+                            String content = "Điện nước của phòng bạn: \n"
+                                    + " tháng :" + sb1.getMonth() + " - " + sb1.getYear() + "\n"
+                                    + sb1.getNameCost() + " : \n"
+                                    + " Số cũ: " + sb1.getOldNumber() + " số mới: " + sb1.getNewNumber() + " = " + sb1.getTotal() + "\n"
+                                    + sb2.getNameCost() + " : \n"
+                                    + " Số cũ: " + sb1.getOldNumber() + " số mới: " + sb1.getNewNumber() + " = " + sb2.getTotal() + "\n"
+                                    + "Tổng tiền : " + ( sb1.getTotal() + sb2.getTotal()) + "VND";
+
+                            Notification notification = new Notification();
+                            notification.setTitle("Thông tin điện nước");
+                            notification.setContent(content);
+                            notification.setRoomId(sb1.getRoomId());
+                            notification.setStatus(0);
+
+                            notificationService.addNotification(notification);
+                        }
+                    }
+                }
+
+                jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_YES, "success", null);
+
+            }
+
+            return jsonResponse;
+        } catch (Exception e) {
+            System.out.println(e.getCause());
+
+            jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_ERROR, "error exception", null);
+
+            return jsonResponse;
+        }
+    }
+
+    @GetMapping("not-payed")
+    public JsonResponse getAllSubsistenceNotPayed() {
+        try {
+            List<ViewSubsistence> subsistenceFeeList = subsistenceFeeService.getAllSubsistenceNotPay(0);
+
+            if (subsistenceFeeList.size() > 0) {
+                jsonResponse = return_List_Object_JsonPresonse(API.CODE_API_YES, "success", subsistenceFeeList);
+            } else {
+
+                jsonResponse = return_List_Object_JsonPresonse(API.CODE_API_NOTFOUND, "not found", null);
+
+            }
+
+            return jsonResponse;
+        } catch (Exception e) {
+            System.out.println(e.getCause());
+
+            jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_ERROR, "error exception", null);
+
             return jsonResponse;
         }
     }

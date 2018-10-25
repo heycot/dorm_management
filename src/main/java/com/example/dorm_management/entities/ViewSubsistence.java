@@ -4,11 +4,13 @@ import lombok.Data;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 
 @Data
 @Entity
 public class ViewSubsistence {
 
+    @Id
     private Integer id;
 
     private Integer month;
@@ -32,13 +34,13 @@ public class ViewSubsistence {
     @Column(name = "cost_id")
     private Integer costId;
 
-    @Column(name = "name_cost")
+//    @Column(name = "name_cost")
     private String nameCost;
 
-    @Column(name = "value_cost")
+//    @Column(name = "value_cost")
     private Float costValue;
 
-    @Column(name = "room_id")
+//    @Column(name = "room_id")
     private Integer roomId;
 
     public ViewSubsistence() {

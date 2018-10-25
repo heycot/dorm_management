@@ -18,4 +18,8 @@ public interface SubsistenceFeeService {
     ViewSubsistence changeStatusOne(Integer id, Integer status);
 
     ViewSubsistence findViewOneById(Integer id);
+
+    List<ViewSubsistence> getAllSubsistenceNotPay(Integer status);
+
+    List<ViewSubsistence> getAllSubsistenceNotPayBYMonthAndYear(Integer month, Integer year);
 }
