@@ -14,7 +14,7 @@ public class Utility {
 
         jsonResponse.setCode(code);
         jsonResponse.setMessage(mes);
-        jsonResponse.setData(Collections.singletonList(data));
+        jsonResponse.setData(data);
 
         return jsonResponse;
     }

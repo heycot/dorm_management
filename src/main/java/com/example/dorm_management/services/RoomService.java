@@ -1,13 +1,14 @@
 package com.example.dorm_management.services;
 
 import com.example.dorm_management.entities.Room;
+import com.example.dorm_management.entities.ViewRoom;
 
 import java.util.List;
 
 public interface RoomService {
-    List<Room> findRoomsByFloorId(Integer floorId, Integer areaId);
+    List<ViewRoom> findRoomsByFloorId(Integer floorId, Integer areaId);
 
-    List<Room> findRoomsByAreaId(Integer areaId);
+    List<ViewRoom> findRoomsByAreaId(Integer areaId);
 
-    Room findRoomById(Integer id);
+    ViewRoom findRoomById(Integer id);
 }

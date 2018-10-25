@@ -20,7 +20,7 @@ public class UserDetail {
     private String fullName;
     @OneToOne
     @JoinColumn(name = "user_id")
-    private Account user;
+    private User user;
 
     public UserDetail() {
     }
@@ -29,7 +29,7 @@ public class UserDetail {
         this.phone = phone;
         this.address = address;
         this.fullName = fullName;
-        this.user = new Account(id_user, "", "", -1, -1, -1, -1);
+        this.user = null;
     }
 
     public UserDetail(UserDetail userDetail){
@@ -72,11 +72,11 @@ public class UserDetail {
         this.fullName = fullName;
     }
 
-    public Account getUser() {
+    public User getUser() {
         return user;
     }
 
-    public void setUser(Account user) {
+    public void setUser(User user) {
         this.user = user;
     }
 }

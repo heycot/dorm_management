@@ -1,18 +1,14 @@
 package com.example.dorm_management.entities;
 
 import lombok.Data;
-import lombok.NonNull;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import javax.persistence.Column;
+import javax.persistence.Entity;
 
 @Data
 @Entity
-@Table(name = "subsistence_fee")
-public class SubsistenceFee {
+public class ViewSubsistence {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private Integer month;
@@ -27,37 +23,26 @@ public class SubsistenceFee {
 
     private  Integer status;
 
-    @NotNull
     @Column(name = "new_number")
     private Integer newNumber;
 
-    @NotNull
     @Column(name = "old_number")
     private Integer oldNumber;
 
     @Column(name = "cost_id")
     private Integer costId;
 
-    @NotNull
+    @Column(name = "name_cost")
+    private String nameCost;
+
+    @Column(name = "value_cost")
+    private Float costValue;
+
     @Column(name = "room_id")
     private Integer roomId;
 
-    public SubsistenceFee(Integer month, Integer year, Float total, Integer type, Integer level, Integer status, Integer newNumber, Integer oldNumber, Integer costId, Integer roomId) {
-        this.month = month;
-        this.year = year;
-        this.total = total;
-        this.type = type;
-        this.level = level;
-        this.status = status;
-        this.newNumber = newNumber;
-        this.oldNumber = oldNumber;
-        this.costId = costId;
-        this.roomId = roomId;
+    public ViewSubsistence() {
     }
-
-    public SubsistenceFee() {
-    }
-
 
     public Integer getId() {
         return id;
@@ -137,6 +122,22 @@ public class SubsistenceFee {
 
     public void setCostId(Integer costId) {
         this.costId = costId;
+    }
+
+    public String getNameCost() {
+        return nameCost;
+    }
+
+    public void setNameCost(String nameCost) {
+        this.nameCost = nameCost;
+    }
+
+    public Float getCostValue() {
+        return costValue;
+    }
+
+    public void setCostValue(Float costValue) {
+        this.costValue = costValue;
     }
 
     public Integer getRoomId() {

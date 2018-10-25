@@ -1,9 +1,6 @@
 package com.example.dorm_management.controllers;
 
-import com.example.dorm_management.entities.Area;
-import com.example.dorm_management.entities.Floor;
-import com.example.dorm_management.entities.Room;
-import com.example.dorm_management.entities.RoomFunction;
+import com.example.dorm_management.entities.*;
 import com.example.dorm_management.json.API;
 import com.example.dorm_management.json.JsonResponse;
 import com.example.dorm_management.services.AreaService;
@@ -29,7 +26,6 @@ public class RoomController {
     @Autowired
     private RoomService roomService;
 
-
     @Autowired
     private FloorService floorService;
 
@@ -42,22 +38,20 @@ public class RoomController {
     public JsonResponse findRoomsByFloorId(@PathVariable(value = "area_id") Integer areaId, @PathVariable(value = "floor_id") Integer floorId ) {
         Floor floor = floorService.findOneById(floorId);
         if (floor == null) {
-            jsonResponse = return_No_Object_JsonPresonse(API.CODE_API_NOTFOUND,
-                    "Không có tầng nào có id = " + floorId);
+            jsonResponse = return_No_Object_JsonPresonse(API.CODE_API_NOTFOUND,"Không có tầng nào có id = " + floorId);
 
-            return jsonResponse;
         } else {
-            List<Room> rooms = roomService.findRoomsByFloorId(floorId, areaId);
+            List<ViewRoom> rooms = roomService.findRoomsByFloorId(floorId, areaId);
             if (rooms.size() > 0) {
                 jsonResponse = return_List_Object_JsonPresonse(API.CODE_API_YES, "", rooms);
 
-                return jsonResponse;
             } else {
                 jsonResponse = return_No_Object_JsonPresonse(API.CODE_API_NOTFOUND, "Không có phòng nào!");
 
-                return jsonResponse;
             }
         }
+
+        return jsonResponse;
     }
 
     @GetMapping("/area/{id}")
@@ -69,7 +63,7 @@ public class RoomController {
 
             return jsonResponse;
         } else {
-            List<Room> rooms = roomService.findRoomsByAreaId(id);
+            List<ViewRoom> rooms = roomService.findRoomsByAreaId(id);
             if (rooms.size() > 0) {
                 jsonResponse = return_List_Object_JsonPresonse(API.CODE_API_YES, "Danh sach phong!", rooms);
 
@@ -94,7 +88,7 @@ public class RoomController {
         return jsonResponse;
     }
 
-    public JsonResponse return_One_Object_JsonPresonse(Integer code, String message, Room room){
+    public JsonResponse return_One_Object_JsonPresonse(Integer code, String message, ViewRoom room){
         JsonResponse jsonResponse = new JsonResponse();
 
         jsonResponse.setCode(code);
@@ -104,7 +98,7 @@ public class RoomController {
         return jsonResponse;
     }
 
-    public JsonResponse return_List_Object_JsonPresonse(Integer code, String message, List<Room> rooms){
+    public JsonResponse return_List_Object_JsonPresonse(Integer code, String message, List<ViewRoom> rooms){
         JsonResponse jsonResponse = new JsonResponse();
 
         jsonResponse.setCode(code);

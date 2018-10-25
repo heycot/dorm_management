@@ -3,15 +3,16 @@ package com.example.dorm_management.entities;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Data
 @Entity
 @Table(name = "user")
-public class Account {
+public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @Column(name = "user_name")
@@ -24,20 +25,51 @@ public class Account {
     @Column(name = "role_id")
     private Integer roleId;
 
-    @OneToMany
+  /*  @OneToMany
     @JoinColumn(name = "role_id")
-    private Set<Role> roles;
+    private Set<Role> roles;*/
 
-    public Set<Role> getRoles() {
+/*    public Set<Role> getRoles() {
         return roles;
     }
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }*/
+
+    @OneToOne(cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            mappedBy = "user")
+    private StudentCode studentCode;
+
+    @OneToMany(cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            mappedBy = "user")
+    private Set<Notification> notifications;
+
+    public Set<Notification> getNotifications() {
+        return notifications;
     }
 
-    @Column(name = "student_code")
-    private Integer studentCode;
+    public void setNotifications(Set<Notification> notifications) {
+        this.notifications = notifications;
+    }
+
+    public StudentCode getStudentCode() {
+        return studentCode;
+    }
+
+    public void setStudentCode(StudentCode studentCode) {
+        this.studentCode = studentCode;
+    }
+
+    public Integer getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(Integer roleId) {
+        this.roleId = roleId;
+    }
 
     private Integer status;
 
@@ -73,21 +105,21 @@ public class Account {
         this.gender = gender;
     }
 
-    public Integer getRoleId() {
+    /*public Integer getRoleId() {
         return roleId;
     }
 
     public void setRoleId(Integer roleId) {
         this.roleId = roleId;
-    }
-
+    }*/
+/*
     public Integer getStudentCode() {
         return studentCode;
     }
 
     public void setStudentCode(Integer studentCode) {
         this.studentCode = studentCode;
-    }
+    }*/
 
     public Integer getStatus() {
         return status;
@@ -97,24 +129,15 @@ public class Account {
         this.status = status;
     }
 
-    public Account(String userName, String password, Integer gender, Integer roleId, Integer studentCode, Integer status) {
+    public User(String userName, String password, Integer gender, Integer status) {
         this.userName = userName;
         this.password = password;
         this.gender = gender;
-        this.roleId = roleId;
-        this.studentCode = studentCode;
-        this.status = status;
-    }
-    public Account(Integer userId, String userName, String password, Integer gender, Integer roleId, Integer studentCode, Integer status) {
-        this.id = userId;
-        this.userName = userName;
-        this.password = password;
-        this.gender = gender;
-        this.roleId = roleId;
-        this.studentCode = studentCode;
         this.status = status;
     }
 
-    public Account() {
+    public User() {
     }
+
+
 }

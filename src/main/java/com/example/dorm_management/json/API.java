@@ -13,6 +13,7 @@ public class API {
     public static int CODE_API_EDIT_SUCCESS     = 207;
     public static int CODE_API_ADD_SUCCESS      = 208;
     public static int CODE_API_DEL_SUCCESS      = 209;
+    public static int CODE_API_EXISTED          = 210;
 
 
     /*-------------------Error code ----------------------------------*/
