@@ -25,13 +25,13 @@ public class ViewSubsistence {
 
     private  Integer status;
 
-    @Column(name = "new_number")
+//    @Column(name = "new_number")
     private Integer newNumber;
 
-    @Column(name = "old_number")
+//    @Column(name = "old_number")
     private Integer oldNumber;
 
-    @Column(name = "cost_id")
+//    @Column(name = "cost_id")
     private Integer costId;
 
 //    @Column(name = "name_cost")

@@ -42,18 +42,18 @@ public class User {
             mappedBy = "user")
     private StudentCode studentCode;
 
-    @OneToMany(cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY,
-            mappedBy = "user")
-    private Set<Notification> notifications;
+//    @OneToMany(cascade = CascadeType.ALL,
+//            fetch = FetchType.LAZY,
+//            mappedBy = "user")
+//    private Set<Notification> notifications;
 
-    public Set<Notification> getNotifications() {
-        return notifications;
-    }
-
-    public void setNotifications(Set<Notification> notifications) {
-        this.notifications = notifications;
-    }
+//    public Set<Notification> getNotifications() {
+//        return notifications;
+//    }
+//
+//    public void setNotifications(Set<Notification> notifications) {
+//        this.notifications = notifications;
+//    }
 
     public StudentCode getStudentCode() {
         return studentCode;
