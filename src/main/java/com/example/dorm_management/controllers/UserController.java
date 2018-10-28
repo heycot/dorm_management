@@ -79,7 +79,21 @@ public class UserController {
             if(userDetail != null){
                 return Utility.convertObjectToJSON(API.CODE_API_YES, "successfully", userDetail);
             }else{
-                return Utility.convertObjectToJSON(API.CODE_API_ID_NOTFOUND, "Khong duoc tim thay");
+                return Utility.convertObjectToJSON(API.CODE_API_NOTFOUND, "Khong duoc tim thay");
+            }
+        }catch (Exception e){
+            return Utility.convertObjectToJSON(API.CODE_API_NO, e.getMessage());
+        }
+    }
+
+    @PostMapping("/add_user_detail")
+    public JsonResponse addUserDetailById(@RequestBody UserDetail userDetail){
+        try{
+            if(userDetail != null){
+                userDetailService.save(userDetail);
+                return Utility.convertObjectToJSON(API.CODE_API_YES, "successfully", userDetail);
+            }else{
+                return Utility.convertObjectToJSON(API.CODE_API_NO, "");
             }
         }catch (Exception e){
             return Utility.convertObjectToJSON(API.CODE_API_NO, e.getMessage());
@@ -141,8 +155,21 @@ public class UserController {
     }
 
     //TODO GROUP
+
+    @GetMapping("/get_group")
+    public JsonResponse findAllGroup(){
+        try{
+            List<Group> groups = userService.findAllGroup();
+            if(groups != null){
+                return Utility.convertObjectToJSON(API.CODE_API_YES, "successfully", groups);
+            }
+            return Utility.convertObjectToJSON(API.CODE_API_NO, "");
+        }catch (Exception e){
+            return Utility.convertObjectToJSON(API.CODE_API_NO, e.getMessage());
+        }
+    }
     @GetMapping("/get_group/{id}")
-    public JsonResponse findGroupById(@PathVariable(value = "id") Integer id){
+     public JsonResponse findGroupByUserId(@PathVariable(value = "id") Integer id){
         try{
             List<Group> groups = userService.findGroupByUserId(id);
             if(groups != null){
@@ -164,11 +191,11 @@ public class UserController {
                 return Utility.convertObjectToJSON(API.CODE_API_NO, "");
             }
         }catch (Exception e){
-            return Utility.convertObjectToJSON(API.CODE_API_ERROR, e.getMessage());
+            return Utility.convertObjectToJSON(API.CODE_API_NO, e.getMessage());
         }
     }
 
-    @GetMapping("/edit_group")
+    @PostMapping("/edit_group")
     public JsonResponse editGroup(@RequestBody Group group){
         try{
             boolean b = userService.updateGroup(group.getId(), group);
@@ -192,11 +219,36 @@ public class UserController {
                 return Utility.convertObjectToJSON(API.CODE_API_NO, "");
             }
         }catch (Exception e){
-            return Utility.convertObjectToJSON(API.CODE_API_ERROR, e.getMessage());
+            return Utility.convertObjectToJSON(API.CODE_API_NO, e.getMessage());
         }
     }
 
     //TODO action
+    @GetMapping("/get_action")
+    public JsonResponse findAllActions(){
+        try{
+            List<Action> actions = userService.findAllAction();
+            if(actions != null){
+                return Utility.convertObjectToJSON(API.CODE_API_YES, "successfully", actions);
+            }
+            return Utility.convertObjectToJSON(API.CODE_API_NO, "");
+        }catch (Exception e){
+            return Utility.convertObjectToJSON(API.CODE_API_NO, e.getMessage());
+        }
+    }
+    @GetMapping("/get_action/{id}")
+    public JsonResponse findActionByUserId(@PathVariable(value = "id") Integer id){
+        try{
+            List<Action> actions = userService.findActionByUserId(id);
+            if(actions != null){
+                return Utility.convertObjectToJSON(API.CODE_API_YES, "successfully", actions);
+            }
+            return Utility.convertObjectToJSON(API.CODE_API_NOTFOUND, "Khong tim thay action");
+        }catch (Exception e){
+            return Utility.convertObjectToJSON(API.CODE_API_NO, e.getMessage());
+        }
+    }
+
     @PostMapping("/add_action")
     public JsonResponse addAction(@RequestBody Action action){
         try{

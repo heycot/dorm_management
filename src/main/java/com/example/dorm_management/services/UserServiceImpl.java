@@ -100,6 +100,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<Group> findAllGroup() {
+        List<Group> groups = groupRepository.findAll();
+        return groups;
+    }
+
+    @Override
     public boolean addGroup(Group group) {
         if(group != null){
             groupRepository.save(group);
@@ -132,6 +138,21 @@ public class UserServiceImpl implements UserService {
         }catch (Exception e){
             return false;
         }
+    }
+
+    @Override
+    public List<Action> findActionByUserId(Integer id) {
+        List<Action> actions = userRepository.findActionByUserId(id);
+        if(actions.size() > 0){
+            return actions;
+        }
+        return null;
+    }
+
+    @Override
+    public List<Action> findAllAction() {
+        List<Action> actions = actionRepository.findAll();
+        return actions;
     }
 
     @Override

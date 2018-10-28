@@ -2,6 +2,7 @@ package com.example.dorm_management.services;
 
 import com.example.dorm_management.entities.UserDetail;
 import com.example.dorm_management.respositories.UserDetailRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class UserDetailServiceImpl implements UserDetailService {
+    @Autowired
     private UserDetailRepository userDetailRepository;
     @Override
     public UserDetail findUserDetailByUserId(Integer id) {

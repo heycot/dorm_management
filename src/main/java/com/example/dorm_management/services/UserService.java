@@ -16,12 +16,17 @@ public interface UserService {
     boolean saveAccount(User user);
     boolean deleteAccount(Integer id);
     boolean editUser(User user);
-    List<Group> findGroupByUserId(Integer id);
+
     //group
+    List<Group> findGroupByUserId(Integer id);
+    List<Group> findAllGroup();
     boolean addGroup(Group group);
     boolean deleteGroup(Integer id);
     boolean updateGroup(Integer id, Group group);
     //action
+
+    List<Action> findActionByUserId(Integer id);
+    List<Action> findAllAction();
     boolean addAction(Action action);
     boolean deleteAction(Integer id);
     boolean updateAction(Integer id, Action action);
