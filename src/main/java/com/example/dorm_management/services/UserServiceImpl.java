@@ -26,6 +26,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<User> findAllUser() {
+        List<User> users = userRepository.findAll();
+        return users;
+    }
+
+    @Override
     public User findUserById(Integer id) {
         return userRepository.findUserById(id);
     }
@@ -33,10 +39,21 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean isExistedUserByNameAndPassword(String name, String password){
         try{
-            User user = userRepository.findByUserNameAndPassword(name, password);
-            if(user != null){
+            List<User> users = userRepository.findUserByUserNameAndPassword(name, password);
+            if(users.size() > 0){
                 return  true;
             }
+            return false;
+        }catch (Exception e){
+            return false;
+        }
+    }
+
+    @Override
+    public boolean isExistedUser(String name) {
+        try{
+            List<User>  users = userRepository.findUserByUserName(name);
+            if(users.size() > 0) return true;
             return false;
         }catch (Exception e){
             return false;

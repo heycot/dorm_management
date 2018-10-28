@@ -1,6 +1,9 @@
 package com.example.dorm_management.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 
@@ -18,18 +21,22 @@ public class UserDetail {
     private String  address;
     @Column(name = "full_name")
     private String fullName;
-    @OneToOne
-    @JoinColumn(name = "user_id")
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
     private User user;
 
     public UserDetail() {
     }
 
-    public UserDetail(String phone, String address, String fullName, Integer id_user) {
+    public UserDetail(String phone, String address, String fullName, Integer userId) {
         this.phone = phone;
         this.address = address;
         this.fullName = fullName;
-        this.user = null;
+        this.user = new User();
+        this.user.setId(userId);
     }
 
     public UserDetail(UserDetail userDetail){

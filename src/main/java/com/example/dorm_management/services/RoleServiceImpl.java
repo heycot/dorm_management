@@ -1,6 +1,8 @@
 package com.example.dorm_management.services;
 
 import com.example.dorm_management.entities.Role;
+import com.example.dorm_management.json.API;
+import com.example.dorm_management.libararies.Utility;
 import com.example.dorm_management.respositories.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +21,20 @@ public class RoleServiceImpl implements RoleService {
         Role role = roleRepository.findOne(id);
         if(role != null) return role;
         return null;
+    }
+
+    @Override
+    public boolean editRole(Integer roleId, Role role) {
+        try{
+            Role role1 = findById(roleId);
+            if(role1 == null) return false;
+            role.setId(role1.getId());
+            roleRepository.save(role);
+            return true;
+
+        }catch (Exception e){
+            return false;
+        }
     }
 
     @Override

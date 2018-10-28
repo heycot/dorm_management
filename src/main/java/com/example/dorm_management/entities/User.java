@@ -25,6 +25,8 @@ public class User {
     @Column(name = "role_id")
     private Integer roleId;
 
+    private Integer status;
+
   /*  @OneToMany
     @JoinColumn(name = "role_id")
     private Set<Role> roles;*/
@@ -40,27 +42,48 @@ public class User {
     @OneToOne(cascade = CascadeType.ALL,
             fetch = FetchType.LAZY,
             mappedBy = "user")
-    private StudentCode studentCode;
+    private UserDetail userDetail;
+
+    public UserDetail getUserDetail() {
+        return userDetail;
+    }
+
+    public void setUserDetail(UserDetail userDetail) {
+        this.userDetail = userDetail;
+    }
+
+    public List<StudentCode> getStudentCodes() {
+        return studentCodes;
+    }
+
+    public void setStudentCodes(List<StudentCode> studentCodes) {
+        this.studentCodes = studentCodes;
+    }
 
     @OneToMany(cascade = CascadeType.ALL,
             fetch = FetchType.LAZY,
             mappedBy = "user")
-    private Set<Notification> notifications;
+    private List<StudentCode> studentCodes;
 
-    public Set<Notification> getNotifications() {
+    @OneToMany(cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            mappedBy = "user")
+    private List<Notification> notifications;
+
+    public List<Notification> getNotifications() {
         return notifications;
     }
 
-    public void setNotifications(Set<Notification> notifications) {
+    public void setNotifications(List<Notification> notifications) {
         this.notifications = notifications;
     }
 
-    public StudentCode getStudentCode() {
-        return studentCode;
+    public List<StudentCode> getStudentCode() {
+        return studentCodes;
     }
 
-    public void setStudentCode(StudentCode studentCode) {
-        this.studentCode = studentCode;
+    public void setStudentCode(List<StudentCode> studentCode) {
+        this.studentCodes = studentCode;
     }
 
     public Integer getRoleId() {
@@ -70,8 +93,6 @@ public class User {
     public void setRoleId(Integer roleId) {
         this.roleId = roleId;
     }
-
-    private Integer status;
 
     public Integer getId() {
         return id;
@@ -137,6 +158,14 @@ public class User {
     }
 
     public User() {
+
+    }
+
+    public User(String userName, String password, Integer gender) {
+        this.userName = userName;
+        this.password = password;
+        this.gender = gender;
+        this.status = 1;
     }
 
 

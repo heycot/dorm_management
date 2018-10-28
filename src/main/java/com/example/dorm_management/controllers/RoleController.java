@@ -16,7 +16,7 @@ import java.util.List;
  * Created by vuong on 10/24/2018.
  */
 @RestController
-@RequestMapping(AreaController.BASE_URL)
+@RequestMapping(RoleController.BASE_URL)
 public class RoleController {
     public final static String BASE_URL = "/api/role";
 
@@ -24,7 +24,7 @@ public class RoleController {
     private RoleService roleService;
 
     @GetMapping
-    public JsonResponse getAllAreas(){
+    public JsonResponse getAllRole(){
         try {
             List<Role> roles = roleService.getAllRoles();
             return Utility.convertObjectToJSON(API.CODE_API_YES, "sucess", roles);
@@ -33,7 +33,7 @@ public class RoleController {
         }
     }
 
-    @GetMapping(value = "/edit_group/{role_id}/{group_id}")
+/*    @PostMapping(value = "/edit_group/{role_id}/{group_id}")
     public JsonResponse editRoleByGroupId(@PathVariable(value = "role_id") Integer roleId, @PathVariable(value = "group_id") Integer groupId){
         try{
             boolean b = roleService.editRoleByGroupId(roleId, groupId);
@@ -45,12 +45,12 @@ public class RoleController {
         }catch (Exception e){
             return Utility.convertObjectToJSON(API.CODE_API_NOTFOUND, e.getMessage());
         }
-    }
+    }*/
 
-    @GetMapping(value = "/edit_action/{role_id}/{action_id}")
-    public JsonResponse editRoleByAction(@PathVariable(value = "role_id") Integer roleId, @PathVariable(value = "action_id") Integer actionId){
+    @PostMapping(value = "/editRole")
+    public JsonResponse editRoleByAction(@RequestBody Role role){
         try{
-            boolean b = roleService.editRoleByActionId(roleId, actionId);
+            boolean b = roleService.editRole(role.getId(), role);
             if(b){
                 return Utility.convertObjectToJSON(API.CODE_API_EDIT_SUCCESS, "");
             }else{
@@ -61,8 +61,8 @@ public class RoleController {
         }
     }
 
-    @GetMapping(value = "/add/{role_id}/{action_id}")
-    public JsonResponse editRoleByAction(@RequestBody Role role){
+    @PostMapping(value = "/add")
+    public JsonResponse addRole(@RequestBody Role role){
         try{
             boolean b = roleService.addRole(role.getGroupId(), role.getActionId());
             if(b){

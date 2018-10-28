@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="dataSourceStorageLocal">
-    <data-source name="MySQL - dorm_management1@localhost" uuid="20b95bf5-e59e-4a4d-8e33-0d3a76fd3dd3">
+    <data-source name="MySQL - dorm_management1@localhost" uuid="c6c43bf2-b187-4885-944e-c2f281379c53">
       <secret-storage>master_key</secret-storage>
       <user-name>root</user-name>
       <schema-pattern>dorm_management1.*</schema-pattern>

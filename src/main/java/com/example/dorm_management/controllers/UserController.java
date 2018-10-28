@@ -29,6 +29,7 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
     private JsonResponse jsonResponse;
 
     @Autowired
@@ -47,6 +48,24 @@ public class UserController {
         return Utility.convertObjectToJSON(API.CODE_API_ADD_SUCCESS, "", studentCode);
     }
 
+    @GetMapping
+    public JsonResponse getAllUsers(){
+        List<User> users = userService.findAllUser();
+        return Utility.convertObjectToJSON(API.CODE_API_ADD_SUCCESS, "", users);
+    }
+
+    @PostMapping("/login")
+    public JsonResponse checkLogin(@PathVariable(value = "user_name") String userName, @PathVariable(value = "password") String password){
+        try{
+            boolean b = userService.isExistedUserByNameAndPassword(userName, password);
+            if(b){
+                return Utility.convertObjectToJSON(API.CODE_API_YES, "Login sucess", b);
+            }
+            return Utility.convertObjectToJSON(API.CODE_API_NO, "User not exist!", b);
+        }catch (Exception e){
+            return Utility.convertObjectToJSON(API.CODE_API_ERROR, "server error");
+        }
+    }
 
     @GetMapping("/get_user_detail/{id}")
     public JsonResponse findUserDetailById(@PathVariable(value = "id") Integer id){
@@ -65,7 +84,7 @@ public class UserController {
     @PostMapping("/add_user")
     public JsonResponse addUser(@RequestBody User user){
         try{
-            if(userService.isExistedUserByNameAndPassword(user.getUserName(), user.getPassword())){
+            if(userService.isExistedUser(user.getUserName())){
                 return Utility.convertObjectToJSON(API.CODE_API_EXISTED, "Da ton tai user");
             }
             if(userService.saveAccount(user)){
@@ -116,7 +135,7 @@ public class UserController {
         }
     }
 
-    @GetMapping("/add_group")
+    @PostMapping("/add_group")
     public JsonResponse addGroup(@RequestBody Group group){
         try{
             boolean b = userService.addGroup(group);
@@ -130,10 +149,10 @@ public class UserController {
         }
     }
 
-    @GetMapping("/edit_group/{id}/{name}")
-    public JsonResponse editGroup(@PathVariable(value = "id") Integer groupId, String name){
+    @GetMapping("/edit_group")
+    public JsonResponse editGroup(@RequestBody Group group){
         try{
-            boolean b = userService.updateGroup(groupId, new Group(name));
+            boolean b = userService.updateGroup(group.getId(), group);
             if(b){
                 return Utility.convertObjectToJSON(API.CODE_API_EDIT_SUCCESS, "");
             }else{
@@ -159,7 +178,7 @@ public class UserController {
     }
 
     //TODO action
-    @GetMapping("/add_action")
+    @PostMapping("/add_action")
     public JsonResponse addAction(@RequestBody Action action){
         try{
             boolean b = userService.addAction(action);
@@ -173,10 +192,10 @@ public class UserController {
         }
     }
 
-    @GetMapping("/edit_action/{id}/{name}")
-    public JsonResponse editAction(@PathVariable(value = "id") Integer actionId, String name){
+    @PostMapping("/edit_action")
+    public JsonResponse editAction(@RequestBody Action action){
         try{
-            boolean b = userService.updateAction(actionId, new Action(name));
+            boolean b = userService.updateAction(action.getId(), action);
             if(b){
                 return Utility.convertObjectToJSON(API.CODE_API_EDIT_SUCCESS, "");
             }else{

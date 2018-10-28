@@ -9,8 +9,10 @@ import java.util.List;
 @Service
 public interface UserService {
     List<User> findUserByRoomId(Integer roomId);
+    List<User> findAllUser();
     User findUserById(Integer id);
     boolean isExistedUserByNameAndPassword(String name, String password);
+    boolean isExistedUser(String name);
     boolean saveAccount(User user);
     boolean deleteAccount(Integer id);
     List<Group> findGroupByUserId(Integer id);
