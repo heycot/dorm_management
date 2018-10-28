@@ -61,7 +61,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean saveAccount(User user){
+    public boolean saveUser(User user){
         try {
             userRepository.save(user);
             return true;
@@ -71,7 +71,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean deleteAccount(Integer id){
+    public boolean deleteUser(Integer id){
         try{
             userRepository.delete(id);
             return true;

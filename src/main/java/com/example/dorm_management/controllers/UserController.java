@@ -93,7 +93,7 @@ public class UserController {
     public JsonResponse addUserDetailById(@RequestBody UserDetail userDetail){
         try{
             if(userDetail != null){
-                userDetailService.save(1, userDetail);
+                userDetailService.save(userDetail);
                 return Utility.convertObjectToJSON(API.CODE_API_YES, "successfully", userDetail);
             }else{
                 return Utility.convertObjectToJSON(API.CODE_API_NO, "");
