@@ -39,7 +39,6 @@ public class Role {
     }
 
     @Column(name = "action_id")
-
     private Integer actionId;
 
     @Column(name = "group_id")

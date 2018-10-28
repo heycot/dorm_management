@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
-public class AccountServiceImpl implements AccountService {
+public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
@@ -26,6 +26,12 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
+    public List<User> findAllUser() {
+        List<User> users = userRepository.findAll();
+        return users;
+    }
+
+    @Override
     public User findUserById(Integer id) {
         return userRepository.findUserById(id);
     }
@@ -33,8 +39,8 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public boolean isExistedUserByNameAndPassword(String name, String password){
         try{
-            User user = userRepository.findByUserNameAndPassword(name, password);
-            if(user != null){
+            List<User> users = userRepository.findUserByUserNameAndPassword(name, password);
+            if(users.size() > 0){
                 return  true;
             }
             return false;
@@ -44,7 +50,18 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public boolean saveAccount(User user){
+    public boolean isExistedUser(String name) {
+        try{
+            List<User>  users = userRepository.findUserByUserName(name);
+            if(users.size() > 0) return true;
+            return false;
+        }catch (Exception e){
+            return false;
+        }
+    }
+
+    @Override
+    public boolean saveUser(User user){
         try {
             userRepository.save(user);
             return true;
@@ -54,9 +71,19 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public boolean deleteAccount(Integer id){
+    public boolean deleteUser(Integer id){
         try{
             userRepository.delete(id);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
+    }
+
+    @Override
+    public boolean editUser(User user) {
+        try{
+            userRepository.save(user);
             return true;
         }catch (Exception e){
             return false;
@@ -70,6 +97,12 @@ public class AccountServiceImpl implements AccountService {
             return groups;
         }
         return null;
+    }
+
+    @Override
+    public List<Group> findAllGroup() {
+        List<Group> groups = groupRepository.findAll();
+        return groups;
     }
 
     @Override
@@ -105,6 +138,21 @@ public class AccountServiceImpl implements AccountService {
         }catch (Exception e){
             return false;
         }
+    }
+
+    @Override
+    public List<Action> findActionByUserId(Integer id) {
+        List<Action> actions = userRepository.findActionByUserId(id);
+        if(actions.size() > 0){
+            return actions;
+        }
+        return null;
+    }
+
+    @Override
+    public List<Action> findAllAction() {
+        List<Action> actions = actionRepository.findAll();
+        return actions;
     }
 
     @Override

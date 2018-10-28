@@ -78,19 +78,6 @@ public class User {
         this.notifications = notifications;
     }
 
-//    @OneToMany(cascade = CascadeType.ALL,
-//            fetch = FetchType.LAZY,
-//            mappedBy = "user")
-//    private Set<Notification> notifications;
-//
-//    public Set<Notification> getNotifications() {
-//        return notifications;
-//    }
-
-//    public void setNotifications(Set<Notification> notifications) {
-//        this.notifications = notifications;
-//    }
-
     public List<StudentCode> getStudentCode() {
         return studentCodes;
     }
