@@ -4,7 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 
-@Data
+//@Data
 @Entity
 @Table(name = "rent_room")
 public class RentRoom {
@@ -19,14 +19,19 @@ public class RentRoom {
     @Column(name = "user_id")
     private Integer userId;
 
-    @Column(name = "room_id")
-    private  Integer roomId;
+//    @Column(name = "room_id")
+//    private Integer roomId;
 
-    private  String year;
+    private String year;
 
-    private  Float bail;
+    private Float bail;
 
-    private  Integer status;
+    private Integer status;
+
+    @ManyToOne(optional=true)
+    @JoinColumn(name="room_id",referencedColumnName="id")
+    private Room room;
+
 
     public RentRoom() {
     }
@@ -55,13 +60,13 @@ public class RentRoom {
         this.userId = userId;
     }
 
-    public Integer getRoomId() {
-        return roomId;
-    }
-
-    public void setRoomId(Integer roomId) {
-        this.roomId = roomId;
-    }
+//    public Integer getRoomId() {
+//        return roomId;
+//    }
+//
+//    public void setRoomId(Integer roomId) {
+//        this.roomId = roomId;
+//    }
 
     public String getYear() {
         return year;

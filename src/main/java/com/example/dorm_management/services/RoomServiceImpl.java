@@ -1,6 +1,5 @@
 package com.example.dorm_management.services;
 
-import com.example.dorm_management.entities.Room;
 import com.example.dorm_management.entities.ViewRoom;
 import com.example.dorm_management.respositories.RoomRepository;
 import com.example.dorm_management.respositories.ViewRoomRepository;
@@ -32,4 +31,5 @@ public class RoomServiceImpl implements RoomService {
     public ViewRoom findRoomById(Integer id) {
         return viewRoomRepository.findViewRoomById(id);
     }
+
 }

@@ -64,6 +64,8 @@ public class RoomController {
             return jsonResponse;
         } else {
             List<ViewRoom> rooms = roomService.findRoomsByAreaId(id);
+
+
             if (rooms.size() > 0) {
                 jsonResponse = return_List_Object_JsonPresonse(API.CODE_API_YES, "Danh sach phong!", rooms);
 

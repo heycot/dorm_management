@@ -1,6 +1,7 @@
 package com.example.dorm_management.respositories;
 
 import com.example.dorm_management.entities.Cost;
+import com.example.dorm_management.entities.CostEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

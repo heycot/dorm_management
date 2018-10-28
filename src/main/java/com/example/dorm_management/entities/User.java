@@ -46,11 +46,11 @@ public class User {
 //            fetch = FetchType.LAZY,
 //            mappedBy = "user")
 //    private Set<Notification> notifications;
-
+//
 //    public Set<Notification> getNotifications() {
 //        return notifications;
 //    }
-//
+
 //    public void setNotifications(Set<Notification> notifications) {
 //        this.notifications = notifications;
 //    }

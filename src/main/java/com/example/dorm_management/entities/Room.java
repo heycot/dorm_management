@@ -3,9 +3,11 @@ package com.example.dorm_management.entities;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
-@Data
+//@Data
 @Entity
 @Table(name = "room")
 public class Room {
@@ -42,21 +44,14 @@ public class Room {
 
     @Column(name = "student_register")
     private Integer studentRegister;
-    
 
-    public Room(String name, Integer areaId, Integer floorId, Integer numberBed, Integer gender, Integer costId, Integer status, Integer studentMax, Integer studentPresent, Integer studentRegister, Integer functionId) {
-        this.name = name;
-        this.areaId = areaId;
-        this.floorId = floorId;
-        this.numberBed = numberBed;
-        this.gender = gender;
-        this.costId = costId;
-        this.status = status;
-        this.studentMax = studentMax;
-        this.studentPresent = studentPresent;
-        this.studentRegister = studentRegister;
-        this.functionId = functionId;
-    }
+//    @OneToMany(cascade = CascadeType.ALL,
+//            fetch = FetchType.LAZY,
+//            mappedBy = "room")
+    @OneToMany(mappedBy="room",targetEntity=RentRoom.class, fetch=FetchType.EAGER)
+    private Collection<RentRoom> rentRooms;
+
+
 
     public Room(String name) {
         this.name = name;
@@ -64,6 +59,7 @@ public class Room {
 
     public Room() {
     }
+
 
     public Integer getId() {
         return id;
@@ -160,4 +156,7 @@ public class Room {
     public void setFunctionId(Integer functionId) {
         this.functionId = functionId;
     }
+
+
+
 }

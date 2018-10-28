@@ -37,7 +37,10 @@ public class NotificationController {
 
             RentRoom rentRoom = rentRoomService.findOneByUserId(user_id, 1);
 
-            List<Notification> notificationList = notificationService.findAllOfUser(user_id, rentRoom.getRoomId());
+//            List<Notification> notificationList = notificationService.findAllOfUser(user_id, rentRoom.getRoomId());
+
+
+            List<Notification> notificationList = notificationService.findAllOfUser(user_id, 1);
 
             if (notificationList.size() > 0) {
                 jsonResponse = return_List_Object_JsonPresonse(API.CODE_API_YES, "success", notificationList);

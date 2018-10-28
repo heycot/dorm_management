@@ -47,14 +47,14 @@ public class Notification {
 //    private User user;
 
 
-//    public Notification(String title, String content, Integer status, Integer userId) {
-//
-//        this.title = title;
-//        this.content = content;
-//        this.status = status;
-////        this.user = new User();
-////        this.user.setId(userId);
-//    }
+    public Notification(String title, String content, Integer status, Integer userId) {
+
+        this.title = title;
+        this.content = content;
+        this.status = status;
+//        this.user = new User();
+//        this.user.setId(userId);
+    }
 
     public Integer getId() {
         return id;

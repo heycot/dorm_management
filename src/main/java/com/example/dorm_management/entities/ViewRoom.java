@@ -6,6 +6,8 @@ import lombok.Data;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.util.Collection;
+import java.util.List;
 
 @Data
 @Entity
@@ -54,27 +56,6 @@ public class ViewRoom {
     private Float value_cost;
 
     private Integer level_cost;
-
-    public ViewRoom(Integer id, String name, Integer gender, Integer status, Integer numberBed, Integer studentMax, Integer studentPresent, Integer studentRegister, Integer areaId, Integer costId, Integer floorId, Integer functionId, String name_floor, String name_function, String name_area, String name_cost, Float value_cost, Integer level_cost) {
-        this.id = id;
-        this.name = name;
-        this.gender = gender;
-        this.status = status;
-        this.numberBed = numberBed;
-        this.studentMax = studentMax;
-        this.studentPresent = studentPresent;
-        this.studentRegister = studentRegister;
-        this.areaId = areaId;
-        this.costId = costId;
-        this.floorId = floorId;
-        this.functionId = functionId;
-        this.name_floor = name_floor;
-        this.name_function = name_function;
-        this.name_area = name_area;
-        this.name_cost = name_cost;
-        this.value_cost = value_cost;
-        this.level_cost = level_cost;
-    }
 
     public ViewRoom() {
     }
