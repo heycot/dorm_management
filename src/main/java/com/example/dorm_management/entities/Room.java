@@ -3,6 +3,7 @@ package com.example.dorm_management.entities;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -41,6 +42,7 @@ public class Room {
 
     @Column(name = "student_register")
     private Integer studentRegister;
+    
 
     public Room(String name, Integer areaId, Integer floorId, Integer numberBed, Integer gender, Integer costId, Integer status, Integer studentMax, Integer studentPresent, Integer studentRegister, Integer functionId) {
         this.name = name;
