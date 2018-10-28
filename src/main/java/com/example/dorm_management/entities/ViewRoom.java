@@ -57,7 +57,7 @@ public class ViewRoom {
 
     private Integer level_cost;
 
-    public Collection<User> users;
+//    public Collection<User> users;
 
     public ViewRoom() {
     }

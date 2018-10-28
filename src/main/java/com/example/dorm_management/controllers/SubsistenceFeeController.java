@@ -157,7 +157,7 @@ public class SubsistenceFeeController {
                 Notification notification = new Notification();
                 notification.setTitle("Thanh toán hóa đơn thành công!");
                 notification.setContent(content);
-                notification.setRoomId(room_id);
+//                notification.setRoomId(room_id);
                 notification.setStatus(0);
 
                 notificationService.addNotification(notification);
@@ -200,7 +200,7 @@ public class SubsistenceFeeController {
                             Notification notification = new Notification();
                             notification.setTitle("Thông tin điện nước");
                             notification.setContent(content);
-                            notification.setRoomId(sb1.getRoomId());
+//                            notification.setRoomId(sb1.getRoomId());
                             notification.setStatus(0);
 
                             notificationService.addNotification(notification);
