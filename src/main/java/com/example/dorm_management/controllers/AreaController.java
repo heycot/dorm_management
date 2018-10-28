@@ -1,10 +1,8 @@
 package com.example.dorm_management.controllers;
 
 import com.example.dorm_management.entities.Area;
-import com.example.dorm_management.entities.AreaEntity;
 import com.example.dorm_management.json.API;
 import com.example.dorm_management.json.JsonResponse;
-import com.example.dorm_management.services.AreaEntiryService;
 import com.example.dorm_management.services.AreaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,27 +26,8 @@ public class AreaController {
     private AreaService areaService;
 
 
-    @Autowired
-    private AreaEntiryService areaEntiryService;
-
     private JsonResponse jsonResponse;
 
-
-    @GetMapping("/a/{id}")
-    public JsonResponse getAllAreasaaa(@PathVariable(value = "id") Integer id){
-
-        try {
-            AreaEntity areas = areaEntiryService.findall(id);
-
-            jsonResponse = return_List_Object_JsonPresonseEntity(API.CODE_API_YES, "", areas);
-            return jsonResponse;
-        } catch (Exception e) {
-            System.out.println(e.getCause());
-
-            jsonResponse = return_No_Object_JsonPresonse(API.CODE_API_NOTFOUND, "Không có nhà nào");
-            return jsonResponse;
-        }
-    }
 
     @GetMapping
      public JsonResponse getAllAreas(){
@@ -168,13 +147,4 @@ public class AreaController {
         return jsonResponse;
     }
 
-    public JsonResponse return_List_Object_JsonPresonseEntity(Integer code, String message, AreaEntity areas){
-        JsonResponse jsonResponse = new JsonResponse();
-
-        jsonResponse.setCode(code);
-        jsonResponse.setMessage(message);
-        jsonResponse.setData(Collections.singletonList(areas));
-
-        return jsonResponse;
-    }
 }
