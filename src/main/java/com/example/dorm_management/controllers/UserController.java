@@ -43,9 +43,14 @@ public class UserController {
 //        userRepository.save(user);
 //        StudentCode studentCode = new StudentCode("sadf", "safs", "saf",9);
 //        studentCodeRepository.save(studentCode);
-        StudentCode studentCode = studentCodeRepository.findById(5);
-        System.out.println(studentCode.getUser().getUserName());
-        return Utility.convertObjectToJSON(API.CODE_API_ADD_SUCCESS, "", studentCode);
+        /*StudentCode studentCode = studentCodeRepository.findById(5);
+        System.out.println(studentCode.getUser().getUserName());*/
+//        User user = new User("vuongpq2", "vuongpq2", 1,2);
+//        user.setUserDetail(new UserDetail("sadfsdf", "hue", "phan quang vuong", user.getId()));
+        UserDetail userDetail = new UserDetail("123123", "hue", "phan quang vuong", 9);
+        userDetailService.save(userDetail);
+
+        return Utility.convertObjectToJSON(API.CODE_API_ADD_SUCCESS, "", userDetail);
     }
 
     @GetMapping
@@ -54,10 +59,10 @@ public class UserController {
         return Utility.convertObjectToJSON(API.CODE_API_ADD_SUCCESS, "", users);
     }
 
-    @PostMapping("/login")
-    public JsonResponse checkLogin(@PathVariable(value = "user_name") String userName, @PathVariable(value = "password") String password){
+    @PostMapping("/login}")
+    public JsonResponse checkLogin(@RequestBody Account account){
         try{
-            boolean b = userService.isExistedUserByNameAndPassword(userName, password);
+            boolean b = userService.isExistedUserByNameAndPassword(account.getUserName(), account.getPassword());
             if(b){
                 return Utility.convertObjectToJSON(API.CODE_API_YES, "Login sucess", b);
             }
@@ -81,7 +86,7 @@ public class UserController {
         }
     }
 
-    @PostMapping("/add_user")
+    @PostMapping("/register")
     public JsonResponse addUser(@RequestBody User user){
         try{
             if(userService.isExistedUser(user.getUserName())){
@@ -113,6 +118,20 @@ public class UserController {
         try{
             User user = userService.findUserById(id);
             if(user != null){
+                return Utility.convertObjectToJSON(API.CODE_API_YES, "successfully", user);
+            }
+            return Utility.convertObjectToJSON(API.CODE_API_NOTFOUND, "Khong tim thay user");
+        }catch (Exception e){
+            return Utility.convertObjectToJSON(API.CODE_API_NO, e.getMessage());
+        }
+    }
+
+    @PostMapping("/edit_user")
+    public JsonResponse findUserById(@RequestBody User user){
+        try{
+            User user1 = userService.findUserById(user.getId());
+            if(user1 != null){
+                userService.editUser(user);
                 return Utility.convertObjectToJSON(API.CODE_API_YES, "successfully", user);
             }
             return Utility.convertObjectToJSON(API.CODE_API_NOTFOUND, "Khong tim thay user");

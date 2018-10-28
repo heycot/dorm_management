@@ -15,6 +15,17 @@ public class UserDetailServiceImpl implements UserDetailService {
         return userDetailRepository.findByUserId(id);
     }
 
+    @Override
+    public boolean save(UserDetail userDetail) {
+        try{
+            if(userDetail == null) return false;
+            userDetailRepository.save(userDetail);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
+    }
+
     public boolean deleteUserDetailByUserId(Integer id){
         UserDetail userDetail = findUserDetailByUserId(id);
         if(userDetail != null){

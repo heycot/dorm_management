@@ -15,10 +15,13 @@ import javax.persistence.*;
 @Table(name = "user_detail")
 public class UserDetail {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+
     private String phone;
+
     private String  address;
+
     @Column(name = "full_name")
     private String fullName;
 
@@ -39,12 +42,6 @@ public class UserDetail {
         this.user.setId(userId);
     }
 
-    public UserDetail(UserDetail userDetail){
-        this.phone = userDetail.getPhone();
-        this.address = userDetail.getAddress();
-        this.fullName = userDetail.getFullName();
-        this.user = userDetail.getUser();
-    }
 
     public Integer getId() {
 

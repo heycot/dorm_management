@@ -15,6 +15,7 @@ public interface UserService {
     boolean isExistedUser(String name);
     boolean saveAccount(User user);
     boolean deleteAccount(Integer id);
+    boolean editUser(User user);
     List<Group> findGroupByUserId(Integer id);
     //group
     boolean addGroup(Group group);

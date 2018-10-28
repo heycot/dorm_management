@@ -81,6 +81,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public boolean editUser(User user) {
+        try{
+            userRepository.save(user);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
+    }
+
+    @Override
     public List<Group> findGroupByUserId(Integer id) {
         List<Group> groups = userRepository.findGroupByUserId(id);
         if(groups.size() > 0){
