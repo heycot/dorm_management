@@ -7,5 +7,5 @@ import com.example.dorm_management.entities.UserDetail;
  */
 public interface UserDetailService {
     UserDetail findUserDetailByUserId(Integer id);
-    boolean save(UserDetail userDetail);
+    boolean save(Integer id, UserDetail userDetail);
 }

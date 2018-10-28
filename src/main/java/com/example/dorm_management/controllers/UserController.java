@@ -47,10 +47,13 @@ public class UserController {
         System.out.println(studentCode.getUser().getUserName());*/
 //        User user = new User("vuongpq2", "vuongpq2", 1,2);
 //        user.setUserDetail(new UserDetail("sadfsdf", "hue", "phan quang vuong", user.getId()));
-        UserDetail userDetail = new UserDetail("123123", "hue", "phan quang vuong", 9);
-        userDetailService.save(userDetail);
+//        UserDetail userDetail = new UserDetail("123123", "hue", "phan quang vuong", 9);
+//        userDetailService.save(userDetail);
+        User user = userService.findUserById(10);
+        user.setUserDetail(new UserDetail("123", "asd", "sadfdf", user.getId()));
+        userService.saveUser(user);
 
-        return Utility.convertObjectToJSON(API.CODE_API_ADD_SUCCESS, "", userDetail);
+        return Utility.convertObjectToJSON(API.CODE_API_ADD_SUCCESS, "", user);
     }
 
     @GetMapping
@@ -90,7 +93,7 @@ public class UserController {
     public JsonResponse addUserDetailById(@RequestBody UserDetail userDetail){
         try{
             if(userDetail != null){
-                userDetailService.save(userDetail);
+                userDetailService.save(1, userDetail);
                 return Utility.convertObjectToJSON(API.CODE_API_YES, "successfully", userDetail);
             }else{
                 return Utility.convertObjectToJSON(API.CODE_API_NO, "");
@@ -106,7 +109,7 @@ public class UserController {
             if(userService.isExistedUser(user.getUserName())){
                 return Utility.convertObjectToJSON(API.CODE_API_EXISTED, "Da ton tai user");
             }
-            if(userService.saveAccount(user)){
+            if(userService.saveUser(user)){
                 return Utility.convertObjectToJSON(API.CODE_API_YES, "Them thanh cong", user);
             }
             return Utility.convertObjectToJSON(API.CODE_API_NO, "Them khong thanh cong");
@@ -118,7 +121,7 @@ public class UserController {
     @GetMapping("/delete_user/{id}")
     public JsonResponse deleteUser(@PathVariable(value = "id") Integer id){
         try{
-            if(userService.deleteAccount(id)){
+            if(userService.deleteUser(id)){
                 return Utility.convertObjectToJSON(API.CODE_API_YES, "Xoa thanh cong");
             }
             return Utility.convertObjectToJSON(API.CODE_API_NO, "Xoa khong thanh cong");
@@ -141,7 +144,7 @@ public class UserController {
     }
 
     @PostMapping("/edit_user")
-    public JsonResponse findUserById(@RequestBody User user){
+    public JsonResponse editUser(@RequestBody User user){
         try{
             User user1 = userService.findUserById(user.getId());
             if(user1 != null){

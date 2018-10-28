@@ -32,6 +32,15 @@ public class RoleController {
             return Utility.convertObjectToJSON(API.CODE_API_NOTFOUND, e.getMessage());
         }
     }
+    @GetMapping("/delete/{id}")
+    public JsonResponse deleteRole(@PathVariable(value = "id") Integer id){
+        try {
+            boolean b = roleService.deleteRole(id);
+            return Utility.convertObjectToJSON(API.CODE_API_YES, "sucess");
+        } catch (Exception e) {
+            return Utility.convertObjectToJSON(API.CODE_API_NOTFOUND, e.getMessage());
+        }
+    }
 
 /*    @PostMapping(value = "/edit_group/{role_id}/{group_id}")
     public JsonResponse editRoleByGroupId(@PathVariable(value = "role_id") Integer roleId, @PathVariable(value = "group_id") Integer groupId){
@@ -47,7 +56,7 @@ public class RoleController {
         }
     }*/
 
-    @PostMapping(value = "/editRole")
+    @PostMapping(value = "/edit_role")
     public JsonResponse editRoleByAction(@RequestBody Role role){
         try{
             boolean b = roleService.editRole(role.getId(), role);

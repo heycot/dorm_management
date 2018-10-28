@@ -13,8 +13,8 @@ public interface UserService {
     User findUserById(Integer id);
     boolean isExistedUserByNameAndPassword(String name, String password);
     boolean isExistedUser(String name);
-    boolean saveAccount(User user);
-    boolean deleteAccount(Integer id);
+    boolean saveUser(User user);
+    boolean deleteUser(Integer id);
     boolean editUser(User user);
 
     //group
