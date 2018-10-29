@@ -45,7 +45,7 @@ public class FloorController {
 
                 jsonResponse = return_List_Object_JsonPresonse(API.CODE_API_NOTFOUND, "", floors);
             } else {
-                jsonResponse = return_No_Object_JsonPresonse(API.CODE_API_NOTFOUND, "Không có tầng nào của nhà có id = " + areaId);
+                jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_NOTFOUND, "Không có tầng nào của nhà có id = " + areaId, null);
             }
             return jsonResponse;
 
@@ -53,7 +53,7 @@ public class FloorController {
         } catch (Exception e){
             System.out.println(e.getCause());
 
-            jsonResponse = return_No_Object_JsonPresonse(API.CODE_API_ERROR, "error exception");
+            jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_ERROR, "error exception", null);
 
             return jsonResponse;
         }
@@ -66,24 +66,15 @@ public class FloorController {
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_ADD_SUCCESS, "successfull", floor);
                 return jsonResponse;
             } else {
-                jsonResponse = return_No_Object_JsonPresonse(API.CODE_API_NO, "fail");
+                jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_NO, "fail", null);
                 return jsonResponse;
             }
         } catch (Exception e) {
-            jsonResponse = return_No_Object_JsonPresonse(API.CODE_API_ERROR, "fail");
+            jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_ERROR, "fail", null);
             return jsonResponse;
         }
     }
 
-    public JsonResponse return_No_Object_JsonPresonse(Integer code, String message){
-        JsonResponse jsonResponse = new JsonResponse();
-
-        jsonResponse.setCode(code);
-        jsonResponse.setMessage(message);
-        jsonResponse.setData(null);
-
-        return jsonResponse;
-    }
 
     public JsonResponse return_One_Object_JsonPresonse(Integer code, String message, Floor floor){
         JsonResponse jsonResponse = new JsonResponse();

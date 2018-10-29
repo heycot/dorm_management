@@ -1,10 +1,11 @@
 package com.example.dorm_management.entities;
 
 import lombok.Data;
-import lombok.NonNull;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Data
 @Entity
@@ -12,7 +13,6 @@ import javax.validation.constraints.NotNull;
 public class SubsistenceFee {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private Integer month;
@@ -21,43 +21,55 @@ public class SubsistenceFee {
 
     private Float total;
 
-    private Integer type;
+//    private Integer type;
 
-    private Integer level;
+    @Column(name = "level_water")
+    private Integer levelWater;
+
+    @Column(name = "level_elec")
+    private Integer levelElec;
 
     private  Integer status;
 
-    @NotNull
-    @Column(name = "new_number")
-    private Integer newNumber;
+    @Column(name = "new_number_water")
+    private Integer newNumberWater;
 
-    @NotNull
-    @Column(name = "old_number")
-    private Integer oldNumber;
+    @Column(name = "new_number_elec")
+    private Integer newNumberElec;
 
-    @Column(name = "cost_id")
-    private Integer costId;
+    @Column(name = "old_number_water")
+    private Integer oldNumberWater;
 
-    @NotNull
+    @Column(name = "old_number_elec")
+    private Integer oldNumberElec;
+
+    @Column(name = "cost_water")
+    private Float costWater;
+
+    @Column(name = "cost_elec")
+    private Float costElec;
+
     @Column(name = "room_id")
     private Integer roomId;
-
-    public SubsistenceFee(Integer month, Integer year, Float total, Integer type, Integer level, Integer status, Integer newNumber, Integer oldNumber, Integer costId, Integer roomId) {
-        this.month = month;
-        this.year = year;
-        this.total = total;
-        this.type = type;
-        this.level = level;
-        this.status = status;
-        this.newNumber = newNumber;
-        this.oldNumber = oldNumber;
-        this.costId = costId;
-        this.roomId = roomId;
-    }
 
     public SubsistenceFee() {
     }
 
+    public Float getCostWater() {
+        return costWater;
+    }
+
+    public void setCostWater(Float costWater) {
+        this.costWater = costWater;
+    }
+
+    public Float getCostElec() {
+        return costElec;
+    }
+
+    public void setCostElec(Float costElec) {
+        this.costElec = costElec;
+    }
 
     public Integer getId() {
         return id;
@@ -91,20 +103,24 @@ public class SubsistenceFee {
         this.total = total;
     }
 
-    public Integer getType() {
-        return type;
+    public void setRoomId(Integer roomId) {
+        this.roomId = roomId;
     }
 
-    public void setType(Integer type) {
-        this.type = type;
+    public Integer getLevelWater() {
+        return levelWater;
     }
 
-    public Integer getLevel() {
-        return level;
+    public void setLevelWater(Integer levelWater) {
+        this.levelWater = levelWater;
     }
 
-    public void setLevel(Integer level) {
-        this.level = level;
+    public Integer getLevelElec() {
+        return levelElec;
+    }
+
+    public void setLevelElec(Integer levelElec) {
+        this.levelElec = levelElec;
     }
 
     public Integer getStatus() {
@@ -115,35 +131,39 @@ public class SubsistenceFee {
         this.status = status;
     }
 
-    public Integer getNewNumber() {
-        return newNumber;
+    public Integer getNewNumberWater() {
+        return newNumberWater;
     }
 
-    public void setNewNumber(Integer newNumber) {
-        this.newNumber = newNumber;
+    public void setNewNumberWater(Integer newNumberWater) {
+        this.newNumberWater = newNumberWater;
     }
 
-    public Integer getOldNumber() {
-        return oldNumber;
+    public Integer getNewNumberElec() {
+        return newNumberElec;
     }
 
-    public void setOldNumber(Integer oldNumber) {
-        this.oldNumber = oldNumber;
+    public void setNewNumberElec(Integer newNumberElec) {
+        this.newNumberElec = newNumberElec;
     }
 
-    public Integer getCostId() {
-        return costId;
+    public Integer getOldNumberWater() {
+        return oldNumberWater;
     }
 
-    public void setCostId(Integer costId) {
-        this.costId = costId;
+    public void setOldNumberWater(Integer oldNumberWater) {
+        this.oldNumberWater = oldNumberWater;
+    }
+
+    public Integer getOldNumberElec() {
+        return oldNumberElec;
+    }
+
+    public void setOldNumberElec(Integer oldNumberElec) {
+        this.oldNumberElec = oldNumberElec;
     }
 
     public Integer getRoomId() {
         return roomId;
-    }
-
-    public void setRoomId(Integer roomId) {
-        this.roomId = roomId;
     }
 }

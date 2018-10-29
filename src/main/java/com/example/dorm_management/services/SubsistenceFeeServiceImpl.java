@@ -1,7 +1,6 @@
 package com.example.dorm_management.services;
 
 import com.example.dorm_management.entities.SubsistenceFee;
-import com.example.dorm_management.entities.ViewSubsistence;
 import com.example.dorm_management.respositories.SubsistenceFeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,8 +14,21 @@ public class SubsistenceFeeServiceImpl implements SubsistenceFeeService {
     private SubsistenceFeeRepository subsistenceFeeRepository;
 
     @Override
-    public List<ViewSubsistence> findALlByRoomId(Integer roomId) {
+    public List<SubsistenceFee> findALlByRoomId(Integer roomId) {
         return subsistenceFeeRepository.findALlByRoomId(roomId);
+    }
+
+    @Override
+    public List<SubsistenceFee> findALlWaterByRoomId(Integer roomId) {
+//        return subsistenceFeeRepository.findALlWaterByRoomId(roomId, 2);
+        return null;
+    }
+
+    @Override
+    public List<SubsistenceFee> findALlElecByRoomId(Integer roomId) {
+//        return subsistenceFeeRepository.findALlElecByRoomId(roomId, 3);
+        return null;
+
     }
 
     @Override
@@ -28,16 +40,18 @@ public class SubsistenceFeeServiceImpl implements SubsistenceFeeService {
     public SubsistenceFee editOne(SubsistenceFee subsistenceFee, Integer id){
        try {
            SubsistenceFee subsistenceFeeEdit = subsistenceFeeRepository.findOne(id);
-           subsistenceFeeEdit.setCostId(subsistenceFee.getCostId());
-           subsistenceFeeEdit.setLevel(subsistenceFee.getLevel());
+
            subsistenceFeeEdit.setMonth(subsistenceFee.getMonth());
-           subsistenceFeeEdit.setNewNumber(subsistenceFee.getNewNumber());
-           subsistenceFeeEdit.setOldNumber(subsistenceFee.getOldNumber());
            subsistenceFeeEdit.setRoomId(subsistenceFee.getRoomId());
-           subsistenceFeeEdit.setType(subsistenceFee.getType());
            subsistenceFeeEdit.setYear(subsistenceFee.getYear());
            subsistenceFeeEdit.setTotal(subsistenceFee.getTotal());
            subsistenceFeeEdit.setStatus(subsistenceFee.getStatus());
+           subsistenceFeeEdit.setLevelElec(subsistenceFee.getLevelElec());
+           subsistenceFeeEdit.setLevelWater(subsistenceFee.getLevelWater());
+           subsistenceFeeEdit.setNewNumberElec(subsistenceFee.getNewNumberElec());
+           subsistenceFeeEdit.setNewNumberWater(subsistenceFee.getNewNumberWater());
+           subsistenceFeeEdit.setOldNumberElec(subsistenceFee.getOldNumberElec());
+           subsistenceFeeEdit.setOldNumberWater(subsistenceFee.getOldNumberWater());
 
            subsistenceFeeRepository.save(subsistenceFeeEdit);
 
@@ -53,17 +67,15 @@ public class SubsistenceFeeServiceImpl implements SubsistenceFeeService {
     }
 
     @Override
-    public ViewSubsistence changeStatusOne(Integer id, Integer status) {
+    public SubsistenceFee changeStatusOne(Integer id, Integer status) {
         try {
             SubsistenceFee subsistenceFee1 = subsistenceFeeRepository.findOne(id);
 
             subsistenceFee1.setStatus(status);
 
-
             subsistenceFeeRepository.save(subsistenceFee1);
 
-            ViewSubsistence viewSubsistence = subsistenceFeeRepository.findViewOne(id);
-            return viewSubsistence;
+            return subsistenceFee1;
         } catch (Exception e) {
             System.out.println(e.getCause());
 
@@ -72,17 +84,17 @@ public class SubsistenceFeeServiceImpl implements SubsistenceFeeService {
     }
 
     @Override
-    public ViewSubsistence findViewOneById(Integer id) {
+    public SubsistenceFee findViewOneById(Integer id) {
         return subsistenceFeeRepository.findViewOne(id);
     }
 
     @Override
-    public List<ViewSubsistence> getAllSubsistenceNotPayBYMonthAndYear(Integer month, Integer year) {
+    public List<SubsistenceFee> getAllSubsistenceNotPayBYMonthAndYear(Integer month, Integer year) {
         return subsistenceFeeRepository.getAllSubsistenceNotPayBYMonthAndYear(month, year);
     }
 
     @Override
-    public List<ViewSubsistence> getAllSubsistenceNotPay(Integer status){
+    public List<SubsistenceFee> getAllSubsistenceNotPay(Integer status){
         return subsistenceFeeRepository.getAllSubsistenceNotPay(status);
     }
 }

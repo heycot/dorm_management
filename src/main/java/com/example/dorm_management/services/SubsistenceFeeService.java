@@ -1,13 +1,16 @@
 package com.example.dorm_management.services;
 
 import com.example.dorm_management.entities.SubsistenceFee;
-import com.example.dorm_management.entities.ViewSubsistence;
 
 import java.util.List;
 
 public interface SubsistenceFeeService {
 
-    List<ViewSubsistence> findALlByRoomId(Integer roomId);
+    List<SubsistenceFee> findALlByRoomId(Integer roomId);
+
+    List<SubsistenceFee> findALlWaterByRoomId(Integer roomId);
+
+    List<SubsistenceFee> findALlElecByRoomId(Integer roomId);
 
     SubsistenceFee addOne(SubsistenceFee subsistenceFee);
 
@@ -15,11 +18,11 @@ public interface SubsistenceFeeService {
 
     SubsistenceFee findOneById(Integer id);
 
-    ViewSubsistence changeStatusOne(Integer id, Integer status);
+    SubsistenceFee changeStatusOne(Integer id, Integer status);
 
-    ViewSubsistence findViewOneById(Integer id);
+    SubsistenceFee findViewOneById(Integer id);
 
-    List<ViewSubsistence> getAllSubsistenceNotPay(Integer status);
+    List<SubsistenceFee> getAllSubsistenceNotPay(Integer status);
 
-    List<ViewSubsistence> getAllSubsistenceNotPayBYMonthAndYear(Integer month, Integer year);
+    List<SubsistenceFee> getAllSubsistenceNotPayBYMonthAndYear(Integer month, Integer year);
 }

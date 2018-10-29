@@ -1,7 +1,6 @@
 package com.example.dorm_management.services;
 
 import com.example.dorm_management.entities.Floor;
-import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 

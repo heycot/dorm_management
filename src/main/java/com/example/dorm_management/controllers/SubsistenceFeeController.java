@@ -1,9 +1,6 @@
 package com.example.dorm_management.controllers;
 
-import com.example.dorm_management.entities.Cost;
-import com.example.dorm_management.entities.Notification;
-import com.example.dorm_management.entities.SubsistenceFee;
-import com.example.dorm_management.entities.ViewSubsistence;
+import com.example.dorm_management.entities.*;
 import com.example.dorm_management.json.API;
 import com.example.dorm_management.json.JsonResponse;
 import com.example.dorm_management.services.CostService;
@@ -15,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -41,7 +39,28 @@ public class SubsistenceFeeController {
     @GetMapping("/room/{id}")
     public JsonResponse findOneByRoomId(@PathVariable(value = "id") Integer roomId) {
         try {
-            List<ViewSubsistence> subsistenceFeeList = subsistenceFeeService.findALlByRoomId(roomId);
+
+            List<SubsistenceFee> subsistenceFeeList = subsistenceFeeService.findALlByRoomId(roomId);
+
+            if (subsistenceFeeList.size() > 0) {
+                jsonResponse = return_List_Object_JsonPresonse(API.CODE_API_YES, "success", subsistenceFeeList);
+
+            } else {
+                jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_NOTFOUND, "not found", null);
+            }
+
+            return jsonResponse;
+        } catch (Exception e) {
+            jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_ERROR, "error exception", null);
+            return jsonResponse;
+        }
+    }
+
+    @GetMapping("/{month}/{year}")
+    public JsonResponse findOneByMonthAndYear(@PathVariable(value = "month") Integer month, @PathVariable(value = "year") Integer year) {
+        try {
+
+            List<SubsistenceFee> subsistenceFeeList = subsistenceFeeService.getAllSubsistenceNotPayBYMonthAndYear(month, year);
 
             if (subsistenceFeeList.size() > 0) {
                 jsonResponse = return_List_Object_JsonPresonse(API.CODE_API_YES, "success", subsistenceFeeList);
@@ -60,16 +79,27 @@ public class SubsistenceFeeController {
     @PutMapping("/add")
     public JsonResponse addOne(@Valid @RequestBody SubsistenceFee subsistenceFee){
         try {
-            if (subsistenceFee.getNewNumber() - subsistenceFee.getOldNumber() >= 100) {
-                subsistenceFee.setLevel(2);
+            if (subsistenceFee.getNewNumberElec() - subsistenceFee.getOldNumberElec() >= 100) {
+                subsistenceFee.setLevelElec(2);
             } else {
-                subsistenceFee.setLevel(1);
+                subsistenceFee.setLevelElec(1);
             }
 
-            Cost cost = costService.findOneByTypeAndLevel(subsistenceFee.getType(), subsistenceFee.getLevel(), 1);
-            Float total = (subsistenceFee.getNewNumber() - subsistenceFee.getOldNumber()) * cost.getValue();
+            if (subsistenceFee.getNewNumberWater() - subsistenceFee.getOldNumberWater() >= 100) {
+                subsistenceFee.setLevelWater(2);
+            } else {
+                subsistenceFee.setLevelWater(1);
+            }
 
-            subsistenceFee.setCostId(cost.getId());
+            Cost costsElec = costService.findOneByTypeAndLevel(2, subsistenceFee.getLevelElec(), 1);
+            Cost costWater = costService.findOneByTypeAndLevel(3, subsistenceFee.getLevelWater(), 1);
+
+            Float total = (subsistenceFee.getNewNumberElec() - subsistenceFee.getOldNumberElec()) * costsElec.getValue()
+                           + (subsistenceFee.getNewNumberWater() - subsistenceFee.getOldNumberWater()) * costWater.getValue();
+
+            subsistenceFee.setCostElec(costsElec.getValue());
+            subsistenceFee.setCostWater(costWater.getValue());
+
             subsistenceFee.setTotal(total);
             subsistenceFee.setStatus(0);
 
@@ -109,17 +139,29 @@ public class SubsistenceFeeController {
     @PutMapping("/edit/{id}")
     public JsonResponse editOne(@Valid @RequestBody SubsistenceFee subsistenceFee, @PathVariable(value = "id") Integer id){
         try {
-            if (subsistenceFee.getNewNumber() - subsistenceFee.getOldNumber() >= 100) {
-                subsistenceFee.setLevel(2);
+            if (subsistenceFee.getNewNumberElec() - subsistenceFee.getOldNumberElec() >= 100) {
+                subsistenceFee.setLevelElec(2);
             } else {
-                subsistenceFee.setLevel(1);
+                subsistenceFee.setLevelElec(1);
             }
 
-            Cost cost = costService.findOneByTypeAndLevel(subsistenceFee.getType(), subsistenceFee.getLevel(), 1);
-            Float total = (subsistenceFee.getNewNumber() - subsistenceFee.getOldNumber()) * cost.getValue();
+            if (subsistenceFee.getNewNumberWater() - subsistenceFee.getOldNumberWater() >= 100) {
+                subsistenceFee.setLevelWater(2);
+            } else {
+                subsistenceFee.setLevelWater(1);
+            }
 
-            subsistenceFee.setCostId(cost.getId());
+            Cost costsElec = costService.findOneByTypeAndLevel(2, subsistenceFee.getLevelElec(), 1);
+            Cost costWater = costService.findOneByTypeAndLevel(3, subsistenceFee.getLevelWater(), 1);
+
+            Float total = (subsistenceFee.getNewNumberElec() - subsistenceFee.getOldNumberElec()) * costsElec.getValue()
+                    + (subsistenceFee.getNewNumberWater() - subsistenceFee.getOldNumberWater()) * costWater.getValue();
+
+            subsistenceFee.setCostElec(costsElec.getValue());
+            subsistenceFee.setCostWater(costWater.getValue());
+
             subsistenceFee.setTotal(total);
+            subsistenceFee.setStatus(0);
 
             SubsistenceFee subsistenceFeeEdit = subsistenceFeeService.editOne(subsistenceFee, id);
             if (subsistenceFeeEdit == null) {
@@ -135,24 +177,27 @@ public class SubsistenceFeeController {
         }
     }
 
-    @PutMapping("/pay/{room_id}/{sub_id_1}/{sub_id_2}")
-    public JsonResponse payOne(@PathVariable(value = "room_id") Integer room_id, @PathVariable(value = "sub_id_1") Integer sub_id_1
-                                ,  @PathVariable(value = "sub_id_1") Integer sub_id_2){
+    @PutMapping("/pay/{room_id}/{sub_id}")
+    public JsonResponse payOne(@PathVariable(value = "room_id") Integer room_id, @PathVariable(value = "sub_id") Integer sub_id){
         try {
 
-            ViewSubsistence sb1 = subsistenceFeeService.changeStatusOne(sub_id_1, 1);
-            ViewSubsistence sb2 = subsistenceFeeService.changeStatusOne(sub_id_2, 1);
-            if ( sb1 == null || sb2 == null) {
+            SubsistenceFee sb1 = subsistenceFeeService.changeStatusOne(sub_id, 1);
+            if ( sb1 == null ) {
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_ERROR, "edit fail", null);
             } else {
 
+                Float total_elec = (sb1.getNewNumberElec() - sb1.getOldNumberElec()) * sb1.getCostElec();
+                Float total_water = (sb1.getNewNumberWater() - sb1.getOldNumberWater()) * sb1.getCostWater();
+
                 String content = "Phòng của bạn đã thanh toán hóa đơn điện nước thành công: \n"
                                 + " tháng :" + sb1.getMonth() + " - " + sb1.getYear() + "\n"
-                                + sb1.getNameCost() + " : \n"
-                                + " Số cũ: " + sb1.getOldNumber() + " số mới: " + sb1.getNewNumber() + " = " + sb1.getTotal() + "\n"
-                                + sb2.getNameCost() + " : \n"
-                                + " Số cũ: " + sb1.getOldNumber() + " số mới: " + sb1.getNewNumber() + " = " + sb2.getTotal() + "\n"
-                                + "Tổng tiền : " + ( sb1.getTotal() + sb2.getTotal()) + "VND";
+                                + "tiền điện: \n"
+                                + " Số cũ: " + sb1.getOldNumberElec() + " số mới: " + sb1.getNewNumberElec() + " = "
+                                + total_elec + "\n"
+                                + "tiền nước: \n"
+                                + " Số cũ: " + sb1.getOldNumberWater() + " số mới: " + sb1.getNewNumberWater() + " = "
+                                + total_water + "\n"
+                                + "Tổng tiền : " + ( total_elec + total_water) + "VND";
 
                 Notification notification = new Notification();
                 notification.setTitle("Thanh toán hóa đơn thành công!");
@@ -180,32 +225,33 @@ public class SubsistenceFeeController {
             Integer month = localDate.getMonthValue();
             Integer year  = localDate.getYear();
 
-            List<ViewSubsistence> subsistenceFeeList = subsistenceFeeService.getAllSubsistenceNotPayBYMonthAndYear(month, year);
+            List<SubsistenceFee> subsistenceFeeList = subsistenceFeeService.getAllSubsistenceNotPayBYMonthAndYear(month, year);
 
             if (subsistenceFeeList.size() <= 0){
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_ERROR, "không có hóa đơn nào chưa thanh toán", null);
             } else {
-                for(ViewSubsistence sb1 : subsistenceFeeList) {
-                    for (ViewSubsistence sb2 : subsistenceFeeList) {
-                        if(sb1.getRoomId() == sb2.getRoomId()) {
+                for(SubsistenceFee sb1 : subsistenceFeeList) {
 
-                            String content = "Điện nước của phòng bạn: \n"
-                                    + " tháng :" + sb1.getMonth() + " - " + sb1.getYear() + "\n"
-                                    + sb1.getNameCost() + " : \n"
-                                    + " Số cũ: " + sb1.getOldNumber() + " số mới: " + sb1.getNewNumber() + " = " + sb1.getTotal() + "\n"
-                                    + sb2.getNameCost() + " : \n"
-                                    + " Số cũ: " + sb1.getOldNumber() + " số mới: " + sb1.getNewNumber() + " = " + sb2.getTotal() + "\n"
-                                    + "Tổng tiền : " + ( sb1.getTotal() + sb2.getTotal()) + "VND";
+                    Float total_elec = (sb1.getNewNumberElec() - sb1.getOldNumberElec()) * sb1.getCostElec();
+                    Float total_water = (sb1.getNewNumberWater() - sb1.getOldNumberWater()) * sb1.getCostWater();
 
-                            Notification notification = new Notification();
-                            notification.setTitle("Thông tin điện nước");
-                            notification.setContent(content);
-//                            notification.setRoomId(sb1.getRoomId());
-                            notification.setStatus(0);
+                    String content = "Phòng của bạn đã thanh toán hóa đơn điện nước thành công: \n"
+                            + " tháng :" + sb1.getMonth() + " - " + sb1.getYear() + "\n"
+                            + "tiền điện: \n"
+                            + " Số cũ: " + sb1.getOldNumberElec() + " số mới: " + sb1.getNewNumberElec() + " = "
+                            + total_elec + "\n"
+                            + "tiền nước: \n"
+                            + " Số cũ: " + sb1.getOldNumberWater() + " số mới: " + sb1.getNewNumberWater() + " = "
+                            + total_water + "\n"
+                            + "Tổng tiền : " + ( total_elec + total_water) + "VND";
 
-                            notificationService.addNotification(notification);
-                        }
-                    }
+                    Notification notification = new Notification();
+                    notification.setTitle("Thanh toán hóa đơn thành công!");
+                    notification.setContent(content);
+                    notification.setRoomId(sb1.getRoomId());
+                    notification.setStatus(0);
+
+                    notificationService.addNotification(notification);
                 }
 
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_YES, "success", null);
@@ -225,7 +271,7 @@ public class SubsistenceFeeController {
     @GetMapping("not-payed")
     public JsonResponse getAllSubsistenceNotPayed() {
         try {
-            List<ViewSubsistence> subsistenceFeeList = subsistenceFeeService.getAllSubsistenceNotPay(0);
+            List<SubsistenceFee> subsistenceFeeList = subsistenceFeeService.getAllSubsistenceNotPay(0);
 
             if (subsistenceFeeList.size() > 0) {
                 jsonResponse = return_List_Object_JsonPresonse(API.CODE_API_YES, "success", subsistenceFeeList);
@@ -256,7 +302,7 @@ public class SubsistenceFeeController {
         return jsonResponse;
     }
 
-    public JsonResponse return_List_Object_JsonPresonse(Integer code, String message, List<ViewSubsistence> subsistenceFeeList){
+    public JsonResponse return_List_Object_JsonPresonse(Integer code, String message, List<SubsistenceFee> subsistenceFeeList){
         JsonResponse jsonResponse = new JsonResponse();
 
         jsonResponse.setCode(code);

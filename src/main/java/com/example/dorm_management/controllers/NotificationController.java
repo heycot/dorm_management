@@ -2,7 +2,6 @@ package com.example.dorm_management.controllers;
 
 import com.example.dorm_management.entities.Notification;
 import com.example.dorm_management.entities.RentRoom;
-import com.example.dorm_management.entities.SubsistenceFee;
 import com.example.dorm_management.json.API;
 import com.example.dorm_management.json.JsonResponse;
 import com.example.dorm_management.services.NotificationService;
