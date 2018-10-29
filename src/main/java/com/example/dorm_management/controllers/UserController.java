@@ -89,10 +89,11 @@ public class UserController {
         }
     }
 
-    @PostMapping("/add_user_detail")
-    public JsonResponse addUserDetailById(@RequestBody UserDetail userDetail){
+    @PostMapping("/{userId}/add_user_detail")
+    public JsonResponse addUserDetailById(@RequestBody UserDetail userDetail, @PathVariable(value = "userId") Integer userId){
         try{
             if(userDetail != null){
+                userDetail.setUser(new User(userId));
                 userDetailService.save(userDetail);
                 return Utility.convertObjectToJSON(API.CODE_API_YES, "successfully", userDetail);
             }else{
