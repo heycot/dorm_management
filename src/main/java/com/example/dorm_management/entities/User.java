@@ -161,6 +161,14 @@ public class User {
 
     }
 
+    public User(Integer id) {
+        this.id = id;
+        this.userName = "";
+        this.password = "";
+        this.gender = 0;
+        this.status = 0;
+    }
+
     public User(String userName, String password, Integer gender) {
         this.userName = userName;
         this.password = password;
