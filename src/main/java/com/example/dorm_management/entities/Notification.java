@@ -24,6 +24,9 @@ public class Notification {
 
     private Integer status;
 
+    @Column(name = "room_id")
+    private Integer roomId;
+
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
@@ -40,6 +43,14 @@ public class Notification {
         this.status = status;
         this.user = new User();
         this.user.setId(userId);
+    }
+
+    public Integer getRoomId() {
+        return roomId;
+    }
+
+    public void setRoomId(Integer roomId) {
+        this.roomId = roomId;
     }
 
     public Integer getId() {
