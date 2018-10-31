@@ -10,6 +10,7 @@ import com.example.dorm_management.respositories.RoomRepository;
 import com.example.dorm_management.services.UserService;
 import com.example.dorm_management.services.UserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
@@ -88,11 +89,12 @@ public class UserController {
             return Utility.convertObjectToJSON(API.CODE_API_NO, e.getMessage());
         }
     }
-
-    @PostMapping("/add_user_detail")
-    public JsonResponse addUserDetailById(@RequestBody UserDetail userDetail){
+    @RequestMapping(value = "/{userId}/add_user_detail", method = RequestMethod.POST)
+//    @PostMapping("/{userId}/add_user_detail")
+    public JsonResponse addUserDetailById(@RequestBody UserDetail userDetail, @PathVariable(value = "userId") String userId){
         try{
             if(userDetail != null){
+                userDetail.setUser(new User(Integer.parseInt(userId)));
                 userDetailService.save(userDetail);
                 return Utility.convertObjectToJSON(API.CODE_API_YES, "successfully", userDetail);
             }else{
@@ -146,7 +148,7 @@ public class UserController {
     @PostMapping("/edit_user")
     public JsonResponse editUser(@RequestBody User user){
         try{
-            User user1 = userService.findUserById(user.getId());
+                        User user1 = userService.findUserById(user.getId());
             if(user1 != null){
                 userService.editUser(user);
                 return Utility.convertObjectToJSON(API.CODE_API_YES, "successfully", user);
