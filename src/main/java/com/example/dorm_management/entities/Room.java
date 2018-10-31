@@ -48,8 +48,8 @@ public class Room {
 //    @OneToMany(cascade = CascadeType.ALL,
 //            fetch = FetchType.LAZY,
 //            mappedBy = "room")
-    @OneToMany(mappedBy="room",targetEntity=RentRoom.class, fetch=FetchType.EAGER)
-    private Collection<RentRoom> rentRooms;
+//    @OneToMany(mappedBy="room",targetEntity=RentRoom.class, fetch=FetchType.EAGER)
+//    private Collection<RentRoom> rentRooms;
 
 
 

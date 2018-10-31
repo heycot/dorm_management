@@ -11,4 +11,8 @@ public interface FloorService  {
     Floor findOneById(Integer id);
 
     Floor addOneFloor(Floor floor);
+
+    Floor editOne(Integer id, Floor floor);
+
+    Floor changeStatus(Integer id, Integer status);
 }

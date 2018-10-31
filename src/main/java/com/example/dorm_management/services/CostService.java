@@ -7,4 +7,6 @@ public interface CostService {
     Cost findOneByIdAndLevel(Integer id, Integer level);
 
     Cost findOneByTypeAndLevel(Integer type, Integer level, Integer status);
+
+    Cost findOneByTypeAndStatus(Integer  type, Integer status);
 }

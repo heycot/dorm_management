@@ -6,4 +6,7 @@ public interface RentRoomService {
 
     RentRoom findOneByUserId(Integer userId, Integer status);
 
+    RentRoom addOne(RentRoom rentRoom);
+
+    boolean changeStatus(RentRoom rentRoom, Integer status);
 }

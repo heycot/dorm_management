@@ -1,15 +1,9 @@
 package com.example.dorm_management.entities;
 
-
-import lombok.Data;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import java.util.Collection;
-import java.util.List;
 
-//@Data
 @Entity
 public class ViewRoom {
     @Id
@@ -56,8 +50,6 @@ public class ViewRoom {
     private Float value_cost;
 
     private Integer level_cost;
-
-//    public Collection<User> users;
 
     public ViewRoom() {
     }

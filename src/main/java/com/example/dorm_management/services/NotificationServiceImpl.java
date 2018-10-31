@@ -78,4 +78,19 @@ public class NotificationServiceImpl implements NotificationService {
             return  null;
         }
     }
+
+    @Override
+    public Notification deleteOne(Integer id){
+        try {
+            Notification notification = notificationRepository.findOne(id);
+            notificationRepository.delete(id);
+
+            return notification;
+        } catch (Exception e) {
+            System.out.println(e.getCause());
+
+            return null;
+        }
+
+    }
 }

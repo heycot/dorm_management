@@ -28,10 +28,12 @@ public class RentRoom {
 
     private Integer status;
 
-    @ManyToOne(optional=true)
-    @JoinColumn(name="room_id",referencedColumnName="id")
-    private Room room;
+    @Column(name = "room_id")
+    private Integer roomId;
 
+//    @ManyToOne(optional=true)
+//    @JoinColumn(name="room_id",referencedColumnName="id")
+//    private Room room;
 
     public RentRoom() {
     }
@@ -60,13 +62,13 @@ public class RentRoom {
         this.userId = userId;
     }
 
-//    public Integer getRoomId() {
-//        return roomId;
-//    }
-//
-//    public void setRoomId(Integer roomId) {
-//        this.roomId = roomId;
-//    }
+    public Integer getRoomId() {
+        return roomId;
+    }
+
+    public void setRoomId(Integer roomId) {
+        this.roomId = roomId;
+    }
 
     public String getYear() {
         return year;

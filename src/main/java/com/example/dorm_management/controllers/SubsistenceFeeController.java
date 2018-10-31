@@ -202,7 +202,7 @@ public class SubsistenceFeeController {
                 Notification notification = new Notification();
                 notification.setTitle("Thanh toán hóa đơn thành công!");
                 notification.setContent(content);
-//                notification.setRoomId(room_id);
+                notification.setRoomId(room_id);
                 notification.setStatus(0);
 
                 notificationService.addNotification(notification);
@@ -217,7 +217,7 @@ public class SubsistenceFeeController {
     }
 
 
-    @GetMapping("/send")
+    @GetMapping("/send-notification")
     public JsonResponse sendNotificationSubsistence() {
         try {
             Date date = new Date();
