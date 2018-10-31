@@ -61,7 +61,7 @@ public class AreaController {
         }
     }
 
-    @GetMapping(value = "/change/{id}/{status}")
+    @GetMapping(value = "/change-status/{id}/{status}")
     public JsonResponse disableOne(@PathVariable(value = "id") Integer id, @PathVariable(value = "status") Integer status){
         try{
             if (status != 0) {

@@ -57,7 +57,7 @@ public class SubsistenceFeeController {
     }
 
     @GetMapping("/{month}/{year}")
-    public JsonResponse findOneByMonthAndYear(@PathVariable(value = "month") Integer month, @PathVariable(value = "year") Integer year) {
+    public JsonResponse findAllByMonthAndYear(@PathVariable(value = "month") Integer month, @PathVariable(value = "year") Integer year) {
         try {
 
             List<SubsistenceFee> subsistenceFeeList = subsistenceFeeService.getAllSubsistenceNotPayBYMonthAndYear(month, year);
