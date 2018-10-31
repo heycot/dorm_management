@@ -2,36 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a24a4cf7-fcf4-458d-b50a-bd91fc0abe72" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/dorm_management/controllers/RentRoomController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/dorm_management/controllers/AreaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/dorm_management/controllers/AreaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/dorm_management/controllers/FloorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/dorm_management/controllers/FloorController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/dorm_management/controllers/NotificationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/dorm_management/controllers/NotificationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/dorm_management/controllers/RegisterRoomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/dorm_management/controllers/RegisterRoomController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/dorm_management/controllers/RoomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/dorm_management/controllers/RoomController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/dorm_management/controllers/RoomFunctionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/dorm_management/controllers/RoomFunctionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/dorm_management/controllers/SubsistenceFeeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/dorm_management/controllers/SubsistenceFeeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/dorm_management/entities/RentRoom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/dorm_management/entities/RentRoom.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/dorm_management/entities/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/dorm_management/entities/Room.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/dorm_management/entities/ViewRoom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/dorm_management/entities/ViewRoom.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/dorm_management/respositories/CostRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/dorm_management/respositories/CostRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/dorm_management/respositories/RoomFunctionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/dorm_management/respositories/RoomFunctionRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/dorm_management/services/AreaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/dorm_management/services/AreaService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/dorm_management/services/AreaServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/dorm_management/services/AreaServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/dorm_management/services/CostService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/dorm_management/services/CostService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/dorm_management/services/CostServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/dorm_management/services/CostServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/dorm_management/services/FloorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/dorm_management/services/FloorService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/dorm_management/services/FloorServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/dorm_management/services/FloorServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/dorm_management/services/NotificationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/dorm_management/services/NotificationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/dorm_management/services/NotificationServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/dorm_management/services/NotificationServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/dorm_management/services/RegisterRoomService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/dorm_management/services/RegisterRoomService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/dorm_management/services/RegisterRoomServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/dorm_management/services/RegisterRoomServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/dorm_management/services/RentRoomService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/dorm_management/services/RentRoomService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/dorm_management/services/RentRoomServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/dorm_management/services/RentRoomServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/dorm_management/services/RoomFunctionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/dorm_management/services/RoomFunctionService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/dorm_management/services/RoomFunctionServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/dorm_management/services/RoomFunctionServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/dorm_management/services/RoomService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/dorm_management/services/RoomService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/dorm_management/services/RoomServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/dorm_management/services/RoomServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/dorm_management/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/dorm_management/controllers/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/dorm_management/entities/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/dorm_management/entities/User.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -58,7 +30,7 @@
           <entry key="cmd" value="1" />
           <entry key="gitignore" value="2" />
           <entry key="iml" value="3" />
-          <entry key="java" value="78" />
+          <entry key="java" value="81" />
           <entry key="mvnw" value="1" />
           <entry key="properties" value="4" />
           <entry key="xml" value="5" />
@@ -67,7 +39,7 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="IDEA_MODULE" value="3" />
-          <entry key="JAVA" value="78" />
+          <entry key="JAVA" value="81" />
           <entry key="PLAIN_TEXT" value="4" />
           <entry key="Properties" value="4" />
           <entry key="XML" value="5" />
@@ -104,11 +76,38 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/controllers/SubsistenceFeeController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
+            <state relative-caret-position="-1054">
               <caret line="205" column="33" lean-forward="true" selection-start-line="205" selection-start-column="33" selection-end-line="205" selection-end-column="33" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/controllers/UserController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="44">
+              <caret line="293" column="29" lean-forward="true" selection-start-line="293" selection-start-column="29" selection-end-line="293" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/entities/UserDetail.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/entities/User.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="588">
+              <caret line="66" selection-start-line="66" selection-end-line="66" />
             </state>
           </provider>
         </entry>
@@ -340,7 +339,7 @@
     <property name="RequestMappingsPanelWidth2" value="75" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1540981712144" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1540981716932" />
     <property name="restartRequiresConfirmation" value="false" />
   </component>
   <component name="RunDashboard">
@@ -380,18 +379,18 @@
       <workItem from="1540796750480" duration="1977000" />
       <workItem from="1540814393124" duration="10279000" />
       <workItem from="1540906911309" duration="1958000" />
-      <workItem from="1540967629789" duration="13128000" />
+      <workItem from="1540967629789" duration="13442000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="30836000" />
+    <option name="totallyTimeSpent" value="31150000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22013423" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22013423" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
@@ -402,7 +401,7 @@
       <window_info id="Persistence" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.37588653" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.082269505" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.082269505" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -433,13 +432,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/api.iml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="129" selection-start-line="129" selection-end-line="129" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dorm_management.iml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -451,13 +443,6 @@
     <entry file="file://$PROJECT_DIR$/mvnw.cmd">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-663" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/entities/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="918">
-          <caret line="66" selection-start-line="66" selection-end-line="66" />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/entities/StudentCode.java">
@@ -709,13 +694,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/controllers/UserController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="291" column="29" lean-forward="true" selection-start-line="291" selection-start-column="29" selection-end-line="291" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/controllers/RentRoomController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="650">
@@ -787,8 +765,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/controllers/SubsistenceFeeController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
+        <state relative-caret-position="-1054">
           <caret line="205" column="33" lean-forward="true" selection-start-line="205" selection-start-column="33" selection-end-line="205" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/entities/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="588">
+          <caret line="66" selection-start-line="66" selection-end-line="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/entities/UserDetail.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/controllers/UserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="293" column="29" lean-forward="true" selection-start-line="293" selection-start-column="29" selection-end-line="293" selection-end-column="29" />
         </state>
       </provider>
     </entry>
