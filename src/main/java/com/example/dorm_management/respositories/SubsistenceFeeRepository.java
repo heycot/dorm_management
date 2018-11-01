@@ -1,6 +1,7 @@
 package com.example.dorm_management.respositories;
 
 import com.example.dorm_management.entities.SubsistenceFee;
+import com.example.dorm_management.entities.ViewSubsistence;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -35,9 +36,18 @@ public interface SubsistenceFeeRepository extends JpaRepository<SubsistenceFee, 
 
     @Query(value = "select * from subsistence_fee as sb  " +
             "where sb.month = ?1 and sb.year like ?2", nativeQuery = true)
-    List<SubsistenceFee> getAllSubsistenceNotPayBYMonthAndYear(Integer month, Integer year);
+    List<ViewSubsistence> getAllSubsistenceBYMonthAndYear(Integer month, Integer year);
 
     @Query(value = "select * from subsistence_fee as sb  " +
             "where sb.status = ?1", nativeQuery = true)
     List<SubsistenceFee> getAllSubsistenceNotPay(Integer status);
+
+
+    @Query(value = "select * from subsistence_fee as sb  " +
+            "where sb.room_id = ?1 and sb.month = ?2 and sb.year like ?3", nativeQuery = true)
+    List<SubsistenceFee> getAllSubsistenceByMonthAndYearAndRoomId(Integer roomId, Integer month, String year);
+
+    @Query(value = "select * from subsistence_fee as sb  " +
+            "where sb.month = ?1 and sb.year like ?2 and status = ?3", nativeQuery = true)
+    List<SubsistenceFee> getAllSubsistenceNotPayBYMonthAndYear(Integer month, String year, Integer status);
 }

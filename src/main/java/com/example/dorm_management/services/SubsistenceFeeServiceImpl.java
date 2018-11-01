@@ -1,7 +1,9 @@
 package com.example.dorm_management.services;
 
 import com.example.dorm_management.entities.SubsistenceFee;
+import com.example.dorm_management.entities.ViewSubsistence;
 import com.example.dorm_management.respositories.SubsistenceFeeRepository;
+import com.example.dorm_management.respositories.ViewSubsistenceFeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +14,9 @@ public class SubsistenceFeeServiceImpl implements SubsistenceFeeService {
 
     @Autowired
     private SubsistenceFeeRepository subsistenceFeeRepository;
+
+    @Autowired
+    private ViewSubsistenceFeeRepository viewSubsistenceFeeRepository;
 
     @Override
     public List<SubsistenceFee> findALlByRoomId(Integer roomId) {
@@ -88,13 +93,25 @@ public class SubsistenceFeeServiceImpl implements SubsistenceFeeService {
         return subsistenceFeeRepository.findViewOne(id);
     }
 
-    @Override
-    public List<SubsistenceFee> getAllSubsistenceNotPayBYMonthAndYear(Integer month, Integer year) {
-        return subsistenceFeeRepository.getAllSubsistenceNotPayBYMonthAndYear(month, year);
-    }
 
     @Override
     public List<SubsistenceFee> getAllSubsistenceNotPay(Integer status){
         return subsistenceFeeRepository.getAllSubsistenceNotPay(status);
+    }
+
+    @Override
+    public List<ViewSubsistence> getAllViewSubsistenceByMonthAndYear(Integer month, String year) {
+        return viewSubsistenceFeeRepository.getAllViewSubsistence(month, year);
+
+    }
+
+    @Override
+    public List<SubsistenceFee> getAllSubsistenceByMonthAndYearAndRoomId(Integer roomId, Integer month, String year) {
+        return subsistenceFeeRepository.getAllSubsistenceByMonthAndYearAndRoomId(roomId, month, year);
+    }
+
+    @Override
+    public List<SubsistenceFee> getAllSubsistenceNotPayBYMonthAndYear(Integer month, String year){
+        return subsistenceFeeRepository.getAllSubsistenceNotPayBYMonthAndYear(month, year, 0);
     }
 }

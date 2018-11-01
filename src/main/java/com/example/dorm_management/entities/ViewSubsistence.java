@@ -1,16 +1,13 @@
 package com.example.dorm_management.entities;
 
-import lombok.Data;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
-import javax.persistence.*;
-
-@Data
 @Entity
-@Table(name = "subsistence_fee")
-public class SubsistenceFee {
+public class ViewSubsistence {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private Integer month;
@@ -18,8 +15,6 @@ public class SubsistenceFee {
     private Integer year;
 
     private Float total;
-
-//    private Integer type;
 
     @Column(name = "level_water")
     private Integer levelWater;
@@ -50,23 +45,22 @@ public class SubsistenceFee {
     @Column(name = "room_id")
     private Integer roomId;
 
-    public SubsistenceFee() {
-    }
+    @Column(name = "room_name")
+    private String roomName;
 
-    public Float getCostWater() {
-        return costWater;
-    }
+    @Column(name = "floor_id")
+    private Integer floorId;
 
-    public void setCostWater(Float costWater) {
-        this.costWater = costWater;
-    }
+    @Column(name = "floor_name")
+    private String floorName;
 
-    public Float getCostElec() {
-        return costElec;
-    }
+    @Column(name = "area_id")
+    private Integer areaId;
 
-    public void setCostElec(Float costElec) {
-        this.costElec = costElec;
+    @Column(name = "area_name")
+    private String areaName;
+
+    public ViewSubsistence() {
     }
 
     public Integer getId() {
@@ -99,10 +93,6 @@ public class SubsistenceFee {
 
     public void setTotal(Float total) {
         this.total = total;
-    }
-
-    public void setRoomId(Integer roomId) {
-        this.roomId = roomId;
     }
 
     public Integer getLevelWater() {
@@ -161,7 +151,67 @@ public class SubsistenceFee {
         this.oldNumberElec = oldNumberElec;
     }
 
+    public Float getCostWater() {
+        return costWater;
+    }
+
+    public void setCostWater(Float costWater) {
+        this.costWater = costWater;
+    }
+
+    public Float getCostElec() {
+        return costElec;
+    }
+
+    public void setCostElec(Float costElec) {
+        this.costElec = costElec;
+    }
+
     public Integer getRoomId() {
         return roomId;
+    }
+
+    public void setRoomId(Integer roomId) {
+        this.roomId = roomId;
+    }
+
+    public String getRoomName() {
+        return roomName;
+    }
+
+    public void setRoomName(String roomName) {
+        this.roomName = roomName;
+    }
+
+    public Integer getFloorId() {
+        return floorId;
+    }
+
+    public void setFloorId(Integer floorId) {
+        this.floorId = floorId;
+    }
+
+    public String getFloorName() {
+        return floorName;
+    }
+
+    public void setFloorName(String floorName) {
+        this.floorName = floorName;
+    }
+
+    public Integer getAreaId() {
+        return areaId;
+    }
+
+    public void setAreaId(Integer areaId) {
+        this.areaId = areaId;
+    }
+
+    public String getAreaName() {
+        return areaName;
+    }
+
+    public void setAreaName(String areaName) {
+        this.areaName = areaName;
     }
 }

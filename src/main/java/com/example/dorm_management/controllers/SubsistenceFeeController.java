@@ -56,14 +56,34 @@ public class SubsistenceFeeController {
         }
     }
 
-    @GetMapping("/{month}/{year}")
-    public JsonResponse findAllByMonthAndYear(@PathVariable(value = "month") Integer month, @PathVariable(value = "year") Integer year) {
+    @GetMapping("/{room_id}/{month}/{year}")
+    public JsonResponse findAllByMonthAndYearAndRoom(@PathVariable(value = "room_id") Integer roomId, @PathVariable(value = "month") Integer month, @PathVariable(value = "year") String year) {
         try {
 
-            List<SubsistenceFee> subsistenceFeeList = subsistenceFeeService.getAllSubsistenceNotPayBYMonthAndYear(month, year);
+            List<SubsistenceFee> subsistenceFeeList = subsistenceFeeService.getAllSubsistenceByMonthAndYearAndRoomId(roomId, month, year);
 
             if (subsistenceFeeList.size() > 0) {
                 jsonResponse = return_List_Object_JsonPresonse(API.CODE_API_YES, "success", subsistenceFeeList);
+
+            } else {
+                jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_NOTFOUND, "not found", null);
+            }
+
+            return jsonResponse;
+        } catch (Exception e) {
+            jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_ERROR, "error exception", null);
+            return jsonResponse;
+        }
+    }
+
+    @GetMapping("/view/{month}/{year}")
+    public JsonResponse findAllByMonthAndYear(@PathVariable(value = "month") Integer month, @PathVariable(value = "year") String year) {
+        try {
+
+            List<ViewSubsistence> subsistenceFeeList = subsistenceFeeService.getAllViewSubsistenceByMonthAndYear(month, year);
+
+            if (subsistenceFeeList.size() > 0) {
+                jsonResponse = return_List_View_Object_JsonPresonse(API.CODE_API_YES, "success", subsistenceFeeList);
 
             } else {
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_NOTFOUND, "not found", null);
@@ -225,7 +245,7 @@ public class SubsistenceFeeController {
             Integer month = localDate.getMonthValue();
             Integer year  = localDate.getYear();
 
-            List<SubsistenceFee> subsistenceFeeList = subsistenceFeeService.getAllSubsistenceNotPayBYMonthAndYear(month, year);
+            List<SubsistenceFee> subsistenceFeeList = subsistenceFeeService.getAllSubsistenceNotPayBYMonthAndYear(month, String.valueOf(year));
 
             if (subsistenceFeeList.size() <= 0){
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_ERROR, "không có hóa đơn nào chưa thanh toán", null);
@@ -293,7 +313,7 @@ public class SubsistenceFeeController {
 
 
     public JsonResponse return_One_Object_JsonPresonse(Integer code, String message, SubsistenceFee subsistenceFee){
-        JsonResponse jsonResponse = new JsonResponse();
+        jsonResponse = new JsonResponse();
 
         jsonResponse.setCode(code);
         jsonResponse.setMessage(message);
@@ -303,7 +323,7 @@ public class SubsistenceFeeController {
     }
 
     public JsonResponse return_List_Object_JsonPresonse(Integer code, String message, List<SubsistenceFee> subsistenceFeeList){
-        JsonResponse jsonResponse = new JsonResponse();
+        jsonResponse = new JsonResponse();
 
         jsonResponse.setCode(code);
         jsonResponse.setMessage(message);
@@ -311,4 +331,16 @@ public class SubsistenceFeeController {
 
         return jsonResponse;
     }
+
+
+    public JsonResponse return_List_View_Object_JsonPresonse(Integer code, String message, List<ViewSubsistence> subsistenceFeeList) {
+        jsonResponse = new JsonResponse();
+
+        jsonResponse.setCode(code);
+        jsonResponse.setMessage(message);
+        jsonResponse.setData(Collections.unmodifiableCollection(subsistenceFeeList));
+
+        return jsonResponse;
+    }
+
 }

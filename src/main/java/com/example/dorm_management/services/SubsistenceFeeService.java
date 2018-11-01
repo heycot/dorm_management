@@ -1,6 +1,7 @@
 package com.example.dorm_management.services;
 
 import com.example.dorm_management.entities.SubsistenceFee;
+import com.example.dorm_management.entities.ViewSubsistence;
 
 import java.util.List;
 
@@ -24,5 +25,9 @@ public interface SubsistenceFeeService {
 
     List<SubsistenceFee> getAllSubsistenceNotPay(Integer status);
 
-    List<SubsistenceFee> getAllSubsistenceNotPayBYMonthAndYear(Integer month, Integer year);
+    List<ViewSubsistence> getAllViewSubsistenceByMonthAndYear(Integer month, String year);
+
+    List<SubsistenceFee> getAllSubsistenceByMonthAndYearAndRoomId(Integer roomId, Integer month, String year);
+
+    List<SubsistenceFee> getAllSubsistenceNotPayBYMonthAndYear(Integer month, String year);
 }
