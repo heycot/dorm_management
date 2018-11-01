@@ -67,12 +67,23 @@ public class RegisterRoomServiceImpl implements RegisterRoomService {
     }
 
     @Override
-    public List<RegisterRoom> findAllAcceptedByRoomId(Integer id){
+    public List<RegisterRoom> findAllAcceptedByRoomId(Integer id) {
         return registerRoomRepository.findAllByRoomIdAndStatus(id, 1);
     }
 
     @Override
-    public List<RegisterRoom> findAllNotAcceptedByRoomId(Integer id){
+    public List<RegisterRoom> findAllNotAcceptedByRoomId(Integer id) {
         return registerRoomRepository.findAllByRoomIdAndStatus(id, 0);
+    }
+
+    @Override
+    public boolean deleteOne(Integer registerId) {
+        try {
+
+            registerRoomRepository.delete(registerId);
+            return true;
+        } catch (Exception e) {
+            return  false;
+        }
     }
 }

@@ -15,4 +15,25 @@ public class RentRoomServiceImpl implements RentRoomService {
     public RentRoom findOneByUserId(Integer userId, Integer status) {
         return rentRoomRepository.findOneByUserId(userId, status);
     }
+
+    @Override
+    public RentRoom addOne(RentRoom rentRoom) {
+        return rentRoomRepository.save(rentRoom);
+    }
+
+    @Override
+    public boolean changeStatus(RentRoom rentRoom, Integer status){
+        try {
+            RentRoom rentRoomEdit = rentRoomRepository.findOne(rentRoom.getId());
+
+            rentRoomEdit.setStatus(status);
+
+            rentRoomRepository.save(rentRoomEdit);
+
+            return true;
+        } catch (Exception e) {
+            System.out.println(e.getCause());
+            return false;
+        }
+    }
 }

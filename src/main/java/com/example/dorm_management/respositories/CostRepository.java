@@ -13,4 +13,7 @@ public interface CostRepository extends JpaRepository<Cost, Integer> {
 
     @Query(value = "select * from cost where type = ?1 and level = ?2 and status = ?3", nativeQuery = true)
     Cost findOneByTypeAndLevel(Integer type, Integer level, Integer status);
+
+    @Query(value = "select * cost where type = ?1 and status = ?2", nativeQuery = true)
+    Cost findOneByTypeAndStatus(Integer type, Integer status);
 }

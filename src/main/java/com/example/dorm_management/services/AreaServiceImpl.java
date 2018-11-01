@@ -49,4 +49,18 @@ public class AreaServiceImpl implements AreaService {
             return false;
         }
     }
+
+    @Override
+    public Area changeStatus(Integer id, Integer status){
+        try {
+            Area area = areaRepository.findOne(id);
+
+            area.setStatus(status);
+
+            return area;
+        } catch (Exception e) {
+            System.out.println(e.getCause());
+            return null;
+        }
+    }
 }

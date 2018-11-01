@@ -36,10 +36,7 @@ public class NotificationController {
 
             RentRoom rentRoom = rentRoomService.findOneByUserId(user_id, 1);
 
-//            List<Notification> notificationList = notificationService.findAllOfUser(user_id, rentRoom.getRoomId());
-
-
-            List<Notification> notificationList = notificationService.findAllOfUser(user_id, 1);
+            List<Notification> notificationList = notificationService.findAllOfUser(user_id, rentRoom.getRoomId());
 
             if (notificationList.size() > 0) {
                 jsonResponse = return_List_Object_JsonPresonse(API.CODE_API_YES, "success", notificationList);
@@ -64,6 +61,28 @@ public class NotificationController {
         try {
 
             Notification notification = notificationService.readOne(id, 1);
+            if (notification ==  null ){
+                jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_NO, "fail", null);
+            } else {
+
+                jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_YES, "success", notification);
+            }
+
+            return  jsonResponse;
+
+        } catch (Exception e) {
+            System.out.println(e.getCause());
+
+            jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_ERROR, "error exception", null);
+            return  jsonResponse;
+        }
+    }
+
+    @GetMapping("delete/{id}")
+    public JsonResponse delete(@PathVariable(value = "id") Integer id) {
+        try {
+
+            Notification notification = notificationService.deleteOne(id);
             if (notification ==  null ){
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_NO, "fail", null);
             } else {

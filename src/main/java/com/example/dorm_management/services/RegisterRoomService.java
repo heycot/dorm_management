@@ -21,4 +21,5 @@ public interface RegisterRoomService {
 
     List<RegisterRoom> findAllNotAcceptedByRoomId(Integer id);
 
+    boolean deleteOne(Integer registerId);
 }
