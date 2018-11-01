@@ -2,6 +2,7 @@ package com.example.dorm_management.entities;
 
 import lombok.Data;
 
+
 /**
  * Created by vuong on 10/28/2018.
  */
