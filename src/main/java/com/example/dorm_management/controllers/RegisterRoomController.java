@@ -1,9 +1,13 @@
 package com.example.dorm_management.controllers;
 
+import com.example.dorm_management.entities.Cost;
 import com.example.dorm_management.entities.RegisterRoom;
+import com.example.dorm_management.entities.RentRoom;
 import com.example.dorm_management.json.API;
 import com.example.dorm_management.json.JsonResponse;
+import com.example.dorm_management.services.CostService;
 import com.example.dorm_management.services.RegisterRoomService;
+import com.example.dorm_management.services.RentRoomService;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +27,12 @@ public class RegisterRoomController {
 
     @Autowired
     private RegisterRoomService registerRoomService;
+
+    @Autowired
+    private CostService costService;
+
+    @Autowired
+    private RentRoomService rentRoomService;
 
     private JsonResponse jsonResponse;
 
@@ -133,7 +143,7 @@ public class RegisterRoomController {
     @PutMapping("/accept")
     public JsonResponse accept(@Valid @RequestBody String jsonString){
         try {
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
+//            SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
             Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 
             ObjectMapper mapper = new ObjectMapper();
@@ -143,7 +153,7 @@ public class RegisterRoomController {
 
             for (RegisterRoom x : registerRoomList) {
                 System.out.println(x);
-                x.setStatus(0);
+                x.setStatus(1);
                 x.setTimeCensor(timestamp);
                 if (registerRoomService.acceptOne(x) != null){
                     check++;
@@ -163,6 +173,48 @@ public class RegisterRoomController {
             return jsonResponse;
         }
     }
+
+    @PutMapping(value = "rent-room")
+    public JsonResponse rentRoom(@Valid @RequestBody String jsonString) {
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            int check = 0;
+
+            List<RegisterRoom> registerRoomList = mapper.readValue(jsonString, new TypeReference<List<RegisterRoom>>(){});
+            Cost cost = costService.findOneByTypeAndStatus(1, 1);
+            RentRoom rentRoom = new RentRoom();
+
+            for (RegisterRoom register: registerRoomList ) {
+                if (registerRoomService.deleteOne(register.getId()) != true) {
+
+                    rentRoom.setSemesterId(register.getSemesterId());
+                    rentRoom.setUserId(register.getUserId());
+                    rentRoom.setRoomId(register.getRoomId());
+                    rentRoom.setYear(register.getYear());
+                    rentRoom.setStatus(1);
+                    rentRoom.setBail(register.getNumber() * cost.getValue());
+
+                    rentRoomService.addOne(rentRoom);
+                    check++;
+                }
+            }
+
+            if (check == registerRoomList.size()) {
+                jsonResponse = return_List_Object_JsonPresonse(API.CODE_API_YES, "success", registerRoomList);
+            } else {
+                jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_NO, "fail", null);
+            }
+
+            return jsonResponse;
+
+        } catch (Exception e){
+            System.out.println(e.getCause());
+
+            jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_ERROR, "error exception", null);
+            return jsonResponse;
+        }
+    }
+
 
 
     public JsonResponse return_No_Object_JsonPresonse(Integer code, String message){

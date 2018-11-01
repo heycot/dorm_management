@@ -1,40 +1,22 @@
 package com.example.dorm_management.entities;
 
-import lombok.Data;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
-import javax.persistence.*;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-
-//@Data
 @Entity
-@Table(name = "room")
-public class Room {
+public class ViewRoom {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private String name;
 
-    @Column(name = "area_id")
-    private Integer areaId;
-
-    @Column(name = "floor_id")
-    private Integer floorId;
-
-    @Column(name = "cost_id")
-    private Integer costId;
-
-    @Column(name = "function_id")
-    private Integer functionId;
-
-    @Column(name = "number_bed")
-    private Integer numberBed;
-
     private Integer gender;
 
     private Integer status;
+
+    @Column(name = "number_bed")
+    private Integer numberBed;
 
     @Column(name = "student_max")
     private Integer studentMax;
@@ -45,21 +27,32 @@ public class Room {
     @Column(name = "student_register")
     private Integer studentRegister;
 
-//    @OneToMany(cascade = CascadeType.ALL,
-//            fetch = FetchType.LAZY,
-//            mappedBy = "room")
-//    @OneToMany(mappedBy="room",targetEntity=RentRoom.class, fetch=FetchType.EAGER)
-//    private Collection<RentRoom> rentRooms;
+    @Column(name = "area_id")
+    private Integer areaId;
 
+    @Column(name = "cost_id")
+    private Integer costId;
 
+    @Column(name = "floor_id")
+    private Integer floorId;
 
-    public Room(String name) {
-        this.name = name;
+    @Column(name = "function_id")
+    private Integer functionId;
+
+    private String name_floor;
+
+    private String name_function;
+
+    private String name_area;
+
+    private String name_cost;
+
+    private Float value_cost;
+
+    private Integer level_cost;
+
+    public ViewRoom() {
     }
-
-    public Room() {
-    }
-
 
     public Integer getId() {
         return id;
@@ -85,12 +78,45 @@ public class Room {
         this.areaId = areaId;
     }
 
+
     public Integer getFloorId() {
         return floorId;
     }
 
     public void setFloorId(Integer floorId) {
         this.floorId = floorId;
+    }
+
+    public Integer getCostId() {
+        return costId;
+    }
+
+    public void setCostId(Integer costId) {
+        this.costId = costId;
+    }
+
+    public String getName_cost() {
+        return name_cost;
+    }
+
+    public void setName_cost(String name_cost) {
+        this.name_cost = name_cost;
+    }
+
+    public Float getValue_cost() {
+        return value_cost;
+    }
+
+    public void setValue_cost(Float value_cost) {
+        this.value_cost = value_cost;
+    }
+
+    public Integer getFunctionId() {
+        return functionId;
+    }
+
+    public void setFunctionId(Integer functionId) {
+        this.functionId = functionId;
     }
 
     public Integer getNumberBed() {
@@ -107,14 +133,6 @@ public class Room {
 
     public void setGender(Integer gender) {
         this.gender = gender;
-    }
-
-    public Integer getCostId() {
-        return costId;
-    }
-
-    public void setCostId(Integer costId) {
-        this.costId = costId;
     }
 
     public Integer getStatus() {
@@ -149,14 +167,35 @@ public class Room {
         this.studentRegister = studentRegister;
     }
 
-    public Integer getFunctionId() {
-        return functionId;
+    public String getName_floor() {
+        return name_floor;
     }
 
-    public void setFunctionId(Integer functionId) {
-        this.functionId = functionId;
+    public void setName_floor(String name_floor) {
+        this.name_floor = name_floor;
     }
 
+    public String getName_function() {
+        return name_function;
+    }
 
+    public void setName_function(String name_function) {
+        this.name_function = name_function;
+    }
 
+    public String getName_area() {
+        return name_area;
+    }
+
+    public void setName_area(String name_area) {
+        this.name_area = name_area;
+    }
+
+    public Integer getLevel_cost() {
+        return level_cost;
+    }
+
+    public void setLevel_cost(Integer level_cost) {
+        this.level_cost = level_cost;
+    }
 }

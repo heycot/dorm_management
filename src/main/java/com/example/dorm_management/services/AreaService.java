@@ -13,4 +13,6 @@ public interface AreaService {
     Area addNewArea(Area areaEntity);
 
     boolean editArea(Area areaEntity, Area areaEntityEdit);
+
+    Area changeStatus(Integer id, Integer status);
 }

@@ -12,10 +12,6 @@ import javax.validation.Valid;
 import java.util.Collections;
 import java.util.List;
 
-/*
-* Auth = Tu
-* */
-
 @RestController
 @RequestMapping(AreaController.BASE_URL)
 public class AreaController {
@@ -24,6 +20,7 @@ public class AreaController {
 
     @Autowired
     private AreaService areaService;
+
 
     private JsonResponse jsonResponse;
 
@@ -60,6 +57,31 @@ public class AreaController {
             System.out.println(e.getCause());
 
             jsonResponse = return_No_Object_JsonPresonse(API.CODE_API_NOTFOUND, "Lỗi format id");
+            return jsonResponse;
+        }
+    }
+
+    @GetMapping(value = "/change-status/{id}/{status}")
+    public JsonResponse disableOne(@PathVariable(value = "id") Integer id, @PathVariable(value = "status") Integer status){
+        try{
+            if (status != 0) {
+                status = 1;
+            }
+
+            Area area = areaService.changeStatus(id, status);
+            if ( area == null) {
+
+                jsonResponse = return_No_Object_JsonPresonse(API.CODE_API_NO, "fail");
+            }else {
+
+                jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_YES, "", area);
+            }
+            return jsonResponse;
+
+        } catch (Exception e) {
+            System.out.println(e.getCause());
+
+            jsonResponse = return_No_Object_JsonPresonse(API.CODE_API_NOTFOUND, "error exception");
             return jsonResponse;
         }
     }
@@ -145,4 +167,5 @@ public class AreaController {
 
         return jsonResponse;
     }
+
 }

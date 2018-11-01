@@ -20,4 +20,9 @@ public class CostServiceImpl implements CostService {
     public Cost findOneByTypeAndLevel(Integer type, Integer level, Integer status) {
         return costRepository.findOneByTypeAndLevel(type, level, status);
     }
+
+    @Override
+    public Cost findOneByTypeAndStatus(Integer type, Integer status){
+        return costRepository.findOneByTypeAndStatus(type, status);
+    }
 }

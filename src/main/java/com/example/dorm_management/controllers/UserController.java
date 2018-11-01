@@ -50,11 +50,11 @@ public class UserController {
 //        user.setUserDetail(new UserDetail("sadfsdf", "hue", "phan quang vuong", user.getId()));
 //        UserDetail userDetail = new UserDetail("123123", "hue", "phan quang vuong", 9);
 //        userDetailService.save(userDetail);
-        User user = userService.findUserById(10);
-        user.setUserDetail(new UserDetail("123", "asd", "sadfdf", user.getId()));
-        userService.saveUser(user);
+//        User user = userService.findUserById(10);
+//        user.setUserDetail(new UserDetail("123", "asd", "sadfdf", user.getId()));
+//        userService.saveUser(user);
 
-        return Utility.convertObjectToJSON(API.CODE_API_ADD_SUCCESS, "", user);
+        return Utility.convertObjectToJSON(API.CODE_API_ADD_SUCCESS, "dsfsdf");
     }
 
     @GetMapping
@@ -63,7 +63,7 @@ public class UserController {
         return Utility.convertObjectToJSON(API.CODE_API_ADD_SUCCESS, "", users);
     }
 
-    @PostMapping("/login}")
+    @PostMapping("/login")
     public JsonResponse checkLogin(@RequestBody Account account){
         try{
             boolean b = userService.isExistedUserByNameAndPassword(account.getUserName(), account.getPassword());

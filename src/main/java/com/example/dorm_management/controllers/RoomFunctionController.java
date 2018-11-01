@@ -6,9 +6,7 @@ import com.example.dorm_management.json.API;
 import com.example.dorm_management.json.JsonResponse;
 import com.example.dorm_management.services.RoomFunctionService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
 import java.util.List;
@@ -35,6 +33,87 @@ public class RoomFunctionController {
                 jsonResponse = return_No_Object_JsonPresonse(API.CODE_API_NOTFOUND, "not found");
                 return jsonResponse;
             }
+        } catch (Exception e){
+            System.out.println(e.getCause());
+            jsonResponse = return_No_Object_JsonPresonse(API.CODE_API_ERROR, "error");
+            return  jsonResponse;
+        }
+    }
+
+    @GetMapping("{type}/{status}")
+    public JsonResponse findOneByType(@PathVariable(value = "type") Integer type, @PathVariable(value = "status") Integer status){
+        try {
+            RoomFunction roomFunction = roomFunctionService.findOneByTypeAndStatus(type, status);
+
+            if (roomFunction != null) {
+                jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_YES, "success", roomFunction);
+            } else{
+                jsonResponse = return_No_Object_JsonPresonse(API.CODE_API_NOTFOUND, "not found");
+            }
+            return jsonResponse;
+
+        } catch (Exception e){
+            System.out.println(e.getCause());
+            jsonResponse = return_No_Object_JsonPresonse(API.CODE_API_ERROR, "error");
+            return  jsonResponse;
+        }
+    }
+
+    @PutMapping("add")
+    public JsonResponse addOne(@RequestBody RoomFunction roomFunction){
+        try {
+            RoomFunction result = roomFunctionService.addOne(roomFunction);
+
+            if (result != null) {
+                jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_YES, "success", result);
+            } else{
+                jsonResponse = return_No_Object_JsonPresonse(API.CODE_API_NOTFOUND, "not found");
+            }
+            return jsonResponse;
+
+        } catch (Exception e){
+            System.out.println(e.getCause());
+            jsonResponse = return_No_Object_JsonPresonse(API.CODE_API_ERROR, "error");
+            return  jsonResponse;
+        }
+    }
+
+    @PutMapping("edit/{id}")
+    public JsonResponse addOne(@RequestBody RoomFunction roomFunction, @PathVariable(value = "id") Integer id){
+        try {
+            RoomFunction result = roomFunctionService.editOne(id, roomFunction);
+
+            if (result != null) {
+                jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_YES, "success", result);
+            } else{
+                jsonResponse = return_No_Object_JsonPresonse(API.CODE_API_NOTFOUND, "not found");
+            }
+            return jsonResponse;
+
+        } catch (Exception e){
+            System.out.println(e.getCause());
+            jsonResponse = return_No_Object_JsonPresonse(API.CODE_API_ERROR, "error");
+            return  jsonResponse;
+        }
+    }
+
+    @GetMapping("change-status/{id}/{status}")
+    public JsonResponse addOne(@PathVariable(value = "status") Integer status, @PathVariable(value = "id") Integer id){
+        try {
+
+            if (status != 0) {
+                status = 1;
+            }
+
+            RoomFunction result = roomFunctionService.changeStatus(id, status);
+
+            if (result != null) {
+                jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_YES, "success", result);
+            } else{
+                jsonResponse = return_No_Object_JsonPresonse(API.CODE_API_NOTFOUND, "not found");
+            }
+            return jsonResponse;
+
         } catch (Exception e){
             System.out.println(e.getCause());
             jsonResponse = return_No_Object_JsonPresonse(API.CODE_API_ERROR, "error");
