@@ -1,6 +1,9 @@
 package com.example.dorm_management.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -19,8 +22,16 @@ public class RoleUser {
 
     private Integer status;
 
-    @Column(name = "user_id")
-    private Integer userId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
+    private User user;
+
+    /*@Column(name = "user_id")
+    private Integer userId;*/
+
+
 
     @Column(name = "role_id")
     private Integer roleId;
@@ -49,13 +60,13 @@ public class RoleUser {
         this.status = status;
     }
 
-    public Integer getUserId() {
+/*    public Integer getUserId() {
         return userId;
     }
 
     public void setUserId(Integer userId) {
         this.userId = userId;
-    }
+    }*/
 
     public Integer getRoleId() {
         return roleId;
@@ -91,7 +102,9 @@ public class RoleUser {
     public RoleUser(Integer status, Integer userId, Integer roleId) {
 
         this.status = status;
-        this.userId = userId;
+//        this.userId = userId;
+        this.user = new User();
+        user.setId(userId);
         this.roleId = roleId;
     }
 }

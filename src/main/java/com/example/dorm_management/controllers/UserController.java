@@ -1,5 +1,7 @@
 package com.example.dorm_management.controllers;
 
+import com.example.dorm_management.DTO.AccountDTO;
+import com.example.dorm_management.DTO.RegisterUserDTO;
 import com.example.dorm_management.entities.*;
 import com.example.dorm_management.json.API;
 import com.example.dorm_management.json.JsonResponse;
@@ -10,7 +12,6 @@ import com.example.dorm_management.respositories.RoomRepository;
 import com.example.dorm_management.services.UserService;
 import com.example.dorm_management.services.UserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
@@ -64,9 +65,9 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public JsonResponse checkLogin(@RequestBody Account account){
+    public JsonResponse checkLogin(@RequestBody AccountDTO accountDTO){
         try{
-            boolean b = userService.isExistedUserByNameAndPassword(account.getUserName(), account.getPassword());
+            boolean b = userService.isExistedUserByNameAndPassword(accountDTO.getUserName(), accountDTO.getPassword());
             if(b){
                 return Utility.convertObjectToJSON(API.CODE_API_YES, "Login sucess", b);
             }
@@ -105,7 +106,7 @@ public class UserController {
         }
     }
 
-    @PostMapping("/register")
+    /*@PostMapping("/register")
     public JsonResponse addUser(@RequestBody User user){
         try{
             if(userService.isExistedUser(user.getUserName())){
@@ -118,6 +119,11 @@ public class UserController {
         }catch (Exception e){
             return Utility.convertObjectToJSON(API.CODE_API_NO, e.getMessage());
         }
+    }*/
+
+    @PostMapping("/register")
+    public JsonResponse addUser(@RequestBody RegisterUserDTO registerUserDTO){
+        return userService.registerUser(registerUserDTO);
     }
 
     @GetMapping("/delete_user/{id}")

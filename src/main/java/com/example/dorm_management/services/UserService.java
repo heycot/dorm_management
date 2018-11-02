@@ -1,8 +1,10 @@
 package com.example.dorm_management.services;
 
+import com.example.dorm_management.DTO.RegisterUserDTO;
 import com.example.dorm_management.entities.User;
 import com.example.dorm_management.entities.Action;
 import com.example.dorm_management.entities.Group;
+import com.example.dorm_management.json.JsonResponse;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,6 +18,8 @@ public interface UserService {
     boolean saveUser(User user);
     boolean deleteUser(Integer id);
     boolean editUser(User user);
+
+    JsonResponse registerUser(RegisterUserDTO registerUserDTO);
 
     //group
     List<Group> findGroupByUserId(Integer id);

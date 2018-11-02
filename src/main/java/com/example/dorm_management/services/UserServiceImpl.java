@@ -1,11 +1,12 @@
 package com.example.dorm_management.services;
 
-import com.example.dorm_management.entities.User;
-import com.example.dorm_management.entities.Action;
-import com.example.dorm_management.entities.Group;
-import com.example.dorm_management.respositories.UserRepository;
-import com.example.dorm_management.respositories.ActionRepository;
-import com.example.dorm_management.respositories.GroupRepository;
+import com.example.dorm_management.DTO.RegisterUserDTO;
+import com.example.dorm_management.entities.*;
+import com.example.dorm_management.json.API;
+import com.example.dorm_management.json.JsonResponse;
+import com.example.dorm_management.libararies.*;
+import com.example.dorm_management.libararies.Enum;
+import com.example.dorm_management.respositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,8 +16,16 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private UserDetailRepository userDetailRepository;
+
+    @Autowired
+    private StudentCodeRepository studentCodeRepository;
+
     @Autowired
     private GroupRepository groupRepository;
+
     @Autowired
     private ActionRepository actionRepository;
 
@@ -87,6 +96,34 @@ public class UserServiceImpl implements UserService {
             return true;
         }catch (Exception e){
             return false;
+        }
+    }
+
+    @Override
+    public JsonResponse registerUser(RegisterUserDTO registerUserDTO) {
+        try {
+            if(!isExistedUser(registerUserDTO.getUserName())){
+                User user = new User();
+                user.setStatus(EnumStatusUser.ACTIVE);
+                user.setUserName(registerUserDTO.getUserName());
+                user.setPassword(registerUserDTO.getPassword());
+                user.setGender(registerUserDTO.getGender());
+                //tìm role
+                //
+                UserDetail userDetail = new UserDetail(registerUserDTO.getPhone(), registerUserDTO.getAddress(), registerUserDTO.getFullName(), user.getId());
+                StudentCode studentCode = new StudentCode(registerUserDTO.getNameClass(), "2015", registerUserDTO.getMssv(), user.getId());
+                user.setUserDetail(userDetail);
+                user.setStudentCode(studentCode);
+                userDetail.setUser(user);
+                studentCode.setUser(user);
+
+                userRepository.save(user);
+                return Utility.convertObjectToJSON(API.CODE_API_YES, "thanh cong", user);
+            }else{
+                return Utility.convertObjectToJSON(API.CODE_API_EXISTED, "user name da ton tai");
+            }
+        }catch (Exception e){
+            return Utility.convertObjectToJSON(API.CODE_API_NO, "error");
         }
     }
 

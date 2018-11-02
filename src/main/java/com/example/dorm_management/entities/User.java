@@ -1,5 +1,6 @@
 package com.example.dorm_management.entities;
 
+import com.example.dorm_management.libararies.EnumStatusUser;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -12,7 +13,7 @@ import java.util.Set;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "user_name")
@@ -26,6 +27,8 @@ public class User {
     private Integer roleId;
 
     private Integer status;
+
+
 
   /*  @OneToMany
     @JoinColumn(name = "role_id")
@@ -52,18 +55,10 @@ public class User {
         this.userDetail = userDetail;
     }
 
-    public List<StudentCode> getStudentCodes() {
-        return studentCodes;
-    }
-
-    public void setStudentCodes(List<StudentCode> studentCodes) {
-        this.studentCodes = studentCodes;
-    }
-
-    @OneToMany(cascade = CascadeType.ALL,
+    @OneToOne(cascade = CascadeType.ALL,
             fetch = FetchType.LAZY,
             mappedBy = "user")
-    private List<StudentCode> studentCodes;
+    private StudentCode studentCodes;
 
     @OneToMany(cascade = CascadeType.ALL,
             fetch = FetchType.LAZY,
@@ -78,11 +73,11 @@ public class User {
         this.notifications = notifications;
     }
 
-    public List<StudentCode> getStudentCode() {
+    public StudentCode getStudentCode() {
         return studentCodes;
     }
 
-    public void setStudentCode(List<StudentCode> studentCode) {
+    public void setStudentCode(StudentCode studentCode) {
         this.studentCodes = studentCode;
     }
 
@@ -126,22 +121,6 @@ public class User {
         this.gender = gender;
     }
 
-    /*public Integer getRoleId() {
-        return roleId;
-    }
-
-    public void setRoleId(Integer roleId) {
-        this.roleId = roleId;
-    }*/
-/*
-    public Integer getStudentCode() {
-        return studentCode;
-    }
-
-    public void setStudentCode(Integer studentCode) {
-        this.studentCode = studentCode;
-    }*/
-
     public Integer getStatus() {
         return status;
     }
@@ -177,4 +156,7 @@ public class User {
     }
 
 
+    public void setStatus(EnumStatusUser active) {
+        this.status = active.getCode();
+    }
 }
