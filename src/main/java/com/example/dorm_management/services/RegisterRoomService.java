@@ -1,6 +1,7 @@
 package com.example.dorm_management.services;
 
 import com.example.dorm_management.entities.RegisterRoom;
+import com.example.dorm_management.entities.ViewRegisterRoom;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,4 +23,6 @@ public interface RegisterRoomService {
     List<RegisterRoom> findAllNotAcceptedByRoomId(Integer id);
 
     boolean deleteOne(Integer registerId);
+
+    ViewRegisterRoom getOneViewById(Integer id);
 }

@@ -112,7 +112,7 @@ public class SubsistenceFeeController {
             }
 
             Cost costsElec = costService.findOneByTypeAndLevel(2, subsistenceFee.getLevelElec(), 1);
-            Cost costWater = costService.findOneByTypeAndLevel(3, subsistenceFee.getLevelWater(), 1);
+            Cost costWater = costService.findOneByTypeAndLevel(3, subsistenceFee.getLevelWater(), 1 );
 
             Float total = (subsistenceFee.getNewNumberElec() - subsistenceFee.getOldNumberElec()) * costsElec.getValue()
                            + (subsistenceFee.getNewNumberWater() - subsistenceFee.getOldNumberWater()) * costWater.getValue();

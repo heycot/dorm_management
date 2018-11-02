@@ -1,7 +1,9 @@
 package com.example.dorm_management.services;
 
 import com.example.dorm_management.entities.RegisterRoom;
+import com.example.dorm_management.entities.ViewRegisterRoom;
 import com.example.dorm_management.respositories.RegisterRoomRepository;
+import com.example.dorm_management.respositories.ViewRegisterRoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +14,9 @@ public class RegisterRoomServiceImpl implements RegisterRoomService {
 
     @Autowired
     private RegisterRoomRepository registerRoomRepository;
+
+    @Autowired
+    private ViewRegisterRoomRepository viewRegisterRoomRepository;
 
     @Override
     public RegisterRoom findOneById(Integer id) {
@@ -85,5 +90,10 @@ public class RegisterRoomServiceImpl implements RegisterRoomService {
         } catch (Exception e) {
             return  false;
         }
+    }
+
+    @Override
+    public ViewRegisterRoom getOneViewById(Integer id) {
+        return viewRegisterRoomRepository.getOneViewById(id);
     }
 }

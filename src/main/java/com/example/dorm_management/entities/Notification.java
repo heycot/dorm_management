@@ -27,11 +27,14 @@ public class Notification {
     @Column(name = "room_id")
     private Integer roomId;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore
-    private User user;
+    @Column(name = "user_id")
+    private Integer userId;
+
+//    @ManyToOne
+//    @JoinColumn(name = "user_id", nullable = false)
+//    @OnDelete(action = OnDeleteAction.CASCADE)
+//    @JsonIgnore
+//    private User user;
 
     public Notification() {
     }
@@ -41,12 +44,20 @@ public class Notification {
         this.title = title;
         this.content = content;
         this.status = status;
-        this.user = new User();
-        this.user.setId(userId);
+//        this.user = new User();
+//        this.user.setId(userId);
     }
 
     public Integer getRoomId() {
         return roomId;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public void setRoomId(Integer roomId) {
@@ -85,11 +96,11 @@ public class Notification {
         this.status = status;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
+//    public User getUser() {
+//        return user;
+//    }
+//
+//    public void setUser(User user) {
+//        this.user = user;
+//    }
 }

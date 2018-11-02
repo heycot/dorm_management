@@ -1,11 +1,10 @@
 package com.example.dorm_management.controllers;
 
-import com.example.dorm_management.entities.Cost;
-import com.example.dorm_management.entities.RegisterRoom;
-import com.example.dorm_management.entities.RentRoom;
+import com.example.dorm_management.entities.*;
 import com.example.dorm_management.json.API;
 import com.example.dorm_management.json.JsonResponse;
 import com.example.dorm_management.services.CostService;
+import com.example.dorm_management.services.NotificationService;
 import com.example.dorm_management.services.RegisterRoomService;
 import com.example.dorm_management.services.RentRoomService;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -33,6 +32,9 @@ public class RegisterRoomController {
 
     @Autowired
     private RentRoomService rentRoomService;
+
+    @Autowired
+    private NotificationService notificationService;
 
     private JsonResponse jsonResponse;
 
@@ -110,7 +112,28 @@ public class RegisterRoomController {
             if (registerRoom1 == null) {
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_NO, "error add", null);
             } else {
-                jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_YES, "success", registerRoom1);
+
+                ViewRegisterRoom viewRegisterRoom = registerRoomService.getOneViewById(registerRoom1.getId());
+
+                Notification notification = new Notification();
+                notification.setUserId(viewRegisterRoom.getUserId());
+                notification.setStatus(0);
+                String content = "Bạn đã đăng ký thành công "
+                        + "phòng: " + viewRegisterRoom.getRoomName() + "\n"
+                        + " tầng: " + viewRegisterRoom.getFloorName() + "\n"
+                        + " nhà: " + viewRegisterRoom.getAreaName() + "\n"
+                        + "vào lúc: " + viewRegisterRoom.getTimeRegister();
+
+                notification.setContent(content);
+                notification.setTitle("Đăng ký phòng thành công!");
+
+                if (notificationService.addNotification(notification) == true) {
+
+                    jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_YES, "success and sent notification ", registerRoom1);
+                } else {
+
+                    jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_YES, "success and not send notification ", registerRoom1);
+                }
             }
 
             return jsonResponse;
@@ -156,6 +179,23 @@ public class RegisterRoomController {
                 x.setStatus(1);
                 x.setTimeCensor(timestamp);
                 if (registerRoomService.acceptOne(x) != null){
+
+                    ViewRegisterRoom viewRegisterRoom = registerRoomService.getOneViewById(x.getId());
+
+                    Notification notification = new Notification();
+                    notification.setUserId(viewRegisterRoom.getUserId());
+                    notification.setStatus(0);
+                    String content = "Bạn đã được duyệt đăng ký: "
+                            + "phòng: " + viewRegisterRoom.getRoomName() + "\n"
+                            + " tầng: " + viewRegisterRoom.getFloorName() + "\n"
+                            + " nhà: " + viewRegisterRoom.getAreaName() + "\n"
+                            + "vào lúc: " + viewRegisterRoom.getTimeCensor();
+
+                    notification.setContent(content);
+                    notification.setTitle("Duyệt phòng thành công!");
+
+                    if (notificationService.addNotification(notification) == true)
+
                     check++;
                 }
             }
