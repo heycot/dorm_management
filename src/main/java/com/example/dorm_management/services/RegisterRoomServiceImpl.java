@@ -24,8 +24,8 @@ public class RegisterRoomServiceImpl implements RegisterRoomService {
     }
 
     @Override
-    public List<RegisterRoom> findAllByRoomId(Integer roomId) {
-        return registerRoomRepository.findAllByRoomId(roomId);
+    public List<ViewRegisterRoom> findAllByRoomId(Integer roomId) {
+        return viewRegisterRoomRepository.findAllByRoomId(roomId);
     }
 
     @Override
@@ -72,13 +72,13 @@ public class RegisterRoomServiceImpl implements RegisterRoomService {
     }
 
     @Override
-    public List<RegisterRoom> findAllAcceptedByRoomId(Integer id) {
-        return registerRoomRepository.findAllByRoomIdAndStatus(id, 1);
+    public List<ViewRegisterRoom> findAllAcceptedByRoomId(Integer id) {
+        return viewRegisterRoomRepository.findAllByRoomIdAndStatus(id, 1);
     }
 
     @Override
-    public List<RegisterRoom> findAllNotAcceptedByRoomId(Integer id) {
-        return registerRoomRepository.findAllByRoomIdAndStatus(id, 0);
+    public List<ViewRegisterRoom> findAllNotAcceptedByRoomId(Integer id) {
+        return viewRegisterRoomRepository.findAllByRoomIdAndStatus(id, 0);
     }
 
     @Override

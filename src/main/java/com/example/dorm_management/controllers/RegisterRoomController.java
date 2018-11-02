@@ -42,10 +42,10 @@ public class RegisterRoomController {
     public JsonResponse findAllByRoomId(@PathVariable(value = "id") Integer id) {
         try {
 
-            List<RegisterRoom> registerRooms = registerRoomService.findAllByRoomId(id);
+            List<ViewRegisterRoom> registerRooms = registerRoomService.findAllByRoomId(id);
 
             if (registerRooms.size() > 0) {
-                jsonResponse = return_List_Object_JsonPresonse(API.CODE_API_YES, "success", registerRooms);
+                jsonResponse = return_List_Object_View_JsonPresonse(API.CODE_API_YES, "success", registerRooms);
             } else {
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_NOTFOUND, "not found", null);
             }
@@ -63,10 +63,10 @@ public class RegisterRoomController {
     public JsonResponse findAllAcceptedByRoomId(@PathVariable(value = "id") Integer id) {
         try {
 
-            List<RegisterRoom> registerRooms = registerRoomService.findAllAcceptedByRoomId(id);
+            List<ViewRegisterRoom> registerRooms = registerRoomService.findAllAcceptedByRoomId(id);
 
             if (registerRooms.size() > 0) {
-                jsonResponse = return_List_Object_JsonPresonse(API.CODE_API_YES, "success", registerRooms);
+                jsonResponse = return_List_Object_View_JsonPresonse(API.CODE_API_YES, "success", registerRooms);
             } else {
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_NOTFOUND, "not found", null);
             }
@@ -85,10 +85,10 @@ public class RegisterRoomController {
     public JsonResponse findAllNotAcceptedByRoomId(@PathVariable(value = "id") Integer id) {
         try {
 
-            List<RegisterRoom> registerRooms = registerRoomService.findAllNotAcceptedByRoomId(id);
+            List<ViewRegisterRoom> registerRooms = registerRoomService.findAllNotAcceptedByRoomId(id);
 
             if (registerRooms.size() > 0) {
-                jsonResponse = return_List_Object_JsonPresonse(API.CODE_API_YES, "success", registerRooms);
+                jsonResponse = return_List_Object_View_JsonPresonse(API.CODE_API_YES, "success", registerRooms);
             } else {
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_NOTFOUND, "not found", null);
             }
@@ -286,4 +286,15 @@ public class RegisterRoomController {
 
         return jsonResponse;
     }
+
+    public JsonResponse return_List_Object_View_JsonPresonse(Integer code, String message, List<ViewRegisterRoom> registerRoomList){
+        jsonResponse = new JsonResponse();
+
+        jsonResponse.setCode(code);
+        jsonResponse.setMessage(message);
+        jsonResponse.setData(Collections.unmodifiableCollection(registerRoomList));
+
+        return jsonResponse;
+    }
+
 }

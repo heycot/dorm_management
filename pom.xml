@@ -57,9 +57,9 @@
             <scope>test</scope>
         </dependency>
         <!--<dependency>-->
-            <!--<groupId>javax.xml.bind</groupId>-->
-            <!--<artifactId>jaxb-api</artifactId>-->
-            <!--&lt;!&ndash;<version>2.3.0</version>&ndash;&gt;-->
+        <!--<groupId>javax.xml.bind</groupId>-->
+        <!--<artifactId>jaxb-api</artifactId>-->
+        <!--&lt;!&ndash;<version>2.3.0</version>&ndash;&gt;-->
         <!--</dependency>-->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -77,9 +77,9 @@
             <!--<version>5.3.6.Final</version>-->
         </dependency>
         <!--<dependency>-->
-            <!--<groupId>org.antlr</groupId>-->
-            <!--<artifactId>antlr-runtime</artifactId>-->
-            <!--&lt;!&ndash;<version>3.5</version>&ndash;&gt;-->
+        <!--<groupId>org.antlr</groupId>-->
+        <!--<artifactId>antlr-runtime</artifactId>-->
+        <!--&lt;!&ndash;<version>3.5</version>&ndash;&gt;-->
         <!--</dependency>-->
 
         <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot -->
@@ -91,9 +91,9 @@
 
         <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-commons-annotations -->
         <!--<dependency>-->
-            <!--<groupId>org.hibernate</groupId>-->
-            <!--<artifactId>hibernate-commons-annotations</artifactId>-->
-            <!--<version>1.5.9.RELEASE</version>-->
+        <!--<groupId>org.hibernate</groupId>-->
+        <!--<artifactId>hibernate-commons-annotations</artifactId>-->
+        <!--<version>1.5.9.RELEASE</version>-->
         <!--</dependency>-->
 
 
@@ -131,13 +131,18 @@
             <!--<version>3.2.0.RELEASE</version>-->
         </dependency>
 
+        <dependency>
+            <groupId>org.modelmapper</groupId>
+            <artifactId>modelmapper</artifactId>
+            <version>0.7.4</version>
+        </dependency>
     </dependencies>
 
     <build>
         <plugins>
             <!--<plugin>-->
-                <!--<groupId>org.springframework.boot</groupId>-->
-                <!--<artifactId>spring-boot-maven-plugin</artifactId>-->
+            <!--<groupId>org.springframework.boot</groupId>-->
+            <!--<artifactId>spring-boot-maven-plugin</artifactId>-->
             <!--</plugin>-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

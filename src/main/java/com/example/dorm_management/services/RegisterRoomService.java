@@ -9,7 +9,7 @@ import java.util.List;
 public interface RegisterRoomService {
     RegisterRoom findOneById(Integer id);
 
-    List<RegisterRoom> findAllByRoomId(Integer roomId);
+    List<ViewRegisterRoom> findAllByRoomId(Integer roomId);
 
     RegisterRoom addOne(RegisterRoom registerRoom);
 
@@ -17,10 +17,10 @@ public interface RegisterRoomService {
 
     RegisterRoom acceptOne(RegisterRoom x);
 
-    List<RegisterRoom> findAllAcceptedByRoomId(Integer id);
+    List<ViewRegisterRoom> findAllAcceptedByRoomId(Integer id);
 
 
-    List<RegisterRoom> findAllNotAcceptedByRoomId(Integer id);
+    List<ViewRegisterRoom> findAllNotAcceptedByRoomId(Integer id);
 
     boolean deleteOne(Integer registerId);
 
