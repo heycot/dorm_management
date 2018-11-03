@@ -2,6 +2,7 @@ package com.example.dorm_management.controllers;
 
 import com.example.dorm_management.DTO.AccountDTO;
 import com.example.dorm_management.DTO.RegisterStudentUserDTO;
+import com.example.dorm_management.config.Basej4Logger;
 import com.example.dorm_management.entities.*;
 import com.example.dorm_management.json.API;
 import com.example.dorm_management.json.JsonResponse;
@@ -72,10 +73,13 @@ public class UserController {
         try{
             boolean b = userService.isExistedUserByNameAndPassword(accountDTO.getUserName(), accountDTO.getPassword());
             if(b){
+                Basej4Logger.getInstance().info("API: " + API.CODE_API_YES, "Login sucess", accountDTO.getUserName());
                 return Utility.convertObjectToJSON(API.CODE_API_YES, "Login sucess", b);
             }
+            Basej4Logger.getInstance().info("API: " + API.CODE_API_NO, "User not exist!", accountDTO.getUserName());
             return Utility.convertObjectToJSON(API.CODE_API_NO, "User not exist!", b);
         }catch (Exception e){
+            Basej4Logger.getInstance().info("API: " + API.CODE_API_ERROR, "server error", accountDTO.getUserName());
             return Utility.convertObjectToJSON(API.CODE_API_ERROR, "server error");
         }
     }
@@ -100,29 +104,17 @@ public class UserController {
             if(userDetail != null){
                 userDetail.setUser(new User(Integer.parseInt(userId)));
                 userDetailService.save(userDetail);
+                Basej4Logger.getInstance().info("API: " + API.CODE_API_YES, "add user detail successfully", userId);
                 return Utility.convertObjectToJSON(API.CODE_API_YES, "successfully", userDetail);
             }else{
+                Basej4Logger.getInstance().info("API: " + API.CODE_API_NO, "add user detail null", userId);
                 return Utility.convertObjectToJSON(API.CODE_API_NO, "");
             }
         }catch (Exception e){
+            Basej4Logger.getInstance().info("API: " + API.CODE_API_NO, "add user detail fail", userId);
             return Utility.convertObjectToJSON(API.CODE_API_NO, e.getMessage());
         }
     }
-
-    /*@PostMapping("/register")
-    public JsonResponse addUser(@RequestBody User user){
-        try{
-            if(userService.isExistedUser(user.getUserName())){
-                return Utility.convertObjectToJSON(API.CODE_API_EXISTED, "Da ton tai user");
-            }
-            if(userService.saveUser(user)){
-                return Utility.convertObjectToJSON(API.CODE_API_YES, "Them thanh cong", user);
-            }
-            return Utility.convertObjectToJSON(API.CODE_API_NO, "Them khong thanh cong");
-        }catch (Exception e){
-            return Utility.convertObjectToJSON(API.CODE_API_NO, e.getMessage());
-        }
-    }*/
 
     @PostMapping("/register")
     public JsonResponse addUser(@RequestBody RegisterStudentUserDTO registerStudentDTO){
@@ -133,10 +125,13 @@ public class UserController {
     public JsonResponse deleteUser(@PathVariable(value = "id") Integer id){
         try{
             if(userService.deleteUser(id)){
+                Basej4Logger.getInstance().info("API: " + API.CODE_API_YES, "delete user success", id);
                 return Utility.convertObjectToJSON(API.CODE_API_YES, "Xoa thanh cong");
             }
+            Basej4Logger.getInstance().info("API: " + API.CODE_API_NO, "delete user fail", id);
             return Utility.convertObjectToJSON(API.CODE_API_NO, "Xoa khong thanh cong");
         }catch (Exception e){
+            Basej4Logger.getInstance().info("API: " + API.CODE_API_NO, "delete user error", id);
             return Utility.convertObjectToJSON(API.CODE_API_NO, e.getMessage());
         }
     }
@@ -157,13 +152,16 @@ public class UserController {
     @PostMapping("/edit_user")
     public JsonResponse editUser(@RequestBody User user){
         try{
-                        User user1 = userService.findUserById(user.getId());
+            User user1 = userService.findUserById(user.getId());
             if(user1 != null){
                 userService.editUser(user);
+                Basej4Logger.getInstance().info("API: " + API.CODE_API_YES, "edit user success", user.getId());
                 return Utility.convertObjectToJSON(API.CODE_API_YES, "successfully", user);
             }
+            Basej4Logger.getInstance().info("API: " + API.CODE_API_NOTFOUND, "edit user fail", user.getId());
             return Utility.convertObjectToJSON(API.CODE_API_NOTFOUND, "Khong tim thay user");
         }catch (Exception e){
+            Basej4Logger.getInstance().info("API: " + API.CODE_API_NO, "edit user error", user.getId());
             return Utility.convertObjectToJSON(API.CODE_API_NO, e.getMessage());
         }
     }
@@ -200,11 +198,14 @@ public class UserController {
         try{
             boolean b = userService.addGroup(group);
             if(b){
+                Basej4Logger.getInstance().info("API: " + API.CODE_API_ADD_SUCCESS, "add group success", group.getName());
                 return Utility.convertObjectToJSON(API.CODE_API_ADD_SUCCESS, "");
             }else{
+                Basej4Logger.getInstance().info("API: " + API.CODE_API_NO, "add group fail", group.getName());
                 return Utility.convertObjectToJSON(API.CODE_API_NO, "");
             }
         }catch (Exception e){
+            Basej4Logger.getInstance().info("API: " + API.CODE_API_NO, "add group error", group.getName());
             return Utility.convertObjectToJSON(API.CODE_API_NO, e.getMessage());
         }
     }
@@ -228,11 +229,14 @@ public class UserController {
         try{
             boolean b = userService.deleteGroup(id);
             if(b){
+                Basej4Logger.getInstance().info("API: " + API.CODE_API_DEL_SUCCESS, "delete group error", id);
                 return Utility.convertObjectToJSON(API.CODE_API_DEL_SUCCESS, "");
             }else{
+                Basej4Logger.getInstance().info("API: " + API.CODE_API_NO, "delete group fail", id);
                 return Utility.convertObjectToJSON(API.CODE_API_NO, "");
             }
         }catch (Exception e){
+            Basej4Logger.getInstance().info("API: " + API.CODE_API_NO, "delete group error", id);
             return Utility.convertObjectToJSON(API.CODE_API_NO, e.getMessage());
         }
     }
@@ -268,11 +272,14 @@ public class UserController {
         try{
             boolean b = userService.addAction(action);
             if(b){
+                Basej4Logger.getInstance().info("API: " + API.CODE_API_ADD_SUCCESS, "add action success", action.getName());
                 return Utility.convertObjectToJSON(API.CODE_API_ADD_SUCCESS, "");
             }else{
+                Basej4Logger.getInstance().info("API: " + API.CODE_API_NO, "add action fail", action.getName());
                 return Utility.convertObjectToJSON(API.CODE_API_NO, "");
             }
         }catch (Exception e){
+            Basej4Logger.getInstance().info("API: " + API.CODE_API_NO, "add action error", action.getName());
             return Utility.convertObjectToJSON(API.CODE_API_ERROR, e.getMessage());
         }
     }
@@ -296,11 +303,14 @@ public class UserController {
         try{
             boolean b = userService.deleteAction(id);
             if(b){
+                Basej4Logger.getInstance().info("API: " + API.CODE_API_DEL_SUCCESS, "add action error", id);
                 return Utility.convertObjectToJSON(API.CODE_API_DEL_SUCCESS, "");
             }else{
+                Basej4Logger.getInstance().info("API: " + API.CODE_API_NO, "delete action error", id);
                 return Utility.convertObjectToJSON(API.CODE_API_NO, "");
             }
         }catch (Exception e){
+            Basej4Logger.getInstance().info("API: " + API.CODE_API_ERROR, "delete action error", id);
             return Utility.convertObjectToJSON(API.CODE_API_ERROR, e.getMessage());
         }
     }

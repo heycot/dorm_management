@@ -1,0 +1,8 @@
+2018-11-03 20:19:50 INFO  QUERY_LOOGER:62 - [Role(id=1, actionId=1, groupId=1), Role(id=2, actionId=3, groupId=1)]
+2018-11-03 20:20:45 INFO  QUERY_LOOGER:62 - [Role(id=1, actionId=1, groupId=1), Role(id=2, actionId=3, groupId=1)]
+2018-11-03 20:23:48 INFO  QUERY_LOOGER:62 - [Role(id=1, actionId=1, groupId=1), Role(id=2, actionId=3, groupId=1)]
+2018-11-03 20:24:01 INFO  QUERY_LOOGER:62 - [Role(id=1, actionId=1, groupId=1), Role(id=2, actionId=3, groupId=1)]
+2018-11-03 20:33:07 INFO  QUERY_LOOGER:48 - sdfsdf | sdfsdsssssssssssssssf
+2018-11-03 20:33:24 INFO  QUERY_LOOGER:48 - sdfsdf | sdfsdsssssssssssssssf
+2018-11-03 20:48:11 INFO  QUERY_LOOGER:48 - API: 200 | register user successfully | test4
+2018-11-03 20:48:42 INFO  QUERY_LOOGER:48 - API: 200 | register user successfully | test5
