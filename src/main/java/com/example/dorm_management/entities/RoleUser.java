@@ -19,8 +19,8 @@ public class RoleUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(name = "status")
 
+    @Column(name = "status")
     private Integer status;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -29,21 +29,19 @@ public class RoleUser {
     @JsonIgnore
     private User user;
 
-    /*@Column(name = "user_id")
-    private Integer userId;*/
-
-
-
     @Column(name = "role_id")
     private Integer roleId;
 
-   /* @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+    public RoleUser() {
+    }
 
-    @OneToMany
-    @JoinColumn(name = "role_id")
-    private Set<Role> role;*/
+    public RoleUser(Integer status, Integer userId, Integer roleId) {
+
+        this.status = status;
+        this.user = new User();
+        user.setId(userId);
+        this.roleId = roleId;
+    }
 
     public Integer getId() {
         return id;
@@ -56,18 +54,9 @@ public class RoleUser {
     public Integer getStatus() {
         return status;
     }
-
     public void setStatus(Integer status) {
         this.status = status;
     }
-
-/*    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }*/
 
     public Integer getRoleId() {
         return roleId;
@@ -77,42 +66,8 @@ public class RoleUser {
         this.roleId = roleId;
     }
 
-   /* public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public Set<Role> getRole() {
-        return role;
-    }
-
-    public void setRole(Set<Role> role) {
-        this.role = role;
-    }*/
-
-   /* public RoleUser(Integer status, User user, Set<Role> role) {
-
-        this.status = status;
-        this.user = user;
-        this.role = role;
-    }*/
-
-    public RoleUser(Integer status, Integer userId, Integer roleId) {
-
-        this.status = status;
-        this.user = new User();
-        user.setId(userId);
-        this.roleId = roleId;
-    }
-
     public User getUser() {
         return user;
-    }
-
-    public RoleUser() {
     }
 
     public void setUser(User user) {

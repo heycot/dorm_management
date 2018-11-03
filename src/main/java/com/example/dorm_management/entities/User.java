@@ -28,44 +28,15 @@ public class User {
 
     private Integer status;
 
-
-
-  /*  @OneToMany
-    @JoinColumn(name = "role_id")
-    private Set<Role> roles;*/
-
-/*    public Set<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }*/
     @OneToMany(cascade = CascadeType.ALL,
             fetch = FetchType.LAZY,
             mappedBy = "user")
     List<RoleUser> roleUsers;
 
-    public List<RoleUser> getRoleUsers() {
-        return roleUsers;
-    }
-
-    public void setRoleUsers(List<RoleUser> roleUsers) {
-        this.roleUsers = roleUsers;
-    }
-
     @OneToOne(cascade = CascadeType.ALL,
             fetch = FetchType.LAZY,
             mappedBy = "user")
     private UserDetail userDetail;
-
-    public UserDetail getUserDetail() {
-        return userDetail;
-    }
-
-    public void setUserDetail(UserDetail userDetail) {
-        this.userDetail = userDetail;
-    }
 
     @OneToOne(cascade = CascadeType.ALL,
             fetch = FetchType.LAZY,
@@ -76,6 +47,47 @@ public class User {
             fetch = FetchType.LAZY,
             mappedBy = "user")
     private List<Notification> notifications;
+
+    public User() {
+    }
+
+    public User(String userName, String password, Integer gender, Integer status) {
+        this.userName = userName;
+        this.password = password;
+        this.gender = gender;
+        this.status = status;
+    }
+
+    public User(Integer id) {
+        this.id = id;
+        this.userName = "";
+        this.password = "";
+        this.gender = 0;
+        this.status = 0;
+    }
+
+    public User(String userName, String password, Integer gender) {
+        this.userName = userName;
+        this.password = password;
+        this.gender = gender;
+        this.status = 1;
+    }
+
+    public List<RoleUser> getRoleUsers() {
+        return roleUsers;
+    }
+
+    public void setRoleUsers(List<RoleUser> roleUsers) {
+        this.roleUsers = roleUsers;
+    }
+
+    public UserDetail getUserDetail() {
+        return userDetail;
+    }
+
+    public void setUserDetail(UserDetail userDetail) {
+        this.userDetail = userDetail;
+    }
 
     public List<Notification> getNotifications() {
         return notifications;
@@ -140,33 +152,6 @@ public class User {
     public void setStatus(Integer status) {
         this.status = status;
     }
-
-    public User(String userName, String password, Integer gender, Integer status) {
-        this.userName = userName;
-        this.password = password;
-        this.gender = gender;
-        this.status = status;
-    }
-
-    public User() {
-
-    }
-
-    public User(Integer id) {
-        this.id = id;
-        this.userName = "";
-        this.password = "";
-        this.gender = 0;
-        this.status = 0;
-    }
-
-    public User(String userName, String password, Integer gender) {
-        this.userName = userName;
-        this.password = password;
-        this.gender = gender;
-        this.status = 1;
-    }
-
 
     public void setStatus(EnumStatusUser active) {
         this.status = active.getCode();

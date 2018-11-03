@@ -16,6 +16,22 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+
+    @Column(name = "action_id")
+    private Integer actionId;
+
+    @Column(name = "group_id")
+    private Integer groupId;
+
+    public Role() {
+    }
+
+    public Role(Integer actionId, Integer groupId) {
+
+        this.actionId = actionId;
+        this.groupId = groupId;
+    }
+
     public Integer getActionId() {
         return actionId;
     }
@@ -32,34 +48,6 @@ public class Role {
         this.groupId = groupId;
     }
 
-    public Role(Integer actionId, Integer groupId) {
-
-        this.actionId = actionId;
-        this.groupId = groupId;
-    }
-
-    @Column(name = "action_id")
-    private Integer actionId;
-
-    @Column(name = "group_id")
-    private Integer groupId;
-
-    /*@OneToMany
-    @JoinColumn(name = "action_id")
-    private Set<Action> actions;
-
-    @ManyToOne
-    @JoinColumn(name = "group_id")
-    private Group group;*/
-
-    public Role() {
-    }
-
-   /* public Role(Set<Action> actions, Group group) {
-        this.actions = actions;
-        this.group = group;
-    }*/
-
     public Integer getId() {
 
         return id;
@@ -68,20 +56,4 @@ public class Role {
     public void setId(Integer id) {
         this.id = id;
     }
-
-    /*public Set<Action> getActions() {
-        return actions;
-    }
-
-    public void setActions(Set<Action> actions) {
-        this.actions = actions;
-    }
-
-    public Group getGroup() {
-        return group;
-    }
-
-    public void setGroup(Group group) {
-        this.group = group;
-    }*/
 }

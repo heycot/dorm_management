@@ -106,45 +106,48 @@ public class UserServiceImpl implements UserService {
     @Override
     public JsonResponse registerUser(RegisterStudentUserDTO registerStudentDTO) {
         try {
-            if(!isExistedUser(registerStudentDTO.getUserName())){
-                User user = new User();
-                user.setStatus(EnumStatusUser.ACTIVE);
-                user.setUserName(registerStudentDTO.getUserName());
-                user.setPassword(registerStudentDTO.getPassword());
-                user.setGender(registerStudentDTO.getGender());
-                //tìm role theo group
-                List<Role> roles = roleService.findAllRoleByGroupId(EnumGroup.STUDENT.getCode());
-                List<RoleUser> roleUsers = new ArrayList<>();
-                for(Role role : roles){
-                    RoleUser roleUser = new RoleUser();
-                    roleUser.setStatus(EnumStatusUser.ACTIVE.getCode());
-                    roleUser.setUser(user);
-                    roleUser.setRoleId(role.getId());
-                    roleUsers.add(roleUser);
+            synchronized (this){
+                if(!isExistedUser(registerStudentDTO.getUserName())){
+                    User user = new User();
+                    user.setStatus(EnumStatusUser.ACTIVE);
+                    user.setUserName(registerStudentDTO.getUserName());
+                    user.setPassword(registerStudentDTO.getPassword());
+                    user.setGender(registerStudentDTO.getGender());
+                    //tìm role theo group
+                    List<Role> roles = roleService.findAllRoleByGroupId(EnumGroup.STUDENT.getCode());
+                    List<RoleUser> roleUsers = new ArrayList<>();
+                    for(Role role : roles){
+                        RoleUser roleUser = new RoleUser();
+                        roleUser.setStatus(EnumStatusUser.ACTIVE.getCode());
+                        roleUser.setUser(user);
+                        roleUser.setRoleId(role.getId());
+                        roleUsers.add(roleUser);
+                    }
+                    user.setRoleUsers(roleUsers);
+                    //
+                    UserDetail userDetail = new UserDetail(
+                            registerStudentDTO.getPhone(),
+                            registerStudentDTO.getAddress(),
+                            registerStudentDTO.getFullName(),
+                            user.getId());
+
+                    StudentCode studentCode = new StudentCode(
+                            registerStudentDTO.getNameClass(),
+                            Utility.getEndSchoolYearByMSSV(registerStudentDTO.getMssv()),
+                            registerStudentDTO.getMssv(), user.getId());
+
+                    user.setUserDetail(userDetail);
+                    user.setStudentCode(studentCode);
+                    userDetail.setUser(user);
+                    studentCode.setUser(user);
+
+                    userRepository.save(user);
+                    return Utility.convertObjectToJSON(API.CODE_API_YES, "thanh cong", user);
+                }else{
+                    return Utility.convertObjectToJSON(API.CODE_API_EXISTED, "user name da ton tai");
                 }
-                user.setRoleUsers(roleUsers);
-                //
-                UserDetail userDetail = new UserDetail(
-                        registerStudentDTO.getPhone(),
-                        registerStudentDTO.getAddress(),
-                        registerStudentDTO.getFullName(),
-                        user.getId());
-
-                StudentCode studentCode = new StudentCode(
-                        registerStudentDTO.getNameClass(),
-                        Utility.getEndSchoolYearByMSSV(registerStudentDTO.getMssv()),
-                        registerStudentDTO.getMssv(), user.getId());
-
-                user.setUserDetail(userDetail);
-                user.setStudentCode(studentCode);
-                userDetail.setUser(user);
-                studentCode.setUser(user);
-
-                userRepository.save(user);
-                return Utility.convertObjectToJSON(API.CODE_API_YES, "thanh cong", user);
-            }else{
-                return Utility.convertObjectToJSON(API.CODE_API_EXISTED, "user name da ton tai");
             }
+
         }catch (Exception e){
             return Utility.convertObjectToJSON(API.CODE_API_NO, "error");
         }
@@ -153,33 +156,36 @@ public class UserServiceImpl implements UserService {
     @Override
     public JsonResponse registerUser(RegisterUserDTO registerUserDTO) {
         try {
-            if(!isExistedUser(registerUserDTO.getUserName())){
-                User user = new User();
-                user.setStatus(EnumStatusUser.ACTIVE);
-                user.setUserName(registerUserDTO.getUserName());
-                user.setPassword(registerUserDTO.getPassword());
-                user.setGender(registerUserDTO.getGender());
-                //tìm role theo group
-                List<Role> roles = roleService.findAllRoleByGroupId(EnumGroup.STAFF.getCode());
-                List<RoleUser> roleUsers = new ArrayList<>();
-                for(Role role : roles){
-                    RoleUser roleUser = new RoleUser();
-                    roleUser.setStatus(EnumStatusUser.ACTIVE.getCode());
-                    roleUser.setUser(user);
-                    roleUser.setRoleId(role.getId());
-                    roleUsers.add(roleUser);
-                }
-                user.setRoleUsers(roleUsers);
-                //
-                UserDetail userDetail = new UserDetail(registerUserDTO.getPhone(), registerUserDTO.getAddress(), registerUserDTO.getFullName(), user.getId());
-                user.setUserDetail(userDetail);
-                userDetail.setUser(user);
+            synchronized (this){
+                if(!isExistedUser(registerUserDTO.getUserName())){
+                    User user = new User();
+                    user.setStatus(EnumStatusUser.ACTIVE);
+                    user.setUserName(registerUserDTO.getUserName());
+                    user.setPassword(registerUserDTO.getPassword());
+                    user.setGender(registerUserDTO.getGender());
+                    //tìm role theo group
+                    List<Role> roles = roleService.findAllRoleByGroupId(EnumGroup.STAFF.getCode());
+                    List<RoleUser> roleUsers = new ArrayList<>();
+                    for(Role role : roles){
+                        RoleUser roleUser = new RoleUser();
+                        roleUser.setStatus(EnumStatusUser.ACTIVE.getCode());
+                        roleUser.setUser(user);
+                        roleUser.setRoleId(role.getId());
+                        roleUsers.add(roleUser);
+                    }
+                    user.setRoleUsers(roleUsers);
+                    //
+                    UserDetail userDetail = new UserDetail(registerUserDTO.getPhone(), registerUserDTO.getAddress(), registerUserDTO.getFullName(), user.getId());
+                    user.setUserDetail(userDetail);
+                    userDetail.setUser(user);
 
-                userRepository.save(user);
-                return Utility.convertObjectToJSON(API.CODE_API_YES, "thanh cong", user);
-            }else{
-                return Utility.convertObjectToJSON(API.CODE_API_EXISTED, "user name da ton tai");
+                    userRepository.save(user);
+                    return Utility.convertObjectToJSON(API.CODE_API_YES, "thanh cong", user);
+                }else{
+                    return Utility.convertObjectToJSON(API.CODE_API_EXISTED, "user name da ton tai");
+                }
             }
+
         }catch (Exception e){
             return Utility.convertObjectToJSON(API.CODE_API_NO, "error");
         }
