@@ -1,5 +1,6 @@
 package com.example.dorm_management.libararies;
 
+import com.example.dorm_management.config.Basej4Logger;
 import com.example.dorm_management.json.JsonResponse;
 
 import java.util.Collections;
@@ -23,7 +24,6 @@ public class Utility {
         jsonResponse.setCode(code);
         jsonResponse.setMessage(mes);
         jsonResponse.setData(data);
-
         return jsonResponse;
     }
 
@@ -33,7 +33,6 @@ public class Utility {
         jsonResponse.setCode(code);
         jsonResponse.setMessage(mes);
         jsonResponse.setData(null);
-
         return jsonResponse;
     }
 
@@ -43,7 +42,6 @@ public class Utility {
         jsonResponse.setCode(code);
         jsonResponse.setMessage(mes);
         jsonResponse.setData(Collections.unmodifiableCollection(data));
-
         return jsonResponse;
     }
 }

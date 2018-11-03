@@ -2,6 +2,7 @@ package com.example.dorm_management.services;
 
 import com.example.dorm_management.DTO.RegisterStudentUserDTO;
 import com.example.dorm_management.DTO.RegisterUserDTO;
+import com.example.dorm_management.config.Basej4Logger;
 import com.example.dorm_management.entities.*;
 import com.example.dorm_management.json.API;
 import com.example.dorm_management.json.JsonResponse;
@@ -142,13 +143,16 @@ public class UserServiceImpl implements UserService {
                     studentCode.setUser(user);
 
                     userRepository.save(user);
+                    Basej4Logger.getInstance().info("API: " + API.CODE_API_YES, "register user successfully", registerStudentDTO.getUserName());
                     return Utility.convertObjectToJSON(API.CODE_API_YES, "thanh cong", user);
                 }else{
+                    Basej4Logger.getInstance().info("API: " + API.CODE_API_EXISTED, "register user fail user da ton tai", registerStudentDTO.getUserName());
                     return Utility.convertObjectToJSON(API.CODE_API_EXISTED, "user name da ton tai");
                 }
             }
 
         }catch (Exception e){
+            Basej4Logger.getInstance().info("API: " + API.CODE_API_NO, "register user fail fail", registerStudentDTO.getUserName());
             return Utility.convertObjectToJSON(API.CODE_API_NO, "error");
         }
     }
