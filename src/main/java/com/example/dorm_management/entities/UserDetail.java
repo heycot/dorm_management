@@ -42,9 +42,7 @@ public class UserDetail {
         this.user.setId(userId);
     }
 
-
     public Integer getId() {
-
         return id;
     }
 

@@ -1,5 +1,7 @@
 package com.example.dorm_management.controllers;
 
+import com.example.dorm_management.DTO.AccountDTO;
+import com.example.dorm_management.DTO.RegisterStudentUserDTO;
 import com.example.dorm_management.entities.*;
 import com.example.dorm_management.json.API;
 import com.example.dorm_management.json.JsonResponse;
@@ -7,10 +9,11 @@ import com.example.dorm_management.libararies.Utility;
 import com.example.dorm_management.respositories.StudentCodeRepository;
 import com.example.dorm_management.respositories.UserRepository;
 import com.example.dorm_management.respositories.RoomRepository;
+import com.example.dorm_management.services.RoleService;
+import com.example.dorm_management.services.RoleUserService;
 import com.example.dorm_management.services.UserService;
 import com.example.dorm_management.services.UserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
@@ -21,7 +24,8 @@ import java.util.List;
 public class UserController {
 
     public final  static String BASE_URL = "/api/user";
-
+    @Autowired
+    private RoleService roleService;
     @Autowired
     private UserRepository userRepository;
 
@@ -53,8 +57,8 @@ public class UserController {
 //        User user = userService.findUserById(10);
 //        user.setUserDetail(new UserDetail("123", "asd", "sadfdf", user.getId()));
 //        userService.saveUser(user);
-
-        return Utility.convertObjectToJSON(API.CODE_API_ADD_SUCCESS, "dsfsdf");
+        List<Role> roles = roleService.findAllRoleByGroupId(1);
+        return Utility.convertObjectToJSON(API.CODE_API_ADD_SUCCESS, "dsfsdf", roles);
     }
 
     @GetMapping
@@ -64,9 +68,9 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public JsonResponse checkLogin(@RequestBody Account account){
+    public JsonResponse checkLogin(@RequestBody AccountDTO accountDTO){
         try{
-            boolean b = userService.isExistedUserByNameAndPassword(account.getUserName(), account.getPassword());
+            boolean b = userService.isExistedUserByNameAndPassword(accountDTO.getUserName(), accountDTO.getPassword());
             if(b){
                 return Utility.convertObjectToJSON(API.CODE_API_YES, "Login sucess", b);
             }
@@ -105,7 +109,7 @@ public class UserController {
         }
     }
 
-    @PostMapping("/register")
+    /*@PostMapping("/register")
     public JsonResponse addUser(@RequestBody User user){
         try{
             if(userService.isExistedUser(user.getUserName())){
@@ -118,6 +122,11 @@ public class UserController {
         }catch (Exception e){
             return Utility.convertObjectToJSON(API.CODE_API_NO, e.getMessage());
         }
+    }*/
+
+    @PostMapping("/register")
+    public JsonResponse addUser(@RequestBody RegisterStudentUserDTO registerStudentDTO){
+        return userService.registerUser(registerStudentDTO);
     }
 
     @GetMapping("/delete_user/{id}")
