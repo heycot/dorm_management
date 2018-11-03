@@ -9,6 +9,14 @@ import java.util.List;
  * Created by vuong on 10/12/2018.
  */
 public class Utility {
+    public static String getEndSchoolYearByMSSV(String MSSV){
+        //10214054
+        if(MSSV.length() == 9){
+            return "20" + String.valueOf(Integer.parseInt(MSSV.substring(3, 5)) + 5);
+        }
+        return "";
+    }
+
     public static JsonResponse convertObjectToJSON(Integer code, String mes, Object data){
         JsonResponse jsonResponse = new JsonResponse();
 

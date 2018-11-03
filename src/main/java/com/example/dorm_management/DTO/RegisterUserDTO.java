@@ -1,7 +1,7 @@
 package com.example.dorm_management.DTO;
 
 /**
- * Created by vuong on 11/1/2018.
+ * Created by vuong on 11/3/2018.
  */
 public class RegisterUserDTO {
     private String userName;
@@ -10,23 +10,6 @@ public class RegisterUserDTO {
     private String phone;
     private String address;
     private String fullName;
-    private String mssv;
-    private String nameClass;
-
-    public RegisterUserDTO() {
-    }
-
-    public RegisterUserDTO(String userName, String password, Integer gender, String phone, String address, String fullName, String mssv, String nameClass) {
-
-        this.userName = userName;
-        this.password = password;
-        this.gender = gender;
-        this.phone = phone;
-        this.address = address;
-        this.fullName = fullName;
-        this.mssv = mssv;
-        this.nameClass = nameClass;
-    }
 
     public String getUserName() {
         return userName;
@@ -76,19 +59,17 @@ public class RegisterUserDTO {
         this.fullName = fullName;
     }
 
-    public String getMssv() {
-        return mssv;
+    public RegisterUserDTO() {
+
     }
 
-    public void setMssv(String mssv) {
-        this.mssv = mssv;
-    }
+    public RegisterUserDTO(String userName, String password, Integer gender, String phone, String address, String fullName) {
 
-    public String getNameClass() {
-        return nameClass;
-    }
-
-    public void setNameClass(String nameClass) {
-        this.nameClass = nameClass;
+        this.userName = userName;
+        this.password = password;
+        this.gender = gender;
+        this.phone = phone;
+        this.address = address;
+        this.fullName = fullName;
     }
 }

@@ -14,6 +14,7 @@ import java.util.List;
 public class RoleUserServiceImpl implements RoleUserService {
     @Autowired
     private RoleUserRepository roleUserRepository;
+
     @Override
     public RoleUser findRoleUserByUserId(Integer id) {
         return roleUserRepository.findByUserId(id);
@@ -37,7 +38,7 @@ public class RoleUserServiceImpl implements RoleUserService {
     public boolean editRoleUser(RoleUser srcRoleUser, RoleUser targetRoleUser) {
         try{
             targetRoleUser.setStatus(srcRoleUser.getStatus());
-            targetRoleUser.setUserId(srcRoleUser.getUserId());
+            targetRoleUser.setUser(srcRoleUser.getUser());
             targetRoleUser.setRoleId(srcRoleUser.getRoleId());
             roleUserRepository.save(targetRoleUser);
             return true;

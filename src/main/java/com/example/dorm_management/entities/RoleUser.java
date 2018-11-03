@@ -12,6 +12,7 @@ import java.util.Set;
  * Created by vuong on 10/12/2018.
  */
 @Data
+
 @Entity
 @Table(name = "role_user")
 public class RoleUser {
@@ -102,9 +103,19 @@ public class RoleUser {
     public RoleUser(Integer status, Integer userId, Integer roleId) {
 
         this.status = status;
-//        this.userId = userId;
         this.user = new User();
         user.setId(userId);
         this.roleId = roleId;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public RoleUser() {
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

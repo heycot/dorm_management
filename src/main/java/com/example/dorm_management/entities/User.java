@@ -41,6 +41,18 @@ public class User {
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }*/
+    @OneToMany(cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            mappedBy = "user")
+    List<RoleUser> roleUsers;
+
+    public List<RoleUser> getRoleUsers() {
+        return roleUsers;
+    }
+
+    public void setRoleUsers(List<RoleUser> roleUsers) {
+        this.roleUsers = roleUsers;
+    }
 
     @OneToOne(cascade = CascadeType.ALL,
             fetch = FetchType.LAZY,
@@ -58,7 +70,7 @@ public class User {
     @OneToOne(cascade = CascadeType.ALL,
             fetch = FetchType.LAZY,
             mappedBy = "user")
-    private StudentCode studentCodes;
+    private StudentCode studentCode;
 
     @OneToMany(cascade = CascadeType.ALL,
             fetch = FetchType.LAZY,
@@ -74,11 +86,11 @@ public class User {
     }
 
     public StudentCode getStudentCode() {
-        return studentCodes;
+        return studentCode;
     }
 
     public void setStudentCode(StudentCode studentCode) {
-        this.studentCodes = studentCode;
+        this.studentCode = studentCode;
     }
 
     public Integer getRoleId() {

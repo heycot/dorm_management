@@ -2,6 +2,7 @@ package com.example.dorm_management.services;
 
 import com.example.dorm_management.entities.Role;
 import com.example.dorm_management.entities.RoleUser;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
