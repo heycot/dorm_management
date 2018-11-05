@@ -68,7 +68,7 @@ public class RoomController {
 
                 return jsonResponse;
             } else {
-                jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_NOTFOUND, "Không có phòng nào!", null);
+                jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_ERROR, "Không có phòng nào!", null);
 
                 return jsonResponse;
             }
