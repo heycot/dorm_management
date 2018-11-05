@@ -8,6 +8,7 @@ import java.util.List;
  * Created by vuong on 10/24/2018.
  */
 public interface RoleService {
+    List<Role> findAllRoleByGroupId(Integer groupId);
     Role findById(Integer id);
     boolean editRole(Integer roleId, Role role);
     boolean editRoleByGroupId(Integer roleId, Integer groupId);

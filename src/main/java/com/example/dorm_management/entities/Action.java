@@ -11,14 +11,20 @@ import javax.persistence.*;
 @Entity
 @Table(name = "action")
 public class Action {
+    private String name;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String name;
+
+    public Action() {
+
+    }
 
     public Action(String name) {
         this.name = name;
     }
+
     public Action(Integer id, String name) {
         this.name = name;
         this.id = id;
@@ -38,10 +44,6 @@ public class Action {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Action() {
-
     }
 
 }

@@ -16,6 +16,12 @@ import java.util.List;
 public class RoleServiceImpl implements RoleService {
     @Autowired
     private RoleRepository roleRepository;
+
+    @Override
+    public List<Role> findAllRoleByGroupId(Integer groupId) {
+        return roleRepository.findAllRoleByGroupId(groupId);
+    }
+
     @Override
     public Role findById(Integer id) {
         Role role = roleRepository.findOne(id);

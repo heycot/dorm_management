@@ -1,4 +1,4 @@
-package com.example.dorm_management.entities;
+package com.example.dorm_management.DTO;
 
 import lombok.Data;
 
@@ -7,14 +7,14 @@ import lombok.Data;
  * Created by vuong on 10/28/2018.
  */
 @Data
-public class Account {
+public class AccountDTO {
     private String userName;
     private String password;
 
-    public Account() {
+    public AccountDTO() {
     }
 
-    public Account(String userName, String password) {
+    public AccountDTO(String userName, String password) {
 
         this.userName = userName;
         this.password = password;
