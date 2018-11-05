@@ -19,8 +19,8 @@ public class RoomServiceImpl implements RoomService {
     private ViewRoomRepository viewRoomRepository;
 
     @Override
-    public List<ViewRoom> findRoomsByFloorId(Integer floorId, Integer areaId) {
-        return viewRoomRepository.findRoomsByFloorId(floorId, areaId);
+    public List<ViewRoom> findRoomsByFloorId(Integer floorId) {
+        return viewRoomRepository.findRoomsByFloorId(floorId);
     }
 
     @Override

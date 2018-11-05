@@ -7,7 +7,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 
 public interface RoomService {
-    List<ViewRoom> findRoomsByFloorId(Integer floorId, Integer areaId);
+    List<ViewRoom> findRoomsByFloorId(Integer floorId);
 
     List<ViewRoom> findRoomsByAreaId(Integer areaId);
 

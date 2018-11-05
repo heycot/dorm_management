@@ -32,14 +32,14 @@ public class RoomController {
 
     private JsonResponse jsonResponse;
 
-    @GetMapping("/floor/{area_id}/{floor_id}")
-    public JsonResponse findRoomsByFloorId(@PathVariable(value = "area_id") Integer areaId, @PathVariable(value = "floor_id") Integer floorId ) {
+    @GetMapping("/floor/{floor_id}")
+    public JsonResponse findRoomsByFloorId( @PathVariable(value = "floor_id") Integer floorId ) {
         Floor floor = floorService.findOneById(floorId);
         if (floor == null) {
             jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_NOTFOUND,"Không có tầng nào có id = " + floorId, null);
 
         } else {
-            List<ViewRoom> rooms = roomService.findRoomsByFloorId(floorId, areaId);
+            List<ViewRoom> rooms = roomService.findRoomsByFloorId(floorId);
             if (rooms.size() > 0) {
                 jsonResponse = return_List_Object_JsonPresonse(API.CODE_API_YES, "", rooms);
 
