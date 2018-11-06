@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="a24a4cf7-fcf4-458d-b50a-bd91fc0abe72" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/dorm_management/controllers/RoomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/dorm_management/controllers/RoomController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/dorm_management/respositories/ViewRoomRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/dorm_management/respositories/ViewRoomRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/dorm_management/controllers/AreaController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/dorm_management/entities/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/dorm_management/entities/User.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -18,7 +16,7 @@
     <session id="-753720202">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="12" />
+          <entry key="project.closed" value="13" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.22" value="2" />
           <entry key="project.open.time.23" value="2" />
@@ -27,9 +25,10 @@
           <entry key="project.open.time.3257" value="1" />
           <entry key="project.open.time.34" value="1" />
           <entry key="project.open.time.36" value="1" />
+          <entry key="project.open.time.38" value="1" />
           <entry key="project.open.time.39" value="1" />
           <entry key="project.open.time.45" value="1" />
-          <entry key="project.opened" value="12" />
+          <entry key="project.opened" value="13" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -37,7 +36,7 @@
           <entry key="cmd" value="1" />
           <entry key="gitignore" value="2" />
           <entry key="iml" value="3" />
-          <entry key="java" value="123" />
+          <entry key="java" value="125" />
           <entry key="mvnw" value="1" />
           <entry key="properties" value="4" />
           <entry key="xml" value="6" />
@@ -46,7 +45,7 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="IDEA_MODULE" value="3" />
-          <entry key="JAVA" value="123" />
+          <entry key="JAVA" value="125" />
           <entry key="PLAIN_TEXT" value="4" />
           <entry key="Properties" value="4" />
           <entry key="XML" value="6" />
@@ -75,32 +74,32 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/controllers/RegisterRoomController.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/respositories/ViewRoomRepository.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1241">
-              <caret line="89" column="43" selection-start-line="89" selection-start-column="43" selection-end-line="89" selection-end-column="43" />
+            <state relative-caret-position="510">
+              <caret line="35" column="40" selection-start-line="35" selection-start-column="40" selection-end-line="35" selection-end-column="40" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/services/RoomServiceImpl.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/entities/ViewRoom.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="21" column="60" selection-start-line="21" selection-start-column="60" selection-end-line="21" selection-end-column="60" />
-              <folding>
-                <element signature="e#686#687#0" expanded="true" />
-                <element signature="e#755#756#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="374">
+              <caret line="24" column="23" selection-start-line="24" selection-start-column="23" selection-end-line="24" selection-end-column="23" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/respositories/ViewRoomRepository.java">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/entities/User.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="406">
-              <caret line="29" column="118" selection-start-line="29" selection-start-column="118" selection-end-line="29" selection-end-column="118" />
+            <state relative-caret-position="28">
+              <caret line="92" column="15" selection-start-line="92" selection-start-column="15" selection-end-line="92" selection-end-column="15" />
+              <folding>
+                <element signature="e#2350#2351#0" expanded="true" />
+                <element signature="e#2384#2385#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -108,16 +107,16 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/controllers/RoomController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="491">
+            <state relative-caret-position="969">
               <caret line="70" column="80" selection-start-line="70" selection-start-column="80" selection-end-line="70" selection-end-column="80" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/controllers/UserController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1003">
+            <state relative-caret-position="289">
               <caret line="77" column="13" selection-start-line="77" selection-start-column="13" selection-end-line="77" selection-end-column="13" />
             </state>
           </provider>
@@ -166,7 +165,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/respositories/ViewSubsistenceFeeRepository.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
+            <state relative-caret-position="85">
               <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -226,7 +225,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/example/dorm_management/respositories/ViewSubsistenceFeeRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/dorm_management/controllers/SubsistenceFeeController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/dorm_management/entities/ViewRegisterRoom.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/dorm_management/entities/User.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/dorm_management/entities/Notification.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/dorm_management/services/RegisterRoomService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/dorm_management/services/RegisterRoomServiceImpl.java" />
@@ -237,6 +235,7 @@
         <option value="$PROJECT_DIR$/src/main/java/com/example/dorm_management/services/RoomService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/dorm_management/controllers/RoomController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/dorm_management/respositories/ViewRoomRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/dorm_management/entities/User.java" />
       </list>
     </option>
   </component>
@@ -288,7 +287,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -347,6 +345,15 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="dorm_management" type="462c0819:PsiDirectoryNode" />
+              <item name="libararies" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="dorm_management" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dorm_management" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="dorm_management" type="462c0819:PsiDirectoryNode" />
               <item name="respositories" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -369,6 +376,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="AndroidView" />
       <pane id="PackagesPane" />
     </panes>
@@ -434,18 +442,19 @@
       <workItem from="1541087980904" duration="596000" />
       <workItem from="1541125002319" duration="9073000" />
       <workItem from="1541369415482" duration="4347000" />
-      <workItem from="1541428355803" duration="130000" />
+      <workItem from="1541428355803" duration="785000" />
+      <workItem from="1541506105251" duration="293000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="53152000" />
+    <option name="totallyTimeSpent" value="54100000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24026845" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24362417" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
@@ -456,7 +465,7 @@
       <window_info id="Persistence" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.37588653" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32056737" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32056737" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -677,13 +686,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/entities/ViewRoom.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="45" selection-start-column="45" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/entities/ViewSubsistence.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="867">
@@ -716,13 +718,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="275">
           <caret line="25" column="42" selection-start-line="25" selection-start-column="20" selection-end-line="25" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/entities/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="292">
-          <caret line="69" column="32" lean-forward="true" selection-start-line="69" selection-start-column="32" selection-end-line="69" selection-end-column="32" />
         </state>
       </provider>
     </entry>
@@ -824,10 +819,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/controllers/UserController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/respositories/ViewRoomRepository.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1003">
-          <caret line="77" column="13" selection-start-line="77" selection-start-column="13" selection-end-line="77" selection-end-column="13" />
+        <state relative-caret-position="510">
+          <caret line="35" column="40" selection-start-line="35" selection-start-column="40" selection-end-line="35" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/controllers/RoomController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="969">
+          <caret line="70" column="80" selection-start-line="70" selection-start-column="80" selection-end-line="70" selection-end-column="80" />
         </state>
       </provider>
     </entry>
@@ -856,13 +858,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/controllers/RoomController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="491">
-          <caret line="70" column="80" selection-start-line="70" selection-start-column="80" selection-end-line="70" selection-end-column="80" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/respositories/RoomRepository.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -872,7 +867,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/respositories/ViewSubsistenceFeeRepository.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
+        <state relative-caret-position="85">
           <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -880,10 +875,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/respositories/ViewRoomRepository.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/entities/ViewRoom.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="406">
-          <caret line="29" column="118" selection-start-line="29" selection-start-column="118" selection-end-line="29" selection-end-column="118" />
+        <state relative-caret-position="374">
+          <caret line="24" column="23" selection-start-line="24" selection-start-column="23" selection-end-line="24" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/entities/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="28">
+          <caret line="92" column="15" selection-start-line="92" selection-start-column="15" selection-end-line="92" selection-end-column="15" />
+          <folding>
+            <element signature="e#2350#2351#0" expanded="true" />
+            <element signature="e#2384#2385#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/dorm_management/controllers/UserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="77" column="13" selection-start-line="77" selection-start-column="13" selection-end-line="77" selection-end-column="13" />
         </state>
       </provider>
     </entry>

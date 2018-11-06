@@ -43,10 +43,10 @@ public class User {
             mappedBy = "user")
     private StudentCode studentCode;
 
-    @OneToMany(cascade = CascadeType.ALL,
+   /* @OneToMany(cascade = CascadeType.ALL,
             fetch = FetchType.LAZY,
             mappedBy = "user")
-    private List<Notification> notifications;
+    private List<Notification> notifications;*/
 
     public User() {
     }
@@ -87,14 +87,6 @@ public class User {
 
     public void setUserDetail(UserDetail userDetail) {
         this.userDetail = userDetail;
-    }
-
-    public List<Notification> getNotifications() {
-        return notifications;
-    }
-
-    public void setNotifications(List<Notification> notifications) {
-        this.notifications = notifications;
     }
 
     public StudentCode getStudentCode() {
