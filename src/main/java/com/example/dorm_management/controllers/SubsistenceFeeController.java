@@ -96,6 +96,26 @@ public class SubsistenceFeeController {
         }
     }
 
+    @GetMapping("/area/{area_id}/{month}/{year}")
+    public JsonResponse findAllByMonthAndYearAndAreaId(@PathVariable(value = "area_id") Integer areaId, @PathVariable(value = "month") Integer month, @PathVariable(value = "year") String year) {
+        try {
+
+            List<ViewSubsistence> subsistenceFeeList = subsistenceFeeService.findAllViewByMonthAndYearAndAreaId(areaId, month, year);
+
+            if (subsistenceFeeList.size() > 0) {
+                jsonResponse = return_List_View_Object_JsonPresonse(API.CODE_API_YES, "success", subsistenceFeeList);
+
+            } else {
+                jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_NOTFOUND, "not found", null);
+            }
+
+            return jsonResponse;
+        } catch (Exception e) {
+            jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_ERROR, "error exception", null);
+            return jsonResponse;
+        }
+    }
+
     @PutMapping("/add")
     public JsonResponse addOne(@Valid @RequestBody SubsistenceFee subsistenceFee){
         try {

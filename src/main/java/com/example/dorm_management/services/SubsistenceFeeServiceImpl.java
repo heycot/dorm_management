@@ -114,4 +114,9 @@ public class SubsistenceFeeServiceImpl implements SubsistenceFeeService {
     public List<SubsistenceFee> getAllSubsistenceNotPayBYMonthAndYear(Integer month, String year){
         return subsistenceFeeRepository.getAllSubsistenceNotPayBYMonthAndYear(month, year, 0);
     }
+
+    @Override
+    public List<ViewSubsistence> findAllViewByMonthAndYearAndAreaId(Integer areaId, Integer month, String year) {
+        return viewSubsistenceFeeRepository.findAllViewByMonthAndYearAndAreaId( areaId, month, year) ;
+    }
 }

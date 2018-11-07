@@ -17,4 +17,12 @@ public interface ViewSubsistenceFeeRepository extends JpaRepository<ViewSubsiste
             " LEFT JOIN area ON floor.area_id = area.id\n" +
             " WHERE sb.month = ?1 and sb.year like ?2 order by sb.id desc", nativeQuery = true)
     List<ViewSubsistence> getAllViewSubsistence(Integer month, String year);
+
+    @Query(value = "SELECT sb.*, room.name as room_name, floor.id as floor_id, floor.name as floor_name, area.id as area_id, area.name as area_name " +
+            " FROM subsistence_fee as sb  \n" +
+            " LEFT JOIN room ON sb.room_id = room.id\n" +
+            " LEFT JOIN floor ON room.floor_id = floor.id\n" +
+            " LEFT JOIN area ON floor.area_id = area.id\n" +
+            " WHERE floor.area_id = ?1 and sb.month = ?2 and sb.year like ?3 order by sb.id desc", nativeQuery = true)
+    List<ViewSubsistence> findAllViewByMonthAndYearAndAreaId(Integer areaId, Integer month, String year);
 }
