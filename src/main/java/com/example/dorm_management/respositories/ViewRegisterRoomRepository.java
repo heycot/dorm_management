@@ -20,7 +20,7 @@ public interface ViewRegisterRoomRepository extends JpaRepository<ViewRegisterRo
             "LEFT JOIN user_detail ON user.id = user_detail.user_id " +
             "LEFT JOIN room ON rr.room_id = room.id " +
             "LEFT JOIN floor ON room.floor_id = floor.id " +
-            "LEFT JOIN area ON room.area_id = area.id " +
+            "LEFT JOIN area ON floor.area_id = area.id " +
             "LEFT JOIN semester ON rr.semester_id =  semester.id " +
             "WHERE rr.id = ?1", nativeQuery = true)
     ViewRegisterRoom getOneViewById(Integer id);
@@ -34,7 +34,7 @@ public interface ViewRegisterRoomRepository extends JpaRepository<ViewRegisterRo
             "LEFT JOIN user_detail ON user.id = user_detail.user_id " +
             "LEFT JOIN room ON rr.room_id = room.id " +
             "LEFT JOIN floor ON room.floor_id = floor.id " +
-            "LEFT JOIN area ON room.area_id = area.id " +
+            "LEFT JOIN area ON floor.area_id = area.id " +
             "LEFT JOIN semester ON rr.semester_id =  semester.id " +
             "WHERE rr.room_id = ?1", nativeQuery = true)
     List<ViewRegisterRoom> findAllByRoomId(Integer roomId);
@@ -48,7 +48,7 @@ public interface ViewRegisterRoomRepository extends JpaRepository<ViewRegisterRo
             "LEFT JOIN user_detail ON user.id = user_detail.user_id " +
             "LEFT JOIN room ON rr.room_id = room.id " +
             "LEFT JOIN floor ON room.floor_id = floor.id " +
-            "LEFT JOIN area ON room.area_id = area.id " +
+            "LEFT JOIN area ON floor.area_id = area.id " +
             "LEFT JOIN semester ON rr.semester_id =  semester.id " +
             "WHERE rr.room_id = ?1  and rr.status = ?2 order by rr.id desc ", nativeQuery = true)
     List<ViewRegisterRoom> findAllByRoomIdAndStatus(Integer id, Integer status);
