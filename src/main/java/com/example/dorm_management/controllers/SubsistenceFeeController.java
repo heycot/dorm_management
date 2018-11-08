@@ -199,6 +199,7 @@ public class SubsistenceFeeController {
 
             subsistenceFee.setCostElec(costsElec.getValue());
             subsistenceFee.setCostWater(costWater.getValue());
+            System.out.println("gia nước ====> " + costWater.getValue());
 
             subsistenceFee.setTotal(total);
             subsistenceFee.setStatus(0);

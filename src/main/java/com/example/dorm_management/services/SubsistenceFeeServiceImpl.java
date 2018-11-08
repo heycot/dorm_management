@@ -57,6 +57,8 @@ public class SubsistenceFeeServiceImpl implements SubsistenceFeeService {
            subsistenceFeeEdit.setNewNumberWater(subsistenceFee.getNewNumberWater());
            subsistenceFeeEdit.setOldNumberElec(subsistenceFee.getOldNumberElec());
            subsistenceFeeEdit.setOldNumberWater(subsistenceFee.getOldNumberWater());
+           subsistenceFeeEdit.setCostWater(subsistenceFee.getCostWater());
+           subsistenceFeeEdit.setCostElec(subsistenceFee.getCostElec());
 
            subsistenceFeeRepository.save(subsistenceFeeEdit);
 
