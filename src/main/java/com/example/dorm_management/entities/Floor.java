@@ -15,7 +15,7 @@ public class Floor {
 
     private String name;
 
-    @Column(name = "are_id")
+    @Column(name = "area_id")
     private Integer areaId;
 
     private Integer status;

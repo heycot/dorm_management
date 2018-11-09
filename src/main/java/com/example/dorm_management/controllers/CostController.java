@@ -141,9 +141,13 @@ public class CostController {
         }
     }
 
-    @PostMapping("/changeStatus/{id}/{status}")
-    public JsonResponse changeStatus(@PathVariable(value = "status") Integer status, @PathVariable(value = "id") Integer id){
+    @PostMapping("/change-st/{id}/{status}")
+    public JsonResponse changeStatus( @PathVariable(value = "id") Integer id, @PathVariable(value = "status") Integer status){
         try {
+            if (status != 0) {
+                status = 1;
+            }
+
             Cost cost = costService.changeStatus(id, status);
 
             if (cost != null) {

@@ -55,7 +55,7 @@ public class FloorController {
     public JsonResponse addOneFloor(@Valid @RequestBody Floor floor) {
         try {
             if (floorService.addOneFloor(floor) != null){
-                jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_ADD_SUCCESS, "successfull", floor);
+                jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_ADD_SUCCESS, "success", floor);
             } else {
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_NO, "fail", null);
             }
@@ -71,7 +71,7 @@ public class FloorController {
     public JsonResponse addOneFloor(@Valid @RequestBody Floor floor, @PathVariable(value = "id") Integer id) {
         try {
             if (floorService.editOne(id, floor) != null){
-                jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_ADD_SUCCESS, "successful", floor);
+                jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_ADD_SUCCESS, "success", floor);
             } else {
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_NO, "fail", null);
             }
@@ -120,7 +120,7 @@ public class FloorController {
             }
 
             if (check == floorList.size()) {
-                jsonResponse = return_List_Object_JsonPresonse(API.CODE_API_ADD_SUCCESS, "successful", floorList);
+                jsonResponse = return_List_Object_JsonPresonse(API.CODE_API_ADD_SUCCESS, "success", floorList);
             } else {
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_NO, "fail", null);
             }
