@@ -48,7 +48,6 @@ public class RoomServiceImpl implements RoomService {
         try{
             Room roomEdit = roomRepository.findOne(id);
 
-            roomEdit.setAreaId(room.getAreaId());
             roomEdit.setCostId(room.getCostId());
             roomEdit.setFloorId(room.getFloorId());
             roomEdit.setFunctionId(room.getFunctionId());

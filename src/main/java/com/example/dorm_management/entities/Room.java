@@ -17,9 +17,6 @@ public class Room {
 
     private String name;
 
-    @Column(name = "area_id")
-    private Integer areaId;
-
     @Column(name = "floor_id")
     private Integer floorId;
 
@@ -75,14 +72,6 @@ public class Room {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Integer getAreaId() {
-        return areaId;
-    }
-
-    public void setAreaId(Integer areaId) {
-        this.areaId = areaId;
     }
 
     public Integer getFloorId() {

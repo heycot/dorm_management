@@ -338,7 +338,7 @@ public class UserController {
                 }
             }
         } catch (Exception e) {
-            jsonResponse = return_No_Object_JsonPresonse(API.CODE_API_NO, "Lỗi format id room");
+            jsonResponse = return_No_Object_JsonPresonse(API.CODE_API_NO, "error exception");
 
             return jsonResponse;
         }

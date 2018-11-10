@@ -18,4 +18,5 @@ public interface RoomService {
     Room editOne(Integer id, Room room);
 
     Room changeStatus(Integer roomId, Integer status);
+
 }

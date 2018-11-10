@@ -75,6 +75,25 @@ public class RoomController {
         }
     }
 
+    @GetMapping("/{id}")
+    public JsonResponse findOneById( @PathVariable(value = "id") Integer id) {
+        try{
+            ViewRoom room = roomService.findRoomById(id);
+            if (room != null ){
+                jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_YES, "success", room);
+            } else {
+                jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_NOTFOUND, "not found", null);
+            }
+
+            return jsonResponse;
+        } catch (Exception e) {
+            System.out.println(e.getCause());
+            jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_ERROR, "error exception", null);
+
+            return jsonResponse;
+        }
+    }
+
     @PutMapping("/edit/{id}")
     public JsonResponse editOne(@Valid @RequestBody Room room, @PathVariable(value = "id") Integer id) {
         try{
@@ -196,7 +215,6 @@ public class RoomController {
             return jsonResponse;
         }
     }
-
 
     public JsonResponse return_One_Object_JsonPresonse(Integer code, String message, Object room){
         JsonResponse jsonResponse = new JsonResponse();

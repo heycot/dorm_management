@@ -34,4 +34,5 @@ public interface ViewRoomRepository extends JpaRepository<ViewRoom, Integer> {
             " INNER JOIN room_function on room.function_id = room_function.id\n" +
             " where room.id = ?1 order by room.id desc", nativeQuery = true)
     ViewRoom findViewRoomById(Integer id);
+
 }
