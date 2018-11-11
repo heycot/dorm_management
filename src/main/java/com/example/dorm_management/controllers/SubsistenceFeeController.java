@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
@@ -199,7 +200,6 @@ public class SubsistenceFeeController {
 
             subsistenceFee.setCostElec(costsElec.getValue());
             subsistenceFee.setCostWater(costWater.getValue());
-            System.out.println("gia nước ====> " + costWater.getValue());
 
             subsistenceFee.setTotal(total);
             subsistenceFee.setStatus(0);
@@ -222,6 +222,7 @@ public class SubsistenceFeeController {
     public JsonResponse payOne(@PathVariable(value = "room_id") Integer room_id, @PathVariable(value = "sub_id") Integer sub_id){
         try {
 
+            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
             SubsistenceFee sb1 = subsistenceFeeService.changeStatusOne(sub_id, 1);
             if ( sb1 == null ) {
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_ERROR, "edit fail", null);
@@ -245,6 +246,7 @@ public class SubsistenceFeeController {
                 notification.setContent(content);
                 notification.setRoomId(room_id);
                 notification.setStatus(0);
+                notification.setTime(timestamp);
 
                 notificationService.addNotification(notification);
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_EDIT_SUCCESS, "edit fail", null);

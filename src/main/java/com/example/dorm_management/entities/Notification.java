@@ -6,6 +6,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 
 /**
  * Created by vuong on 10/22/2018.
@@ -30,11 +31,8 @@ public class Notification {
     @Column(name = "user_id")
     private Integer userId;
 
-//    @ManyToOne
-//    @JoinColumn(name = "user_id", nullable = false)
-//    @OnDelete(action = OnDeleteAction.CASCADE)
-//    @JsonIgnore
-//    private User user;
+    private Timestamp time;
+
 
     public Notification() {
     }
@@ -44,8 +42,6 @@ public class Notification {
         this.title = title;
         this.content = content;
         this.status = status;
-//        this.user = new User();
-//        this.user.setId(userId);
     }
 
     public Integer getRoomId() {
@@ -54,6 +50,14 @@ public class Notification {
 
     public Integer getUserId() {
         return userId;
+    }
+
+    public Timestamp getTime() {
+        return time;
+    }
+
+    public void setTime(Timestamp time) {
+        this.time = time;
     }
 
     public void setUserId(Integer userId) {
@@ -95,12 +99,4 @@ public class Notification {
     public void setStatus(Integer status) {
         this.status = status;
     }
-
-//    public User getUser() {
-//        return user;
-//    }
-//
-//    public void setUser(User user) {
-//        this.user = user;
-//    }
 }

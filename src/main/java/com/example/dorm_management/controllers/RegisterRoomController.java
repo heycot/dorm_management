@@ -193,10 +193,10 @@ public class RegisterRoomController {
 
                     notification.setContent(content);
                     notification.setTitle("Duyệt phòng thành công!");
+                    notification.setTime(timestamp);
 
                     if (notificationService.addNotification(notification) == true)
-
-                    check++;
+                        check++;
                 }
             }
             if (check != registerRoomList.size()) {
@@ -224,6 +224,8 @@ public class RegisterRoomController {
             Cost cost = costService.findOneByTypeAndStatus(1, 1);
             RentRoom rentRoom = new RentRoom();
 
+            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+
             for (RegisterRoom register: registerRoomList ) {
                 if (registerRoomService.deleteOne(register.getId()) != true) {
 
@@ -235,6 +237,24 @@ public class RegisterRoomController {
                     rentRoom.setBail(register.getNumber() * cost.getValue());
 
                     rentRoomService.addOne(rentRoom);
+
+                    ViewRegisterRoom viewRegisterRoom = registerRoomService.getOneViewById(register.getId());
+
+                    Notification notification = new Notification();
+                    notification.setUserId(viewRegisterRoom.getUserId());
+                    notification.setStatus(0);
+                    String content = "Bạn đã thanh toán tiền phòng thành công: "
+                            + "phòng: " + viewRegisterRoom.getRoomName() + "\n"
+                            + " tầng: " + viewRegisterRoom.getFloorName() + "\n"
+                            + " nhà: " + viewRegisterRoom.getAreaName() + "\n"
+                            + "vào lúc: " + viewRegisterRoom.getTimeCensor();
+
+                    notification.setContent(content);
+                    notification.setTitle("Duyệt phòng thành công!");
+                    notification.setTime(timestamp);
+
+                    if (notificationService.addNotification(notification) == true)
+                        check++;
                     check++;
                 }
             }
