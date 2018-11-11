@@ -20,6 +20,8 @@ public class ViewRegisterRoom {
     @Column(name = "gender")
     private Integer gender;
 
+    private Integer number;
+
     @Column(name = "class_name")
     private String className;
 
@@ -61,6 +63,14 @@ public class ViewRegisterRoom {
     private String areaName;
 
     public ViewRegisterRoom() {
+    }
+
+    public Integer getNumber() {
+        return number;
+    }
+
+    public void setNumber(Integer number) {
+        this.number = number;
     }
 
     public String getFullName() {

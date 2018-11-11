@@ -271,7 +271,7 @@ public class SubsistenceFeeController {
             List<SubsistenceFee> subsistenceFeeList = subsistenceFeeService.getAllSubsistenceNotPayBYMonthAndYear(month, String.valueOf(year));
 
             if (subsistenceFeeList.size() <= 0){
-                jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_ERROR, "không có hóa đơn nào chưa thanh toán", null);
+                jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_NOTFOUND, "không có hóa đơn nào chưa thanh toán", null);
             } else {
                 for(SubsistenceFee sb1 : subsistenceFeeList) {
 

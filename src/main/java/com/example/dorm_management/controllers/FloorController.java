@@ -36,7 +36,7 @@ public class FloorController {
             List<Floor> floors = floorService.findFloorsByAreaId(areaId);
             if (floors.size() > 0) {
 
-                jsonResponse = return_List_Object_JsonPresonse(API.CODE_API_NOTFOUND, "", floors);
+                jsonResponse = return_List_Object_JsonPresonse(API.CODE_API_YES, "success", floors);
             } else {
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_NOTFOUND, "Không có tầng nào của nhà có id = " + areaId, null);
             }
@@ -71,7 +71,7 @@ public class FloorController {
     public JsonResponse addOneFloor(@Valid @RequestBody Floor floor, @PathVariable(value = "id") Integer id) {
         try {
             if (floorService.editOne(id, floor) != null){
-                jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_ADD_SUCCESS, "success", floor);
+                jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_EDIT_SUCCESS, "success", floor);
             } else {
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_NO, "fail", null);
             }
@@ -92,7 +92,7 @@ public class FloorController {
 
             Floor floor = floorService.changeStatus(id, status);
             if ( floor != null){
-                jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_ADD_SUCCESS, "successful", floor);
+                jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_EDIT_SUCCESS, "successful", floor);
             } else {
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_NO, "fail", null);
             }

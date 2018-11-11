@@ -34,44 +34,54 @@ public class RoomController {
 
     @GetMapping("/floor/{floor_id}")
     public JsonResponse findRoomsByFloorId( @PathVariable(value = "floor_id") Integer floorId ) {
-        Floor floor = floorService.findOneById(floorId);
-        if (floor == null) {
-            jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_NOTFOUND,"Không có tầng nào có id = " + floorId, null);
-
-        } else {
-            List<ViewRoom> rooms = roomService.findRoomsByFloorId(floorId);
-            if (rooms.size() > 0) {
-                jsonResponse = return_List_Object_JsonPresonse(API.CODE_API_YES, "", rooms);
+        try {
+            Floor floor = floorService.findOneById(floorId);
+            if (floor == null) {
+                jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_NOTFOUND,"Không có tầng nào có id = " + floorId, null);
 
             } else {
-                jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_NOTFOUND, "Không có phòng nào!", null);
+                List<ViewRoom> rooms = roomService.findRoomsByFloorId(floorId);
+                if (rooms.size() > 0) {
+                    jsonResponse = return_List_Object_JsonPresonse(API.CODE_API_YES, "", rooms);
 
+                } else {
+                    jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_NOTFOUND, "Không có phòng nào!", null);
+
+                }
             }
-        }
 
-        return jsonResponse;
+            return jsonResponse;
+        } catch (Exception e) {
+            jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_ERROR, "error exception", null);
+            return jsonResponse;
+        }
     }
 
     @GetMapping("/area/{id}")
     public JsonResponse findRoomsByAreaId(@PathVariable(value = "id") Integer id) {
-        Area area = areaService.findAreaById(id);
-        if (area == null) {
-            jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_NOTFOUND, "Không có nha nào có id = " + id, null);
-
-            return jsonResponse;
-        } else {
-            List<ViewRoom> rooms = roomService.findRoomsByAreaId(id);
-
-
-            if (rooms.size() > 0) {
-                jsonResponse = return_List_Object_JsonPresonse(API.CODE_API_YES, "Danh sach phong!", rooms);
+        try{
+            Area area = areaService.findAreaById(id);
+            if (area == null) {
+                jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_NOTFOUND, "Không có nha nào có id = " + id, null);
 
                 return jsonResponse;
             } else {
-                jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_ERROR, "Không có phòng nào!", null);
+                List<ViewRoom> rooms = roomService.findRoomsByAreaId(id);
 
-                return jsonResponse;
+
+                if (rooms.size() > 0) {
+                    jsonResponse = return_List_Object_JsonPresonse(API.CODE_API_YES, "Danh sach phong!", rooms);
+
+                    return jsonResponse;
+                } else {
+                    jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_ERROR, "Không có phòng nào!", null);
+
+                    return jsonResponse;
+                }
             }
+        } catch (Exception e) {
+            jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_ERROR, "error exception", null);
+            return jsonResponse;
         }
     }
 

@@ -102,7 +102,7 @@ public class NotificationController {
 
 
     public JsonResponse return_One_Object_JsonPresonse(Integer code, String message, Notification notification){
-        JsonResponse jsonResponse = new JsonResponse();
+         jsonResponse = new JsonResponse();
 
         jsonResponse.setCode(code);
         jsonResponse.setMessage(message);
@@ -112,7 +112,7 @@ public class NotificationController {
     }
 
     public JsonResponse return_List_Object_JsonPresonse(Integer code, String message, List<Notification> notificationList){
-        JsonResponse jsonResponse = new JsonResponse();
+         jsonResponse = new JsonResponse();
 
         jsonResponse.setCode(code);
         jsonResponse.setMessage(message);
