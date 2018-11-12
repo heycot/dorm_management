@@ -1,13 +1,19 @@
 package com.example.dorm_management.entities;
 
+import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
+import java.beans.ConstructorProperties;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-//@Data
+@Getter
+@Setter
+@Builder
 @Entity
 @Table(name = "room")
 public class Room {
@@ -42,14 +48,6 @@ public class Room {
     @Column(name = "student_register")
     private Integer studentRegister;
 
-//    @OneToMany(cascade = CascadeType.ALL,
-//            fetch = FetchType.LAZY,
-//            mappedBy = "room")
-//    @OneToMany(mappedBy="room",targetEntity=RentRoom.class, fetch=FetchType.EAGER)
-//    private Collection<RentRoom> rentRooms;
-
-
-
     public Room(String name) {
         this.name = name;
     }
@@ -57,6 +55,23 @@ public class Room {
     public Room() {
     }
 
+    public static Room.RoomBuilder builder() {
+        return new Room.RoomBuilder();
+    }
+
+    @ConstructorProperties({"name", "floorId", "costId", "functionId", "numberBed", "gender", "status", "studentMax", "studentPresent", "studentRegister"})
+    Room(String name, Integer floorId, Integer costId, Integer functionId, Integer numberBed, Integer gender, Integer status, Integer studentMax, Integer studentPresent, Integer studentRegister) {
+        this.name = name;
+        this.floorId = floorId;
+        this.costId = costId;
+        this.functionId = functionId;
+        this.numberBed = numberBed;
+        this.gender = gender;
+        this.status = status;
+        this.studentMax = studentMax;
+        this.studentPresent = studentPresent;
+        this.studentRegister = studentRegister;
+    }
 
     public Integer getId() {
         return id;
@@ -146,6 +161,78 @@ public class Room {
         this.functionId = functionId;
     }
 
+    //==================================================================================================================
+    public static class RoomBuilder {
 
+        private String name;
+        private Integer floorId;
+        private Integer costId;
+        private Integer functionId;
+        private Integer numberBed;
+        private Integer gender;
+        private Integer status;
+        private Integer studentMax;
+        private Integer studentPresent;
+        private Integer studentRegister;
+
+        RoomBuilder() {
+        }
+
+        public Room.RoomBuilder name(String name) {
+            this.name = name;
+            return this;
+        }
+
+
+        public Room.RoomBuilder floorId(Integer floorId) {
+            this.floorId = floorId;
+            return this;
+        }
+
+        public Room.RoomBuilder costId(Integer costId) {
+            this.costId = costId;
+            return this;
+        }
+
+        public Room.RoomBuilder functionId(Integer functionId) {
+            this.functionId = functionId;
+            return this;
+        }
+
+        public Room.RoomBuilder numberBed(Integer numberBed){
+            this.numberBed = numberBed;
+            return this;
+        }
+
+        public Room.RoomBuilder gender(Integer gender){
+            this.gender = gender;
+            return this;
+        }
+
+        public Room.RoomBuilder status(Integer status) {
+            this.status = status;
+            return this;
+        }
+
+        public Room.RoomBuilder studentMax(Integer studentMax) {
+            this.studentMax = studentMax;
+            return this;
+        }
+
+        public Room.RoomBuilder studentPresent(Integer studentPresent) {
+            this.studentPresent = studentPresent;
+            return this;
+        }
+
+        public Room.RoomBuilder studentRegister(Integer studentRegister) {
+            this.studentRegister = studentRegister;
+            return this;
+        }
+
+        public Room build(){
+            return new Room(this.name, this.floorId, this.costId, this.functionId, this.numberBed, this.gender, this.status,
+                    this.studentMax, this.studentPresent, this.studentRegister);
+        }
+    }
 
 }

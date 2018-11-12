@@ -1,5 +1,6 @@
 package com.example.dorm_management.services;
 
+import com.example.dorm_management.entities.Cost;
 import com.example.dorm_management.entities.SubsistenceFee;
 import com.example.dorm_management.entities.ViewSubsistence;
 import com.example.dorm_management.respositories.SubsistenceFeeRepository;
@@ -14,6 +15,10 @@ public class SubsistenceFeeServiceImpl implements SubsistenceFeeService {
 
     @Autowired
     private SubsistenceFeeRepository subsistenceFeeRepository;
+
+
+    @Autowired
+    private CostService costService;
 
     @Autowired
     private ViewSubsistenceFeeRepository viewSubsistenceFeeRepository;
@@ -38,12 +43,61 @@ public class SubsistenceFeeServiceImpl implements SubsistenceFeeService {
 
     @Override
     public SubsistenceFee addOne(SubsistenceFee subsistenceFee){
+        if (subsistenceFee.getNewNumberElec() - subsistenceFee.getOldNumberElec() >= 100) {
+            subsistenceFee.setLevelElec(2);
+        } else {
+            subsistenceFee.setLevelElec(1);
+        }
+
+        if (subsistenceFee.getNewNumberWater() - subsistenceFee.getOldNumberWater() >= 100) {
+            subsistenceFee.setLevelWater(2);
+        } else {
+            subsistenceFee.setLevelWater(1);
+        }
+
+        Cost costsElec = costService.findOneByTypeAndLevel(2, subsistenceFee.getLevelElec(), 1);
+        Cost costWater = costService.findOneByTypeAndLevel(3, subsistenceFee.getLevelWater(), 1 );
+
+        subsistenceFee.setCostElec(costsElec.getValue());
+        subsistenceFee.setCostWater(costWater.getValue());
+        subsistenceFee.setTotalElec((subsistenceFee.getNewNumberElec() - subsistenceFee.getOldNumberElec()) * costsElec.getValue());
+        subsistenceFee.setTotalWater((subsistenceFee.getNewNumberWater() - subsistenceFee.getOldNumberWater()) * costWater.getValue());
+
+        subsistenceFee.setTotal(subsistenceFee.getTotalElec() + subsistenceFee.getTotalWater());
+        subsistenceFee.setStatus(0);
+
         return subsistenceFeeRepository.save(subsistenceFee);
     }
 
     @Override
     public SubsistenceFee editOne(SubsistenceFee subsistenceFee, Integer id){
        try {
+
+           //---------- change some information of subsistenceFee------------------------------------------------------
+           if (subsistenceFee.getNewNumberElec() - subsistenceFee.getOldNumberElec() >= 100) {
+               subsistenceFee.setLevelElec(2);
+           } else {
+               subsistenceFee.setLevelElec(1);
+           }
+
+           if (subsistenceFee.getNewNumberWater() - subsistenceFee.getOldNumberWater() >= 100) {
+               subsistenceFee.setLevelWater(2);
+           } else {
+               subsistenceFee.setLevelWater(1);
+           }
+
+           Cost costsElec = costService.findOneByTypeAndLevel(2, subsistenceFee.getLevelElec(), 1);
+           Cost costWater = costService.findOneByTypeAndLevel(3, subsistenceFee.getLevelWater(), 1 );
+
+           subsistenceFee.setCostElec(costsElec.getValue());
+           subsistenceFee.setCostWater(costWater.getValue());
+           subsistenceFee.setTotalElec((subsistenceFee.getNewNumberElec() - subsistenceFee.getOldNumberElec()) * costsElec.getValue());
+           subsistenceFee.setTotalWater((subsistenceFee.getNewNumberWater() - subsistenceFee.getOldNumberWater()) * costWater.getValue());
+
+           subsistenceFee.setTotal(subsistenceFee.getTotalElec() + subsistenceFee.getTotalWater());
+           subsistenceFee.setStatus(0);
+
+           //------------ edit subsistenceFee --------------------------------------------------------------------------
            SubsistenceFee subsistenceFeeEdit = subsistenceFeeRepository.findOne(id);
 
            subsistenceFeeEdit.setMonth(subsistenceFee.getMonth());

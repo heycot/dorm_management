@@ -106,6 +106,7 @@ public class RegisterRoomController {
     @PutMapping("/add")
     public JsonResponse addOne(@Valid @RequestBody RegisterRoom registerRoom){
         try {
+            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 
             registerRoom.setStatus(0);
             RegisterRoom registerRoom1 = registerRoomService.addOne(registerRoom);
@@ -115,17 +116,19 @@ public class RegisterRoomController {
 
                 ViewRegisterRoom viewRegisterRoom = registerRoomService.getOneViewById(registerRoom1.getId());
 
-                Notification notification = new Notification();
-                notification.setUserId(viewRegisterRoom.getUserId());
-                notification.setStatus(0);
                 String content = "Bạn đã đăng ký thành công "
                         + "phòng: " + viewRegisterRoom.getRoomName() + "\n"
                         + " tầng: " + viewRegisterRoom.getFloorName() + "\n"
                         + " nhà: " + viewRegisterRoom.getAreaName() + "\n"
                         + "vào lúc: " + viewRegisterRoom.getTimeRegister();
 
-                notification.setContent(content);
-                notification.setTitle("Đăng ký phòng thành công!");
+                Notification notification = Notification.builder()
+                        .userId(viewRegisterRoom.getUserId())
+                        .status(0)
+                        .content(content)
+                        .title("Đăng ký phòng thành công!")
+                        .time(timestamp).build();
+
 
                 if (notificationService.addNotification(notification) == true) {
 
@@ -182,18 +185,18 @@ public class RegisterRoomController {
 
                     ViewRegisterRoom viewRegisterRoom = registerRoomService.getOneViewById(x.getId());
 
-                    Notification notification = new Notification();
-                    notification.setUserId(viewRegisterRoom.getUserId());
-                    notification.setStatus(0);
                     String content = "Bạn đã được duyệt đăng ký: "
                             + "phòng: " + viewRegisterRoom.getRoomName() + "\n"
                             + " tầng: " + viewRegisterRoom.getFloorName() + "\n"
                             + " nhà: " + viewRegisterRoom.getAreaName() + "\n"
                             + "vào lúc: " + viewRegisterRoom.getTimeCensor();
 
-                    notification.setContent(content);
-                    notification.setTitle("Duyệt phòng thành công!");
-                    notification.setTime(timestamp);
+                    Notification notification = Notification.builder()
+                            .userId(viewRegisterRoom.getUserId())
+                            .status(0)
+                            .content(content)
+                            .title("Bạn đã được duyệt phòng!")
+                            .time(timestamp).build();
 
                     if (notificationService.addNotification(notification) == true)
                         check++;
@@ -222,36 +225,50 @@ public class RegisterRoomController {
 
             List<RegisterRoom> registerRoomList = mapper.readValue(jsonString, new TypeReference<List<RegisterRoom>>(){});
             Cost cost = costService.findOneByTypeAndStatus(1, 1);
-            RentRoom rentRoom = new RentRoom();
 
             Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 
             for (RegisterRoom register: registerRoomList ) {
                 if (registerRoomService.deleteOne(register.getId()) != true) {
 
-                    rentRoom.setSemesterId(register.getSemesterId());
-                    rentRoom.setUserId(register.getUserId());
-                    rentRoom.setRoomId(register.getRoomId());
-                    rentRoom.setYear(register.getYear());
-                    rentRoom.setStatus(1);
-                    rentRoom.setBail(register.getNumber() * cost.getValue());
+                    RentRoom rentRoom = RentRoom.builder()
+                            .semesterId(register.getSemesterId())
+                            .userId(register.getUserId())
+                            .roomId(register.getRoomId())
+                            .year(register.getYear())
+                            .status(1)
+                            .bail(register.getNumber() * cost.getValue()).build();
+
+//                    rentRoom.setSemesterId(register.getSemesterId());
+//                    rentRoom.setUserId(register.getUserId());
+//                    rentRoom.setRoomId(register.getRoomId());
+//                    rentRoom.setYear(register.getYear());
+//                    rentRoom.setStatus(1);
+//                    rentRoom.setBail(register.getNumber() * cost.getValue());
 
                     rentRoomService.addOne(rentRoom);
 
                     ViewRegisterRoom viewRegisterRoom = registerRoomService.getOneViewById(register.getId());
 
-                    Notification notification = new Notification();
-                    notification.setUserId(viewRegisterRoom.getUserId());
-                    notification.setStatus(0);
                     String content = "Bạn đã thanh toán tiền phòng thành công: "
                             + "phòng: " + viewRegisterRoom.getRoomName() + "\n"
                             + " tầng: " + viewRegisterRoom.getFloorName() + "\n"
                             + " nhà: " + viewRegisterRoom.getAreaName() + "\n"
                             + "vào lúc: " + viewRegisterRoom.getTimeCensor();
 
-                    notification.setContent(content);
-                    notification.setTitle("Duyệt phòng thành công!");
-                    notification.setTime(timestamp);
+                    Notification notification = Notification.builder()
+                            .userId(viewRegisterRoom.getUserId())
+                            .status(0)
+                            .content(content)
+                            .title("Duyệt phòng thành công!")
+                            .time(timestamp).build();
+
+//                    notification.setUserId(viewRegisterRoom.getUserId());
+//                    notification.setStatus(0);
+//
+//                    notification.setContent(content);
+//                    notification.setTitle("Duyệt phòng thành công!");
+//                    notification.setTime(timestamp);
 
                     if (notificationService.addNotification(notification) == true)
                         check++;

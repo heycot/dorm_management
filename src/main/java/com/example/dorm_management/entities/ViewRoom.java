@@ -1,9 +1,17 @@
 package com.example.dorm_management.entities;
 
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.beans.ConstructorProperties;
 
+@Getter
+@Setter
+@Builder
 @Entity
 public class ViewRoom {
     @Id
@@ -39,17 +47,27 @@ public class ViewRoom {
     @Column(name = "function_id")
     private Integer functionId;
 
-    private String name_floor;
+    @Column(name = "name_floor")
+    private String floorName;
 
-    private String name_function;
+    @Column(name = "name_function")
+    private String functionName;
 
-    private String name_area;
+    @Column(name = "name_area")
+    private String areaName;
 
-    private String name_cost;
+    @Column(name = "name_cost")
+    private String costName;
 
-    private Float value_cost;
+    @Column(name = "value_cost")
+    private Float costValue;
 
-    private Integer level_cost;
+    @Column(name = "level_cost")
+    private Integer costLevel;
+
+    public static ViewRoom.ViewRoomBuilder builder() {
+        return new ViewRoom.ViewRoomBuilder();
+    }
 
     public ViewRoom() {
     }
@@ -78,7 +96,6 @@ public class ViewRoom {
         this.areaId = areaId;
     }
 
-
     public Integer getFloorId() {
         return floorId;
     }
@@ -93,22 +110,6 @@ public class ViewRoom {
 
     public void setCostId(Integer costId) {
         this.costId = costId;
-    }
-
-    public String getName_cost() {
-        return name_cost;
-    }
-
-    public void setName_cost(String name_cost) {
-        this.name_cost = name_cost;
-    }
-
-    public Float getValue_cost() {
-        return value_cost;
-    }
-
-    public void setValue_cost(Float value_cost) {
-        this.value_cost = value_cost;
     }
 
     public Integer getFunctionId() {
@@ -167,35 +168,197 @@ public class ViewRoom {
         this.studentRegister = studentRegister;
     }
 
-    public String getName_floor() {
-        return name_floor;
+    public String getFloorName() {
+        return floorName;
     }
 
-    public void setName_floor(String name_floor) {
-        this.name_floor = name_floor;
+    public void setFloorName(String floorName) {
+        this.floorName = floorName;
     }
 
-    public String getName_function() {
-        return name_function;
+    public String getFunctionName() {
+        return functionName;
     }
 
-    public void setName_function(String name_function) {
-        this.name_function = name_function;
+    public void setFunctionName(String functionName) {
+        this.functionName = functionName;
     }
 
-    public String getName_area() {
-        return name_area;
+    public String getAreaName() {
+        return areaName;
     }
 
-    public void setName_area(String name_area) {
-        this.name_area = name_area;
+    public void setAreaName(String areaName) {
+        this.areaName = areaName;
     }
 
-    public Integer getLevel_cost() {
-        return level_cost;
+    public String getCostName() {
+        return costName;
     }
 
-    public void setLevel_cost(Integer level_cost) {
-        this.level_cost = level_cost;
+    public void setCostName(String costName) {
+        this.costName = costName;
     }
+
+    public Float getCostValue() {
+        return costValue;
+    }
+
+    public void setCostValue(Float costValue) {
+        this.costValue = costValue;
+    }
+
+    public Integer getCostLevel() {
+        return costLevel;
+    }
+
+    public void setCostLevel(Integer costLevel) {
+        this.costLevel = costLevel;
+    }
+    @ConstructorProperties({"id", "name", "gender", "status", "numberBed", "studentMax", "studentPresent", "studentRegister", "areaId",
+            "costId", "floorId", "functionId", "floorName", "functionName", "areaName", "costName", "costValue", "costLevel"})
+    ViewRoom(Integer id, String name, Integer gender, Integer status, Integer numberBed, Integer studentMax, Integer studentPresent, Integer studentRegister, Integer areaId, Integer costId, Integer floorId, Integer functionId, String floorName, String functionName, String areaName, String costName, Float costValue, Integer costLevel) {
+        this.id = id;
+        this.name = name;
+        this.gender = gender;
+        this.status = status;
+        this.numberBed = numberBed;
+        this.studentMax = studentMax;
+        this.studentPresent = studentPresent;
+        this.studentRegister = studentRegister;
+        this.areaId = areaId;
+        this.costId = costId;
+        this.floorId = floorId;
+        this.functionId = functionId;
+        this.floorName = floorName;
+        this.functionName = functionName;
+        this.areaName = areaName;
+        this.costName = costName;
+        this.costValue = costValue;
+        this.costLevel = costLevel;
+    }
+
+    //==================================================================================================================
+    public static class ViewRoomBuilder {
+
+        private Integer id;
+        private String name;
+        private Integer gender;
+        private Integer status;
+        private Integer numberBed;
+        private Integer studentMax;
+        private Integer studentPresent;
+        private Integer studentRegister;
+        private Integer areaId;
+        private Integer costId;
+        private Integer floorId;
+        private Integer functionId;
+        private String floorName;
+        private String functionName;
+        private String areaName;
+        private String costName;
+        private Float costValue;
+        private Integer costLevel;
+
+        ViewRoomBuilder() {
+        }
+
+        public ViewRoom.ViewRoomBuilder id(Integer id) {
+            this.id = id;
+            return this;
+        }
+
+        public ViewRoom.ViewRoomBuilder name(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public ViewRoom.ViewRoomBuilder gender(Integer gender){
+            this.gender = gender;
+            return this;
+        }
+
+        public ViewRoom.ViewRoomBuilder status(Integer status) {
+            this.status = status;
+            return this;
+        }
+
+        public ViewRoom.ViewRoomBuilder numberBed(Integer numberBed){
+            this.numberBed = numberBed;
+            return this;
+        }
+
+        public ViewRoom.ViewRoomBuilder studentMax(Integer studentMax) {
+            this.studentMax = studentMax;
+            return this;
+        }
+
+        public ViewRoom.ViewRoomBuilder studentPresent(Integer studentPresent) {
+            this.studentPresent = studentPresent;
+            return this;
+        }
+
+        public ViewRoom.ViewRoomBuilder studentRegister(Integer studentRegister) {
+            this.studentRegister = studentRegister;
+            return this;
+        }
+
+        public ViewRoom.ViewRoomBuilder areaId(Integer areaId) {
+            this.areaId = areaId;
+            return this;
+        }
+
+        public ViewRoom.ViewRoomBuilder floorId(Integer floorId) {
+            this.floorId = floorId;
+            return this;
+        }
+
+        public ViewRoom.ViewRoomBuilder costId(Integer costId) {
+            this.costId = costId;
+            return this;
+        }
+
+        public ViewRoom.ViewRoomBuilder functionId(Integer functionId) {
+            this.functionId = functionId;
+            return this;
+        }
+
+        public ViewRoom.ViewRoomBuilder floorName(String floorName) {
+            this.floorName = floorName;
+            return this;
+        }
+
+        public ViewRoom.ViewRoomBuilder functionName(String functionName) {
+            this.functionName = functionName;
+            return this;
+        }
+
+        public ViewRoom.ViewRoomBuilder areaName(String areaName) {
+            this.areaName = areaName;
+            return this;
+        }
+
+        public ViewRoom.ViewRoomBuilder costName(String costName) {
+            this.costName = costName;
+            return this;
+        }
+
+        public ViewRoom.ViewRoomBuilder costValue(Float costValue) {
+            this.costValue = costValue;
+            return this;
+        }
+
+        public ViewRoom.ViewRoomBuilder costLevel(Integer costLevel) {
+            this.costLevel = costLevel;
+            return this;
+        }
+
+        public ViewRoom build(){
+            return new ViewRoom(this.id, this.name, this.gender, this.status, this.numberBed, this.studentMax, this.studentPresent,
+                    this.studentRegister, this.areaId, this.floorId, this.costId, this.functionId, this.floorName, this.functionName,
+                    this.areaName, this.costName, this.costValue, this.costLevel);
+        }
+    }
+
+
 }

@@ -120,53 +120,12 @@ public class SubsistenceFeeController {
     @PutMapping("/add")
     public JsonResponse addOne(@Valid @RequestBody SubsistenceFee subsistenceFee){
         try {
-            if (subsistenceFee.getNewNumberElec() - subsistenceFee.getOldNumberElec() >= 100) {
-                subsistenceFee.setLevelElec(2);
-            } else {
-                subsistenceFee.setLevelElec(1);
-            }
-
-            if (subsistenceFee.getNewNumberWater() - subsistenceFee.getOldNumberWater() >= 100) {
-                subsistenceFee.setLevelWater(2);
-            } else {
-                subsistenceFee.setLevelWater(1);
-            }
-
-            Cost costsElec = costService.findOneByTypeAndLevel(2, subsistenceFee.getLevelElec(), 1);
-            Cost costWater = costService.findOneByTypeAndLevel(3, subsistenceFee.getLevelWater(), 1 );
-
-            Float total = (subsistenceFee.getNewNumberElec() - subsistenceFee.getOldNumberElec()) * costsElec.getValue()
-                           + (subsistenceFee.getNewNumberWater() - subsistenceFee.getOldNumberWater()) * costWater.getValue();
-
-            subsistenceFee.setCostElec(costsElec.getValue());
-            subsistenceFee.setCostWater(costWater.getValue());
-
-            subsistenceFee.setTotal(total);
-            subsistenceFee.setStatus(0);
 
             SubsistenceFee subsistenceFee1 = subsistenceFeeService.addOne(subsistenceFee);
 
             if (subsistenceFee1 == null) {
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_NO, "error add", null);
             } else {
-
-//                ViewSubsistence sb1 = subsistenceFeeService.findViewOneById()
-//                String content = "Phòng của bạn đã thanh toán hóa đơn điện nước thành công: \n"
-//                        + " tháng :" + sb1.getMonth() + " - " + sb1.getYear() + "\n"
-//                        + sb1.getNameCost() + " : \n"
-//                        + " Số cũ: " + sb1.getOldNumber() + " số mới: " + sb1.getNewNumber() + " = " + sb1.getTotal() + "\n"
-//                        + sb2.getNameCost() + " : \n"
-//                        + " Số cũ: " + sb1.getOldNumber() + " số mới: " + sb1.getNewNumber() + " = " + sb2.getTotal() + "\n"
-//                        + "Tổng tiền : " + ( sb1.getTotal() + sb2.getTotal()) + "VND";
-//
-//                Notification notification = new Notification();
-//                notification.setTitle("Thanh toán hóa đơn thành công!");
-//                notification.setContent(content);
-//                notification.setRoomId(room_id);
-//                notification.setStatus(0);
-
-//                notificationService.addNotification(notification);
-
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_YES, "success", subsistenceFee1);
             }
 
@@ -180,29 +139,6 @@ public class SubsistenceFeeController {
     @PutMapping("/edit/{id}")
     public JsonResponse editOne(@Valid @RequestBody SubsistenceFee subsistenceFee, @PathVariable(value = "id") Integer id){
         try {
-            if (subsistenceFee.getNewNumberElec() - subsistenceFee.getOldNumberElec() >= 100) {
-                subsistenceFee.setLevelElec(2);
-            } else {
-                subsistenceFee.setLevelElec(1);
-            }
-
-            if (subsistenceFee.getNewNumberWater() - subsistenceFee.getOldNumberWater() >= 100) {
-                subsistenceFee.setLevelWater(2);
-            } else {
-                subsistenceFee.setLevelWater(1);
-            }
-
-            Cost costsElec = costService.findOneByTypeAndLevel(2, subsistenceFee.getLevelElec(), 1);
-            Cost costWater = costService.findOneByTypeAndLevel(3, subsistenceFee.getLevelWater(), 1);
-
-            Float total = (subsistenceFee.getNewNumberElec() - subsistenceFee.getOldNumberElec()) * costsElec.getValue()
-                    + (subsistenceFee.getNewNumberWater() - subsistenceFee.getOldNumberWater()) * costWater.getValue();
-
-            subsistenceFee.setCostElec(costsElec.getValue());
-            subsistenceFee.setCostWater(costWater.getValue());
-
-            subsistenceFee.setTotal(total);
-            subsistenceFee.setStatus(0);
 
             SubsistenceFee subsistenceFeeEdit = subsistenceFeeService.editOne(subsistenceFee, id);
             if (subsistenceFeeEdit == null) {
@@ -241,12 +177,12 @@ public class SubsistenceFeeController {
                                 + total_water + "\n"
                                 + "Tổng tiền : " + ( total_elec + total_water) + "VND";
 
-                Notification notification = new Notification();
-                notification.setTitle("Thanh toán hóa đơn thành công!");
-                notification.setContent(content);
-                notification.setRoomId(room_id);
-                notification.setStatus(0);
-                notification.setTime(timestamp);
+                Notification notification = Notification.builder()
+                        .status(0)
+                        .content(content)
+                        .title("Thanh toán hóa đơn tháng " + sb1.getMonth() + "/" + sb1.getYear() + " thành công!")
+                        .roomId(room_id)
+                        .time(timestamp).build();
 
                 notificationService.addNotification(notification);
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_EDIT_SUCCESS, "edit fail", null);
@@ -263,6 +199,7 @@ public class SubsistenceFeeController {
     @GetMapping("/send-notification")
     public JsonResponse sendNotificationSubsistence() {
         try {
+            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
             Date date = new Date();
             LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             Integer month = localDate.getMonthValue();
@@ -288,11 +225,12 @@ public class SubsistenceFeeController {
                             + total_water + "\n"
                             + "Tổng tiền : " + ( total_elec + total_water) + "VND";
 
-                    Notification notification = new Notification();
-                    notification.setTitle("Thanh toán hóa đơn thành công!");
-                    notification.setContent(content);
-                    notification.setRoomId(sb1.getRoomId());
-                    notification.setStatus(0);
+                    Notification notification = Notification.builder()
+                            .status(0)
+                            .content(content)
+                            .title("Thông báo tiền điện nước tháng " + sb1.getMonth() + "/" + sb1.getYear() + "!")
+                            .roomId(sb1.getRoomId())
+                            .time(timestamp).build();
 
                     notificationService.addNotification(notification);
                 }
