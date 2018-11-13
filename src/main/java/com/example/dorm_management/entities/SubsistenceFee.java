@@ -196,24 +196,24 @@ public class SubsistenceFee {
         this.totalElec = totalElec;
     }
 
-    @ConstructorProperties({"month", "year", "total", "levelWater", "levelElec", "status", "status", "newNumberWater", "newNumberElec",
+    @ConstructorProperties({"month", "year", "total", "levelWater", "levelElec", "status", "newNumberWater", "newNumberElec",
             "oldNumberWater", "oldNumberElec", "costWater", "costElec", "totalWater", "totalElec", "roomId"})
     SubsistenceFee(Integer month, String year, Float total, Integer levelWater, Integer levelElec, Integer status, Integer newNumberWater, Integer newNumberElec, Integer oldNumberWater, Integer oldNumberElec, Float costWater, Float costElec, Float totalWater, Float totalElec, Integer roomId) {
-        this.month          = month;
-        this.year           = year;
-        this.total          = total;
-        this.levelWater     = levelWater;
-        this.levelElec      = levelElec;
-        this.status         = status;
+        this.month = month;
+        this.year = year;
+        this.total = total;
+        this.levelWater = levelWater;
+        this.levelElec = levelElec;
+        this.status = status;
         this.newNumberWater = newNumberWater;
-        this.newNumberElec  = newNumberElec;
+        this.newNumberElec = newNumberElec;
         this.oldNumberWater = oldNumberWater;
-        this.oldNumberElec  = oldNumberElec;
-        this.costWater      = costWater;
-        this.costElec       = costElec;
-        this.totalWater     = totalWater;
-        this.totalElec      = totalElec;
-        this.roomId         = roomId;
+        this.oldNumberElec = oldNumberElec;
+        this.costWater = costWater;
+        this.costElec = costElec;
+        this.totalWater = totalWater;
+        this.totalElec = totalElec;
+        this.roomId = roomId;
     }
 
     //==================================================================================================================
