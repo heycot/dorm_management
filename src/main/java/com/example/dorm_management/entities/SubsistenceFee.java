@@ -10,8 +10,8 @@ import java.beans.ConstructorProperties;
 
 @Getter
 @Setter
-@Builder
-@Data
+//@Builder
+//@Data
 @Entity
 @Table(name = "subsistence_fee")
 public class SubsistenceFee {
@@ -199,21 +199,21 @@ public class SubsistenceFee {
     @ConstructorProperties({"month", "year", "total", "levelWater", "levelElec", "status", "status", "newNumberWater", "newNumberElec",
             "oldNumberWater", "oldNumberElec", "costWater", "costElec", "totalWater", "totalElec", "roomId"})
     SubsistenceFee(Integer month, String year, Float total, Integer levelWater, Integer levelElec, Integer status, Integer newNumberWater, Integer newNumberElec, Integer oldNumberWater, Integer oldNumberElec, Float costWater, Float costElec, Float totalWater, Float totalElec, Integer roomId) {
-        this.month = month;
-        this.year = year;
-        this.total = total;
-        this.levelWater = levelWater;
-        this.levelElec = levelElec;
-        this.status = status;
+        this.month          = month;
+        this.year           = year;
+        this.total          = total;
+        this.levelWater     = levelWater;
+        this.levelElec      = levelElec;
+        this.status         = status;
         this.newNumberWater = newNumberWater;
-        this.newNumberElec = newNumberElec;
+        this.newNumberElec  = newNumberElec;
         this.oldNumberWater = oldNumberWater;
-        this.oldNumberElec = oldNumberElec;
-        this.costWater = costWater;
-        this.costElec = costElec;
-        this.totalWater = totalWater;
-        this.totalElec = totalElec;
-        this.roomId = roomId;
+        this.oldNumberElec  = oldNumberElec;
+        this.costWater      = costWater;
+        this.costElec       = costElec;
+        this.totalWater     = totalWater;
+        this.totalElec      = totalElec;
+        this.roomId         = roomId;
     }
 
     //==================================================================================================================
@@ -225,7 +225,7 @@ public class SubsistenceFee {
         private Float total;
         private Integer levelWater;
         private Integer levelElec;
-        private  Integer status;
+        private Integer status;
         private Integer newNumberWater;
         private Integer newNumberElec;
         private Integer oldNumberWater;
@@ -316,7 +316,8 @@ public class SubsistenceFee {
 
         public SubsistenceFee build(){
             return new SubsistenceFee(this.month, this.year, this.total, this.levelWater, this.levelElec, this.status, this.newNumberWater,
-                    this.newNumberElec, this.oldNumberWater, this.oldNumberElec, this.costWater, this.costElec, this.totalWater, this.totalElec, this.roomId);
+                    this.newNumberElec, this.oldNumberWater, this.oldNumberElec, this.costWater, this.costElec, this.totalWater,
+                    this.totalElec, this.roomId);
         }
     }
 }

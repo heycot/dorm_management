@@ -154,13 +154,14 @@ public class SubsistenceFeeController {
         }
     }
 
-    @PutMapping("/pay/{room_id}/{sub_id}")
-    public JsonResponse payOne(@PathVariable(value = "room_id") Integer room_id, @PathVariable(value = "sub_id") Integer sub_id){
+    @GetMapping("/pay/{id}")
+    public JsonResponse payOne(@PathVariable(value = "id") Integer sub_id){
         try {
 
             Timestamp timestamp = new Timestamp(System.currentTimeMillis());
             SubsistenceFee sb1 = subsistenceFeeService.changeStatusOne(sub_id, 1);
-            if ( sb1 == null ) {
+
+            if ( sb1 == null) {
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_ERROR, "edit fail", null);
             } else {
 
@@ -181,11 +182,11 @@ public class SubsistenceFeeController {
                         .status(0)
                         .content(content)
                         .title("Thanh toán hóa đơn tháng " + sb1.getMonth() + "/" + sb1.getYear() + " thành công!")
-                        .roomId(room_id)
+                        .roomId(sb1.getRoomId())
                         .time(timestamp).build();
 
                 notificationService.addNotification(notification);
-                jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_EDIT_SUCCESS, "edit fail", null);
+                jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_EDIT_SUCCESS, "success", sb1);
             }
 
             return jsonResponse;

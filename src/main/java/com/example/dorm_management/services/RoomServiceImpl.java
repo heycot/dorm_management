@@ -72,7 +72,7 @@ public class RoomServiceImpl implements RoomService {
             Room roomEdit = roomRepository.findOne(roomId);
 
             roomEdit.setStatus(status);
-            return roomEdit;
+            return roomRepository.save(roomEdit);
         } catch (Exception e) {
             System.out.println(e.getCause());
             return null;

@@ -134,9 +134,7 @@ public class SubsistenceFeeServiceImpl implements SubsistenceFeeService {
 
             subsistenceFee1.setStatus(status);
 
-            subsistenceFeeRepository.save(subsistenceFee1);
-
-            return subsistenceFee1;
+            return subsistenceFeeRepository.save(subsistenceFee1);
         } catch (Exception e) {
             System.out.println(e.getCause());
 
