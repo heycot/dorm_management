@@ -3,6 +3,7 @@ package com.example.dorm_management.controllers;
 import com.example.dorm_management.entities.*;
 import com.example.dorm_management.json.API;
 import com.example.dorm_management.json.JsonResponse;
+import com.example.dorm_management.libararies.LogError;
 import com.example.dorm_management.services.AreaService;
 import com.example.dorm_management.services.FloorService;
 import com.example.dorm_management.services.RoomService;
@@ -38,14 +39,17 @@ public class RoomController {
             Floor floor = floorService.findOneById(floorId);
             if (floor == null) {
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_NOTFOUND,"Không có tầng nào có id = " + floorId, null);
+                LogError.log(API.CODE_API_NOTFOUND,  "find room by floor" ,LogError.FAIL, "");
 
             } else {
                 List<ViewRoom> rooms = roomService.findRoomsByFloorId(floorId);
                 if (rooms.size() > 0) {
                     jsonResponse = return_List_Object_JsonPresonse(API.CODE_API_YES, "", rooms);
+                    LogError.log(API.CODE_API_YES,  "find room by floor" ,LogError.SUCCESS, "total: " + rooms.size());
 
                 } else {
                     jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_NOTFOUND, "Không có phòng nào!", null);
+                    LogError.log(API.CODE_API_NOTFOUND,  "find room by floor" ,LogError.FAIL, "");
 
                 }
             }
@@ -53,6 +57,7 @@ public class RoomController {
             return jsonResponse;
         } catch (Exception e) {
             jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_ERROR, "error exception", null);
+            LogError.log(API.CODE_API_ERROR,  "find room by floor" ,LogError.ERROR_EXCEPTION, "");
             return jsonResponse;
         }
     }
@@ -63,6 +68,7 @@ public class RoomController {
             Area area = areaService.findAreaById(id);
             if (area == null) {
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_NOTFOUND, "Không có nha nào có id = " + id, null);
+                LogError.log(API.CODE_API_NOTFOUND,  "find room by area id" ,LogError.FAIL, "");
 
                 return jsonResponse;
             } else {
@@ -71,16 +77,19 @@ public class RoomController {
 
                 if (rooms.size() > 0) {
                     jsonResponse = return_List_Object_JsonPresonse(API.CODE_API_YES, "Danh sach phong!", rooms);
+                    LogError.log(API.CODE_API_YES,  "find room by area id" ,LogError.SUCCESS, "total: " + rooms.size());
 
                     return jsonResponse;
                 } else {
                     jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_ERROR, "Không có phòng nào!", null);
+                    LogError.log(API.CODE_API_NOTFOUND,  "find room by area id" ,LogError.FAIL, "");
 
                     return jsonResponse;
                 }
             }
         } catch (Exception e) {
             jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_ERROR, "error exception", null);
+            LogError.log(API.CODE_API_ERROR,  "find room by area id" ,LogError.ERROR_EXCEPTION, "");
             return jsonResponse;
         }
     }
@@ -91,14 +100,17 @@ public class RoomController {
             ViewRoom room = roomService.findRoomById(id);
             if (room != null ){
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_YES, "success", room);
+                LogError.log(API.CODE_API_YES,  "find room by id" ,LogError.SUCCESS, room.getName());
             } else {
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_NOTFOUND, "not found", null);
+                LogError.log(API.CODE_API_NOTFOUND,  "find room by id" ,LogError.FAIL, "");
             }
 
             return jsonResponse;
         } catch (Exception e) {
             System.out.println(e.getCause());
             jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_ERROR, "error exception", null);
+            LogError.log(API.CODE_API_ERROR,  "find room by id" ,LogError.ERROR_EXCEPTION, "");
 
             return jsonResponse;
         }
@@ -110,14 +122,17 @@ public class RoomController {
             Room room1 = roomService.editOne(id, room);
             if (room1 != null ){
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_YES, "success", room1);
+                LogError.log(API.CODE_API_YES,  "edit one room" ,LogError.SUCCESS, room1.getName());
             } else {
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_NO, "fail", null);
+                LogError.log(API.CODE_API_NO,  "edit one room" ,LogError.FAIL, "");
             }
 
             return jsonResponse;
         } catch (Exception e) {
             System.out.println(e.getCause());
             jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_ERROR, "error exception", null);
+            LogError.log(API.CODE_API_ERROR,  "edit one room" ,LogError.ERROR_EXCEPTION, "");
 
             return jsonResponse;
         }
@@ -129,14 +144,17 @@ public class RoomController {
             Room room1 = roomService.addOne(room);
             if (room1 != null ){
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_YES, "success", room1);
+                LogError.log(API.CODE_API_YES,  "add one room" ,LogError.SUCCESS, room1.getName());
             } else {
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_NO, "fail", null);
+                LogError.log(API.CODE_API_NO,  "add one room" ,LogError.FAIL, "");
             }
 
             return jsonResponse;
         } catch (Exception e) {
             System.out.println(e.getCause());
             jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_ERROR, "error exception", null);
+            LogError.log(API.CODE_API_ERROR,  "add one room" ,LogError.ERROR_EXCEPTION, "");
 
             return jsonResponse;
         }
@@ -157,14 +175,17 @@ public class RoomController {
 
             if (check == roomList.size() ){
                 jsonResponse = return_List_Object_JsonPresonse_Room(API.CODE_API_YES, "success", roomList);
+                LogError.log(API.CODE_API_YES,  "add list room" ,LogError.SUCCESS, "total: " + roomList.size());
             } else {
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_NO, "fail", null);
+                LogError.log(API.CODE_API_NO,  "add list room" ,LogError.FAIL, "");
             }
 
             return jsonResponse;
         } catch (Exception e) {
             System.out.println(e.getCause());
             jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_ERROR, "error exception", null);
+            LogError.log(API.CODE_API_ERROR,  "add list room" ,LogError.ERROR_EXCEPTION, "");
 
             return jsonResponse;
         }
@@ -188,14 +209,17 @@ public class RoomController {
 
             if (check == roomList.size() ){
                 jsonResponse = return_List_Object_JsonPresonse_Room(API.CODE_API_YES, "success", roomList);
+                LogError.log(API.CODE_API_YES,  "change status list room" ,LogError.SUCCESS, "total: " + roomList.size());
             } else {
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_NO, "fail", null);
+                LogError.log(API.CODE_API_NO,  "change status list room" ,LogError.FAIL, "");
             }
 
             return jsonResponse;
         } catch (Exception e) {
             System.out.println(e.getCause());
             jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_ERROR, "error exception", null);
+            LogError.log(API.CODE_API_ERROR,  "change status list room" ,LogError.ERROR_EXCEPTION, "");
 
             return jsonResponse;
         }
@@ -213,14 +237,17 @@ public class RoomController {
 
             if (room != null ){
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_YES, "success", room);
+                LogError.log(API.CODE_API_YES,  "change status one room" ,LogError.SUCCESS, room.getName());
             } else {
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_NO, "fail", null);
+                LogError.log(API.CODE_API_NO,  "change status one room" ,LogError.FAIL, "");
             }
 
             return jsonResponse;
         } catch (Exception e) {
             System.out.println(e.getCause());
             jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_ERROR, "error exception", null);
+            LogError.log(API.CODE_API_ERROR,  "change status onr room" ,LogError.ERROR_EXCEPTION, "");
 
             return jsonResponse;
         }

@@ -3,6 +3,7 @@ package com.example.dorm_management.controllers;
 import com.example.dorm_management.entities.*;
 import com.example.dorm_management.json.API;
 import com.example.dorm_management.json.JsonResponse;
+import com.example.dorm_management.libararies.LogError;
 import com.example.dorm_management.services.CostService;
 import com.example.dorm_management.services.NotificationService;
 import com.example.dorm_management.services.SubsistenceFeeService;
@@ -45,14 +46,17 @@ public class SubsistenceFeeController {
 
             if (subsistenceFeeList.size() > 0) {
                 jsonResponse = return_List_Object_JsonPresonse(API.CODE_API_YES, "success", subsistenceFeeList);
+                LogError.log(API.CODE_API_YES,  "find sub in room" ,LogError.SUCCESS, "total: " + subsistenceFeeList.size()  );
 
             } else {
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_NOTFOUND, "not found", null);
+                LogError.log(API.CODE_API_NO,  "find sub in room" ,LogError.FAIL, "");
             }
 
             return jsonResponse;
         } catch (Exception e) {
             jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_ERROR, "error exception", null);
+            LogError.log(API.CODE_API_ERROR,  "find sub in room" ,LogError.ERROR_EXCEPTION, "");
             return jsonResponse;
         }
     }
@@ -65,14 +69,17 @@ public class SubsistenceFeeController {
 
             if (subsistenceFeeList.size() > 0) {
                 jsonResponse = return_List_Object_JsonPresonse(API.CODE_API_YES, "success", subsistenceFeeList);
+                LogError.log(API.CODE_API_YES,  "find sub by room, month, year" ,LogError.SUCCESS, "total: " + subsistenceFeeList.size());
 
             } else {
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_NOTFOUND, "not found", null);
+                LogError.log(API.CODE_API_NO,  "find sub by room, month, year" ,LogError.FAIL, "");
             }
 
             return jsonResponse;
         } catch (Exception e) {
             jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_ERROR, "error exception", null);
+            LogError.log(API.CODE_API_ERROR,  "find sub by room, month, year" ,LogError.ERROR_EXCEPTION, "");
             return jsonResponse;
         }
     }
@@ -85,14 +92,17 @@ public class SubsistenceFeeController {
 
             if (subsistenceFeeList.size() > 0) {
                 jsonResponse = return_List_View_Object_JsonPresonse(API.CODE_API_YES, "success", subsistenceFeeList);
+                LogError.log(API.CODE_API_YES,  "find room by month and year" ,LogError.SUCCESS, "total: " + subsistenceFeeList.size());
 
             } else {
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_NOTFOUND, "not found", null);
+                LogError.log(API.CODE_API_NO,  "find room by month and year" ,LogError.FAIL, "");
             }
 
             return jsonResponse;
         } catch (Exception e) {
             jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_ERROR, "error exception", null);
+            LogError.log(API.CODE_API_ERROR,  "find room by month and year" ,LogError.ERROR_EXCEPTION, "");
             return jsonResponse;
         }
     }
@@ -105,14 +115,17 @@ public class SubsistenceFeeController {
 
             if (subsistenceFeeList.size() > 0) {
                 jsonResponse = return_List_View_Object_JsonPresonse(API.CODE_API_YES, "success", subsistenceFeeList);
+                LogError.log(API.CODE_API_YES,  "find room in area by month and year" ,LogError.SUCCESS, "total: " + subsistenceFeeList.size());
 
             } else {
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_NOTFOUND, "not found", null);
+                LogError.log(API.CODE_API_NO,  "find room in area by month and year" ,LogError.FAIL, "");
             }
 
             return jsonResponse;
         } catch (Exception e) {
             jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_ERROR, "error exception", null);
+            LogError.log(API.CODE_API_ERROR,  "find room in area by month and year" ,LogError.ERROR_EXCEPTION, "");
             return jsonResponse;
         }
     }
@@ -125,13 +138,16 @@ public class SubsistenceFeeController {
 
             if (subsistenceFee1 == null) {
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_NO, "error add", null);
+                LogError.log(API.CODE_API_NO,  "add one sub" ,LogError.FAIL, "");
             } else {
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_YES, "success", subsistenceFee1);
+                LogError.log(API.CODE_API_YES,  "add one sub" ,LogError.SUCCESS, "" + subsistenceFee1.getMonth() + "/" + subsistenceFee1.getYear());
             }
 
             return jsonResponse;
         } catch (Exception e){
             jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_ERROR, "error exception", null);
+            LogError.log(API.CODE_API_ERROR,  "add one sub" ,LogError.ERROR_EXCEPTION, "");
             return jsonResponse;
         }
     }
@@ -143,13 +159,16 @@ public class SubsistenceFeeController {
             SubsistenceFee subsistenceFeeEdit = subsistenceFeeService.editOne(subsistenceFee, id);
             if (subsistenceFeeEdit == null) {
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_NO, "error edit", null);
+                LogError.log(API.CODE_API_NO,  "edit one sub" ,LogError.FAIL, "");
             } else {
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_EDIT_SUCCESS, "success", subsistenceFeeEdit);
+                LogError.log(API.CODE_API_YES,  "edit one sub" ,LogError.SUCCESS, "");
             }
 
             return jsonResponse;
         } catch (Exception e){
             jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_ERROR, "error exception", null);
+            LogError.log(API.CODE_API_ERROR,  "edit one sub" ,LogError.ERROR_EXCEPTION, "");
             return jsonResponse;
         }
     }
@@ -163,6 +182,7 @@ public class SubsistenceFeeController {
 
             if ( sb1 == null) {
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_ERROR, "edit fail", null);
+                LogError.log(API.CODE_API_NO,  "pay one sub" ,LogError.FAIL, "");
             } else {
 
                 Float total_elec = (sb1.getNewNumberElec() - sb1.getOldNumberElec()) * sb1.getCostElec();
@@ -187,11 +207,13 @@ public class SubsistenceFeeController {
 
                 notificationService.addNotification(notification);
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_EDIT_SUCCESS, "success", sb1);
+                LogError.log(API.CODE_API_YES,  "pay one sub" ,LogError.SUCCESS, "");
             }
 
             return jsonResponse;
         } catch (Exception e){
             jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_ERROR, "error exception", null);
+            LogError.log(API.CODE_API_ERROR,  "pay one sub" ,LogError.ERROR_EXCEPTION, "");
             return jsonResponse;
         }
     }
@@ -210,6 +232,7 @@ public class SubsistenceFeeController {
 
             if (subsistenceFeeList.size() <= 0){
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_NOTFOUND, "không có hóa đơn nào chưa thanh toán", null);
+                LogError.log(API.CODE_API_NO,  "send notification sub" ,LogError.FAIL, "");
             } else {
                 for(SubsistenceFee sb1 : subsistenceFeeList) {
 
@@ -237,6 +260,7 @@ public class SubsistenceFeeController {
                 }
 
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_YES, "success", null);
+                LogError.log(API.CODE_API_YES,  "send notification sub" ,LogError.SUCCESS, "");
 
             }
 
@@ -245,6 +269,7 @@ public class SubsistenceFeeController {
             System.out.println(e.getCause());
 
             jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_ERROR, "error exception", null);
+            LogError.log(API.CODE_API_ERROR,  "send notification sub" ,LogError.ERROR_EXCEPTION, "");
 
             return jsonResponse;
         }
@@ -257,10 +282,11 @@ public class SubsistenceFeeController {
 
             if (subsistenceFeeList.size() > 0) {
                 jsonResponse = return_List_Object_JsonPresonse(API.CODE_API_YES, "success", subsistenceFeeList);
+                LogError.log(API.CODE_API_YES,  "find sub not pay" ,LogError.SUCCESS, "total: " + subsistenceFeeList.size());
             } else {
 
                 jsonResponse = return_List_Object_JsonPresonse(API.CODE_API_NOTFOUND, "not found", null);
-
+                LogError.log(API.CODE_API_NO,  "find sub not pay" ,LogError.FAIL, "");
             }
 
             return jsonResponse;
@@ -268,6 +294,7 @@ public class SubsistenceFeeController {
             System.out.println(e.getCause());
 
             jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_ERROR, "error exception", null);
+            LogError.log(API.CODE_API_ERROR,  "find sub not pay" ,LogError.ERROR_EXCEPTION, "");
 
             return jsonResponse;
         }

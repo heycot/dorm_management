@@ -4,6 +4,7 @@ import com.example.dorm_management.entities.Room;
 import com.example.dorm_management.entities.RoomFunction;
 import com.example.dorm_management.json.API;
 import com.example.dorm_management.json.JsonResponse;
+import com.example.dorm_management.libararies.LogError;
 import com.example.dorm_management.services.RoomFunctionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -28,14 +29,17 @@ public class RoomFunctionController {
             List<RoomFunction> roomFunctions = roomFunctionService.getAllRoomFunction();
             if (roomFunctions.size() > 0) {
                 jsonResponse = return_List_Object_JsonPresonse(API.CODE_API_YES, "", roomFunctions);
+                LogError.log(API.CODE_API_YES,  "find all room function" ,LogError.SUCCESS, "total: " + roomFunctions.size());
                 return jsonResponse;
             } else{
                 jsonResponse = return_No_Object_JsonPresonse(API.CODE_API_NOTFOUND, "not found");
+                LogError.log(API.CODE_API_NO,  "find all room function" ,LogError.FAIL, "");
                 return jsonResponse;
             }
         } catch (Exception e){
             System.out.println(e.getCause());
             jsonResponse = return_No_Object_JsonPresonse(API.CODE_API_ERROR, "error");
+            LogError.log(API.CODE_API_ERROR,  "find all room function" ,LogError.ERROR_EXCEPTION, "");
             return  jsonResponse;
         }
     }
@@ -47,14 +51,18 @@ public class RoomFunctionController {
 
             if (roomFunction != null) {
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_YES, "success", roomFunction);
+                LogError.log(API.CODE_API_YES,  "find one room function by type and status" ,LogError.SUCCESS, roomFunction.getName());
             } else{
                 jsonResponse = return_No_Object_JsonPresonse(API.CODE_API_NOTFOUND, "not found");
+
+                LogError.log(API.CODE_API_NO,  "find one room function by type and status" ,LogError.FAIL, "");
             }
             return jsonResponse;
 
         } catch (Exception e){
             System.out.println(e.getCause());
             jsonResponse = return_No_Object_JsonPresonse(API.CODE_API_ERROR, "error");
+            LogError.log(API.CODE_API_ERROR,  "find one room function by type and status" ,LogError.ERROR_EXCEPTION, "");
             return  jsonResponse;
         }
     }
@@ -66,14 +74,17 @@ public class RoomFunctionController {
 
             if (result != null) {
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_YES, "success", result);
+                LogError.log(API.CODE_API_YES,  "add one room function" ,LogError.SUCCESS, result.getName());
             } else{
                 jsonResponse = return_No_Object_JsonPresonse(API.CODE_API_NOTFOUND, "not found");
+                LogError.log(API.CODE_API_NO,  "add one room function" ,LogError.FAIL, "");
             }
             return jsonResponse;
 
         } catch (Exception e){
             System.out.println(e.getCause());
             jsonResponse = return_No_Object_JsonPresonse(API.CODE_API_ERROR, "error");
+            LogError.log(API.CODE_API_ERROR,  "add one room function" ,LogError.ERROR_EXCEPTION, "");
             return  jsonResponse;
         }
     }
@@ -85,14 +96,17 @@ public class RoomFunctionController {
 
             if (result != null) {
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_YES, "success", result);
+                LogError.log(API.CODE_API_YES,  "edit one room function" ,LogError.SUCCESS, result.getName());
             } else{
                 jsonResponse = return_No_Object_JsonPresonse(API.CODE_API_NOTFOUND, "not found");
+                LogError.log(API.CODE_API_NO,  "edit one room function" ,LogError.FAIL, "");
             }
             return jsonResponse;
 
         } catch (Exception e){
             System.out.println(e.getCause());
             jsonResponse = return_No_Object_JsonPresonse(API.CODE_API_ERROR, "error");
+            LogError.log(API.CODE_API_ERROR,  "edit one room function" ,LogError.ERROR_EXCEPTION, "");
             return  jsonResponse;
         }
     }
@@ -109,14 +123,17 @@ public class RoomFunctionController {
 
             if (result != null) {
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_YES, "success", result);
+                LogError.log(API.CODE_API_YES,  "change status one room function" ,LogError.SUCCESS, result.getName());
             } else{
                 jsonResponse = return_No_Object_JsonPresonse(API.CODE_API_NOTFOUND, "not found");
+                LogError.log(API.CODE_API_NO,  "change status one room function" ,LogError.FAIL, "");
             }
             return jsonResponse;
 
         } catch (Exception e){
             System.out.println(e.getCause());
             jsonResponse = return_No_Object_JsonPresonse(API.CODE_API_ERROR, "error");
+            LogError.log(API.CODE_API_ERROR,  "change status one room function" ,LogError.ERROR_EXCEPTION, "");
             return  jsonResponse;
         }
     }

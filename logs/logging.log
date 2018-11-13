@@ -6,3 +6,13 @@
 2018-11-03 20:33:24 INFO  QUERY_LOOGER:48 - sdfsdf | sdfsdsssssssssssssssf
 2018-11-03 20:48:11 INFO  QUERY_LOOGER:48 - API: 200 | register user successfully | test4
 2018-11-03 20:48:42 INFO  QUERY_LOOGER:48 - API: 200 | register user successfully | test5
+2018-11-13 21:06:38 INFO  QUERY_LOOGER:48 - API: 200 | find all area success | total :8
+2018-11-13 21:09:39 INFO  QUERY_LOOGER:48 - API: 200 | find all area success | total :8
+2018-11-13 21:14:37 INFO  QUERY_LOOGER:48 - API: 200 | change status one area success | successfully
+2018-11-13 21:23:45 INFO  QUERY_LOOGER:48 - API: 200 | service: find all area  | status: SUCCESS | total :8
+2018-11-13 22:46:07 INFO  QUERY_LOOGER:48 - API code: 200 | service: find all area  | status: SUCCESS | total :8
+2018-11-13 22:46:15 INFO  QUERY_LOOGER:48 - API code: 200 | service: add one register | status: SUCCESS | 10
+2018-11-13 22:46:21 INFO  QUERY_LOOGER:48 - API code: 200 | service: edit one area | status: SUCCESS | Nha 6666
+2018-11-13 22:46:24 INFO  QUERY_LOOGER:48 - API code: 200 | service: edit one sub | status: SUCCESS | 
+2018-11-13 22:46:26 INFO  QUERY_LOOGER:48 - API code: 200 | service: find sub in room | status: SUCCESS | total: 5
+2018-11-13 22:46:56 INFO  QUERY_LOOGER:48 - API code: 200 | service: add one sub | status: SUCCESS | 11/2018

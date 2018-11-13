@@ -6,6 +6,7 @@ import com.example.dorm_management.entities.Room;
 import com.example.dorm_management.entities.User;
 import com.example.dorm_management.json.API;
 import com.example.dorm_management.json.JsonResponse;
+import com.example.dorm_management.libararies.LogError;
 import com.example.dorm_management.services.RentRoomService;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -42,8 +43,10 @@ public class RentRoomController {
 
             if (check == rentRoomList.size()) {
                 jsonResponse = return_List_Object_JsonPresonse(API.CODE_API_YES, "success", rentRoomList);
+                LogError.log(API.CODE_API_YES,  "disable rent room" ,LogError.SUCCESS, "total: " + rentRoomList.size());
             } else {
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_NO, "fail", null);
+                LogError.log(API.CODE_API_NO,  "disable rent room" ,LogError.FAIL, "");
             }
 
             return jsonResponse;
@@ -51,6 +54,7 @@ public class RentRoomController {
         } catch (Exception e) {
             System.out.println(e.getCause());
             jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_ERROR, "error exception", null);
+            LogError.log(API.CODE_API_ERROR,  "disable rent room" ,LogError.ERROR_EXCEPTION, "");
 
             return jsonResponse;
         }
