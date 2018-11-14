@@ -77,7 +77,7 @@ public class AreaServiceImpl implements AreaService {
                 floorRepository.save(f);
                 check += roomService.changeStatusRoomByFloorId(status, id);
             }
-            return area;
+            return areaRepository.save(area);
         } catch (Exception e) {
             System.out.println(e.getCause());
             return null;
