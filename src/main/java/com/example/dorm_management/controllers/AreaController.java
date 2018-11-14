@@ -2,10 +2,13 @@ package com.example.dorm_management.controllers;
 
 import com.example.dorm_management.config.Basej4Logger;
 import com.example.dorm_management.entities.Area;
+import com.example.dorm_management.entities.Floor;
 import com.example.dorm_management.json.API;
 import com.example.dorm_management.json.JsonResponse;
 import com.example.dorm_management.libararies.LogError;
 import com.example.dorm_management.services.AreaService;
+import com.example.dorm_management.services.FloorService;
+import com.example.dorm_management.services.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

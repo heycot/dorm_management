@@ -24,6 +24,11 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
+    public List<Room> findAllByFloorId(Integer floorId) {
+        return roomRepository.findAllByFloorId(floorId);
+    }
+
+    @Override
     public List<ViewRoom> findRoomsByAreaId(Integer areaId) {
         return viewRoomRepository.findRoomsByAreaId(areaId);
     }
@@ -77,6 +82,19 @@ public class RoomServiceImpl implements RoomService {
             System.out.println(e.getCause());
             return null;
         }
+    }
+
+    @Override
+    public Integer changeStatusRoomByFloorId(Integer status, Integer floorId) {
+        Integer result = 0;
+        List<Room> roomList = roomRepository.findAllByFloorId(floorId);
+        for (Room room : roomList) {
+            room.setStatus(status);
+            if( roomRepository.save(room) != null) {
+                result++;
+            }
+        }
+        return  result;
     }
 
 }

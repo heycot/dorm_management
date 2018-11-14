@@ -1,7 +1,9 @@
 package com.example.dorm_management.services;
 
 import com.example.dorm_management.entities.Area;
+import com.example.dorm_management.entities.Floor;
 import com.example.dorm_management.respositories.AreaRepository;
+import com.example.dorm_management.respositories.FloorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +14,15 @@ public class AreaServiceImpl implements AreaService {
 
     @Autowired
     private AreaRepository areaRepository;
+
+    @Autowired
+    private FloorService floorService;
+
+    @Autowired
+    private FloorRepository floorRepository;
+
+    @Autowired
+    private RoomService roomService;
 
     @Override
     public List<Area> findAllAreas() {
@@ -57,6 +68,15 @@ public class AreaServiceImpl implements AreaService {
 
             area.setStatus(status);
 
+//            Integer statusFloor = floorService.changeStatusByAreaIdAndStatus(status, id);
+            List<Floor> floors = floorService.findFloorsByAreaId(id);
+
+            Integer check = 0;
+            for (Floor f: floors ) {
+                f.setStatus(status);
+                floorRepository.save(f);
+                check += roomService.changeStatusRoomByFloorId(status, id);
+            }
             return area;
         } catch (Exception e) {
             System.out.println(e.getCause());

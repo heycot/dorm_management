@@ -7,6 +7,7 @@ import com.example.dorm_management.json.JsonResponse;
 import com.example.dorm_management.libararies.LogError;
 import com.example.dorm_management.services.AreaService;
 import com.example.dorm_management.services.FloorService;
+import com.example.dorm_management.services.RoomService;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +27,6 @@ public class FloorController {
     @Autowired
     private FloorService floorService;
 
-    @Autowired
-    private AreaService areaService;
 
     private JsonResponse jsonResponse;
 
@@ -94,7 +93,7 @@ public class FloorController {
         }
     }
 
-    @PutMapping("/change-status/{id}/{status}")
+    @GetMapping("/change-status/{id}/{status}")
     public JsonResponse addOneFloor(@PathVariable(value = "id") Integer id, @PathVariable(value = "status") Integer status) {
         try {
             if (status != 0) {
@@ -102,7 +101,8 @@ public class FloorController {
             }
 
             Floor floor = floorService.changeStatus(id, status);
-            if ( floor != null){
+
+            if ( floor != null ){
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_EDIT_SUCCESS, "successful", floor);
                 LogError.log(API.CODE_API_YES,  "change status one floor" ,LogError.SUCCESS, floor.getName());
             } else {

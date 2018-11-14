@@ -15,4 +15,6 @@ public interface FloorService  {
     Floor editOne(Integer id, Floor floor);
 
     Floor changeStatus(Integer id, Integer status);
+
+    Integer changeStatusByAreaIdAndStatus(Integer status, Integer areaId);
 }
