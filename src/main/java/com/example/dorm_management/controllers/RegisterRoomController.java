@@ -63,6 +63,30 @@ public class RegisterRoomController {
         }
     }
 
+    @GetMapping("/floor/{id}")
+    public JsonResponse findAllByFloorId(@PathVariable(value = "id") Integer id) {
+        try {
+
+            List<ViewRegisterRoom> registerRooms = registerRoomService.findAllByFloorId(id);
+
+            if (registerRooms.size() > 0) {
+                jsonResponse = return_List_Object_View_JsonPresonse(API.CODE_API_YES, "success", registerRooms);
+                LogError.log(API.CODE_API_YES,  "find register by floor" ,LogError.SUCCESS, "total: " + registerRooms.size());
+            } else {
+                jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_NOTFOUND, "not found", null);
+                LogError.log(API.CODE_API_NOTFOUND,  "find register by floor" ,LogError.FAIL, "");
+            }
+
+            return  jsonResponse;
+        } catch (Exception e) {
+            System.out.println(e.getCause());
+            jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_ERROR, "error exception", null);
+            LogError.log(API.CODE_API_ERROR,  "find register by floor" ,LogError.ERROR_EXCEPTION, "");
+
+            return jsonResponse;
+        }
+    }
+
     @GetMapping("/area/{id}")
     public JsonResponse findAllByAreaId(@PathVariable(value = "id") Integer id) {
         try {

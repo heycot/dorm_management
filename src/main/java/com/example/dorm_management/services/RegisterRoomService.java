@@ -27,4 +27,6 @@ public interface RegisterRoomService {
     ViewRegisterRoom getOneViewById(Integer id);
 
     List<ViewRegisterRoom> findAllByAreaId(Integer id);
+
+    List<ViewRegisterRoom> findAllByFloorId(Integer id);
 }

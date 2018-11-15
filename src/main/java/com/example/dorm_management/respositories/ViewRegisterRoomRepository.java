@@ -66,4 +66,18 @@ public interface ViewRegisterRoomRepository extends JpaRepository<ViewRegisterRo
             "LEFT JOIN semester ON rr.semester_id =  semester.id " +
             "WHERE floor.area_id = ?1", nativeQuery = true)
     List<ViewRegisterRoom> findAllByAreaId(Integer id);
+
+    @Query(value = "SELECT rr.*, user.gender AS gender, user_detail.full_name AS user_full_name, student_code.name as class_name, " +
+            "student_code.value AS studentcode_code_value, room.name as room_name, floor.id AS floor_id, " +
+            "floor.name AS floor_name, area.id as area_id, area.name as area_name, semester.name as semester_name " +
+            "FROM register_room AS rr  " +
+            "LEFT JOIN user ON rr.user_id = user.id " +
+            "LEFT JOIN student_code ON user.student_code = student_code.id " +
+            "LEFT JOIN user_detail ON user.id = user_detail.user_id " +
+            "LEFT JOIN room ON rr.room_id = room.id " +
+            "LEFT JOIN floor ON room.floor_id = floor.id " +
+            "LEFT JOIN area ON floor.area_id = area.id " +
+            "LEFT JOIN semester ON rr.semester_id =  semester.id " +
+            "WHERE floor.id = ?1", nativeQuery = true)
+    List<ViewRegisterRoom> findAllByFloorId(Integer id);
 }
