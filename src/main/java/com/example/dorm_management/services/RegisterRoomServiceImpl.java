@@ -96,4 +96,9 @@ public class RegisterRoomServiceImpl implements RegisterRoomService {
     public ViewRegisterRoom getOneViewById(Integer id) {
         return viewRegisterRoomRepository.getOneViewById(id);
     }
+
+    @Override
+    public List<ViewRegisterRoom> findAllByAreaId(Integer id) {
+        return viewRegisterRoomRepository.findAllByAreaId(id);
+    }
 }

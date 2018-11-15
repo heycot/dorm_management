@@ -26,3 +26,8 @@
 2018-11-14 16:41:44 INFO  QUERY_LOOGER:48 - API code: 200 | service: change status one floor | status: SUCCESS | Tầng 4
 2018-11-14 16:53:47 INFO  QUERY_LOOGER:48 - API code: 200 | service: change status one area | status: SUCCESS | Nhà 4
 2018-11-14 16:55:02 INFO  QUERY_LOOGER:48 - API code: 200 | service: find all notification by user | status: SUCCESS | total: 12
+2018-11-14 17:00:52 INFO  QUERY_LOOGER:48 - API code: 200 | service: change status one area | status: SUCCESS | Nhà 4
+2018-11-14 17:01:10 INFO  QUERY_LOOGER:48 - API code: 200 | service: change status one area | status: SUCCESS | Nhà 4
+2018-11-14 17:01:28 INFO  QUERY_LOOGER:48 - API code: 200 | service: change status one area | status: SUCCESS | Nhà 4
+2018-11-14 17:06:53 INFO  QUERY_LOOGER:48 - API code: 200 | service: find all notification by user | status: SUCCESS | total: 12
+2018-11-15 10:42:11 INFO  QUERY_LOOGER:48 - API code: 200 | service: find register by area | status: SUCCESS | total: 5

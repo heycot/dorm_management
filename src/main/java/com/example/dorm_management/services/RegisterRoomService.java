@@ -25,4 +25,6 @@ public interface RegisterRoomService {
     boolean deleteOne(Integer registerId);
 
     ViewRegisterRoom getOneViewById(Integer id);
+
+    List<ViewRegisterRoom> findAllByAreaId(Integer id);
 }
