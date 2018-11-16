@@ -236,25 +236,21 @@ public class RegisterRoomController {
     public JsonResponse accept(@Valid @RequestBody String jsonString){
         try {
 //            SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
-            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-
-            ObjectMapper mapper = new ObjectMapper();
-            List<RegisterRoom> registerRoomList = mapper.readValue(jsonString, new TypeReference<List<RegisterRoom>>(){});
 
             int check = 0;
+            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+            ObjectMapper mapper = new ObjectMapper();
+            List<Integer> idList = mapper.readValue(jsonString, new TypeReference<List<Integer>>() { });
 
-            for (RegisterRoom x : registerRoomList) {
-                System.out.println(x);
-                x.setStatus(1);
-                x.setTimeCensor(timestamp);
-                if (registerRoomService.acceptOne(x) != null){
+            for (Integer id : idList) {
+                if (registerRoomService.acceptOne(id) != null){
 
-                    ViewRegisterRoom viewRegisterRoom = registerRoomService.getOneViewById(x.getId());
+                    ViewRegisterRoom viewRegisterRoom = registerRoomService.getOneViewById(id);
 
                     String content = "Bạn đã được duyệt đăng ký: "
-                            + "phòng: " + viewRegisterRoom.getRoomName() + "\n"
-                            + " tầng: " + viewRegisterRoom.getFloorName() + "\n"
-                            + " nhà: " + viewRegisterRoom.getAreaName() + "\n"
+                            + viewRegisterRoom.getRoomName() + "\n"
+                            + viewRegisterRoom.getFloorName() + "\n"
+                            + viewRegisterRoom.getAreaName() + "\n"
                             + "vào lúc: " + viewRegisterRoom.getTimeCensor();
 
                     Notification notification = Notification.builder()
@@ -268,12 +264,14 @@ public class RegisterRoomController {
                         check++;
                 }
             }
-            if (check != registerRoomList.size()) {
+            if (check != idList.size()) {
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_NO, "error accept", null);
                 LogError.log(API.CODE_API_NO,  "accept List register" ,LogError.FAIL, "");
+
             } else {
-                jsonResponse = return_List_Object_JsonPresonse(API.CODE_API_YES, "success", registerRoomList);
-                LogError.log(API.CODE_API_YES,  "accept list register" ,LogError.SUCCESS, "total: " + registerRoomList.size());
+                jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_YES, "success", null);
+                LogError.log(API.CODE_API_YES,  "accept list register" ,LogError.SUCCESS, "total: " + check);
+
             }
 
             return jsonResponse;

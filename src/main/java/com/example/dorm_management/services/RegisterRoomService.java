@@ -15,7 +15,7 @@ public interface RegisterRoomService {
 
     RegisterRoom edditOne(RegisterRoom registerRoom, Integer id);
 
-    RegisterRoom acceptOne(RegisterRoom x);
+    RegisterRoom acceptOne(Integer id);
 
     List<ViewRegisterRoom> findAllAcceptedByRoomId(Integer id);
 

@@ -1,6 +1,5 @@
 package com.example.dorm_management.respositories;
 
-import com.example.dorm_management.entities.RegisterRoom;
 import com.example.dorm_management.entities.ViewRegisterRoom;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

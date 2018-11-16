@@ -7,6 +7,7 @@ import com.example.dorm_management.respositories.ViewRegisterRoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 @Service
@@ -56,12 +57,13 @@ public class RegisterRoomServiceImpl implements RegisterRoomService {
 
 
     @Override
-    public RegisterRoom acceptOne(RegisterRoom x){
+    public RegisterRoom acceptOne(Integer id){
         try {
-            RegisterRoom registerRoom = registerRoomRepository.findOneById(x.getId());
+            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+            RegisterRoom registerRoom = registerRoomRepository.findOneById(id);
 
-            registerRoom.setStatus(x.getStatus());
-            registerRoom.setTimeCensor(x.getTimeCensor());
+            registerRoom.setStatus(1);
+            registerRoom.setTimeCensor(timestamp);
 
             RegisterRoom result = registerRoomRepository.save(registerRoom);
             return result;

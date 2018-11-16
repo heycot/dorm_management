@@ -31,3 +31,11 @@
 2018-11-14 17:01:28 INFO  QUERY_LOOGER:48 - API code: 200 | service: change status one area | status: SUCCESS | Nhà 4
 2018-11-14 17:06:53 INFO  QUERY_LOOGER:48 - API code: 200 | service: find all notification by user | status: SUCCESS | total: 12
 2018-11-15 10:42:11 INFO  QUERY_LOOGER:48 - API code: 200 | service: find register by area | status: SUCCESS | total: 5
+2018-11-16 16:48:54 INFO  QUERY_LOOGER:48 - API code: 202 | service: accept list register | status: ERROR EXCEPTION | 
+2018-11-16 16:53:12 INFO  QUERY_LOOGER:48 - API code: 202 | service: accept list register | status: ERROR EXCEPTION | 
+2018-11-16 16:56:25 INFO  QUERY_LOOGER:48 - API code: 202 | service: accept list register | status: ERROR EXCEPTION | 
+2018-11-16 16:59:37 INFO  QUERY_LOOGER:48 - API code: 202 | service: accept list register | status: ERROR EXCEPTION | 
+2018-11-16 17:01:41 INFO  QUERY_LOOGER:48 - API code: 202 | service: accept list register | status: ERROR EXCEPTION | 
+2018-11-16 17:02:43 INFO  QUERY_LOOGER:48 - API code: 202 | service: accept list register | status: ERROR EXCEPTION | 
+2018-11-16 17:03:11 INFO  QUERY_LOOGER:48 - API code: 202 | service: accept list register | status: ERROR EXCEPTION | 
+2018-11-16 17:05:09 INFO  QUERY_LOOGER:48 - API code: 202 | service: accept list register | status: ERROR EXCEPTION | 
