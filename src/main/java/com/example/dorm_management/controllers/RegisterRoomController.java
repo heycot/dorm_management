@@ -167,7 +167,7 @@ public class RegisterRoomController {
         try {
             Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 
-            registerRoom.setStatus(0);
+            registerRoom.setStatus(RegisterRoom.REGISTER_STATUS_DISABLE);
             RegisterRoom registerRoom1 = registerRoomService.addOne(registerRoom);
             if (registerRoom1 == null) {
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_NO, "error add", null);
@@ -184,7 +184,7 @@ public class RegisterRoomController {
 
                 Notification notification = Notification.builder()
                         .userId(viewRegisterRoom.getUserId())
-                        .status(0)
+                        .status(Notification.NOTIFICATION_STATUS_NOT_READ)
                         .content(content)
                         .title("Đăng ký phòng thành công!")
                         .time(timestamp).build();
@@ -214,7 +214,7 @@ public class RegisterRoomController {
     public JsonResponse editOne(@Valid @RequestBody RegisterRoom registerRoom, @PathVariable(value = "id") Integer id){
         try {
 
-            RegisterRoom registerRoom1 = registerRoomService.edditOne(registerRoom, id);
+            RegisterRoom registerRoom1 = registerRoomService.editOne(registerRoom, id);
             if (registerRoom1 == null) {
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_NO, "error add", null);
                 LogError.log(API.CODE_API_NO,  "edit one register" ,LogError.FAIL, "");
@@ -255,7 +255,7 @@ public class RegisterRoomController {
 
                     Notification notification = Notification.builder()
                             .userId(viewRegisterRoom.getUserId())
-                            .status(0)
+                            .status(Notification.NOTIFICATION_STATUS_NOT_READ)
                             .content(content)
                             .title("Bạn đã được duyệt phòng!")
                             .time(timestamp).build();
@@ -291,7 +291,7 @@ public class RegisterRoomController {
             int check = 0;
 
             List<RegisterRoom> registerRoomList = mapper.readValue(jsonString, new TypeReference<List<RegisterRoom>>(){});
-            Cost cost = costService.findOneByTypeAndStatus(1, 1);
+            Cost cost = costService.findOneByTypeAndStatus(Cost.COST_TYPE_ROOM, Cost.COST_STATUS_ENABLE);
 
             Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 
@@ -303,7 +303,7 @@ public class RegisterRoomController {
                             .userId(register.getUserId())
                             .roomId(register.getRoomId())
                             .year(register.getYear())
-                            .status(1)
+                            .status(RentRoom.RENT_ROOM_STATUS_ENABLE)
                             .bail(register.getNumber() * cost.getValue()).build();
 
 //                    rentRoom.setSemesterId(register.getSemesterId());
@@ -325,7 +325,7 @@ public class RegisterRoomController {
 
                     Notification notification = Notification.builder()
                             .userId(viewRegisterRoom.getUserId())
-                            .status(0)
+                            .status(Notification.NOTIFICATION_STATUS_NOT_READ)
                             .content(content)
                             .title("Duyệt phòng thành công!")
                             .time(timestamp).build();

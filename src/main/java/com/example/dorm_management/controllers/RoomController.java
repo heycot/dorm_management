@@ -199,9 +199,7 @@ public class RoomController {
 
             List<Room> roomList = mapper.readValue(jsonString, new TypeReference<List<Room>>(){});
 
-            if (status != 0 ){
-                status = 1;
-            }
+
             for(Room room : roomList) {
                 if (roomService.changeStatus(room.getId(), status) != null)
                     check++;
@@ -228,10 +226,6 @@ public class RoomController {
     @GetMapping("/change-status-one/{id}/{status}")
     public JsonResponse changeStatusOne(@PathVariable(value = "id") Integer id, @PathVariable(value = "status") Integer status) {
         try{
-
-            if (status != 0 ){
-                status = 1;
-            }
 
             Room room = roomService.changeStatus(id, status);
 

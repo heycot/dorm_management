@@ -17,6 +17,11 @@ import java.beans.ConstructorProperties;
 @Data
 @Table(name = "area")
 public class Area {
+    //------------------status ---------------------------
+    public final static Integer AREA_STATUS_ENABLE  = 1;
+    public final static Integer AREA_STATUS_DISABLE = 0;
+
+    //-------------------------------------------------------
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

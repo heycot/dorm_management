@@ -35,7 +35,7 @@ public class NotificationController {
     public JsonResponse findAllOfUser(@PathVariable(value = "id") Integer user_id) {
         try {
 
-            RentRoom rentRoom = rentRoomService.findOneByUserId(user_id, 1);
+            RentRoom rentRoom = rentRoomService.findOneByUserId(user_id, RentRoom.RENT_ROOM_STATUS_ENABLE);
 
             List<Notification> notificationList = notificationService.findAllOfUser(user_id, rentRoom.getRoomId());
 
@@ -64,7 +64,7 @@ public class NotificationController {
     public JsonResponse readOne(@PathVariable(value = "id") Integer id) {
         try {
 
-            Notification notification = notificationService.readOne(id, 1);
+            Notification notification = notificationService.readOne(id, Notification.NOTIFICATION_STATUS_READED);
             if (notification ==  null ){
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_NO, "fail", null);
                 LogError.log(API.CODE_API_YES,  "read one notification" ,LogError.SUCCESS, "");

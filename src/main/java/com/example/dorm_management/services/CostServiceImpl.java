@@ -68,6 +68,9 @@ public class CostServiceImpl implements CostService {
 
     @Override
     public Cost changeStatus(Integer id, Integer status) {
+        if (status != Cost.COST_STATUS_ENABLE) {
+            status = Cost.COST_STATUS_DISABLE;
+        }
         Cost cost = costRepository.findOne(id);
 
         cost.setStatus(status);

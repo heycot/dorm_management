@@ -13,7 +13,7 @@ public interface RegisterRoomService {
 
     RegisterRoom addOne(RegisterRoom registerRoom);
 
-    RegisterRoom edditOne(RegisterRoom registerRoom, Integer id);
+    RegisterRoom editOne(RegisterRoom registerRoom, Integer id);
 
     RegisterRoom acceptOne(Integer id);
 

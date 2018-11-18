@@ -26,9 +26,7 @@ public class RoomFunctionServiceImpl implements RoomFunctionService {
     @Override
     public RoomFunction addOne(RoomFunction roomFunction){
         try {
-            roomFunctionRepository.save(roomFunction);
-
-            return roomFunction;
+            return roomFunctionRepository.save(roomFunction);
         } catch (Exception e) {
             System.out.println(e.getCause());
 
@@ -44,7 +42,7 @@ public class RoomFunctionServiceImpl implements RoomFunctionService {
             roomFunctionEdit.setName(roomFunction.getName());
             roomFunctionEdit.setStatus(roomFunction.getStatus());
 
-            return roomFunctionEdit;
+            return roomFunctionRepository.save(roomFunctionEdit);
         } catch (Exception e) {
             System.out.println(e.getCause());
 
@@ -55,11 +53,14 @@ public class RoomFunctionServiceImpl implements RoomFunctionService {
     @Override
     public RoomFunction changeStatus(Integer id, Integer status){
         try {
+            if (status != RoomFunction.ROOM_FUNCTION_STATUS_ENABLE) {
+                status = RoomFunction.ROOM_FUNCTION_STATUS_DISABLE;
+            }
             RoomFunction roomFunctionEdit = roomFunctionRepository.findOne(id);
 
             roomFunctionEdit.setStatus(status);
 
-            return roomFunctionEdit;
+            return roomFunctionRepository.save(roomFunctionEdit);
         } catch (Exception e) {
             System.out.println(e.getCause());
 

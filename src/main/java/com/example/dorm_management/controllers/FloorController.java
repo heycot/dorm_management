@@ -96,10 +96,6 @@ public class FloorController {
     @GetMapping("/change-status/{id}/{status}")
     public JsonResponse addOneFloor(@PathVariable(value = "id") Integer id, @PathVariable(value = "status") Integer status) {
         try {
-            if (status != 0) {
-                status = 1;
-            }
-
             Floor floor = floorService.changeStatus(id, status);
 
             if ( floor != null ){

@@ -178,7 +178,7 @@ public class SubsistenceFeeController {
         try {
 
             Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-            SubsistenceFee sb1 = subsistenceFeeService.changeStatusOne(sub_id, 1);
+            SubsistenceFee sb1 = subsistenceFeeService.changeStatusOne(sub_id, SubsistenceFee.SUBSISTENCE_FEE_STATUS_PAYED);
 
             if ( sb1 == null) {
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_ERROR, "edit fail", null);
@@ -199,7 +199,7 @@ public class SubsistenceFeeController {
                                 + "Tổng tiền : " + ( total_elec + total_water) + "VND";
 
                 Notification notification = Notification.builder()
-                        .status(0)
+                        .status(Notification.NOTIFICATION_STATUS_NOT_READ)
                         .content(content)
                         .title("Thanh toán hóa đơn tháng " + sb1.getMonth() + "/" + sb1.getYear() + " thành công!")
                         .roomId(sb1.getRoomId())
@@ -250,7 +250,7 @@ public class SubsistenceFeeController {
                             + "Tổng tiền : " + ( total_elec + total_water) + "VND";
 
                     Notification notification = Notification.builder()
-                            .status(0)
+                            .status(Notification.NOTIFICATION_STATUS_NOT_READ)
                             .content(content)
                             .title("Thông báo tiền điện nước tháng " + sb1.getMonth() + "/" + sb1.getYear() + "!")
                             .roomId(sb1.getRoomId())

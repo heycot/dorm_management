@@ -70,7 +70,7 @@ public class NotificationServiceImpl implements NotificationService {
         try{
             Notification notification = notificationRepository.findOne(id);
 
-            notification.setStatus(status);
+            notification.setStatus(Notification.NOTIFICATION_STATUS_READED);
 
             notificationRepository.save(notification);
             return  notification;

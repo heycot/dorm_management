@@ -17,6 +17,11 @@ import java.sql.Timestamp;
 @Entity
 @Table(name = "register_room")
 public class RegisterRoom {
+    //------------------status ---------------------------
+    public final static Integer REGISTER_STATUS_ENABLE  = 1;
+    public final static Integer REGISTER_STATUS_DISABLE = 0;
+
+    //-------------------------------------------------------
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

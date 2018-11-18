@@ -17,6 +17,11 @@ import java.util.List;
 @Entity
 @Table(name = "room")
 public class Room {
+    //------------------status ---------------------------
+    public final static Integer ROOM_STATUS_ENABLE  = 1;
+    public final static Integer ROOM_STATUS_DISABLE = 0;
+
+    //-------------------------------------------------------
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

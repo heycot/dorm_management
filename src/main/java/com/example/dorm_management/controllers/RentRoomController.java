@@ -36,7 +36,7 @@ public class RentRoomController {
             List<RentRoom> rentRoomList = mapper.readValue(jsonString, new TypeReference<List<RentRoom>>(){});
 
             for (RentRoom rentRoom: rentRoomList) {
-                if (rentRoomService.changeStatus(rentRoom, 0) != true) {
+                if (rentRoomService.changeStatus(rentRoom, RentRoom.RENT_ROOM_STATUS_DISABLE) != true) {
                     check++;
                 }
             }

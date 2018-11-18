@@ -115,10 +115,6 @@ public class RoomFunctionController {
     public JsonResponse addOne(@PathVariable(value = "status") Integer status, @PathVariable(value = "id") Integer id){
         try {
 
-            if (status != 0) {
-                status = 1;
-            }
-
             RoomFunction result = roomFunctionService.changeStatus(id, status);
 
             if (result != null) {

@@ -15,6 +15,11 @@ import java.beans.ConstructorProperties;
 @Entity
 @Table(name = "subsistence_fee")
 public class SubsistenceFee {
+    //------------------status ---------------------------
+    public final static Integer SUBSISTENCE_FEE_STATUS_NOT_PAY  = 0;
+    public final static Integer SUBSISTENCE_FEE_STATUS_PAYED    = 1;
+
+    //-------------------------------------------------------
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

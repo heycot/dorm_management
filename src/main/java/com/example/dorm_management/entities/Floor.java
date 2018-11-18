@@ -15,6 +15,11 @@ import java.beans.ConstructorProperties;
 @Data
 @Table(name = "floor")
 public class Floor {
+    //------------------status ---------------------------
+    public final static Integer FLOOR_STATUS_ENABLE  = 1;
+    public final static Integer FLOOR_STATUS_DISABLE = 0;
+
+    //-------------------------------------------------------
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

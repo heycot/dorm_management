@@ -35,7 +35,7 @@ public class RegisterRoomServiceImpl implements RegisterRoomService {
     }
 
     @Override
-    public RegisterRoom edditOne(RegisterRoom registerRoom, Integer id) {
+    public RegisterRoom editOne(RegisterRoom registerRoom, Integer id) {
         try {
 
             RegisterRoom registerRoomEdit = registerRoomRepository.findOneById(id);
@@ -62,7 +62,7 @@ public class RegisterRoomServiceImpl implements RegisterRoomService {
             Timestamp timestamp = new Timestamp(System.currentTimeMillis());
             RegisterRoom registerRoom = registerRoomRepository.findOneById(id);
 
-            registerRoom.setStatus(1);
+            registerRoom.setStatus(RegisterRoom.REGISTER_STATUS_ENABLE);
             registerRoom.setTimeCensor(timestamp);
 
             RegisterRoom result = registerRoomRepository.save(registerRoom);
@@ -75,12 +75,12 @@ public class RegisterRoomServiceImpl implements RegisterRoomService {
 
     @Override
     public List<ViewRegisterRoom> findAllAcceptedByRoomId(Integer id) {
-        return viewRegisterRoomRepository.findAllByRoomIdAndStatus(id, 1);
+        return viewRegisterRoomRepository.findAllByRoomIdAndStatus(id, RegisterRoom.REGISTER_STATUS_ENABLE);
     }
 
     @Override
     public List<ViewRegisterRoom> findAllNotAcceptedByRoomId(Integer id) {
-        return viewRegisterRoomRepository.findAllByRoomIdAndStatus(id, 0);
+        return viewRegisterRoomRepository.findAllByRoomIdAndStatus(id, RegisterRoom.REGISTER_STATUS_DISABLE);
     }
 
     @Override

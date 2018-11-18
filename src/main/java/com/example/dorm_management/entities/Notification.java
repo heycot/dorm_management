@@ -20,6 +20,11 @@ import java.sql.Timestamp;
 @Data
 @Table(name = "notification")
 public class Notification {
+    //------------------status ---------------------------
+    public final static Integer NOTIFICATION_STATUS_READED   = 1;
+    public final static Integer NOTIFICATION_STATUS_NOT_READ = 0;
+
+    //-------------------------------------------------------
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;

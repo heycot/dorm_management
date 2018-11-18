@@ -56,6 +56,11 @@ public class FloorServiceImpl implements FloorService {
     @Override
     public Floor changeStatus(Integer id, Integer status){
         try {
+
+            if (status != Floor.FLOOR_STATUS_ENABLE) {
+                status = Floor.FLOOR_STATUS_DISABLE;
+            }
+
             Floor floor = floorRepository.findOne(id);
 
             floor.setStatus(status);
@@ -73,6 +78,11 @@ public class FloorServiceImpl implements FloorService {
 
     @Override
     public Integer changeStatusByAreaIdAndStatus(Integer status, Integer areaId) {
+
+        if (status != Floor.FLOOR_STATUS_ENABLE) {
+            status = Floor.FLOOR_STATUS_DISABLE;
+        }
+
         Integer check = 0;
         List<Floor> floorList = floorRepository.getFloorsByAreaId(areaId);
 
