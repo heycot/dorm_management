@@ -35,5 +35,7 @@ public interface UserService {
     boolean deleteAction(Integer id);
     boolean updateAction(Integer id, Action action);
 
+    List<User> findUserByFloorId(Integer id);
 
+    List<User> findUserByAreaId(Integer id);
 }

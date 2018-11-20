@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public interface FloorRepository extends JpaRepository<Floor, Integer> {
 
-    @Query(value = "select * from floor where floor.area_id = ?1 order by id desc ", nativeQuery = true)
+    @Query(value = "select * from floor where floor.area_id = ?1 order by name asc ", nativeQuery = true)
     List<Floor> getFloorsByAreaId(Integer areaId);
 
     @Query(value = "select * from floor where  id = ?1", nativeQuery = true)

@@ -66,8 +66,7 @@ public class FloorServiceImpl implements FloorService {
             floor.setStatus(status);
 
             Integer result = roomService.changeStatusRoomByFloorId(status, id);
-
-              return floor;
+            return floorRepository.save(floor);
         } catch (Exception e) {
             System.out.println(e.getCause());
 

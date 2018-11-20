@@ -39,3 +39,6 @@
 2018-11-16 17:02:43 INFO  QUERY_LOOGER:48 - API code: 202 | service: accept list register | status: ERROR EXCEPTION | 
 2018-11-16 17:03:11 INFO  QUERY_LOOGER:48 - API code: 202 | service: accept list register | status: ERROR EXCEPTION | 
 2018-11-16 17:05:09 INFO  QUERY_LOOGER:48 - API code: 202 | service: accept list register | status: ERROR EXCEPTION | 
+2018-11-20 20:55:57 INFO  QUERY_LOOGER:48 - API code: 200 | service: accept list register | status: SUCCESS | total: 2
+2018-11-20 20:57:03 INFO  QUERY_LOOGER:48 - API code: 201 | service: find room in floor by month and year | status: FAIL | 
+2018-11-20 20:57:34 INFO  QUERY_LOOGER:48 - API code: 200 | service: find room in floor by month and year | status: SUCCESS | total: 1

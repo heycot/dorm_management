@@ -13,6 +13,6 @@ public interface RoomRepository extends JpaRepository<Room, Integer> {
 //    @Query(value = "update room set status = ?1 where floor_id = ?2", nativeQuery = false)
 //    Integer changeStatusRoomByFloorId(Integer status, Integer floorId);
 
-    @Query(value = "select * from  room where floor_id = ?1", nativeQuery = true)
+    @Query(value = "select * from  room where floor_id = ?1 order by name asc", nativeQuery = true)
     List<Room> findAllByFloorId(Integer floorId);
 }

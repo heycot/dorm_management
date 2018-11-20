@@ -295,4 +295,14 @@ public class UserServiceImpl implements UserService {
         return false;
     }
 
+    @Override
+    public List<User> findUserByFloorId(Integer id) {
+        return userRepository.findUserByFloorId(id);
+    }
+
+    @Override
+    public List<User> findUserByAreaId(Integer id) {
+        return userRepository.findUserByAreaId(id);
+    }
+
 }

@@ -130,6 +130,29 @@ public class SubsistenceFeeController {
         }
     }
 
+    @GetMapping("/floor/{floor_id}/{month}/{year}")
+    public JsonResponse findAllByMonthAndYearAndFloorId(@PathVariable(value = "floor_id") Integer floorId, @PathVariable(value = "month") Integer month, @PathVariable(value = "year") String year) {
+        try {
+
+            List<ViewSubsistence> subsistenceFeeList = subsistenceFeeService.findAllViewByMonthAndYearAndFloorId(floorId, month, year);
+
+            if (subsistenceFeeList.size() > 0) {
+                jsonResponse = return_List_View_Object_JsonPresonse(API.CODE_API_YES, "success", subsistenceFeeList);
+                LogError.log(API.CODE_API_YES,  "find room in floor by month and year" ,LogError.SUCCESS, "total: " + subsistenceFeeList.size());
+
+            } else {
+                jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_NOTFOUND, "not found", null);
+                LogError.log(API.CODE_API_NO,  "find room in floor by month and year" ,LogError.FAIL, "");
+            }
+
+            return jsonResponse;
+        } catch (Exception e) {
+            jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_ERROR, "error exception", null);
+            LogError.log(API.CODE_API_ERROR,  "find room in floor by month and year" ,LogError.ERROR_EXCEPTION, "");
+            return jsonResponse;
+        }
+    }
+
     @PutMapping("/add")
     public JsonResponse addOne(@Valid @RequestBody SubsistenceFee subsistenceFee){
         try {

@@ -43,6 +43,17 @@ public class SubsistenceFeeServiceImpl implements SubsistenceFeeService {
 
     @Override
     public SubsistenceFee addOne(SubsistenceFee subsistenceFee){
+
+        List<SubsistenceFee> subsistenceFeeList =  subsistenceFeeRepository.findALlByRoomId(subsistenceFee.getRoomId());
+
+        if (subsistenceFeeList.size() > 0) {
+            subsistenceFee.setOldNumberWater(subsistenceFeeList.get(subsistenceFeeList.size() - 1).getNewNumberWater());
+            subsistenceFee.setOldNumberElec( subsistenceFeeList.get(subsistenceFeeList.size() - 1).getNewNumberElec());
+        } else {
+            subsistenceFee.setOldNumberWater(0);
+            subsistenceFee.setOldNumberElec( 0);
+        }
+
         if (subsistenceFee.getNewNumberElec() - subsistenceFee.getOldNumberElec() >= 100) {
             subsistenceFee.setLevelElec(2);
         } else {
@@ -55,19 +66,9 @@ public class SubsistenceFeeServiceImpl implements SubsistenceFeeService {
             subsistenceFee.setLevelWater(1);
         }
 
-        List<SubsistenceFee> subsistenceFeeList =  subsistenceFeeRepository.findALlByRoomId(subsistenceFee.getRoomId());
-
-
         Cost costsElec = costService.findOneByTypeAndLevel(Cost.COST_TYPE_ELECTRONIC, subsistenceFee.getLevelElec(), Cost.COST_STATUS_ENABLE);
         Cost costWater = costService.findOneByTypeAndLevel(Cost.COST_TYPE_WATER, subsistenceFee.getLevelWater(), Cost.COST_STATUS_ENABLE );
 
-        if (subsistenceFeeList.size() > 0) {
-            subsistenceFee.setOldNumberWater(subsistenceFeeList.get(subsistenceFeeList.size() - 1).getNewNumberWater());
-            subsistenceFee.setOldNumberElec( subsistenceFeeList.get(subsistenceFeeList.size() - 1).getNewNumberElec());
-        } else {
-            subsistenceFee.setOldNumberWater(0);
-            subsistenceFee.setOldNumberElec( 0);
-        }
         subsistenceFee.setCostElec(costsElec.getValue());
         subsistenceFee.setCostWater(costWater.getValue());
         subsistenceFee.setTotalElec((subsistenceFee.getNewNumberElec() - subsistenceFee.getOldNumberElec()) * costsElec.getValue());
@@ -85,6 +86,14 @@ public class SubsistenceFeeServiceImpl implements SubsistenceFeeService {
 
            List<SubsistenceFee> subsistenceFeeList =  subsistenceFeeRepository.findALlByRoomId(subsistenceFee.getRoomId());
 
+           if (subsistenceFeeList.size() > 0) {
+               subsistenceFee.setOldNumberWater(subsistenceFeeList.get(subsistenceFeeList.size() - 1).getNewNumberWater());
+               subsistenceFee.setOldNumberElec( subsistenceFeeList.get(subsistenceFeeList.size() - 1).getNewNumberElec());
+           } else {
+               subsistenceFee.setOldNumberWater(0);
+               subsistenceFee.setOldNumberElec( 0);
+           }
+
            //---------- change some information of subsistenceFee------------------------------------------------------
            if (subsistenceFee.getNewNumberElec() - subsistenceFee.getOldNumberElec() >= 100) {
                subsistenceFee.setLevelElec(2);
@@ -101,13 +110,6 @@ public class SubsistenceFeeServiceImpl implements SubsistenceFeeService {
            Cost costsElec = costService.findOneByTypeAndLevel(Cost.COST_TYPE_ELECTRONIC, subsistenceFee.getLevelElec(), Cost.COST_STATUS_ENABLE);
            Cost costWater = costService.findOneByTypeAndLevel(Cost.COST_TYPE_WATER, subsistenceFee.getLevelWater(), Cost.COST_STATUS_ENABLE );
 
-           if (subsistenceFeeList.size() > 0) {
-               subsistenceFee.setOldNumberWater(subsistenceFeeList.get(subsistenceFeeList.size() - 1).getNewNumberWater());
-               subsistenceFee.setOldNumberElec( subsistenceFeeList.get(subsistenceFeeList.size() - 1).getNewNumberElec());
-           } else {
-               subsistenceFee.setOldNumberWater(0);
-               subsistenceFee.setOldNumberElec( 0);
-           }
            subsistenceFee.setCostElec(costsElec.getValue());
            subsistenceFee.setCostWater(costWater.getValue());
            subsistenceFee.setTotalElec((subsistenceFee.getNewNumberElec() - subsistenceFee.getOldNumberElec()) * costsElec.getValue());
@@ -197,5 +199,10 @@ public class SubsistenceFeeServiceImpl implements SubsistenceFeeService {
     @Override
     public List<ViewSubsistence> findAllViewByMonthAndYearAndAreaId(Integer areaId, Integer month, String year) {
         return viewSubsistenceFeeRepository.findAllViewByMonthAndYearAndAreaId( areaId, month, year) ;
+    }
+
+    @Override
+    public List<ViewSubsistence> findAllViewByMonthAndYearAndFloorId(Integer floorId, Integer month, String year) {
+        return viewSubsistenceFeeRepository.findAllViewByMonthAndYearAndFloorId(floorId, month, year);
     }
 }
