@@ -42,3 +42,13 @@
 2018-11-20 20:55:57 INFO  QUERY_LOOGER:48 - API code: 200 | service: accept list register | status: SUCCESS | total: 2
 2018-11-20 20:57:03 INFO  QUERY_LOOGER:48 - API code: 201 | service: find room in floor by month and year | status: FAIL | 
 2018-11-20 20:57:34 INFO  QUERY_LOOGER:48 - API code: 200 | service: find room in floor by month and year | status: SUCCESS | total: 1
+2018-11-20 22:25:15 INFO  QUERY_LOOGER:48 - API code: 200 | service: find all time register | status: SUCCESS | total: 2
+2018-11-20 22:25:25 INFO  QUERY_LOOGER:48 - API code: 204 | service: find one time register current | status: NOT FOUND | 
+2018-11-20 22:26:16 INFO  QUERY_LOOGER:48 - API code: 202 | service: find one time register current | status: ERROR EXCEPTION | 
+2018-11-20 22:26:50 INFO  QUERY_LOOGER:48 - API code: 202 | service: find one time register current | status: ERROR EXCEPTION | 
+2018-11-20 23:04:26 INFO  QUERY_LOOGER:48 - API code: 202 | service: find one time register current | status: ERROR EXCEPTION | 
+2018-11-20 23:05:23 INFO  QUERY_LOOGER:48 - API code: 204 | service: find one time register current | status: NOT FOUND | 
+2018-11-20 23:06:48 INFO  QUERY_LOOGER:48 - API code: 200 | service: find one time register current | status: SUCCESS | begin: 2018-11-19 00:00:00.0
+2018-11-20 23:12:09 INFO  QUERY_LOOGER:48 - API code: 200 | service: find one time register current | status: SUCCESS | begin: 2018-11-19 00:00:00.0
+2018-11-20 23:14:10 INFO  QUERY_LOOGER:48 - API code: 200 | service: add one time register | status: SUCCESS | begin: 2018-11-19 00:00:00.0
+2018-11-20 23:15:07 INFO  QUERY_LOOGER:48 - API code: 200 | service: add one time register | status: SUCCESS | begin: 2018-11-19 00:00:00.0

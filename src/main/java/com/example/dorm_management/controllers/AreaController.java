@@ -190,7 +190,4 @@ public class AreaController {
         return jsonResponse;
     }
 
-
-
-
 }
