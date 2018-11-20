@@ -37,7 +37,6 @@ public class AreaServiceImpl implements AreaService {
     @Override
     public Area addNewArea(Area areaEntity) {
         try{
-            areaEntity.setStatus(Area.AREA_STATUS_ENABLE);
             return areaRepository.save(areaEntity);
         } catch (Exception e) {
             System.out.println(e.getCause());

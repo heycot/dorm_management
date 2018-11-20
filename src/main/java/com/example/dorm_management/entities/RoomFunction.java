@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.beans.ConstructorProperties;
 
 @Getter
@@ -25,6 +26,7 @@ public class RoomFunction {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @NotNull
     private String name;
 
     private Integer status;

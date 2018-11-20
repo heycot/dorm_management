@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.beans.ConstructorProperties;
 
 @Getter
@@ -25,8 +26,10 @@ public class Floor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @NotNull
     private String name;
 
+    @NotNull
     @Column(name = "area_id")
     private Integer areaId;
 

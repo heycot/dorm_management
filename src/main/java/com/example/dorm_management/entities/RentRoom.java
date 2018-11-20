@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.beans.ConstructorProperties;
 import java.sql.Timestamp;
 
@@ -25,14 +26,18 @@ public class RentRoom {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @NotNull
     @Column(name = "semester_id")
     private Integer semesterId;
 
+    @NotNull
     @Column(name = "user_id")
     private Integer userId;
 
+    @NotNull
     private String year;
 
+    @NotNull
     private Float bail;
 
     private Integer status;

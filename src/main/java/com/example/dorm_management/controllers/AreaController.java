@@ -11,6 +11,8 @@ import com.example.dorm_management.services.FloorService;
 import com.example.dorm_management.services.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -105,9 +107,10 @@ public class AreaController {
     @PutMapping(value = "/edit/{id}")
     @ResponseStatus(HttpStatus.OK)
 //    public ResponseEntity<Area> updateArea(@PathVariable(value = "id") Integer id, @Valid @RequestBody Area areaEntity, Error error){
-     public JsonResponse updateArea(@PathVariable(value = "id") Integer id, @Valid @RequestBody Area areaEntity){
+     public JsonResponse updateArea(@PathVariable(value = "id") Integer id, @Valid @RequestBody Area areaEntity, BindingResult br){
         try {
-//         if(error.hashCode()) {
+//         if(br.hashCode()) {
+////             jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_ERROR, "")
 //            return ResponseEntity.badRequest().body(ValidationErrorBuilder.fromBindingErrors(errors));
 //
 //        }

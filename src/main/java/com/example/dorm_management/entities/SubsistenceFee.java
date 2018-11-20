@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.beans.ConstructorProperties;
 
 @Getter
@@ -25,8 +26,10 @@ public class SubsistenceFee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @NotNull
     private Integer month;
 
+    @NotNull
     private String year;
 
     private Float total;
@@ -63,6 +66,7 @@ public class SubsistenceFee {
     @Column(name = "total_elec")
     private  Float totalElec;
 
+    @NotNull
     @Column(name = "room_id")
     private Integer roomId;
 

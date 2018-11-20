@@ -7,6 +7,7 @@ import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.beans.ConstructorProperties;
 import java.sql.Timestamp;
 
@@ -27,17 +28,22 @@ public class RegisterRoom {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @NotNull
     @Column(name = "user_id")
     private Integer userId;
 
+    @NotNull
     private Integer number;
 
+    @NotNull
     @Column(name = "semester_id")
     private Integer semesterId;
 
+    @NotNull
     @Column(name = "room_id")
     private Integer roomId;
 
+    @NotNull
     private String year;
 
     private Integer status;

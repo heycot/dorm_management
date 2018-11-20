@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.beans.ConstructorProperties;
 import java.sql.Timestamp;
 
@@ -24,9 +25,11 @@ public class TimeRegister {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @NotNull
     @Column(name = "date_begin")
     private Timestamp dateBegin;
 
+    @NotNull
     @Column(name = "date_end")
     private Timestamp dateEnd;
 
