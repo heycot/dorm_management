@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.beans.ConstructorProperties;
 
 @Getter
@@ -15,11 +16,17 @@ import java.beans.ConstructorProperties;
 @Entity
 @Table(name = "room_function")
 public class RoomFunction {
+    //------------------status ---------------------------
+    public final static Integer ROOM_FUNCTION_STATUS_ENABLE  = 1;
+    public final static Integer ROOM_FUNCTION_STATUS_DISABLE = 0;
+
+    //-------------------------------------------------------
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @NotNull
     private String name;
 
     private Integer status;

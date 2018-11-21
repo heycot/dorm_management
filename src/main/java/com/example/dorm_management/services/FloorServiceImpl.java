@@ -1,16 +1,23 @@
 package com.example.dorm_management.services;
 
 import com.example.dorm_management.entities.Floor;
+import com.example.dorm_management.entities.Room;
 import com.example.dorm_management.respositories.FloorRepository;
+import com.example.dorm_management.respositories.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.mail.Session;
+import javax.management.Query;
 import java.util.List;
 
 @Service
 public class FloorServiceImpl implements FloorService {
     @Autowired
     private FloorRepository floorRepository;
+
+    @Autowired
+    private RoomService roomService;
 
     @Override
     public List<Floor> findFloorsByAreaId(Integer areaId) {
@@ -49,15 +56,41 @@ public class FloorServiceImpl implements FloorService {
     @Override
     public Floor changeStatus(Integer id, Integer status){
         try {
+
+            if (status != Floor.FLOOR_STATUS_ENABLE) {
+                status = Floor.FLOOR_STATUS_DISABLE;
+            }
+
             Floor floor = floorRepository.findOne(id);
 
             floor.setStatus(status);
 
-            return floor;
+            Integer result = roomService.changeStatusRoomByFloorId(status, id);
+            return floorRepository.save(floor);
         } catch (Exception e) {
             System.out.println(e.getCause());
 
             return null;
         }
+    }
+
+
+    @Override
+    public Integer changeStatusByAreaIdAndStatus(Integer status, Integer areaId) {
+
+        if (status != Floor.FLOOR_STATUS_ENABLE) {
+            status = Floor.FLOOR_STATUS_DISABLE;
+        }
+
+        Integer check = 0;
+        List<Floor> floorList = floorRepository.getFloorsByAreaId(areaId);
+
+        for(Floor floor : floorList) {
+            floor.setStatus(status);
+            if (floorRepository.save(floor) != null){
+                check++;
+            }
+        }
+        return check;
     }
 }

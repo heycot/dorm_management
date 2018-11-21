@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.beans.ConstructorProperties;
 
 @Getter
@@ -15,13 +16,20 @@ import java.beans.ConstructorProperties;
 @Entity
 @Table(name = "subsistence_fee")
 public class SubsistenceFee {
+    //------------------status ---------------------------
+    public final static Integer SUBSISTENCE_FEE_STATUS_NOT_PAY  = 0;
+    public final static Integer SUBSISTENCE_FEE_STATUS_PAYED    = 1;
+
+    //-------------------------------------------------------
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @NotNull
     private Integer month;
 
+    @NotNull
     private String year;
 
     private Float total;
@@ -58,6 +66,7 @@ public class SubsistenceFee {
     @Column(name = "total_elec")
     private  Float totalElec;
 
+    @NotNull
     @Column(name = "room_id")
     private Integer roomId;
 
@@ -196,24 +205,24 @@ public class SubsistenceFee {
         this.totalElec = totalElec;
     }
 
-    @ConstructorProperties({"month", "year", "total", "levelWater", "levelElec", "status", "status", "newNumberWater", "newNumberElec",
+    @ConstructorProperties({"month", "year", "total", "levelWater", "levelElec", "status", "newNumberWater", "newNumberElec",
             "oldNumberWater", "oldNumberElec", "costWater", "costElec", "totalWater", "totalElec", "roomId"})
     SubsistenceFee(Integer month, String year, Float total, Integer levelWater, Integer levelElec, Integer status, Integer newNumberWater, Integer newNumberElec, Integer oldNumberWater, Integer oldNumberElec, Float costWater, Float costElec, Float totalWater, Float totalElec, Integer roomId) {
-        this.month          = month;
-        this.year           = year;
-        this.total          = total;
-        this.levelWater     = levelWater;
-        this.levelElec      = levelElec;
-        this.status         = status;
+        this.month = month;
+        this.year = year;
+        this.total = total;
+        this.levelWater = levelWater;
+        this.levelElec = levelElec;
+        this.status = status;
         this.newNumberWater = newNumberWater;
-        this.newNumberElec  = newNumberElec;
+        this.newNumberElec = newNumberElec;
         this.oldNumberWater = oldNumberWater;
-        this.oldNumberElec  = oldNumberElec;
-        this.costWater      = costWater;
-        this.costElec       = costElec;
-        this.totalWater     = totalWater;
-        this.totalElec      = totalElec;
-        this.roomId         = roomId;
+        this.oldNumberElec = oldNumberElec;
+        this.costWater = costWater;
+        this.costElec = costElec;
+        this.totalWater = totalWater;
+        this.totalElec = totalElec;
+        this.roomId = roomId;
     }
 
     //==================================================================================================================

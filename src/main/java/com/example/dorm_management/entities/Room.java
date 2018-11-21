@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.beans.ConstructorProperties;
 import java.util.Collection;
 import java.util.Collections;
@@ -17,24 +18,35 @@ import java.util.List;
 @Entity
 @Table(name = "room")
 public class Room {
+    //------------------status ---------------------------
+    public final static Integer ROOM_STATUS_ENABLE  = 1;
+    public final static Integer ROOM_STATUS_DISABLE = 0;
+
+    //-------------------------------------------------------
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @NotNull
     private String name;
 
+    @NotNull
     @Column(name = "floor_id")
     private Integer floorId;
 
+    @NotNull
     @Column(name = "cost_id")
     private Integer costId;
 
+    @NotNull
     @Column(name = "function_id")
     private Integer functionId;
 
+    @NotNull
     @Column(name = "number_bed")
     private Integer numberBed;
 
+    @NotNull
     private Integer gender;
 
     private Integer status;

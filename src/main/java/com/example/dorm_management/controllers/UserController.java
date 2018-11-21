@@ -166,6 +166,18 @@ public class UserController {
         }
     }
 
+    @GetMapping("/change-status/{id}/{status}")
+    public JsonResponse changeStatusUser(@PathVariable(value = "id") Integer id, @PathVariable(value = "status") Integer status){
+        try{
+            if(userService.changeStatusUser(id,status)){
+                return Utility.convertObjectToJSON(API.CODE_API_YES, "successfully", status);
+            }
+            return Utility.convertObjectToJSON(API.CODE_API_NO, "error");
+        }catch (Exception e){
+            return Utility.convertObjectToJSON(API.CODE_API_NO, e.getMessage());
+        }
+    }
+
     //TODO GROUP
 
     @GetMapping("/get_group")
@@ -180,6 +192,7 @@ public class UserController {
             return Utility.convertObjectToJSON(API.CODE_API_NO, e.getMessage());
         }
     }
+
     @GetMapping("/get_group/{id}")
      public JsonResponse findGroupByUserId(@PathVariable(value = "id") Integer id){
         try{
@@ -337,6 +350,46 @@ public class UserController {
                     return jsonResponse;
                 }
             }
+        } catch (Exception e) {
+            jsonResponse = return_No_Object_JsonPresonse(API.CODE_API_NO, "error exception");
+
+            return jsonResponse;
+        }
+    }
+
+    @GetMapping("/floor/{id}")
+    public JsonResponse findStudentsbyFloorId(@PathVariable(value = "id") Integer id) {
+        try{
+            List<User> users = userService.findUserByFloorId(id);
+            if (users.size() > 0) {
+                jsonResponse = return_List_Object_JsonPresonse(API.CODE_API_YES, "success", users);
+
+            } else {
+                jsonResponse = return_No_Object_JsonPresonse(API.CODE_API_NOTFOUND, "Không tìm thấy dữ liệu");
+
+            }
+            return jsonResponse;
+
+        } catch (Exception e) {
+            jsonResponse = return_No_Object_JsonPresonse(API.CODE_API_NO, "error exception");
+
+            return jsonResponse;
+        }
+    }
+
+    @GetMapping("/area/{id}")
+    public JsonResponse findStudentsbyAreaId(@PathVariable(value = "id") Integer id) {
+        try{
+            List<User> users = userService.findUserByAreaId(id);
+            if (users.size() > 0) {
+                jsonResponse = return_List_Object_JsonPresonse(API.CODE_API_YES, "success", users);
+
+            } else {
+                jsonResponse = return_No_Object_JsonPresonse(API.CODE_API_NOTFOUND, "Không tìm thấy dữ liệu");
+
+            }
+            return jsonResponse;
+
         } catch (Exception e) {
             jsonResponse = return_No_Object_JsonPresonse(API.CODE_API_NO, "error exception");
 

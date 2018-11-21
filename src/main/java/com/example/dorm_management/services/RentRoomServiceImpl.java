@@ -24,6 +24,9 @@ public class RentRoomServiceImpl implements RentRoomService {
     @Override
     public boolean changeStatus(RentRoom rentRoom, Integer status){
         try {
+            if (status != RentRoom.RENT_ROOM_STATUS_ENABLE) {
+                status = RentRoom.RENT_ROOM_STATUS_DISABLE;
+            }
             RentRoom rentRoomEdit = rentRoomRepository.findOne(rentRoom.getId());
 
             rentRoomEdit.setStatus(status);

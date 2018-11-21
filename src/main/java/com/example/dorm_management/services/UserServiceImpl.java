@@ -105,6 +105,21 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public boolean changeStatusUser(Integer id, Integer status) {
+        try{
+            User user = userRepository.findUserById(id);
+            if(user == null){
+                return false;
+            }
+            user.setStatus(EnumStatusUser.byCode(status));
+            userRepository.save(user);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
+    }
+
+    @Override
     public JsonResponse registerUser(RegisterStudentUserDTO registerStudentDTO) {
         try {
             synchronized (this){
@@ -293,6 +308,16 @@ public class UserServiceImpl implements UserService {
             return false;
         }
         return false;
+    }
+
+    @Override
+    public List<User> findUserByFloorId(Integer id) {
+        return userRepository.findUserByFloorId(id);
+    }
+
+    @Override
+    public List<User> findUserByAreaId(Integer id) {
+        return userRepository.findUserByAreaId(id);
     }
 
 }

@@ -43,6 +43,17 @@ public class SubsistenceFeeServiceImpl implements SubsistenceFeeService {
 
     @Override
     public SubsistenceFee addOne(SubsistenceFee subsistenceFee){
+
+        List<SubsistenceFee> subsistenceFeeList =  subsistenceFeeRepository.findALlByRoomId(subsistenceFee.getRoomId());
+
+        if (subsistenceFeeList.size() > 0) {
+            subsistenceFee.setOldNumberWater(subsistenceFeeList.get(subsistenceFeeList.size() - 1).getNewNumberWater());
+            subsistenceFee.setOldNumberElec( subsistenceFeeList.get(subsistenceFeeList.size() - 1).getNewNumberElec());
+        } else {
+            subsistenceFee.setOldNumberWater(0);
+            subsistenceFee.setOldNumberElec( 0);
+        }
+
         if (subsistenceFee.getNewNumberElec() - subsistenceFee.getOldNumberElec() >= 100) {
             subsistenceFee.setLevelElec(2);
         } else {
@@ -55,8 +66,8 @@ public class SubsistenceFeeServiceImpl implements SubsistenceFeeService {
             subsistenceFee.setLevelWater(1);
         }
 
-        Cost costsElec = costService.findOneByTypeAndLevel(2, subsistenceFee.getLevelElec(), 1);
-        Cost costWater = costService.findOneByTypeAndLevel(3, subsistenceFee.getLevelWater(), 1 );
+        Cost costsElec = costService.findOneByTypeAndLevel(Cost.COST_TYPE_ELECTRONIC, subsistenceFee.getLevelElec(), Cost.COST_STATUS_ENABLE);
+        Cost costWater = costService.findOneByTypeAndLevel(Cost.COST_TYPE_WATER, subsistenceFee.getLevelWater(), Cost.COST_STATUS_ENABLE );
 
         subsistenceFee.setCostElec(costsElec.getValue());
         subsistenceFee.setCostWater(costWater.getValue());
@@ -64,7 +75,7 @@ public class SubsistenceFeeServiceImpl implements SubsistenceFeeService {
         subsistenceFee.setTotalWater((subsistenceFee.getNewNumberWater() - subsistenceFee.getOldNumberWater()) * costWater.getValue());
 
         subsistenceFee.setTotal(subsistenceFee.getTotalElec() + subsistenceFee.getTotalWater());
-        subsistenceFee.setStatus(0);
+        subsistenceFee.setStatus(SubsistenceFee.SUBSISTENCE_FEE_STATUS_NOT_PAY);
 
         return subsistenceFeeRepository.save(subsistenceFee);
     }
@@ -72,6 +83,16 @@ public class SubsistenceFeeServiceImpl implements SubsistenceFeeService {
     @Override
     public SubsistenceFee editOne(SubsistenceFee subsistenceFee, Integer id){
        try {
+
+           List<SubsistenceFee> subsistenceFeeList =  subsistenceFeeRepository.findALlByRoomId(subsistenceFee.getRoomId());
+
+           if (subsistenceFeeList.size() > 0) {
+               subsistenceFee.setOldNumberWater(subsistenceFeeList.get(subsistenceFeeList.size() - 1).getNewNumberWater());
+               subsistenceFee.setOldNumberElec( subsistenceFeeList.get(subsistenceFeeList.size() - 1).getNewNumberElec());
+           } else {
+               subsistenceFee.setOldNumberWater(0);
+               subsistenceFee.setOldNumberElec( 0);
+           }
 
            //---------- change some information of subsistenceFee------------------------------------------------------
            if (subsistenceFee.getNewNumberElec() - subsistenceFee.getOldNumberElec() >= 100) {
@@ -86,8 +107,8 @@ public class SubsistenceFeeServiceImpl implements SubsistenceFeeService {
                subsistenceFee.setLevelWater(1);
            }
 
-           Cost costsElec = costService.findOneByTypeAndLevel(2, subsistenceFee.getLevelElec(), 1);
-           Cost costWater = costService.findOneByTypeAndLevel(3, subsistenceFee.getLevelWater(), 1 );
+           Cost costsElec = costService.findOneByTypeAndLevel(Cost.COST_TYPE_ELECTRONIC, subsistenceFee.getLevelElec(), Cost.COST_STATUS_ENABLE);
+           Cost costWater = costService.findOneByTypeAndLevel(Cost.COST_TYPE_WATER, subsistenceFee.getLevelWater(), Cost.COST_STATUS_ENABLE );
 
            subsistenceFee.setCostElec(costsElec.getValue());
            subsistenceFee.setCostWater(costWater.getValue());
@@ -95,7 +116,7 @@ public class SubsistenceFeeServiceImpl implements SubsistenceFeeService {
            subsistenceFee.setTotalWater((subsistenceFee.getNewNumberWater() - subsistenceFee.getOldNumberWater()) * costWater.getValue());
 
            subsistenceFee.setTotal(subsistenceFee.getTotalElec() + subsistenceFee.getTotalWater());
-           subsistenceFee.setStatus(0);
+           subsistenceFee.setStatus(SubsistenceFee.SUBSISTENCE_FEE_STATUS_NOT_PAY);
 
            //------------ edit subsistenceFee --------------------------------------------------------------------------
            SubsistenceFee subsistenceFeeEdit = subsistenceFeeRepository.findOne(id);
@@ -113,6 +134,8 @@ public class SubsistenceFeeServiceImpl implements SubsistenceFeeService {
            subsistenceFeeEdit.setOldNumberWater(subsistenceFee.getOldNumberWater());
            subsistenceFeeEdit.setCostWater(subsistenceFee.getCostWater());
            subsistenceFeeEdit.setCostElec(subsistenceFee.getCostElec());
+           subsistenceFeeEdit.setTotalWater(subsistenceFee.getTotalWater());
+           subsistenceFeeEdit.setTotalElec(subsistenceFee.getTotalElec());
 
            subsistenceFeeRepository.save(subsistenceFeeEdit);
 
@@ -130,6 +153,10 @@ public class SubsistenceFeeServiceImpl implements SubsistenceFeeService {
     @Override
     public SubsistenceFee changeStatusOne(Integer id, Integer status) {
         try {
+            if (status != SubsistenceFee.SUBSISTENCE_FEE_STATUS_PAYED) {
+                status = SubsistenceFee.SUBSISTENCE_FEE_STATUS_NOT_PAY;
+            }
+
             SubsistenceFee subsistenceFee1 = subsistenceFeeRepository.findOne(id);
 
             subsistenceFee1.setStatus(status);
@@ -166,11 +193,16 @@ public class SubsistenceFeeServiceImpl implements SubsistenceFeeService {
 
     @Override
     public List<SubsistenceFee> getAllSubsistenceNotPayBYMonthAndYear(Integer month, String year){
-        return subsistenceFeeRepository.getAllSubsistenceNotPayBYMonthAndYear(month, year, 0);
+        return subsistenceFeeRepository.getAllSubsistenceNotPayBYMonthAndYear(month, year, SubsistenceFee.SUBSISTENCE_FEE_STATUS_NOT_PAY);
     }
 
     @Override
     public List<ViewSubsistence> findAllViewByMonthAndYearAndAreaId(Integer areaId, Integer month, String year) {
         return viewSubsistenceFeeRepository.findAllViewByMonthAndYearAndAreaId( areaId, month, year) ;
+    }
+
+    @Override
+    public List<ViewSubsistence> findAllViewByMonthAndYearAndFloorId(Integer floorId, Integer month, String year) {
+        return viewSubsistenceFeeRepository.findAllViewByMonthAndYearAndFloorId(floorId, month, year);
     }
 }

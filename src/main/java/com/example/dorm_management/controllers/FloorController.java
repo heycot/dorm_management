@@ -4,8 +4,10 @@ import com.example.dorm_management.entities.Floor;
 import com.example.dorm_management.entities.RentRoom;
 import com.example.dorm_management.json.API;
 import com.example.dorm_management.json.JsonResponse;
+import com.example.dorm_management.libararies.LogError;
 import com.example.dorm_management.services.AreaService;
 import com.example.dorm_management.services.FloorService;
+import com.example.dorm_management.services.RoomService;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +27,6 @@ public class FloorController {
     @Autowired
     private FloorService floorService;
 
-    @Autowired
-    private AreaService areaService;
 
     private JsonResponse jsonResponse;
 
@@ -37,8 +37,11 @@ public class FloorController {
             if (floors.size() > 0) {
 
                 jsonResponse = return_List_Object_JsonPresonse(API.CODE_API_YES, "success", floors);
+                LogError.log(API.CODE_API_YES,  "find one by id" ,LogError.SUCCESS, "total: " + floors.size());
             } else {
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_NOTFOUND, "Không có tầng nào của nhà có id = " + areaId, null);
+
+                LogError.log(API.CODE_API_NOTFOUND,  "find one by id" ,LogError.FAIL, "");
             }
             return jsonResponse;
 
@@ -46,6 +49,7 @@ public class FloorController {
             System.out.println(e.getCause());
 
             jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_ERROR, "error exception", null);
+            LogError.log(API.CODE_API_ERROR,  "find one by id" ,LogError.ERROR_EXCEPTION, "");
 
             return jsonResponse;
         }
@@ -56,13 +60,16 @@ public class FloorController {
         try {
             if (floorService.addOneFloor(floor) != null){
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_ADD_SUCCESS, "success", floor);
+                LogError.log(API.CODE_API_YES,  "add one floor" ,LogError.SUCCESS, "");
             } else {
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_NO, "fail", null);
+                LogError.log(API.CODE_API_NO,  "add one floor" ,LogError.FAIL, "");
             }
             return jsonResponse;
 
         } catch (Exception e) {
             jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_ERROR, "fail", null);
+            LogError.log(API.CODE_API_ERROR,  "add one floor" ,LogError.ERROR_EXCEPTION, "");
             return jsonResponse;
         }
     }
@@ -72,35 +79,38 @@ public class FloorController {
         try {
             if (floorService.editOne(id, floor) != null){
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_EDIT_SUCCESS, "success", floor);
+                LogError.log(API.CODE_API_YES,  "edit one floor" ,LogError.SUCCESS, floor.getName());
             } else {
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_NO, "fail", null);
+                LogError.log(API.CODE_API_NO,  "edit one floor" ,LogError.FAIL, "");
             }
             return jsonResponse;
 
         } catch (Exception e) {
             jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_ERROR, "fail", null);
+            LogError.log(API.CODE_API_ERROR,  "edit one floor" ,LogError.ERROR_EXCEPTION, "");
             return jsonResponse;
         }
     }
 
-    @PutMapping("/change-status/{id}/{status}")
+    @GetMapping("/change-status/{id}/{status}")
     public JsonResponse addOneFloor(@PathVariable(value = "id") Integer id, @PathVariable(value = "status") Integer status) {
         try {
-            if (status != 0) {
-                status = 1;
-            }
-
             Floor floor = floorService.changeStatus(id, status);
-            if ( floor != null){
+
+            if ( floor != null ){
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_EDIT_SUCCESS, "successful", floor);
+                LogError.log(API.CODE_API_YES,  "change status one floor" ,LogError.SUCCESS, floor.getName());
             } else {
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_NO, "fail", null);
+                LogError.log(API.CODE_API_NO,  "change status one floor" ,LogError.FAIL, "");
             }
 
             return jsonResponse;
 
         } catch (Exception e) {
             jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_ERROR, "fail", null);
+            LogError.log(API.CODE_API_ERROR,  "change status one floor" ,LogError.ERROR_EXCEPTION, "");
             return jsonResponse;
         }
     }
@@ -121,13 +131,16 @@ public class FloorController {
 
             if (check == floorList.size()) {
                 jsonResponse = return_List_Object_JsonPresonse(API.CODE_API_ADD_SUCCESS, "success", floorList);
+                LogError.log(API.CODE_API_YES,  "add list floor" ,LogError.SUCCESS, "total: " + floorList.size());
             } else {
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_NO, "fail", null);
+                LogError.log(API.CODE_API_NO,  "add list floor" ,LogError.FAIL, "");
             }
 
             return jsonResponse;
         } catch (Exception e) {
             jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_ERROR, "fail", null);
+            LogError.log(API.CODE_API_ERROR,  "add list floor" ,LogError.ERROR_EXCEPTION, "");
             return jsonResponse;
         }
     }

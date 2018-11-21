@@ -9,6 +9,8 @@ import java.util.List;
 public interface RoomService {
     List<ViewRoom> findRoomsByFloorId(Integer floorId);
 
+    List<Room> findAllByFloorId(Integer floorId);
+
     List<ViewRoom> findRoomsByAreaId(Integer areaId);
 
     ViewRoom findRoomById(Integer id);
@@ -18,5 +20,7 @@ public interface RoomService {
     Room editOne(Integer id, Room room);
 
     Room changeStatus(Integer roomId, Integer status);
+
+    Integer changeStatusRoomByFloorId(Integer status, Integer floorId);
 
 }

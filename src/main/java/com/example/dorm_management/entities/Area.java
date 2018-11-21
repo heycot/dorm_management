@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.persistence.criteria.CriteriaBuilder;
+import javax.validation.constraints.NotNull;
 import java.beans.ConstructorProperties;
 
 @Getter
@@ -17,12 +18,19 @@ import java.beans.ConstructorProperties;
 @Data
 @Table(name = "area")
 public class Area {
+    //------------------status ---------------------------
+    public final static Integer AREA_STATUS_ENABLE  = 1;
+    public final static Integer AREA_STATUS_DISABLE = 0;
+
+    //-------------------------------------------------------
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @NotNull
     private String name;
 
+    @NotNull
     @Column(name = "number_floor")
     private Integer numberFloor;
 

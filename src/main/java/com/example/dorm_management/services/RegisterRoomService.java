@@ -13,9 +13,9 @@ public interface RegisterRoomService {
 
     RegisterRoom addOne(RegisterRoom registerRoom);
 
-    RegisterRoom edditOne(RegisterRoom registerRoom, Integer id);
+    RegisterRoom editOne(RegisterRoom registerRoom, Integer id);
 
-    RegisterRoom acceptOne(RegisterRoom x);
+    RegisterRoom acceptOne(Integer id);
 
     List<ViewRegisterRoom> findAllAcceptedByRoomId(Integer id);
 
@@ -25,4 +25,8 @@ public interface RegisterRoomService {
     boolean deleteOne(Integer registerId);
 
     ViewRegisterRoom getOneViewById(Integer id);
+
+    List<ViewRegisterRoom> findAllByAreaId(Integer id);
+
+    List<ViewRegisterRoom> findAllByFloorId(Integer id);
 }

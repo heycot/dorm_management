@@ -7,6 +7,7 @@ import com.example.dorm_management.respositories.ViewRegisterRoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 @Service
@@ -34,7 +35,7 @@ public class RegisterRoomServiceImpl implements RegisterRoomService {
     }
 
     @Override
-    public RegisterRoom edditOne(RegisterRoom registerRoom, Integer id) {
+    public RegisterRoom editOne(RegisterRoom registerRoom, Integer id) {
         try {
 
             RegisterRoom registerRoomEdit = registerRoomRepository.findOneById(id);
@@ -56,12 +57,13 @@ public class RegisterRoomServiceImpl implements RegisterRoomService {
 
 
     @Override
-    public RegisterRoom acceptOne(RegisterRoom x){
+    public RegisterRoom acceptOne(Integer id){
         try {
-            RegisterRoom registerRoom = registerRoomRepository.findOneById(x.getId());
+            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+            RegisterRoom registerRoom = registerRoomRepository.findOneById(id);
 
-            registerRoom.setStatus(x.getStatus());
-            registerRoom.setTimeCensor(x.getTimeCensor());
+            registerRoom.setStatus(RegisterRoom.REGISTER_STATUS_ENABLE);
+            registerRoom.setTimeCensor(timestamp);
 
             RegisterRoom result = registerRoomRepository.save(registerRoom);
             return result;
@@ -73,12 +75,12 @@ public class RegisterRoomServiceImpl implements RegisterRoomService {
 
     @Override
     public List<ViewRegisterRoom> findAllAcceptedByRoomId(Integer id) {
-        return viewRegisterRoomRepository.findAllByRoomIdAndStatus(id, 1);
+        return viewRegisterRoomRepository.findAllByRoomIdAndStatus(id, RegisterRoom.REGISTER_STATUS_ENABLE);
     }
 
     @Override
     public List<ViewRegisterRoom> findAllNotAcceptedByRoomId(Integer id) {
-        return viewRegisterRoomRepository.findAllByRoomIdAndStatus(id, 0);
+        return viewRegisterRoomRepository.findAllByRoomIdAndStatus(id, RegisterRoom.REGISTER_STATUS_DISABLE);
     }
 
     @Override
@@ -95,5 +97,15 @@ public class RegisterRoomServiceImpl implements RegisterRoomService {
     @Override
     public ViewRegisterRoom getOneViewById(Integer id) {
         return viewRegisterRoomRepository.getOneViewById(id);
+    }
+
+    @Override
+    public List<ViewRegisterRoom> findAllByAreaId(Integer id) {
+        return viewRegisterRoomRepository.findAllByAreaId(id);
+    }
+
+    @Override
+    public List<ViewRegisterRoom> findAllByFloorId(Integer id) {
+        return viewRegisterRoomRepository.findAllByFloorId(id);
     }
 }

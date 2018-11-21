@@ -32,4 +32,6 @@ public interface SubsistenceFeeService {
     List<SubsistenceFee> getAllSubsistenceNotPayBYMonthAndYear(Integer month, String year);
 
     List<ViewSubsistence> findAllViewByMonthAndYearAndAreaId(Integer areaId, Integer month, String year);
+
+    List<ViewSubsistence> findAllViewByMonthAndYearAndFloorId(Integer floorId, Integer month, String year);
 }

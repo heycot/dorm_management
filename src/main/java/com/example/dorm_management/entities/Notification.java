@@ -9,6 +9,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.beans.ConstructorProperties;
 import java.sql.Timestamp;
 
@@ -20,12 +21,19 @@ import java.sql.Timestamp;
 @Data
 @Table(name = "notification")
 public class Notification {
+    //------------------status ---------------------------
+    public final static Integer NOTIFICATION_STATUS_READED   = 1;
+    public final static Integer NOTIFICATION_STATUS_NOT_READ = 0;
+
+    //-------------------------------------------------------
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+    @NotNull
     private String title;
 
+    @NotNull
     private String content;
 
     private Integer status;

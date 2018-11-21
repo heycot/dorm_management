@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.beans.ConstructorProperties;
 import java.sql.Timestamp;
 
@@ -15,19 +16,28 @@ import java.sql.Timestamp;
 @Entity
 @Table(name = "rent_room")
 public class RentRoom {
+    //------------------status ---------------------------
+    public final static Integer RENT_ROOM_STATUS_ENABLE  = 1;
+    public final static Integer RENT_ROOM_STATUS_DISABLE = 0;
+
+    //-------------------------------------------------------
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @NotNull
     @Column(name = "semester_id")
     private Integer semesterId;
 
+    @NotNull
     @Column(name = "user_id")
     private Integer userId;
 
+    @NotNull
     private String year;
 
+    @NotNull
     private Float bail;
 
     private Integer status;

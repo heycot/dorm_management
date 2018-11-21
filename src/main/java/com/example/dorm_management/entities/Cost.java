@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.beans.ConstructorProperties;
 
 @Getter
@@ -15,17 +16,30 @@ import java.beans.ConstructorProperties;
 @Entity
 @Table(name = "cost")
 public class Cost {
+    //------------------status ---------------------------
+    public final static Integer COST_STATUS_ENABLE   = 1;
+    public final static Integer COST_STATUS_DISABLE  = 0;
+    public final static Integer COST_TYPE_ROOM       = 1;
+    public final static Integer COST_TYPE_WATER      = 2;
+    public final static Integer COST_TYPE_ELECTRONIC = 3;
+
+
+    //-------------------------------------------------------
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @NotNull
     private String name;
 
+    @NotNull
     private Float value;
 
+    @NotNull
     private Integer type;
 
+    @NotNull
     private  Integer level;
 
     private Integer status;

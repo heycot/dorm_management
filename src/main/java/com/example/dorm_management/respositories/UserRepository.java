@@ -22,4 +22,12 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
     @Query(value = "SELECT * FROM action INNER JOIN role ON groups.id = role.groups_id INNER JOIN user ON role.id = user.role_id WHERE user.id = ?)", nativeQuery = true)
     List<Action> findActionByUserId(Integer id);
+
+    @Query(value = "SELECT * FROM user WHERE id in (SELECT user_id FROM rent_room LEFT JOIN room ON rent_room.room_id = room.id" +
+            " WHERE room.floor_id = ?1)", nativeQuery = true)
+    List<User> findUserByFloorId(Integer id);
+
+    @Query(value = "SELECT * FROM user WHERE id in (SELECT user_id FROM rent_room LEFT JOIN room ON rent_room.room_id = room.id" +
+            " INNER JOIN floor ON room.floor_id = floor.id WHERE floor.area_id = ?1)", nativeQuery = true)
+    List<User> findUserByAreaId(Integer id);
 }
