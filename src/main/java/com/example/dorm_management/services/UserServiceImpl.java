@@ -320,4 +320,9 @@ public class UserServiceImpl implements UserService {
         return userRepository.findUserByAreaId(id);
     }
 
+    @Override
+    public User isExistedUserByStudentCodeAndPassword(String studentCode, String password) {
+        return userRepository.getUserByStudentCodeAndPassword(studentCode, password);
+    }
+
 }

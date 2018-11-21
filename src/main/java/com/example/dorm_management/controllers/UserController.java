@@ -84,6 +84,23 @@ public class UserController {
         }
     }
 
+    @PostMapping("/student/login")
+    public JsonResponse checkLoginWithStudent(@RequestBody AccountDTO accountDTO){
+        try{
+            User user = userService.isExistedUserByStudentCodeAndPassword(accountDTO.getStudentCode(), accountDTO.getPassword());
+            User userRes = userService.findUserById(user.getId());
+            if(user != null){
+                Basej4Logger.getInstance().info("API: " + API.CODE_API_YES, "Login sucess", accountDTO.getUserName());
+                return Utility.convertObjectToJSON(API.CODE_API_YES, "Login sucess", userRes);
+            }
+            Basej4Logger.getInstance().info("API: " + API.CODE_API_NO, "User not exist!", accountDTO.getUserName());
+            return Utility.convertObjectToJSON(API.CODE_API_NO, "User not exist!", false);
+        }catch (Exception e){
+            Basej4Logger.getInstance().info("API: " + API.CODE_API_ERROR, "server error", accountDTO.getUserName());
+            return Utility.convertObjectToJSON(API.CODE_API_ERROR, "server error");
+        }
+    }
+
     @GetMapping("/get_user_detail/{id}")
     public JsonResponse findUserDetailById(@PathVariable(value = "id") Integer id){
         try{

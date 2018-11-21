@@ -39,4 +39,6 @@ public interface UserService {
     List<User> findUserByFloorId(Integer id);
 
     List<User> findUserByAreaId(Integer id);
+
+    User isExistedUserByStudentCodeAndPassword(String studentCode, String password);
 }

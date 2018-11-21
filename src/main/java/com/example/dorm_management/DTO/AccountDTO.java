@@ -10,14 +10,16 @@ import lombok.Data;
 public class AccountDTO {
     private String userName;
     private String password;
+    private String studentCode;
 
     public AccountDTO() {
     }
 
-    public AccountDTO(String userName, String password) {
+    public AccountDTO(String userName, String password, String studentCode) {
 
         this.userName = userName;
         this.password = password;
+        this.studentCode = studentCode;
     }
 
     public String getUserName() {
@@ -35,5 +37,13 @@ public class AccountDTO {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getStudentCode() {
+        return studentCode;
+    }
+
+    public void setStudentCode(String studentCode) {
+        this.studentCode = studentCode;
     }
 }

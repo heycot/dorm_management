@@ -30,4 +30,8 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     @Query(value = "SELECT * FROM user WHERE id in (SELECT user_id FROM rent_room LEFT JOIN room ON rent_room.room_id = room.id" +
             " INNER JOIN floor ON room.floor_id = floor.id WHERE floor.area_id = ?1)", nativeQuery = true)
     List<User> findUserByAreaId(Integer id);
+
+    @Query(value = "SELECT user.* FROM user INNER JOIN student_code ON user.student_code = student_code.id "
+            + "WHERE user.password = ?2 AND student_code.value = ?1", nativeQuery = true)
+    User getUserByStudentCodeAndPassword(String studentCode, String password);
 }
