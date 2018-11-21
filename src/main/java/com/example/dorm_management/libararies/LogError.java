@@ -1,4 +1,4 @@
-package com.example.dorm_management.entities;
+package com.example.dorm_management.libararies;
 import com.example.dorm_management.config.Basej4Logger;
 
 public class LogError {
