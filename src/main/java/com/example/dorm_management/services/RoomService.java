@@ -23,4 +23,7 @@ public interface RoomService {
 
     Integer changeStatusRoomByFloorId(Integer status, Integer floorId);
 
+    void updateRegisterRoom(Integer roomId);
+
+    void updatePresentRoom(Integer roomId);
 }

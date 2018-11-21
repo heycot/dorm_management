@@ -18,6 +18,12 @@ public class RoomServiceImpl implements RoomService {
     @Autowired
     private ViewRoomRepository viewRoomRepository;
 
+    @Autowired
+    private RegisterRoomService registerRoomService;
+
+    @Autowired
+    private RentRoomService rentRoomService;
+
     @Override
     public List<ViewRoom> findRoomsByFloorId(Integer floorId) {
         return viewRoomRepository.findRoomsByFloorId(floorId);
@@ -41,6 +47,8 @@ public class RoomServiceImpl implements RoomService {
     @Override
     public Room addOne(Room room){
         try{
+            room.setStudentRegister(0);
+            room.setStudentPresent(0);
             return  roomRepository.save(room);
         } catch (Exception e){
             System.out.println(e.getCause());
@@ -103,6 +111,24 @@ public class RoomServiceImpl implements RoomService {
             }
         }
         return  result;
+    }
+
+    @Override
+    public void updateRegisterRoom(Integer roomId) {
+        Room room = roomRepository.findOne(roomId);
+
+        room.setStudentRegister(registerRoomService.countRegisterByRoomId(roomId));
+
+        roomRepository.save(room);
+    }
+
+    @Override
+    public void updatePresentRoom(Integer roomId) {
+        Room room = roomRepository.findOne(roomId);
+
+        room.setStudentPresent(rentRoomService.countPresentByRoomId(roomId));
+
+        roomRepository.save(room);
     }
 
 }

@@ -84,13 +84,26 @@ public class RegisterRoomServiceImpl implements RegisterRoomService {
     }
 
     @Override
-    public boolean deleteOne(Integer registerId) {
+    public ViewRegisterRoom deleteOne(Integer registerId, boolean isRent) {
         try {
-
-            registerRoomRepository.delete(registerId);
-            return true;
+            ViewRegisterRoom viewRegisterRoom = viewRegisterRoomRepository.getOneViewById(registerId);
+            if (isRent) {
+                if (viewRegisterRoom.getStatus() == RegisterRoom.REGISTER_STATUS_DISABLE) {
+                    return  null;
+                } else {
+                    registerRoomRepository.delete(registerId);
+                    return viewRegisterRoom;
+                }
+            } else {
+                if (viewRegisterRoom.getStatus() == RegisterRoom.REGISTER_STATUS_ENABLE) {
+                    return  null;
+                } else {
+                    registerRoomRepository.delete(registerId);
+                    return viewRegisterRoom;
+                }
+            }
         } catch (Exception e) {
-            return  false;
+            return  null;
         }
     }
 
@@ -108,4 +121,10 @@ public class RegisterRoomServiceImpl implements RegisterRoomService {
     public List<ViewRegisterRoom> findAllByFloorId(Integer id) {
         return viewRegisterRoomRepository.findAllByFloorId(id);
     }
+
+    @Override
+    public Integer countRegisterByRoomId(Integer roomId) {
+        return registerRoomRepository.countRegisterByRoomId(roomId);
+    }
+
 }

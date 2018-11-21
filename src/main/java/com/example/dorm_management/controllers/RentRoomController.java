@@ -8,6 +8,7 @@ import com.example.dorm_management.json.API;
 import com.example.dorm_management.json.JsonResponse;
 import com.example.dorm_management.libararies.LogError;
 import com.example.dorm_management.services.RentRoomService;
+import com.example.dorm_management.services.RoomService;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,9 @@ public class RentRoomController {
     @Autowired
     private RentRoomService rentRoomService;
 
+    @Autowired
+    private RoomService roomService;
+
     private JsonResponse jsonResponse;
 
     @PutMapping("/disable")
@@ -36,6 +40,7 @@ public class RentRoomController {
             List<RentRoom> rentRoomList = mapper.readValue(jsonString, new TypeReference<List<RentRoom>>(){});
 
             for (RentRoom rentRoom: rentRoomList) {
+                roomService.updatePresentRoom(rentRoom.getRoomId());
                 if (rentRoomService.changeStatus(rentRoom, RentRoom.RENT_ROOM_STATUS_DISABLE) != true) {
                     check++;
                 }

@@ -39,4 +39,9 @@ public class RentRoomServiceImpl implements RentRoomService {
             return false;
         }
     }
+
+    @Override
+    public Integer countPresentByRoomId(Integer roomId) {
+        return rentRoomRepository.countPresentByRoomId(roomId);
+    }
 }

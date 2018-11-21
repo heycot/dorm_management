@@ -52,3 +52,22 @@
 2018-11-20 23:12:09 INFO  QUERY_LOOGER:48 - API code: 200 | service: find one time register current | status: SUCCESS | begin: 2018-11-19 00:00:00.0
 2018-11-20 23:14:10 INFO  QUERY_LOOGER:48 - API code: 200 | service: add one time register | status: SUCCESS | begin: 2018-11-19 00:00:00.0
 2018-11-20 23:15:07 INFO  QUERY_LOOGER:48 - API code: 200 | service: add one time register | status: SUCCESS | begin: 2018-11-19 00:00:00.0
+2018-11-21 20:47:28 INFO  QUERY_LOOGER:48 - API code: 200 | service: find register by room | status: SUCCESS | total: 4
+2018-11-21 20:51:25 INFO  QUERY_LOOGER:48 - API code: 200 | service: accept list register | status: SUCCESS | total: 1
+2018-11-21 20:51:44 INFO  QUERY_LOOGER:48 - API code: 200 | service: find room by id | status: SUCCESS | Phòng 101
+2018-11-21 20:53:09 INFO  QUERY_LOOGER:48 - API code: 201 | service: delete list register | status: FAIL | 
+2018-11-21 20:53:41 INFO  QUERY_LOOGER:48 - API code: 201 | service: delete list register | status: FAIL | 
+2018-11-21 21:03:37 INFO  QUERY_LOOGER:48 - API code: 201 | service: delete list register | status: FAIL | 
+2018-11-21 21:07:31 INFO  QUERY_LOOGER:48 - API code: 200 | service: delete register | status: SUCCESS | 
+2018-11-21 21:07:38 INFO  QUERY_LOOGER:48 - API code: 200 | service: find room by id | status: SUCCESS | Phòng 101
+2018-11-21 21:11:00 INFO  QUERY_LOOGER:48 - API code: 202 | service: rent bail list | status: ERROR EXCEPTION | 
+2018-11-21 21:18:15 INFO  QUERY_LOOGER:48 - API code: 201 | service: rent bail list | status: FAIL | 
+2018-11-21 21:22:17 INFO  QUERY_LOOGER:48 - API code: 202 | service: rent bail list | status: ERROR EXCEPTION | 
+2018-11-21 21:22:55 INFO  QUERY_LOOGER:48 - API code: 202 | service: rent bail list | status: ERROR EXCEPTION | 
+2018-11-21 21:36:49 INFO  QUERY_LOOGER:48 - API code: 202 | service: rent bail list | status: ERROR EXCEPTION | 
+2018-11-21 21:43:07 INFO  QUERY_LOOGER:48 - API code: 202 | service: rent bail list | status: ERROR EXCEPTION | 
+2018-11-21 21:46:00 INFO  QUERY_LOOGER:48 - API code: 202 | service: rent bail list | status: ERROR EXCEPTION | 
+2018-11-21 21:52:07 INFO  QUERY_LOOGER:48 - API code: 202 | service: rent bail list | status: ERROR EXCEPTION | 
+2018-11-21 21:58:39 INFO  QUERY_LOOGER:48 - API code: 202 | service: rent bail list | status: ERROR EXCEPTION | 
+2018-11-21 22:05:24 INFO  QUERY_LOOGER:48 - API code: 202 | service: rent bail list | status: ERROR EXCEPTION | 
+2018-11-21 22:07:08 INFO  QUERY_LOOGER:48 - API code: 202 | service: rent bail list | status: ERROR EXCEPTION | 

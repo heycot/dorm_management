@@ -9,4 +9,6 @@ public interface RentRoomService {
     RentRoom addOne(RentRoom rentRoom);
 
     boolean changeStatus(RentRoom rentRoom, Integer status);
+
+    Integer countPresentByRoomId(Integer roomId);
 }

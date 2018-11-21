@@ -4,10 +4,7 @@ import com.example.dorm_management.entities.*;
 import com.example.dorm_management.json.API;
 import com.example.dorm_management.json.JsonResponse;
 import com.example.dorm_management.libararies.LogError;
-import com.example.dorm_management.services.CostService;
-import com.example.dorm_management.services.NotificationService;
-import com.example.dorm_management.services.RegisterRoomService;
-import com.example.dorm_management.services.RentRoomService;
+import com.example.dorm_management.services.*;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +27,9 @@ public class RegisterRoomController {
 
     @Autowired
     private CostService costService;
+
+    @Autowired
+    private RoomService roomService;
 
     @Autowired
     private RentRoomService rentRoomService;
@@ -173,9 +173,9 @@ public class RegisterRoomController {
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_NO, "error add", null);
                 LogError.log(API.CODE_API_NO,  "add one register" ,LogError.FAIL, "");
             } else {
-
                 ViewRegisterRoom viewRegisterRoom = registerRoomService.getOneViewById(registerRoom1.getId());
 
+                roomService.updateRegisterRoom(viewRegisterRoom.getRoomId());
                 String content = "Bạn đã đăng ký thành công "
                         + "phòng: " + viewRegisterRoom.getRoomName() + "\n"
                         + " tầng: " + viewRegisterRoom.getFloorName() + "\n"
@@ -215,6 +215,7 @@ public class RegisterRoomController {
         try {
 
             RegisterRoom registerRoom1 = registerRoomService.editOne(registerRoom, id);
+            roomService.updateRegisterRoom(registerRoom1.getRoomId());
             if (registerRoom1 == null) {
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_NO, "error add", null);
                 LogError.log(API.CODE_API_NO,  "edit one register" ,LogError.FAIL, "");
@@ -284,43 +285,76 @@ public class RegisterRoomController {
         }
     }
 
+    @GetMapping("/del/{id}")
+    public JsonResponse deleteOne(@PathVariable(value = "id") Integer id){
+        try {
+
+            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+            ViewRegisterRoom viewRegisterRoom = registerRoomService.deleteOne(id, false);
+
+            if(viewRegisterRoom != null) {
+
+                String content = "Bạn đã xóa đăng ký thành công: "
+                        + viewRegisterRoom.getRoomName() + "\n"
+                        + viewRegisterRoom.getFloorName() + "\n"
+                        + viewRegisterRoom.getAreaName();
+
+                Notification notification = Notification.builder()
+                        .userId(viewRegisterRoom.getUserId())
+                        .status(Notification.NOTIFICATION_STATUS_NOT_READ)
+                        .content(content)
+                        .title("Bạn đã được duyệt phòng!")
+                        .time(timestamp).build();
+
+                roomService.updateRegisterRoom(viewRegisterRoom.getRoomId());
+                boolean check = notificationService.addNotification(notification);
+
+                jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_YES, "success and sent notification", null);
+                LogError.log(API.CODE_API_YES,  "delete register" ,LogError.SUCCESS, "");
+            } else {
+                jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_NO, "phòng đã duyệt không được xóa", null);
+                LogError.log(API.CODE_API_NO,  "delete list register" ,LogError.FAIL, "");
+            }
+
+            return jsonResponse;
+        } catch (Exception e){
+            System.out.println(e.getCause());
+            jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_ERROR, "error exception", null);
+            LogError.log(API.CODE_API_ERROR,  "delete list register" ,LogError.ERROR_EXCEPTION, "");
+
+            return jsonResponse;
+        }
+    }
+
     @PutMapping(value = "rent-room")
     public JsonResponse rentRoom(@Valid @RequestBody String jsonString) {
         try {
             ObjectMapper mapper = new ObjectMapper();
             int check = 0;
 
-            List<RegisterRoom> registerRoomList = mapper.readValue(jsonString, new TypeReference<List<RegisterRoom>>(){});
+            List<Integer> idList = mapper.readValue(jsonString, new TypeReference<List<Integer>>(){});
             Cost cost = costService.findOneByTypeAndStatus(Cost.COST_TYPE_ROOM, Cost.COST_STATUS_ENABLE);
 
             Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 
-            for (RegisterRoom register: registerRoomList ) {
-                if (registerRoomService.deleteOne(register.getId()) != true) {
+            for (Integer id: idList ) {
+                ViewRegisterRoom viewRegisterRoom = registerRoomService.deleteOne(id, true);
+                if (viewRegisterRoom != null) {
 
                     RentRoom rentRoom = RentRoom.builder()
-                            .semesterId(register.getSemesterId())
-                            .userId(register.getUserId())
-                            .roomId(register.getRoomId())
-                            .year(register.getYear())
+                            .semesterId(viewRegisterRoom.getSemesterId())
+                            .userId(viewRegisterRoom.getUserId())
+                            .roomId(viewRegisterRoom.getRoomId())
+                            .year(viewRegisterRoom.getYear())
                             .status(RentRoom.RENT_ROOM_STATUS_ENABLE)
-                            .bail(register.getNumber() * cost.getValue()).build();
-
-//                    rentRoom.setSemesterId(register.getSemesterId());
-//                    rentRoom.setUserId(register.getUserId());
-//                    rentRoom.setRoomId(register.getRoomId());
-//                    rentRoom.setYear(register.getYear());
-//                    rentRoom.setStatus(1);
-//                    rentRoom.setBail(register.getNumber() * cost.getValue());
+                            .bail(viewRegisterRoom.getNumber() * cost.getValue()).build();
 
                     rentRoomService.addOne(rentRoom);
 
-                    ViewRegisterRoom viewRegisterRoom = registerRoomService.getOneViewById(register.getId());
-
                     String content = "Bạn đã thanh toán tiền phòng thành công: "
-                            + "phòng: " + viewRegisterRoom.getRoomName() + "\n"
-                            + " tầng: " + viewRegisterRoom.getFloorName() + "\n"
-                            + " nhà: " + viewRegisterRoom.getAreaName() + "\n"
+                            + viewRegisterRoom.getRoomName() + "\n"
+                            + viewRegisterRoom.getFloorName() + "\n"
+                            + viewRegisterRoom.getAreaName() + "\n"
                             + "vào lúc: " + viewRegisterRoom.getTimeCensor();
 
                     Notification notification = Notification.builder()
@@ -330,22 +364,22 @@ public class RegisterRoomController {
                             .title("Duyệt phòng thành công!")
                             .time(timestamp).build();
 
-//                    notification.setUserId(viewRegisterRoom.getUserId());
-//                    notification.setStatus(0);
-//
-//                    notification.setContent(content);
-//                    notification.setTitle("Duyệt phòng thành công!");
-//                    notification.setTime(timestamp);
-
-                    if (notificationService.addNotification(notification) == true)
-                        check++;
+                    boolean b = notificationService.addNotification(notification);
                     check++;
+                } else {
+                    jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_NO, "chưa được duyệt nên k pay dc", null);
+//                    LogError.log(API.CODE_API_NO,  "rent bail list" ,LogError.FAIL, "chưa được duyệt nên k pay dc");
+                    return jsonResponse;
                 }
+
+                roomService.updateRegisterRoom(viewRegisterRoom.getRoomId());
+
+                roomService.updatePresentRoom(viewRegisterRoom.getRoomId());
             }
 
-            if (check == registerRoomList.size()) {
-                jsonResponse = return_List_Object_JsonPresonse(API.CODE_API_YES, "success", registerRoomList);
-                LogError.log(API.CODE_API_YES,  "rent bail list" ,LogError.SUCCESS, "total: " + registerRoomList.size());
+            if (check == idList.size()) {
+                jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_YES, "success", null);
+                LogError.log(API.CODE_API_YES,  "rent bail list" ,LogError.SUCCESS, "total: " + idList.size());
             } else {
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_NO, "fail", null);
                 LogError.log(API.CODE_API_NO,  "rent bail list" ,LogError.FAIL, "");
@@ -361,8 +395,6 @@ public class RegisterRoomController {
             return jsonResponse;
         }
     }
-
-
 
     public JsonResponse return_No_Object_JsonPresonse(Integer code, String message){
         JsonResponse jsonResponse = new JsonResponse();

@@ -4,9 +4,7 @@ import com.example.dorm_management.entities.*;
 import com.example.dorm_management.json.API;
 import com.example.dorm_management.json.JsonResponse;
 import com.example.dorm_management.libararies.LogError;
-import com.example.dorm_management.services.AreaService;
-import com.example.dorm_management.services.FloorService;
-import com.example.dorm_management.services.RoomService;
+import com.example.dorm_management.services.*;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +25,12 @@ public class RoomController {
 
     @Autowired
     private FloorService floorService;
+
+    @Autowired
+    private RegisterRoomService registerRoomService;
+
+    @Autowired
+    private RentRoomService rentRoomService;
 
     @Autowired
     private AreaService areaService;
@@ -74,7 +78,6 @@ public class RoomController {
             } else {
                 List<ViewRoom> rooms = roomService.findRoomsByAreaId(id);
 
-
                 if (rooms.size() > 0) {
                     jsonResponse = return_List_Object_JsonPresonse(API.CODE_API_YES, "Danh sach phong!", rooms);
                     LogError.log(API.CODE_API_YES,  "find room by area id" ,LogError.SUCCESS, "total: " + rooms.size());
@@ -120,6 +123,7 @@ public class RoomController {
     public JsonResponse editOne(@Valid @RequestBody Room room, @PathVariable(value = "id") Integer id) {
         try{
             Room room1 = roomService.editOne(id, room);
+
             if (room1 != null ){
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_YES, "success", room1);
                 LogError.log(API.CODE_API_YES,  "edit one room" ,LogError.SUCCESS, room1.getName());
@@ -142,6 +146,7 @@ public class RoomController {
     public JsonResponse findRoomsByAreaId(@Valid @RequestBody Room room) {
         try{
             Room room1 = roomService.addOne(room);
+
             if (room1 != null ){
                 jsonResponse = return_One_Object_JsonPresonse(API.CODE_API_YES, "success", room1);
                 LogError.log(API.CODE_API_YES,  "add one room" ,LogError.SUCCESS, room1.getName());

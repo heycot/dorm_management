@@ -22,11 +22,14 @@ public interface RegisterRoomService {
 
     List<ViewRegisterRoom> findAllNotAcceptedByRoomId(Integer id);
 
-    boolean deleteOne(Integer registerId);
+    ViewRegisterRoom deleteOne(Integer registerId, boolean isRent);
 
     ViewRegisterRoom getOneViewById(Integer id);
 
     List<ViewRegisterRoom> findAllByAreaId(Integer id);
 
     List<ViewRegisterRoom> findAllByFloorId(Integer id);
+
+    Integer countRegisterByRoomId(Integer roomId);
+
 }
