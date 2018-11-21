@@ -19,6 +19,7 @@ public interface UserService {
     boolean saveUser(User user);
     boolean deleteUser(Integer id);
     boolean editUser(User user);
+    boolean changeStatusUser(Integer id, Integer status);
     JsonResponse registerUser(RegisterStudentUserDTO registerStudentDTO);
     JsonResponse registerUser(RegisterUserDTO registerUserDTO);
     //group

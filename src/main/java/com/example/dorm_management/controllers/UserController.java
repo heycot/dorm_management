@@ -166,6 +166,18 @@ public class UserController {
         }
     }
 
+    @GetMapping("/change-status/{id}/{status}")
+    public JsonResponse changeStatusUser(@PathVariable(value = "id") Integer id, @PathVariable(value = "status") Integer status){
+        try{
+            if(userService.changeStatusUser(id,status)){
+                return Utility.convertObjectToJSON(API.CODE_API_YES, "successfully", status);
+            }
+            return Utility.convertObjectToJSON(API.CODE_API_NO, "error");
+        }catch (Exception e){
+            return Utility.convertObjectToJSON(API.CODE_API_NO, e.getMessage());
+        }
+    }
+
     //TODO GROUP
 
     @GetMapping("/get_group")
@@ -180,6 +192,7 @@ public class UserController {
             return Utility.convertObjectToJSON(API.CODE_API_NO, e.getMessage());
         }
     }
+
     @GetMapping("/get_group/{id}")
      public JsonResponse findGroupByUserId(@PathVariable(value = "id") Integer id){
         try{
