@@ -3,7 +3,6 @@ package com.example.dorm_management.libararies;
 import com.example.dorm_management.config.Basej4Logger;
 
 public class LogError {
-
     public static String SUCCESS            = "SUCCESS";
     public static String FAIL               = "FAIL";
     public static String NOT_FOUND          = "NOT FOUND";
