@@ -43,12 +43,16 @@ public class SubsistenceFeeServiceImpl implements SubsistenceFeeService {
 
     @Override
     public SubsistenceFee addOne(SubsistenceFee subsistenceFee){
+        SubsistenceFee subsistenceFeeLast = null;
+        if (subsistenceFee.getMonth() == 1) {
+            subsistenceFeeLast =  subsistenceFeeRepository.findLatestByRoomId(subsistenceFee.getRoomId(), 12, -1);
+        } else {
+            subsistenceFeeLast =  subsistenceFeeRepository.findLatestByRoomId(subsistenceFee.getRoomId(), subsistenceFee.getMonth(), -1 );
+        }
 
-        List<SubsistenceFee> subsistenceFeeList =  subsistenceFeeRepository.findALlByRoomId(subsistenceFee.getRoomId());
-
-        if (subsistenceFeeList.size() > 0) {
-            subsistenceFee.setOldNumberWater(subsistenceFeeList.get(subsistenceFeeList.size() - 1).getNewNumberWater());
-            subsistenceFee.setOldNumberElec( subsistenceFeeList.get(subsistenceFeeList.size() - 1).getNewNumberElec());
+        if (subsistenceFeeLast != null) {
+            subsistenceFee.setOldNumberWater(subsistenceFeeLast.getNewNumberWater());
+            subsistenceFee.setOldNumberElec( subsistenceFeeLast.getNewNumberElec());
         } else {
             subsistenceFee.setOldNumberWater(0);
             subsistenceFee.setOldNumberElec( 0);
@@ -83,12 +87,16 @@ public class SubsistenceFeeServiceImpl implements SubsistenceFeeService {
     @Override
     public SubsistenceFee editOne(SubsistenceFee subsistenceFee, Integer id){
        try {
+           SubsistenceFee subsistenceFeeLast = null;
+           if (subsistenceFee.getMonth() == 1) {
+               subsistenceFeeLast =  subsistenceFeeRepository.findLatestByRoomId(subsistenceFee.getRoomId(), 12, subsistenceFee.getId());
+           } else {
+               subsistenceFeeLast =  subsistenceFeeRepository.findLatestByRoomId(subsistenceFee.getRoomId(), subsistenceFee.getMonth(), subsistenceFee.getId() );
+           }
 
-           List<SubsistenceFee> subsistenceFeeList =  subsistenceFeeRepository.findALlByRoomId(subsistenceFee.getRoomId());
-
-           if (subsistenceFeeList.size() > 0) {
-               subsistenceFee.setOldNumberWater(subsistenceFeeList.get(subsistenceFeeList.size() - 1).getNewNumberWater());
-               subsistenceFee.setOldNumberElec( subsistenceFeeList.get(subsistenceFeeList.size() - 1).getNewNumberElec());
+           if (subsistenceFeeLast != null) {
+               subsistenceFee.setOldNumberWater(subsistenceFeeLast.getNewNumberWater());
+               subsistenceFee.setOldNumberElec( subsistenceFeeLast.getNewNumberElec());
            } else {
                subsistenceFee.setOldNumberWater(0);
                subsistenceFee.setOldNumberElec( 0);
@@ -130,16 +138,14 @@ public class SubsistenceFeeServiceImpl implements SubsistenceFeeService {
            subsistenceFeeEdit.setLevelWater(subsistenceFee.getLevelWater());
            subsistenceFeeEdit.setNewNumberElec(subsistenceFee.getNewNumberElec());
            subsistenceFeeEdit.setNewNumberWater(subsistenceFee.getNewNumberWater());
-           subsistenceFeeEdit.setOldNumberElec(subsistenceFee.getOldNumberElec());
-           subsistenceFeeEdit.setOldNumberWater(subsistenceFee.getOldNumberWater());
+//           subsistenceFeeEdit.setOldNumberElec(subsistenceFee.getOldNumberElec());
+//           subsistenceFeeEdit.setOldNumberWater(subsistenceFee.getOldNumberWater());
            subsistenceFeeEdit.setCostWater(subsistenceFee.getCostWater());
            subsistenceFeeEdit.setCostElec(subsistenceFee.getCostElec());
            subsistenceFeeEdit.setTotalWater(subsistenceFee.getTotalWater());
            subsistenceFeeEdit.setTotalElec(subsistenceFee.getTotalElec());
 
-           subsistenceFeeRepository.save(subsistenceFeeEdit);
-
-           return subsistenceFeeEdit;
+           return subsistenceFeeRepository.save(subsistenceFeeEdit);
        } catch (Exception e) {
            return null;
        }

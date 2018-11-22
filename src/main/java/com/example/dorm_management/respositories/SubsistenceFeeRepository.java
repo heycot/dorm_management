@@ -16,7 +16,7 @@ public interface SubsistenceFeeRepository extends JpaRepository<SubsistenceFee, 
 //            "where room_id = ?1 order by sb.id desc", nativeQuery = true)
 //    List<ViewSubsistence> findALlByRoomId(Integer roomId);
 
-    @Query(value = "select * from subsistence_fee as sb where room_id = ?1 order by sb.id desc", nativeQuery = true)
+    @Query(value = "select * from subsistence_fee as sb where room_id = ?1 ORDER BY year DESC, month DESC", nativeQuery = true)
     List<SubsistenceFee> findALlByRoomId(Integer roomId);
 
 //    @Query(value = "select sb.*, cost.name as name_cost, cost.value as value_cost from subsistence_fee as sb  " +
@@ -35,19 +35,22 @@ public interface SubsistenceFeeRepository extends JpaRepository<SubsistenceFee, 
     SubsistenceFee findViewOne(Integer id);
 
     @Query(value = "select * from subsistence_fee as sb  " +
-            "where sb.month = ?1 and sb.year like ?2", nativeQuery = true)
+            "where sb.month = ?1 and sb.year like ?2 ORDER BY year DESC, month DESC", nativeQuery = true)
     List<ViewSubsistence> getAllSubsistenceBYMonthAndYear(Integer month, Integer year);
 
     @Query(value = "select * from subsistence_fee as sb  " +
-            "where sb.status = ?1", nativeQuery = true)
+            "where sb.status = ?1 ORDER BY year DESC, month DESC", nativeQuery = true)
     List<SubsistenceFee> getAllSubsistenceNotPay(Integer status);
 
 
     @Query(value = "select * from subsistence_fee as sb  " +
-            "where sb.room_id = ?1 and sb.month = ?2 and sb.year like ?3", nativeQuery = true)
+            "where sb.room_id = ?1 and sb.month = ?2 and sb.year like ?3 ORDER BY year DESC, month DESC", nativeQuery = true)
     List<SubsistenceFee> getAllSubsistenceByMonthAndYearAndRoomId(Integer roomId, Integer month, String year);
 
     @Query(value = "select * from subsistence_fee as sb  " +
-            "where sb.month = ?1 and sb.year like ?2 and status = ?3", nativeQuery = true)
+            "where sb.month = ?1 and sb.year like ?2 and status = ?3 ORDER BY year DESC, month DESC", nativeQuery = true)
     List<SubsistenceFee> getAllSubsistenceNotPayBYMonthAndYear(Integer month, String year, Integer status);
+
+    @Query(value = "select * from subsistence_fee as sb where room_id = ?1 and month <= ?2 and sb.id != ?3 ORDER BY year DESC, month DESC LIMIT 0, 1", nativeQuery = true)
+    SubsistenceFee findLatestByRoomId(Integer roomId, Integer month, Integer id);
 }
