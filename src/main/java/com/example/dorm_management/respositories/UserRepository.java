@@ -15,12 +15,12 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     @Query(value = "SELECT * FROM user WHERE id in (SELECT user_id FROM rent_room WHERE room_id = ?)", nativeQuery = true)
     List<User> findUserByRoomId(Integer roomId);
     User findUserById(Integer id);
-    List<User> findUserByUserNameAndPassword(String name, String password);
-    List<User> findUserByUserName(String name);
-    @Query(value = "SELECT * FROM groups INNER JOIN role ON groups.id = role.groups_id INNER JOIN user ON role.id = user.role_id WHERE user.id = ?)", nativeQuery = true)
+    User findUserByUserNameAndPassword(String name, String password);
+    User findUserByUserName(String name);
+    @Query(value = "SELECT * FROM groups INNER JOIN role ON groups.id = role.groups_id INNER JOIN user ON role.id = user.role_id WHERE user.id = ?", nativeQuery = true)
     List<Group> findGroupByUserId(Integer id);
 
-    @Query(value = "SELECT * FROM action INNER JOIN role ON groups.id = role.groups_id INNER JOIN user ON role.id = user.role_id WHERE user.id = ?)", nativeQuery = true)
+    @Query(value = "SELECT action.* FROM action INNER JOIN role ON action.id = role.action_id INNER JOIN role_user ON role.id = role_user.role_id INNER JOIN user ON user.id = role_user.user_id WHERE user.id = ?1", nativeQuery = true)
     List<Action> findActionByUserId(Integer id);
 
     @Query(value = "SELECT * FROM user WHERE id in (SELECT user_id FROM rent_room LEFT JOIN room ON rent_room.room_id = room.id" +
@@ -34,4 +34,14 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     @Query(value = "SELECT user.* FROM user INNER JOIN student_code ON user.student_code = student_code.id "
             + "WHERE user.password = ?2 AND student_code.value = ?1", nativeQuery = true)
     User getUserByStudentCodeAndPassword(String studentCode, String password);
+
+    @Query(value = "SELECT user.* FROM user INNER JOIN student_code ON user.student_code = student_code.id "
+            + "WHERE student_code.value = ?1", nativeQuery = true)
+    User getUserByStudentCode(String studentCode);
+
+    @Query(value = "SELECT user.* FROM user INNER JOIN role_user ON user.id = role_user.user_id " +
+            " INNER JOIN role ON role_user.role_id = role.id" +
+            " INNER JOIN groups ON role.group_id = groups.id"
+            + " WHERE groups.id = ?1", nativeQuery = true)
+    List<User> getUsersByGroupId(Integer idGroup);
 }

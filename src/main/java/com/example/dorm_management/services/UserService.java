@@ -15,6 +15,8 @@ public interface UserService {
     List<User> findAllUser();
     User findUserById(Integer id);
     boolean isExistedUserByNameAndPassword(String name, String password);
+    JsonResponse changePassword(String name, String oldPassword, String newPassword);
+    JsonResponse resetPassword(String name, String newPassword);
     boolean isExistedUser(String name);
     boolean saveUser(User user);
     boolean deleteUser(Integer id);
@@ -41,4 +43,6 @@ public interface UserService {
     List<User> findUserByAreaId(Integer id);
 
     User isExistedUserByStudentCodeAndPassword(String studentCode, String password);
+
+    List<User> getUsersByGroupId(Integer idGroup);
 }

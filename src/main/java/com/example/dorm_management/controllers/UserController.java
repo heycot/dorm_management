@@ -1,7 +1,9 @@
 package com.example.dorm_management.controllers;
 
 import com.example.dorm_management.DTO.AccountDTO;
+import com.example.dorm_management.DTO.ChangePassDTO;
 import com.example.dorm_management.DTO.RegisterStudentUserDTO;
+import com.example.dorm_management.DTO.RegisterUserDTO;
 import com.example.dorm_management.config.Basej4Logger;
 import com.example.dorm_management.entities.*;
 import com.example.dorm_management.json.API;
@@ -115,7 +117,6 @@ public class UserController {
         }
     }
     @RequestMapping(value = "/{userId}/add_user_detail", method = RequestMethod.POST)
-//    @PostMapping("/{userId}/add_user_detail")
     public JsonResponse addUserDetailById(@RequestBody UserDetail userDetail, @PathVariable(value = "userId") String userId){
         try{
             if(userDetail != null){
@@ -136,6 +137,33 @@ public class UserController {
     @PostMapping("/register")
     public JsonResponse addUser(@RequestBody RegisterStudentUserDTO registerStudentDTO){
         return userService.registerUser(registerStudentDTO);
+    }
+
+    @PostMapping("/change-password")
+    public JsonResponse changePassword(@RequestBody ChangePassDTO changePassDTO){
+        return userService.changePassword(changePassDTO.getName(), changePassDTO.getOldPassword(), changePassDTO.getNewPassword());
+    }
+    @PostMapping("/reset-password")
+    public JsonResponse resetPassword(@RequestBody ChangePassDTO changePassDTO){
+        // neu khong dien mat khau moi vao thi mat khau default la name luon
+        if(changePassDTO.getNewPassword() == null)
+            changePassDTO.setNewPassword(changePassDTO.getName());
+        return userService.resetPassword(changePassDTO.getName(), changePassDTO.getNewPassword());
+    }
+
+    @PostMapping("/register-staff")
+    public JsonResponse addStaff(@RequestBody RegisterUserDTO resgisterStaffDTO){
+        return userService.registerUser(resgisterStaffDTO);
+    }
+
+    @GetMapping("/get-users-by-groups/{id}")
+    public JsonResponse getUsersByGroupId(@PathVariable(value = "id") Integer id){
+        try{
+            List<User> users = userService.getUsersByGroupId(id);
+            return Utility.convertObjectToJSON(API.CODE_API_YES, "users by group", users);
+        }catch (Exception e){
+            return Utility.convertObjectToJSON(API.CODE_API_YES, "users by group error ", id);
+        }
     }
 
     @GetMapping("/delete_user/{id}")
@@ -286,21 +314,21 @@ public class UserController {
     }
     @GetMapping("/get_action/{id}")
     public JsonResponse findActionByUserId(@PathVariable(value = "id") Integer id){
-        try{
+//        try{
             List<Action> actions = userService.findActionByUserId(id);
             if(actions != null){
                 return Utility.convertObjectToJSON(API.CODE_API_YES, "successfully", actions);
             }
             return Utility.convertObjectToJSON(API.CODE_API_NOTFOUND, "Khong tim thay action");
-        }catch (Exception e){
-            return Utility.convertObjectToJSON(API.CODE_API_NO, e.getMessage());
-        }
+//        }catch (Exception e){
+//            return Utility.convertObjectToJSON(API.CODE_API_NO, e.getMessage());
+//        }
     }
 
     @PostMapping("/add_action")
     public JsonResponse addAction(@RequestBody Action action){
         try{
-            boolean b = userService.addAction(action);
+            boolean b = userService.addAction(new Action(action.getName(), action.getCode()));
             if(b){
                 Basej4Logger.getInstance().info("API: " + API.CODE_API_ADD_SUCCESS, "add action success", action.getName());
                 return Utility.convertObjectToJSON(API.CODE_API_ADD_SUCCESS, "");

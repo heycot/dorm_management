@@ -3,6 +3,7 @@ package com.example.dorm_management.entities;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 /**
  * Created by vuong on 10/12/2018.
@@ -17,17 +18,30 @@ public class Action {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @NotNull
+    @Column(name = "code")
+    private Integer code;
+
+    public Integer getCode() {
+        return code;
+    }
+
+    public void setCode(Integer code) {
+        this.code = code;
+    }
+
     public Action() {
-
     }
 
-    public Action(String name) {
-        this.name = name;
-    }
-
-    public Action(Integer id, String name) {
-        this.name = name;
+    public Action(Integer id, String name, Integer code) {
         this.id = id;
+        this.name = name;
+        this.code = code;
+    }
+
+    public Action(String name, Integer code) {
+        this.name = name;
+        this.code = code;
     }
 
     public Integer getId() {

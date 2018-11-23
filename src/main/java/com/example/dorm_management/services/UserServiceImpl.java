@@ -53,8 +53,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean isExistedUserByNameAndPassword(String name, String password){
         try{
-            List<User> users = userRepository.findUserByUserNameAndPassword(name, password);
-            if(users.size() > 0){
+            User users = userRepository.findUserByUserNameAndPassword(name, MD5Utility.encode(password));
+            if(users != null){
                 return  true;
             }
             return false;
@@ -64,10 +64,46 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public JsonResponse changePassword(String name, String oldPassword, String newPassword) {
+        try{
+            User user = userRepository.findUserByUserNameAndPassword(name, MD5Utility.encode(oldPassword));
+            if(user == null){
+                user = userRepository.getUserByStudentCodeAndPassword(name, MD5Utility.encode(oldPassword));
+            }
+            if(user == null){
+                return Utility.convertObjectToJSON(API.CODE_API_NOTFOUND, "user not exists", name);
+            }
+            user.setPassword(MD5Utility.encode(newPassword));
+            userRepository.save(user);
+            return Utility.convertObjectToJSON(API.CODE_API_YES, "change successfully", name);
+        }catch (Exception e){
+            return Utility.convertObjectToJSON(API.CODE_API_ERROR, "change user error", e.getStackTrace());
+        }
+    }
+
+    @Override
+    public JsonResponse resetPassword(String name, String newPassword) {
+        try{
+            User user = userRepository.findUserByUserName(name);
+            if(user == null){
+                user = userRepository.getUserByStudentCode(name);
+            }
+            if(user == null){
+                return Utility.convertObjectToJSON(API.CODE_API_NOTFOUND, "user not exists", name);
+            }
+            user.setPassword(MD5Utility.encode(newPassword));
+            userRepository.save(user);
+            return Utility.convertObjectToJSON(API.CODE_API_YES, "reset pass successfully", name);
+        }catch (Exception e){
+            return Utility.convertObjectToJSON(API.CODE_API_ERROR, "reset pass user error", e.getStackTrace());
+        }
+    }
+
+    @Override
     public boolean isExistedUser(String name) {
         try{
-            List<User>  users = userRepository.findUserByUserName(name);
-            if(users.size() > 0) return true;
+            User  user = userRepository.findUserByUserName(name);
+            if(user != null) return true;
             return false;
         }catch (Exception e){
             return false;
@@ -127,7 +163,7 @@ public class UserServiceImpl implements UserService {
                     User user = new User();
                     user.setStatus(EnumStatusUser.ACTIVE);
                     user.setUserName(registerStudentDTO.getUserName());
-                    user.setPassword(registerStudentDTO.getPassword());
+                    user.setPassword(MD5Utility.encode(registerStudentDTO.getPassword()));
                     user.setGender(registerStudentDTO.getGender());
                     //tìm role theo group
                     List<Role> roles = roleService.findAllRoleByGroupId(EnumGroup.STUDENT.getCode());
@@ -180,7 +216,7 @@ public class UserServiceImpl implements UserService {
                     User user = new User();
                     user.setStatus(EnumStatusUser.ACTIVE);
                     user.setUserName(registerUserDTO.getUserName());
-                    user.setPassword(registerUserDTO.getPassword());
+                    user.setPassword(MD5Utility.encode(registerUserDTO.getPassword()));
                     user.setGender(registerUserDTO.getGender());
                     //tìm role theo group
                     List<Role> roles = roleService.findAllRoleByGroupId(EnumGroup.STAFF.getCode());
@@ -323,6 +359,18 @@ public class UserServiceImpl implements UserService {
     @Override
     public User isExistedUserByStudentCodeAndPassword(String studentCode, String password) {
         return userRepository.getUserByStudentCodeAndPassword(studentCode, password);
+    }
+
+    @Override
+    public List<User> getUsersByGroupId(Integer idGroup) {
+        try{
+            List<User> users = userRepository.getUsersByGroupId(idGroup);
+            if(users.size() <= 0)
+                return null;
+            return users;
+        }catch (Exception e){
+            return null;
+        }
     }
 
 }
