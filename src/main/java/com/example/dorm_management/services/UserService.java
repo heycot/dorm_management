@@ -1,5 +1,7 @@
 package com.example.dorm_management.services;
 
+import com.example.dorm_management.DTO.ActionResult;
+import com.example.dorm_management.DTO.GroupResult;
 import com.example.dorm_management.DTO.RegisterStudentUserDTO;
 import com.example.dorm_management.DTO.RegisterUserDTO;
 import com.example.dorm_management.entities.User;
@@ -25,14 +27,14 @@ public interface UserService {
     JsonResponse registerUser(RegisterStudentUserDTO registerStudentDTO);
     JsonResponse registerUser(RegisterUserDTO registerUserDTO);
     //group
-    List<Group> findGroupByUserId(Integer id);
+    List<GroupResult> findGroupByUserId(Integer id);
     List<Group> findAllGroup();
     boolean addGroup(Group group);
     boolean deleteGroup(Integer id);
     boolean updateGroup(Integer id, Group group);
     //action
 
-    List<Action> findActionByUserId(Integer id);
+    List<ActionResult> findActionByUserId(Integer id);
     List<Action> findAllAction();
     boolean addAction(Action action);
     boolean deleteAction(Integer id);

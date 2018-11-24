@@ -1,9 +1,6 @@
 package com.example.dorm_management.controllers;
 
-import com.example.dorm_management.DTO.AccountDTO;
-import com.example.dorm_management.DTO.ChangePassDTO;
-import com.example.dorm_management.DTO.RegisterStudentUserDTO;
-import com.example.dorm_management.DTO.RegisterUserDTO;
+import com.example.dorm_management.DTO.*;
 import com.example.dorm_management.config.Basej4Logger;
 import com.example.dorm_management.entities.*;
 import com.example.dorm_management.json.API;
@@ -21,6 +18,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+
 @CrossOrigin(origins = { "*" }, maxAge = 6000)
 @RestController
 @RequestMapping(UserController.BASE_URL)
@@ -60,6 +59,7 @@ public class UserController {
 //        User user = userService.findUserById(10);
 //        user.setUserDetail(new UserDetail("123", "asd", "sadfdf", user.getId()));
 //        userService.saveUser(user);
+
         List<Role> roles = roleService.findAllRoleByGroupId(1);
         return Utility.convertObjectToJSON(API.CODE_API_ADD_SUCCESS, "dsfsdf", roles);
     }
@@ -105,6 +105,7 @@ public class UserController {
 
     @GetMapping("/get_user_detail/{id}")
     public JsonResponse findUserDetailById(@PathVariable(value = "id") Integer id){
+
         try{
             UserDetail userDetail = userDetailService.findUserDetailByUserId(id);
             if(userDetail != null){
@@ -241,7 +242,7 @@ public class UserController {
     @GetMapping("/get_group/{id}")
      public JsonResponse findGroupByUserId(@PathVariable(value = "id") Integer id){
         try{
-            List<Group> groups = userService.findGroupByUserId(id);
+            List<GroupResult> groups = userService.findGroupByUserId(id);
             if(groups != null){
                 return Utility.convertObjectToJSON(API.CODE_API_YES, "successfully", groups);
             }
@@ -315,7 +316,7 @@ public class UserController {
     @GetMapping("/get_action/{id}")
     public JsonResponse findActionByUserId(@PathVariable(value = "id") Integer id){
 //        try{
-            List<Action> actions = userService.findActionByUserId(id);
+            List<ActionResult> actions = userService.findActionByUserId(id);
             if(actions != null){
                 return Utility.convertObjectToJSON(API.CODE_API_YES, "successfully", actions);
             }

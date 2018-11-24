@@ -75,9 +75,9 @@ public class RoleController {
         try{
             boolean b = roleService.addRole(role.getGroupId(), role.getActionId());
             if(b){
-                return Utility.convertObjectToJSON(API.CODE_API_EDIT_SUCCESS, "");
+                return Utility.convertObjectToJSON(API.CODE_API_EDIT_SUCCESS, "add role sucess", b);
             }else{
-                return Utility.convertObjectToJSON(API.CODE_API_ERROR, "");
+                return Utility.convertObjectToJSON(API.CODE_API_ERROR, "add role error", b);
             }
         }catch (Exception e){
             return Utility.convertObjectToJSON(API.CODE_API_NOTFOUND, e.getMessage());

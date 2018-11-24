@@ -1,5 +1,7 @@
 package com.example.dorm_management.services;
 
+import com.example.dorm_management.DTO.ActionResult;
+import com.example.dorm_management.DTO.GroupResult;
 import com.example.dorm_management.DTO.RegisterStudentUserDTO;
 import com.example.dorm_management.DTO.RegisterUserDTO;
 import com.example.dorm_management.config.Basej4Logger;
@@ -247,8 +249,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<Group> findGroupByUserId(Integer id) {
-        List<Group> groups = userRepository.findGroupByUserId(id);
+    public List<GroupResult> findGroupByUserId(Integer id) {
+        List<GroupResult> groups = userRepository.findGroupByUserId(id);
         if(groups.size() > 0){
             return groups;
         }
@@ -297,8 +299,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<Action> findActionByUserId(Integer id) {
-        List<Action> actions = userRepository.findActionByUserId(id);
+    public List<ActionResult> findActionByUserId(Integer id) {
+        List<ActionResult> actions = userRepository.findActionByUserId(id);
         if(actions.size() > 0){
             return actions;
         }

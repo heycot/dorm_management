@@ -1,5 +1,7 @@
 package com.example.dorm_management.respositories;
 
+import com.example.dorm_management.DTO.ActionResult;
+import com.example.dorm_management.DTO.GroupResult;
 import com.example.dorm_management.entities.Action;
 import com.example.dorm_management.entities.User;
 import com.example.dorm_management.entities.Group;
@@ -17,11 +19,11 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     User findUserById(Integer id);
     User findUserByUserNameAndPassword(String name, String password);
     User findUserByUserName(String name);
-    @Query(value = "SELECT groups.* FROM groups INNER JOIN role ON groups.id = role.group_id INNER JOIN role_user ON role.id = role_user.role_id INNER JOIN user ON user.id = role_user.user_id WHERE user.id = ?1", nativeQuery = true)
-    List<Group> findGroupByUserId(Integer id);
+    @Query(value = "SELECT DISTINCT groups.id as id , groups.name as name FROM groups INNER JOIN role ON groups.id = role.group_id INNER JOIN role_user ON role.id = role_user.role_id INNER JOIN user ON user.id = role_user.user_id WHERE user.id = ?1", nativeQuery = true)
+    List<GroupResult> findGroupByUserId(Integer id);
 
-    @Query(value = "SELECT action.* FROM action INNER JOIN role ON action.id = role.action_id INNER JOIN role_user ON role.id = role_user.role_id INNER JOIN user ON user.id = role_user.user_id WHERE user.id = ?1", nativeQuery = true)
-    List<Action> findActionByUserId(Integer id);
+    @Query(value = "SELECT DISTINCT action.code as code, action.id as id, action.name as name FROM action INNER JOIN role ON action.id = role.action_id INNER JOIN role_user ON role.id = role_user.role_id INNER JOIN user ON user.id = role_user.user_id WHERE user.id = ?1", nativeQuery = true)
+    List<ActionResult> findActionByUserId(Integer id);
 
     @Query(value = "SELECT * FROM user WHERE id in (SELECT user_id FROM rent_room LEFT JOIN room ON rent_room.room_id = room.id" +
             " WHERE room.floor_id = ?1)", nativeQuery = true)
