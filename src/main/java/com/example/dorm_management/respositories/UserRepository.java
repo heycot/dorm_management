@@ -17,7 +17,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     User findUserById(Integer id);
     User findUserByUserNameAndPassword(String name, String password);
     User findUserByUserName(String name);
-    @Query(value = "SELECT * FROM groups INNER JOIN role ON groups.id = role.groups_id INNER JOIN user ON role.id = user.role_id WHERE user.id = ?", nativeQuery = true)
+    @Query(value = "SELECT groups.* FROM groups INNER JOIN role ON groups.id = role.group_id INNER JOIN role_user ON role.id = role_user.role_id INNER JOIN user ON user.id = role_user.user_id WHERE user.id = ?1", nativeQuery = true)
     List<Group> findGroupByUserId(Integer id);
 
     @Query(value = "SELECT action.* FROM action INNER JOIN role ON action.id = role.action_id INNER JOIN role_user ON role.id = role_user.role_id INNER JOIN user ON user.id = role_user.user_id WHERE user.id = ?1", nativeQuery = true)
