@@ -179,6 +179,19 @@ public class UserController {
         }
     }
 
+    @GetMapping("/is-exist-user/{username}")
+    public JsonResponse isExistUser(@PathVariable(value = "idUser") String userName){
+        try{
+            boolean b = userService.isExistedUser(userName);
+            if(b){
+                return Utility.convertObjectToJSON(API.CODE_API_YES, "user name existed", userName);
+            }
+            return Utility.convertObjectToJSON(API.CODE_API_NO, "user name not existed", userName);
+        }catch (Exception e){
+            return Utility.convertObjectToJSON(API.CODE_API_ERROR, "check error", userName);
+        }
+    }
+
     @GetMapping("/delete_user/{id}")
     public JsonResponse deleteUser(@PathVariable(value = "id") Integer id){
         try{
