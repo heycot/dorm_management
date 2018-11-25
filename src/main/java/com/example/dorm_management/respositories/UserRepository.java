@@ -41,7 +41,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
             + "WHERE student_code.value = ?1", nativeQuery = true)
     User getUserByStudentCode(String studentCode);
 
-    @Query(value = "SELECT user.* FROM user INNER JOIN role_user ON user.id = role_user.user_id " +
+    @Query(value = "SELECT DISTINCT user.* FROM user INNER JOIN role_user ON user.id = role_user.user_id " +
             " INNER JOIN role ON role_user.role_id = role.id" +
             " INNER JOIN groups ON role.group_id = groups.id"
             + " WHERE groups.id = ?1", nativeQuery = true)

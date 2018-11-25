@@ -211,7 +211,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public JsonResponse registerUser(RegisterUserDTO registerUserDTO) {
+    public JsonResponse registerUser(RegisterUserDTO registerUserDTO, Integer idGroup) {
         try {
             synchronized (this){
                 if(!isExistedUser(registerUserDTO.getUserName())){
@@ -220,8 +220,17 @@ public class UserServiceImpl implements UserService {
                     user.setUserName(registerUserDTO.getUserName());
                     user.setPassword(MD5Utility.encode(registerUserDTO.getPassword()));
                     user.setGender(registerUserDTO.getGender());
+                    if(idGroup == EnumGroup.STUDENT.getCode()){
+                        return Utility.convertObjectToJSON(API.CODE_API_NO, "id group sai");
+                    }
+                    Group group1 = groupRepository.getOne(idGroup);
+                    if(group1 == null){
+                        return Utility.convertObjectToJSON(API.CODE_API_NO, "khong ton tai group");
+                    }
+                    user.setGroup(group1);
+                    group1.addUser(user);
                     //tìm role theo group
-                    List<Role> roles = roleService.findAllRoleByGroupId(EnumGroup.STAFF.getCode());
+                    List<Role> roles = roleService.findAllRoleByGroupId(idGroup);
                     List<RoleUser> roleUsers = new ArrayList<>();
                     for(Role role : roles){
                         RoleUser roleUser = new RoleUser();
@@ -237,6 +246,7 @@ public class UserServiceImpl implements UserService {
                     userDetail.setUser(user);
 
                     userRepository.save(user);
+                    groupRepository.save(group1);
                     return Utility.convertObjectToJSON(API.CODE_API_YES, "thanh cong", user);
                 }else{
                     return Utility.convertObjectToJSON(API.CODE_API_EXISTED, "user name da ton tai");
@@ -244,7 +254,7 @@ public class UserServiceImpl implements UserService {
             }
 
         }catch (Exception e){
-            return Utility.convertObjectToJSON(API.CODE_API_NO, "error");
+            return Utility.convertObjectToJSON(API.CODE_API_NO, "error", e.getStackTrace());
         }
     }
 
@@ -366,12 +376,33 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> getUsersByGroupId(Integer idGroup) {
         try{
-            List<User> users = userRepository.getUsersByGroupId(idGroup);
+//            List<User> users = userRepository.getUsersByGroupId(idGroup);
+            List<User> users = groupRepository.findOne(idGroup).getUsers();
             if(users.size() <= 0)
                 return null;
             return users;
         }catch (Exception e){
             return null;
+        }
+    }
+
+    @Override
+    public boolean changeGroupByIdUser(Integer idUser, Integer idGroup) {
+        try{
+            User user = userRepository.findOne(idUser);
+            if(user == null) return false;
+            Group group = groupRepository.findOne(idGroup);
+            Group oldGroup = groupRepository.findOne(user.getGroup().getId());
+            if(idGroup == null) return false;
+            user.setGroup(group);
+            oldGroup.getUsers().remove(user);
+            group.addUser(user);
+            userRepository.save(user);
+            groupRepository.save(group);
+            groupRepository.save(oldGroup);
+            return true;
+        }catch (Exception e){
+            return false;
         }
     }
 

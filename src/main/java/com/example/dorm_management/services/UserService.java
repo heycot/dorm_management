@@ -25,7 +25,7 @@ public interface UserService {
     boolean editUser(User user);
     boolean changeStatusUser(Integer id, Integer status);
     JsonResponse registerUser(RegisterStudentUserDTO registerStudentDTO);
-    JsonResponse registerUser(RegisterUserDTO registerUserDTO);
+    JsonResponse registerUser(RegisterUserDTO registerUserDTO, Integer idGroup);
     //group
     List<GroupResult> findGroupByUserId(Integer id);
     List<Group> findAllGroup();
@@ -47,4 +47,7 @@ public interface UserService {
     User isExistedUserByStudentCodeAndPassword(String studentCode, String password);
 
     List<User> getUsersByGroupId(Integer idGroup);
+
+    boolean changeGroupByIdUser(Integer idUser, Integer idGroup);
+
 }

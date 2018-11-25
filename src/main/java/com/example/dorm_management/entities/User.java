@@ -1,7 +1,10 @@
 package com.example.dorm_management.entities;
 
 import com.example.dorm_management.libararies.EnumStatusUser;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.List;
@@ -43,10 +46,9 @@ public class User {
             mappedBy = "user")
     private StudentCode studentCode;
 
-   /* @OneToMany(cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY,
-            mappedBy = "user")
-    private List<Notification> notifications;*/
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "group_id", nullable = false)
+    private Group group;
 
     public User() {
     }
@@ -147,5 +149,13 @@ public class User {
 
     public void setStatus(EnumStatusUser active) {
         this.status = active.getCode();
+    }
+
+    public Group getGroup() {
+        return group;
+    }
+
+    public void setGroup(Group group) {
+        this.group = group;
     }
 }
