@@ -152,9 +152,9 @@ public class UserController {
         return userService.resetPassword(changePassDTO.getName(), changePassDTO.getNewPassword());
     }
 
-    @PostMapping("/register-staff")
-    public JsonResponse addStaff(@RequestBody RegisterUserDTO resgisterStaffDTO){
-        return userService.registerUser(resgisterStaffDTO);
+    @PostMapping("/register-staff/{idGroup}")
+    public JsonResponse addStaff(@RequestBody RegisterUserDTO resgisterStaffDTO, @PathVariable(value = "idGroup") Integer idGroup){
+        return userService.registerUser(resgisterStaffDTO, idGroup);
     }
 
     @GetMapping("/get-users-by-groups/{id}")
@@ -163,7 +163,19 @@ public class UserController {
             List<User> users = userService.getUsersByGroupId(id);
             return Utility.convertObjectToJSON(API.CODE_API_YES, "users by group", users);
         }catch (Exception e){
-            return Utility.convertObjectToJSON(API.CODE_API_YES, "users by group error ", id);
+            return Utility.convertObjectToJSON(API.CODE_API_ERROR, "users by group error ", id);
+        }
+    }
+    @GetMapping("/change-group-b-user/{idUser}/{idGroup}")
+    public JsonResponse changeGroupByUser(@PathVariable(value = "idUser") Integer userId, @PathVariable(value = "idGroup") Integer groupId){
+        try{
+            boolean b = userService.changeGroupByIdUser(userId, groupId);
+            if(!b){
+                return Utility.convertObjectToJSON(API.CODE_API_ERROR, "change group by user error", userId);
+            }
+            return Utility.convertObjectToJSON(API.CODE_API_YES, "change group by user successfully", userId);
+        }catch (Exception e){
+            return Utility.convertObjectToJSON(API.CODE_API_ERROR, "change group by user error", userId);
         }
     }
 
