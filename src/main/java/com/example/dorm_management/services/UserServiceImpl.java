@@ -167,6 +167,9 @@ public class UserServiceImpl implements UserService {
                     user.setUserName(registerStudentDTO.getUserName());
                     user.setPassword(MD5Utility.encode(registerStudentDTO.getPassword()));
                     user.setGender(registerStudentDTO.getGender());
+                    Group group1 = groupRepository.getOne(EnumGroup.STUDENT.getCode());
+                    user.setGroup(group1);
+                    group1.addUser(user);
                     //tìm role theo group
                     List<Role> roles = roleService.findAllRoleByGroupId(EnumGroup.STUDENT.getCode());
                     List<RoleUser> roleUsers = new ArrayList<>();
@@ -196,6 +199,7 @@ public class UserServiceImpl implements UserService {
                     studentCode.setUser(user);
 
                     userRepository.save(user);
+                    groupRepository.save(group1);
                     Basej4Logger.getInstance().info("API: " + API.CODE_API_YES, "register user successfully", registerStudentDTO.getUserName());
                     return Utility.convertObjectToJSON(API.CODE_API_YES, "thanh cong", user);
                 }else{
