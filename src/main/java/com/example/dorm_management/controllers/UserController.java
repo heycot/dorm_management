@@ -180,7 +180,7 @@ public class UserController {
     }
 
     @GetMapping("/is-exist-user/{username}")
-    public JsonResponse isExistUser(@PathVariable(value = "idUser") String userName){
+    public JsonResponse isExistUser(@PathVariable(value = "username") String userName){
         try{
             boolean b = userService.isExistedUser(userName);
             if(b){
