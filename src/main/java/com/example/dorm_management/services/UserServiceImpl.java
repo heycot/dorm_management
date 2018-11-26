@@ -105,7 +105,13 @@ public class UserServiceImpl implements UserService {
     public boolean isExistedUser(String name) {
         try{
             User  user = userRepository.findUserByUserName(name);
-            if(user != null) return true;
+            if(user != null){
+                return true;
+            }
+            user = userRepository.getUserByStudentCode(name);
+            if(user != null){
+                return true;
+            }
             return false;
         }catch (Exception e){
             return false;
@@ -399,7 +405,19 @@ public class UserServiceImpl implements UserService {
             Group oldGroup = groupRepository.findOne(user.getGroup().getId());
             if(idGroup == null) return false;
             user.setGroup(group);
+            //tìm role theo group
+            List<Role> roles = roleService.findAllRoleByGroupId(idGroup);
+            List<RoleUser> roleUsers = new ArrayList<>();
+            for(Role role : roles){
+                RoleUser roleUser = new RoleUser();
+                roleUser.setStatus(EnumStatusUser.ACTIVE.getCode());
+                roleUser.setUser(user);
+                roleUser.setRoleId(role.getId());
+                roleUsers.add(roleUser);
+            }
+            user.setRoleUsers(roleUsers);
             oldGroup.getUsers().remove(user);
+
             group.addUser(user);
             userRepository.save(user);
             groupRepository.save(group);
