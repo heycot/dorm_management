@@ -15,7 +15,7 @@ public interface ViewRegisterRoomRepository extends JpaRepository<ViewRegisterRo
             "floor.name AS floor_name, area.id as area_id, area.name as area_name, semester.name as semester_name " +
             "FROM register_room AS rr  " +
             "LEFT JOIN user ON rr.user_id = user.id " +
-            "LEFT JOIN student_code ON user.student_code = student_code.id " +
+            "LEFT JOIN student_code ON user.id = student_code.user_id " +
             "LEFT JOIN user_detail ON user.id = user_detail.user_id " +
             "LEFT JOIN room ON rr.room_id = room.id " +
             "LEFT JOIN floor ON room.floor_id = floor.id " +
@@ -29,7 +29,7 @@ public interface ViewRegisterRoomRepository extends JpaRepository<ViewRegisterRo
             "floor.name AS floor_name, area.id as area_id, area.name as area_name, semester.name as semester_name " +
             "FROM register_room AS rr  " +
             "LEFT JOIN user ON rr.user_id = user.id " +
-            "LEFT JOIN student_code ON user.student_code = student_code.id " +
+            "LEFT JOIN student_code ON user.id = student_code.user_id " +
             "LEFT JOIN user_detail ON user.id = user_detail.user_id " +
             "LEFT JOIN room ON rr.room_id = room.id " +
             "LEFT JOIN floor ON room.floor_id = floor.id " +
@@ -43,7 +43,7 @@ public interface ViewRegisterRoomRepository extends JpaRepository<ViewRegisterRo
             "floor.name AS floor_name, area.id as area_id, area.name as area_name, semester.name as semester_name " +
             "FROM register_room AS rr  " +
             "LEFT JOIN user ON rr.user_id = user.id " +
-            "LEFT JOIN student_code ON user.student_code = student_code.id " +
+            "LEFT JOIN student_code ON user.id = student_code.user_id " +
             "LEFT JOIN user_detail ON user.id = user_detail.user_id " +
             "LEFT JOIN room ON rr.room_id = room.id " +
             "LEFT JOIN floor ON room.floor_id = floor.id " +
@@ -57,7 +57,7 @@ public interface ViewRegisterRoomRepository extends JpaRepository<ViewRegisterRo
             "floor.name AS floor_name, area.id as area_id, area.name as area_name, semester.name as semester_name " +
             "FROM register_room AS rr  " +
             "LEFT JOIN user ON rr.user_id = user.id " +
-            "LEFT JOIN student_code ON user.student_code = student_code.id " +
+            "LEFT JOIN student_code ON user.id = student_code.user_id " +
             "LEFT JOIN user_detail ON user.id = user_detail.user_id " +
             "LEFT JOIN room ON rr.room_id = room.id " +
             "LEFT JOIN floor ON room.floor_id = floor.id " +
@@ -71,7 +71,7 @@ public interface ViewRegisterRoomRepository extends JpaRepository<ViewRegisterRo
             "floor.name AS floor_name, area.id as area_id, area.name as area_name, semester.name as semester_name " +
             "FROM register_room AS rr  " +
             "LEFT JOIN user ON rr.user_id = user.id " +
-            "LEFT JOIN student_code ON user.student_code = student_code.id " +
+            "LEFT JOIN student_code ON user.id = student_code.user_id " +
             "LEFT JOIN user_detail ON user.id = user_detail.user_id " +
             "LEFT JOIN room ON rr.room_id = room.id " +
             "LEFT JOIN floor ON room.floor_id = floor.id " +
