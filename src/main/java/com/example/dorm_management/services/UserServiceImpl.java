@@ -34,6 +34,9 @@ public class UserServiceImpl implements UserService {
     private GroupRepository groupRepository;
 
     @Autowired
+    private RoleUserRepository roleUserRepository;
+
+    @Autowired
     private ActionRepository actionRepository;
 
     @Override
@@ -405,6 +408,11 @@ public class UserServiceImpl implements UserService {
             Group oldGroup = groupRepository.findOne(user.getGroup().getId());
             if(idGroup == null) return false;
             user.setGroup(group);
+            // xoa role user cu
+            List<RoleUser> roleUsers1 = user.getRoleUsers();
+            for(RoleUser roleUser : roleUsers1){
+                roleUserRepository.delete(roleUser);
+            }
             //tìm role theo group
             List<Role> roles = roleService.findAllRoleByGroupId(idGroup);
             List<RoleUser> roleUsers = new ArrayList<>();
