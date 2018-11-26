@@ -249,6 +249,19 @@ public class UserController {
         }
     }
 
+    @PostMapping("/update-user/{uId}")
+    public JsonResponse updateUserDTO(@RequestBody UpdateUserDTO updateUserDTO, @PathVariable(value = "uId") Integer id){
+        try{
+           boolean b = userService.updateUser(id, updateUserDTO);
+            if(b){
+                return Utility.convertObjectToJSON(API.CODE_API_YES, "update user sucessfully", updateUserDTO);
+            }
+            return Utility.convertObjectToJSON(API.CODE_API_NO, "update user error");
+        }catch (Exception e){
+            return Utility.convertObjectToJSON(API.CODE_API_NO, e.getMessage());
+        }
+    }
+
     //TODO GROUP
 
     @GetMapping("/get_group")

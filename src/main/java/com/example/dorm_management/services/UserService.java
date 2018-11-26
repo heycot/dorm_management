@@ -1,9 +1,6 @@
 package com.example.dorm_management.services;
 
-import com.example.dorm_management.DTO.ActionResult;
-import com.example.dorm_management.DTO.GroupResult;
-import com.example.dorm_management.DTO.RegisterStudentUserDTO;
-import com.example.dorm_management.DTO.RegisterUserDTO;
+import com.example.dorm_management.DTO.*;
 import com.example.dorm_management.entities.User;
 import com.example.dorm_management.entities.Action;
 import com.example.dorm_management.entities.Group;
@@ -49,5 +46,7 @@ public interface UserService {
     List<User> getUsersByGroupId(Integer idGroup);
 
     boolean changeGroupByIdUser(Integer idUser, Integer idGroup);
+
+    boolean updateUser(Integer uId, UpdateUserDTO updateUserDTO);
 
 }

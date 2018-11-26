@@ -46,4 +46,6 @@ public interface UserRepository extends JpaRepository<User, Integer> {
             " INNER JOIN groups ON role.group_id = groups.id"
             + " WHERE groups.id = ?1", nativeQuery = true)
     List<User> getUsersByGroupId(Integer idGroup);
+
+
 }

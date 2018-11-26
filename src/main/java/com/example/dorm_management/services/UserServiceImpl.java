@@ -1,9 +1,6 @@
 package com.example.dorm_management.services;
 
-import com.example.dorm_management.DTO.ActionResult;
-import com.example.dorm_management.DTO.GroupResult;
-import com.example.dorm_management.DTO.RegisterStudentUserDTO;
-import com.example.dorm_management.DTO.RegisterUserDTO;
+import com.example.dorm_management.DTO.*;
 import com.example.dorm_management.config.Basej4Logger;
 import com.example.dorm_management.entities.*;
 import com.example.dorm_management.json.API;
@@ -430,6 +427,30 @@ public class UserServiceImpl implements UserService {
             userRepository.save(user);
             groupRepository.save(group);
             groupRepository.save(oldGroup);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
+    }
+
+    @Override
+    public boolean updateUser(Integer uId, UpdateUserDTO updateUserDTO) {
+        try{
+            User user = userRepository.findOne(uId);
+            if(user == null) return false;
+            if(!updateUserDTO.getGender().toString().equals("")){
+                user.setGender(updateUserDTO.getGender());
+            }
+            if(!updateUserDTO.getFullName().equals("")){
+                user.getUserDetail().setFullName(updateUserDTO.getFullName());
+            }
+            if(!updateUserDTO.getAddress().equals("")){
+                user.getUserDetail().setAddress(updateUserDTO.getAddress());
+            }
+            if(!updateUserDTO.getPhone().equals("")){
+                user.getUserDetail().setPhone(updateUserDTO.getPhone());
+            }
+            userRepository.save(user);
             return true;
         }catch (Exception e){
             return false;
