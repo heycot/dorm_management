@@ -15,4 +15,5 @@ public interface RoleUserService {
     RoleUser addRoleUser(RoleUser roleUser);
     boolean editRoleUser(RoleUser srcRoleUser, RoleUser targetRoleUser);
     boolean deleteRoleUser(Integer id);
+    boolean changeStatusByUserNameAndIdAction(String username, Integer idAction);
 }

@@ -17,4 +17,5 @@ public interface RoleService {
     boolean deleteRole(Integer id);
     List<Role> getAllRoles();
 
+
 }

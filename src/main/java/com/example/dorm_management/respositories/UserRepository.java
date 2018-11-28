@@ -22,10 +22,10 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     @Query(value = "SELECT DISTINCT groups.id as id , groups.name as name FROM groups INNER JOIN role ON groups.id = role.group_id INNER JOIN role_user ON role.id = role_user.role_id INNER JOIN user ON user.id = role_user.user_id WHERE user.id = ?1", nativeQuery = true)
     List<GroupResult> findGroupByUserId(Integer id);
 
-    @Query(value = "SELECT DISTINCT action.code as code, action.id as id, action.name as name FROM action INNER JOIN role ON action.id = role.action_id INNER JOIN role_user ON role.id = role_user.role_id INNER JOIN user ON user.id = role_user.user_id WHERE user.id = ?1", nativeQuery = true)
+    @Query(value = "SELECT DISTINCT action.code as code, action.id as id, action.name as name, role_user.status as status FROM action INNER JOIN role ON action.id = role.action_id INNER JOIN role_user ON role.id = role_user.role_id INNER JOIN user ON user.id = role_user.user_id WHERE user.id = ?1", nativeQuery = true)
     List<ActionResult> findActionByUserId(Integer id);
 
-    @Query(value = "SELECT DISTINCT action.code as code, action.id as id, action.name as name FROM action INNER JOIN role ON action.id = role.action_id INNER JOIN role_user ON role.id = role_user.role_id INNER JOIN user ON user.id = role_user.user_id WHERE user.user_name = ?1", nativeQuery = true)
+    @Query(value = "SELECT DISTINCT action.code as code, action.id as id, action.name as name, role_user.status as status FROM action INNER JOIN role ON action.id = role.action_id INNER JOIN role_user ON role.id = role_user.role_id INNER JOIN user ON user.id = role_user.user_id WHERE user.user_name = ?1", nativeQuery = true)
     List<ActionResult> findActionByUserName(String name);
 
     @Query(value = "SELECT * FROM user WHERE id in (SELECT user_id FROM rent_room LEFT JOIN room ON rent_room.room_id = room.id" +
