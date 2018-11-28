@@ -376,7 +376,7 @@ public class UserController {
         }
     }
     @GetMapping("/get_action/{username}")
-    public JsonResponse findActionByUserId(@PathVariable(value = "id") String username){
+    public JsonResponse findActionByUserName(@PathVariable(value = "username") String username){
         try{
             List<ActionResult> actions = userService.findActionByUserName(username);
             if(actions != null){
