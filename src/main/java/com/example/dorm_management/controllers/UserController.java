@@ -375,7 +375,7 @@ public class UserController {
             return Utility.convertObjectToJSON(API.CODE_API_NO, e.getMessage());
         }
     }
-    @GetMapping("/get_action/{username}")
+    @GetMapping("/get-action-by-name/{username}")
     public JsonResponse findActionByUserName(@PathVariable(value = "username") String username){
         try{
             List<ActionResult> actions = userService.findActionByUserName(username);
