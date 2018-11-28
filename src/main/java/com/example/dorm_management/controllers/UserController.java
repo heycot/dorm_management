@@ -301,18 +301,6 @@ public class UserController {
             return Utility.convertObjectToJSON(API.CODE_API_NO, e.getMessage());
         }
     }
-    @GetMapping("/get_group/{username}")
-     public JsonResponse findGroupByUserName(@PathVariable(value = "username") String name){
-        try{
-            List<GroupResult> groups = userService.findGroupByUserName(name);
-            if(groups != null){
-                return Utility.convertObjectToJSON(API.CODE_API_YES, "successfully", groups);
-            }
-            return Utility.convertObjectToJSON(API.CODE_API_NOTFOUND, "Khong tim thay group");
-        }catch (Exception e){
-            return Utility.convertObjectToJSON(API.CODE_API_NO, e.getMessage());
-        }
-    }
 
     @PostMapping("/add_group")
     public JsonResponse addGroup(@RequestBody Group group){
@@ -377,16 +365,30 @@ public class UserController {
     }
     @GetMapping("/get_action/{id}")
     public JsonResponse findActionByUserId(@PathVariable(value = "id") Integer id){
-//        try{
+        try{
             List<ActionResult> actions = userService.findActionByUserId(id);
             if(actions != null){
                 return Utility.convertObjectToJSON(API.CODE_API_YES, "successfully", actions);
             }
             return Utility.convertObjectToJSON(API.CODE_API_NOTFOUND, "Khong tim thay action");
-//        }catch (Exception e){
-//            return Utility.convertObjectToJSON(API.CODE_API_NO, e.getMessage());
-//        }
+        }catch (Exception e){
+            return Utility.convertObjectToJSON(API.CODE_API_NO, e.getMessage());
+        }
     }
+    @GetMapping("/get_action/{username}")
+    public JsonResponse findActionByUserId(@PathVariable(value = "id") String username){
+        try{
+            List<ActionResult> actions = userService.findActionByUserName(username);
+            if(actions != null){
+                return Utility.convertObjectToJSON(API.CODE_API_YES, "successfully", actions);
+            }
+            return Utility.convertObjectToJSON(API.CODE_API_NOTFOUND, "Khong tim thay action");
+        }catch (Exception e){
+            return Utility.convertObjectToJSON(API.CODE_API_NO, e.getMessage());
+        }
+    }
+
+
 
     @PostMapping("/add_action")
     public JsonResponse addAction(@RequestBody Action action){

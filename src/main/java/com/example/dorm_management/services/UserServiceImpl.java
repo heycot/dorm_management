@@ -280,14 +280,6 @@ public class UserServiceImpl implements UserService {
         }
         return null;
     }
-    @Override
-    public List<GroupResult> findGroupByUserName(String name) {
-        List<GroupResult> groups = userRepository.findGroupByUserName(name);
-        if(groups.size() > 0){
-            return groups;
-        }
-        return null;
-    }
 
     @Override
     public List<Group> findAllGroup() {
@@ -333,6 +325,14 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<ActionResult> findActionByUserId(Integer id) {
         List<ActionResult> actions = userRepository.findActionByUserId(id);
+        if(actions.size() > 0){
+            return actions;
+        }
+        return null;
+    }
+    @Override
+    public List<ActionResult> findActionByUserName(String name) {
+        List<ActionResult> actions = userRepository.findActionByUserName(name);
         if(actions.size() > 0){
             return actions;
         }

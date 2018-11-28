@@ -14,4 +14,9 @@ public interface RoleRepository extends JpaRepository<Role, Integer> {
     @Query(value = "select * from role " +
             "inner join groups on role.group_id = groups.id where groups.id = ?1", nativeQuery = true)
     List<Role> findAllRoleByGroupId(Integer groupId);
+
+    @Query(value = "select * from role " +
+            "inner join groups on role.action_id = action.id where action.id = ?1", nativeQuery = true)
+    List<Role> findRoleByActionId(Integer actionId);
+
 }

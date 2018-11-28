@@ -26,7 +26,7 @@ public interface UserService {
     JsonResponse registerUser(RegisterUserDTO registerUserDTO, Integer idGroup);
     //group
     List<GroupResult> findGroupByUserId(Integer id);
-    List<GroupResult> findGroupByUserName(String name);
+
     List<Group> findAllGroup();
     boolean addGroup(Group group);
     boolean deleteGroup(Integer id);
@@ -34,6 +34,7 @@ public interface UserService {
     //action
 
     List<ActionResult> findActionByUserId(Integer id);
+    List<ActionResult> findActionByUserName(String name);
     List<Action> findAllAction();
     boolean addAction(Action action);
     boolean deleteAction(Integer id);
