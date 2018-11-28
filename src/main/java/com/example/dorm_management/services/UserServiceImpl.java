@@ -51,6 +51,10 @@ public class UserServiceImpl implements UserService {
     public User findUserById(Integer id) {
         return userRepository.findUserById(id);
     }
+    @Override
+    public User findUserUserName(String name) {
+        return userRepository.findUserByUserName(name);
+    }
 
     @Override
     public boolean isExistedUserByNameAndPassword(String name, String password){
@@ -271,6 +275,14 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<GroupResult> findGroupByUserId(Integer id) {
         List<GroupResult> groups = userRepository.findGroupByUserId(id);
+        if(groups.size() > 0){
+            return groups;
+        }
+        return null;
+    }
+    @Override
+    public List<GroupResult> findGroupByUserName(String name) {
+        List<GroupResult> groups = userRepository.findGroupByUserName(name);
         if(groups.size() > 0){
             return groups;
         }

@@ -219,6 +219,18 @@ public class UserController {
             return Utility.convertObjectToJSON(API.CODE_API_NO, e.getMessage());
         }
     }
+    @GetMapping("/get_user/{username}")
+    public JsonResponse findUserByUserName(@PathVariable(value = "username") String name){
+        try{
+            User user = userService.findUserUserName(name);
+            if(user != null){
+                return Utility.convertObjectToJSON(API.CODE_API_YES, "successfully", user);
+            }
+            return Utility.convertObjectToJSON(API.CODE_API_NOTFOUND, "Khong tim thay user");
+        }catch (Exception e){
+            return Utility.convertObjectToJSON(API.CODE_API_NO, e.getMessage());
+        }
+    }
 
     @PostMapping("/edit_user")
     public JsonResponse editUser(@RequestBody User user){
@@ -281,6 +293,18 @@ public class UserController {
      public JsonResponse findGroupByUserId(@PathVariable(value = "id") Integer id){
         try{
             List<GroupResult> groups = userService.findGroupByUserId(id);
+            if(groups != null){
+                return Utility.convertObjectToJSON(API.CODE_API_YES, "successfully", groups);
+            }
+            return Utility.convertObjectToJSON(API.CODE_API_NOTFOUND, "Khong tim thay group");
+        }catch (Exception e){
+            return Utility.convertObjectToJSON(API.CODE_API_NO, e.getMessage());
+        }
+    }
+    @GetMapping("/get_group/{username}")
+     public JsonResponse findGroupByUserName(@PathVariable(value = "username") String name){
+        try{
+            List<GroupResult> groups = userService.findGroupByUserName(name);
             if(groups != null){
                 return Utility.convertObjectToJSON(API.CODE_API_YES, "successfully", groups);
             }

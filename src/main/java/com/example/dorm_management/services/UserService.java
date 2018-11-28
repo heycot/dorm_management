@@ -13,6 +13,7 @@ public interface UserService {
     List<User> findUserByRoomId(Integer roomId);
     List<User> findAllUser();
     User findUserById(Integer id);
+    User findUserUserName(String name);
     boolean isExistedUserByNameAndPassword(String name, String password);
     JsonResponse changePassword(String name, String oldPassword, String newPassword);
     JsonResponse resetPassword(String name, String newPassword);
@@ -25,6 +26,7 @@ public interface UserService {
     JsonResponse registerUser(RegisterUserDTO registerUserDTO, Integer idGroup);
     //group
     List<GroupResult> findGroupByUserId(Integer id);
+    List<GroupResult> findGroupByUserName(String name);
     List<Group> findAllGroup();
     boolean addGroup(Group group);
     boolean deleteGroup(Integer id);
