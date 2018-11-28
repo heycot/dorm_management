@@ -7,4 +7,5 @@ public interface ActionResult {
     Integer getId();
     String getName();
     Integer getCode();
+    Integer getStatus();
 }
