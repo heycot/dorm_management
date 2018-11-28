@@ -13,7 +13,7 @@ public interface UserService {
     List<User> findUserByRoomId(Integer roomId);
     List<User> findAllUser();
     User findUserById(Integer id);
-    User findUserUserName(String name);
+    User findUserByUserName(String name);
     boolean isExistedUserByNameAndPassword(String name, String password);
     JsonResponse changePassword(String name, String oldPassword, String newPassword);
     JsonResponse resetPassword(String name, String newPassword);

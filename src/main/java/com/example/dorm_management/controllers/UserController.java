@@ -219,10 +219,10 @@ public class UserController {
             return Utility.convertObjectToJSON(API.CODE_API_NO, e.getMessage());
         }
     }
-    @GetMapping("/get_user/{username}")
+    @GetMapping("/get-user-by-name/{username}")
     public JsonResponse findUserByUserName(@PathVariable(value = "username") String name){
         try{
-            User user = userService.findUserUserName(name);
+            User user = userService.findUserByUserName(name);
             if(user != null){
                 return Utility.convertObjectToJSON(API.CODE_API_YES, "successfully", user);
             }
