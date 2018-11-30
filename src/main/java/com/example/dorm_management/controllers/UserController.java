@@ -166,6 +166,22 @@ public class UserController {
             return Utility.convertObjectToJSON(API.CODE_API_ERROR, "users by group error ", id);
         }
     }
+
+    @GetMapping("/get-sum-info-by-groups/{id}")
+    public JsonResponse getSumInfoByGroup(@PathVariable(value = "id") Integer id){
+        try{
+            List<User> users = userService.getUsersByGroupId(id);
+            Group group = userService.findGroupById(id);
+            ResCountSumUserActionByGroup resCountSumUserActionByGroup = new ResCountSumUserActionByGroup();
+            resCountSumUserActionByGroup.setSumAction(group.getActions().size());
+            resCountSumUserActionByGroup.setSumUser(users.size());
+            return Utility.convertObjectToJSON(API.CODE_API_YES, "get info sum by group", resCountSumUserActionByGroup);
+        }catch (Exception e){
+            return Utility.convertObjectToJSON(API.CODE_API_ERROR, "gt inf osu, by group error ", id);
+        }
+    }
+
+
     @GetMapping("/change-group-b-user/{idUser}/{idGroup}")
     public JsonResponse changeGroupByUser(@PathVariable(value = "idUser") Integer userId, @PathVariable(value = "idGroup") Integer groupId){
         try{
