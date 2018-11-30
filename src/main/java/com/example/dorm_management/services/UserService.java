@@ -28,6 +28,7 @@ public interface UserService {
     List<GroupResult> findGroupByUserId(Integer id);
 
     List<Group> findAllGroup();
+    Group findGroupById(Integer id);
     boolean addGroup(Group group);
     boolean deleteGroup(Integer id);
     boolean updateGroup(Integer id, Group group);

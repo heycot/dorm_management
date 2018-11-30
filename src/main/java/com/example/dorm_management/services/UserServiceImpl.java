@@ -286,6 +286,11 @@ public class UserServiceImpl implements UserService {
         List<Group> groups = groupRepository.findAll();
         return groups;
     }
+    @Override
+    public Group findGroupById(Integer id) {
+        Group group = groupRepository.findOne(id);
+        return group;
+    }
 
     @Override
     public boolean addGroup(Group group) {

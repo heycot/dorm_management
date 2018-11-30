@@ -1,9 +1,11 @@
 package com.example.dorm_management.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 /**
  * Created by vuong on 10/12/2018.
@@ -43,6 +45,9 @@ public class Action {
         this.name = name;
         this.code = code;
     }
+    @ManyToMany(mappedBy = "actions")
+    @JsonIgnore
+    public List<Group> groups;
 
     public Integer getId() {
         return id;

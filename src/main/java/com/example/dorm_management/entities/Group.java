@@ -20,6 +20,14 @@ public class Group {
     private Integer id;
     private String name;
 
+    public List<Action> getActions() {
+        return actions;
+    }
+
+    public void setActions(List<Action> actions) {
+        this.actions = actions;
+    }
+
     @OneToMany(mappedBy = "group", cascade = CascadeType.ALL,
             fetch = FetchType.LAZY)
     @JsonIgnore
@@ -27,6 +35,9 @@ public class Group {
 
     public Group() {
     }
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "role", joinColumns = @JoinColumn(name = "group_id", referencedColumnName = "id"),inverseJoinColumns = @JoinColumn(name = "action_id", referencedColumnName = "id"))
+    public List<Action> actions;
 
     public void addUser(User user){
         users.add(user);

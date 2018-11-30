@@ -277,9 +277,22 @@ public class UserController {
     //TODO GROUP
 
     @GetMapping("/get_group")
-    public JsonResponse findAllGroup(){
+     public JsonResponse findAllGroup(){
         try{
             List<Group> groups = userService.findAllGroup();
+            if(groups != null){
+                return Utility.convertObjectToJSON(API.CODE_API_YES, "successfully", groups);
+            }
+            return Utility.convertObjectToJSON(API.CODE_API_NO, "");
+        }catch (Exception e){
+            return Utility.convertObjectToJSON(API.CODE_API_NO, e.getMessage());
+        }
+    }
+
+    @GetMapping("/get-group-by-id/{id}")
+    public JsonResponse findGroupById(@PathVariable(value = "id") Integer id){
+        try{
+            Group groups = userService.findGroupById(id);
             if(groups != null){
                 return Utility.convertObjectToJSON(API.CODE_API_YES, "successfully", groups);
             }
@@ -355,6 +368,9 @@ public class UserController {
     public JsonResponse findAllActions(){
         try{
             List<Action> actions = userService.findAllAction();
+            for(Action action: actions){
+//                System.out.println("sf" + action.toString());
+            }
             if(actions != null){
                 return Utility.convertObjectToJSON(API.CODE_API_YES, "successfully", actions);
             }
