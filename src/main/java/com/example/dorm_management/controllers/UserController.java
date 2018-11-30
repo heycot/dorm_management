@@ -388,6 +388,19 @@ public class UserController {
         }
     }
 
+    @GetMapping("/get-action-by-group/{idGroup}")
+    public JsonResponse findActionByGroupId(@PathVariable(value = "idGroup") Integer idGroup){
+        try{
+            List<ActionResult> actions = userService.findActionByGroupId(idGroup);
+            if(actions != null){
+                return Utility.convertObjectToJSON(API.CODE_API_YES, "successfully", actions);
+            }
+            return Utility.convertObjectToJSON(API.CODE_API_NOTFOUND, "Khong tim thay action");
+        }catch (Exception e){
+            return Utility.convertObjectToJSON(API.CODE_API_NO, e.getMessage());
+        }
+    }
+
 
 
     @PostMapping("/add_action")

@@ -20,26 +20,26 @@ public class Action {
 
     @NotNull
     @Column(name = "code")
-    private Integer code;
+    private String code;
 
-    public Integer getCode() {
+    public String getCode() {
         return code;
     }
 
-    public void setCode(Integer code) {
+    public void setCode(String code) {
         this.code = code;
     }
 
     public Action() {
     }
 
-    public Action(Integer id, String name, Integer code) {
+    public Action(Integer id, String name, String code) {
         this.id = id;
         this.name = name;
         this.code = code;
     }
 
-    public Action(String name, Integer code) {
+    public Action(String name, String code) {
         this.name = name;
         this.code = code;
     }

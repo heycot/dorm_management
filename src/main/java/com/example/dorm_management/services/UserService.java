@@ -35,6 +35,7 @@ public interface UserService {
 
     List<ActionResult> findActionByUserId(Integer id);
     List<ActionResult> findActionByUserName(String name);
+    List<ActionResult> findActionByGroupId(Integer idGroup);
     List<Action> findAllAction();
     boolean addAction(Action action);
     boolean deleteAction(Integer id);

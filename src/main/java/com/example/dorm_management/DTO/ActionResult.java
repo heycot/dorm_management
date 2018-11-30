@@ -6,6 +6,6 @@ package com.example.dorm_management.DTO;
 public interface ActionResult {
     Integer getId();
     String getName();
-    Integer getCode();
+    String getCode();
     Integer getStatus();
 }

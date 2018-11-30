@@ -340,6 +340,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<ActionResult> findActionByGroupId(Integer idGroup) {
+        List<ActionResult> actions = actionRepository.findActionByGroupId(idGroup);
+        if(actions.size() > 0){
+            return actions;
+        }
+        return null;
+    }
+
+    @Override
     public List<Action> findAllAction() {
         List<Action> actions = actionRepository.findAll();
         return actions;
