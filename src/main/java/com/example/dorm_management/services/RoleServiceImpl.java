@@ -30,6 +30,13 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
+    public Role findByActionIdAndGroupId(Integer idAction, Integer idGroup) {
+        Role role = roleRepository.findRoleByActionIdAndGroupId(idAction, idGroup);
+        if(role != null) return role;
+        return null;
+    }
+
+    @Override
     public boolean editRole(Integer roleId, Role role) {
         try{
             Role role1 = findById(roleId);

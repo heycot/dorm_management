@@ -10,6 +10,7 @@ import java.util.List;
 public interface RoleService {
     List<Role> findAllRoleByGroupId(Integer groupId);
     Role findById(Integer id);
+    Role findByActionIdAndGroupId(Integer idAction, Integer idGroup);
     boolean editRole(Integer roleId, Role role);
     boolean editRoleByGroupId(Integer roleId, Integer groupId);
     boolean editRoleByActionId(Integer roleId, Integer actionId);

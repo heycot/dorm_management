@@ -42,6 +42,23 @@ public class RoleController {
         }
     }
 
+    @GetMapping("/delete-buy-action-group/{idAction}/{idGroup}")
+    public JsonResponse deleteRoleByActionAndGroup(@PathVariable(value = "idAction") Integer idAction, @PathVariable(value = "idGroup") Integer idGroup){
+        try {
+            Role role = roleService.findByActionIdAndGroupId(idAction, idGroup);
+            if(role == null){
+                return Utility.convertObjectToJSON(API.CODE_API_NOTFOUND, "khong tim thay role");
+            }
+            boolean b = roleService.deleteRole(role.getId());
+            if(b){
+                return Utility.convertObjectToJSON(API.CODE_API_YES, "sucess");
+            }
+            return Utility.convertObjectToJSON(API.CODE_API_NOTFOUND, "xoa khong thanh cong");
+        } catch (Exception e) {
+            return Utility.convertObjectToJSON(API.CODE_API_NOTFOUND, e.getMessage());
+        }
+    }
+
 /*    @PostMapping(value = "/edit_group/{role_id}/{group_id}")
     public JsonResponse editRoleByGroupId(@PathVariable(value = "role_id") Integer roleId, @PathVariable(value = "group_id") Integer groupId){
         try{
