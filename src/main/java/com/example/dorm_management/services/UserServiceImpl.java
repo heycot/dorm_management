@@ -456,6 +456,7 @@ public class UserServiceImpl implements UserService {
                 user.setRoleUsers(roleUsersOwned);
                 userRepository.save(user);
             }
+            roleService.deleteRole(role.getId());
             return true;
         }catch(Exception e){
             return false;
