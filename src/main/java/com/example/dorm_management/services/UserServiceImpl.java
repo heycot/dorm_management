@@ -435,21 +435,25 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean deleteAction(Integer idAction, Integer idGroup) {
         try{
+            List<User> users = userRepository.getUsersByGroupId(idGroup);
+            if(users.size() == 0) return true;
             Role role = roleService.findByActionIdAndGroupId(idAction, idGroup);
             List<RoleUser> roleUsers = roleUserService.findRoleUserByRoleId(role.getId());
-            List<User> users = userRepository.getUsersByGroupId(idGroup);
             Iterator iterator = users.iterator();
             while(iterator.hasNext()){
                 User user = (User) iterator.next();
                 List<RoleUser> roleUsersOwned = user.getRoleUsers();
                 Iterator iterator1 = roleUsersOwned.iterator();
+                ArrayList<RoleUser> tempDelete = new ArrayList<>(1);
                 while (iterator1.hasNext()){
                     RoleUser roleUser = (RoleUser) iterator1.next();
                     if(roleUsers.contains(roleUser)){
-                        roleUserRepository.delete(roleUser);
-                        user.getRoleUsers().remove(roleUser);
+                        tempDelete.add(roleUser);
                     }
                 }
+                roleUserRepository.deleteInBatch(tempDelete);
+                roleUsersOwned.removeAll(tempDelete);
+                user.setRoleUsers(roleUsersOwned);
                 userRepository.save(user);
             }
             return true;
