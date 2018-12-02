@@ -11,6 +11,7 @@ import java.util.List;
  */
 public interface RoleUserService {
     List<RoleUser> findRoleUserByUserId(Integer id);
+    List<RoleUser> findRoleUserByRoleId(Integer id);
     List<RoleUser> findAllRoleUser();
     RoleUser addRoleUser(RoleUser roleUser);
     boolean editRoleUser(RoleUser srcRoleUser, RoleUser targetRoleUser);

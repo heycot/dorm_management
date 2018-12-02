@@ -404,9 +404,54 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean deleteAction(Integer id) {
+    public boolean addActionForGroup(Integer idAction, Integer idGroup) {
         try{
-            actionRepository.delete(id);
+            Action action1 = actionRepository.findOne(idAction);
+            if(action1 != null){
+                roleService.addRole(idGroup, action1.getId());
+                Role role = roleService.findByActionIdAndGroupId(action1.getId(), idGroup);
+                if(role != null){
+                    List<User> users = userRepository.getUsersByGroupId(idGroup);
+                    Iterator iterator = users.iterator();
+                    while(iterator.hasNext()){
+                        User user = (User) iterator.next();
+                        RoleUser roleUser = new RoleUser();
+                        roleUser.setStatus(EnumStatusUser.ACTIVE.getCode());
+                        roleUser.setUser(user);
+                        roleUser.setRoleId(role.getId());
+                        user.addRoleUser(roleUser);
+                        userRepository.save(user);
+                    }
+                }
+                return true;
+            }else{
+                return false;
+            }
+        }catch (Exception e){
+            return false;
+        }
+    }
+
+    @Override
+    public boolean deleteAction(Integer idAction, Integer idGroup) {
+        try{
+            Role role = roleService.findByActionIdAndGroupId(idAction, idGroup);
+            List<RoleUser> roleUsers = roleUserService.findRoleUserByRoleId(role.getId());
+            List<User> users = userRepository.getUsersByGroupId(idGroup);
+            Iterator iterator = users.iterator();
+            while(iterator.hasNext()){
+                User user = (User) iterator.next();
+                List<RoleUser> roleUsersOwned = user.getRoleUsers();
+                Iterator iterator1 = roleUsersOwned.iterator();
+                while (iterator1.hasNext()){
+                    RoleUser roleUser = (RoleUser) iterator1.next();
+                    if(roleUsers.contains(roleUser)){
+                        roleUserRepository.delete(roleUser);
+                        user.getRoleUsers().remove(roleUser);
+                    }
+                }
+                userRepository.save(user);
+            }
             return true;
         }catch(Exception e){
             return false;

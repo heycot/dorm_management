@@ -40,7 +40,8 @@ public interface UserService {
     List<Action> findAllAction();
     boolean addAction(Action action);
     boolean addActionForGroup(Action action, Integer idGroup);
-    boolean deleteAction(Integer id);
+    boolean addActionForGroup(Integer idAction, Integer idGroup);
+    boolean deleteAction(Integer idAction, Integer idGroup);
     boolean updateAction(Integer id, Action action);
 
     List<User> findUserByFloorId(Integer id);

@@ -469,6 +469,23 @@ public class UserController {
         }
     }
 
+    @GetMapping("/add-action-for-group-available/{idAction}/{idGroup}")
+    public JsonResponse addActionForGroupAvailable(@PathVariable(value = "idAction") Integer idAction, @PathVariable(value = "idGroup") Integer idGroup){
+        try{
+            boolean b = userService.addActionForGroup(idAction, idGroup);
+            if(b){
+                Basej4Logger.getInstance().info("API: " + API.CODE_API_ADD_SUCCESS, "add action for group success", idAction);
+                return Utility.convertObjectToJSON(API.CODE_API_ADD_SUCCESS, "");
+            }else{
+                Basej4Logger.getInstance().info("API: " + API.CODE_API_NO, "add action for group  fail", idAction);
+                return Utility.convertObjectToJSON(API.CODE_API_NO, "");
+            }
+        }catch (Exception e){
+            Basej4Logger.getInstance().info("API: " + API.CODE_API_NO, "add action for group  error", idAction);
+            return Utility.convertObjectToJSON(API.CODE_API_ERROR, e.getMessage());
+        }
+    }
+
     @PostMapping("/edit_action")
     public JsonResponse editAction(@RequestBody Action action){
         try{
@@ -483,19 +500,19 @@ public class UserController {
         }
     }
 
-    @GetMapping("/delete_action/{id}")
-    public JsonResponse deleteAction(@PathVariable(value = "id") Integer id){
+    @GetMapping("/delete_action/{idAction}/{idGroup}")
+    public JsonResponse deleteAction(@PathVariable(value = "idAction") Integer idAction, @PathVariable(value = "idGroup") Integer idGroup){
         try{
-            boolean b = userService.deleteAction(id);
+            boolean b = userService.deleteAction(idAction, idGroup);
             if(b){
-                Basej4Logger.getInstance().info("API: " + API.CODE_API_DEL_SUCCESS, "add action error", id);
+                Basej4Logger.getInstance().info("API: " + API.CODE_API_DEL_SUCCESS, "add action error", idAction);
                 return Utility.convertObjectToJSON(API.CODE_API_DEL_SUCCESS, "");
             }else{
-                Basej4Logger.getInstance().info("API: " + API.CODE_API_NO, "delete action error", id);
+                Basej4Logger.getInstance().info("API: " + API.CODE_API_NO, "delete action error", idAction);
                 return Utility.convertObjectToJSON(API.CODE_API_NO, "");
             }
         }catch (Exception e){
-            Basej4Logger.getInstance().info("API: " + API.CODE_API_ERROR, "delete action error", id);
+            Basej4Logger.getInstance().info("API: " + API.CODE_API_ERROR, "delete action error", idAction);
             return Utility.convertObjectToJSON(API.CODE_API_ERROR, e.getMessage());
         }
     }
