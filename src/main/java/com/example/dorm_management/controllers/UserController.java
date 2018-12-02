@@ -452,6 +452,23 @@ public class UserController {
         }
     }
 
+    @PostMapping("/add-action-for-group/{idGroup}")
+    public JsonResponse addActionForGroup(@RequestBody Action action, @PathVariable(value = "idGroup") Integer idGroup){
+        try{
+            boolean b = userService.addActionForGroup(new Action(action.getName(), action.getCode()), idGroup);
+            if(b){
+                Basej4Logger.getInstance().info("API: " + API.CODE_API_ADD_SUCCESS, "add action for group success", action.getName());
+                return Utility.convertObjectToJSON(API.CODE_API_ADD_SUCCESS, "");
+            }else{
+                Basej4Logger.getInstance().info("API: " + API.CODE_API_NO, "add action for group  fail", action.getName());
+                return Utility.convertObjectToJSON(API.CODE_API_NO, "");
+            }
+        }catch (Exception e){
+            Basej4Logger.getInstance().info("API: " + API.CODE_API_NO, "add action for group  error", action.getName());
+            return Utility.convertObjectToJSON(API.CODE_API_ERROR, e.getMessage());
+        }
+    }
+
     @PostMapping("/edit_action")
     public JsonResponse editAction(@RequestBody Action action){
         try{

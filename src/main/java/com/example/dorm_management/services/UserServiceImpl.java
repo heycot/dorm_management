@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 @Service
 public class UserServiceImpl implements UserService {
@@ -367,6 +368,35 @@ public class UserServiceImpl implements UserService {
         if(action == null) return false;
         try{
             actionRepository.save(action);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
+    }
+
+    @Override
+    public boolean addActionForGroup(Action action, Integer idGroup) {
+        if(action == null) return false;
+        try{
+            actionRepository.save(action);
+            Action action1 = actionRepository.findByName(action.getName());
+            if(action1 != null){
+                roleService.addRole(idGroup, action1.getId());
+                Role role = roleService.findByActionIdAndGroupId(action1.getId(), idGroup);
+                if(role != null){
+                    List<User> users = userRepository.getUsersByGroupId(idGroup);
+                    Iterator iterator = users.iterator();
+                    while(iterator.hasNext()){
+                        User user = (User) iterator.next();
+                        RoleUser roleUser = new RoleUser();
+                        roleUser.setStatus(EnumStatusUser.ACTIVE.getCode());
+                        roleUser.setUser(user);
+                        roleUser.setRoleId(role.getId());
+                        user.addRoleUser(roleUser);
+                        userRepository.save(user);
+                    }
+                }
+            }
             return true;
         }catch (Exception e){
             return false;

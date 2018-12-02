@@ -158,4 +158,8 @@ public class User {
     public void setGroup(Group group) {
         this.group = group;
     }
+
+    public void addRoleUser(RoleUser roleUser){
+        this.roleUsers.add(roleUser);
+    }
 }

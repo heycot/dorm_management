@@ -39,6 +39,7 @@ public interface UserService {
     List<ActionResult> findActionByGroupId(Integer idGroup);
     List<Action> findAllAction();
     boolean addAction(Action action);
+    boolean addActionForGroup(Action action, Integer idGroup);
     boolean deleteAction(Integer id);
     boolean updateAction(Integer id, Action action);
 
