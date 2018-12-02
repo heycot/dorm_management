@@ -10,7 +10,7 @@ import java.util.List;
  * Created by vuong on 10/12/2018.
  */
 public interface RoleUserService {
-    RoleUser findRoleUserByUserId(Integer id);
+    List<RoleUser> findRoleUserByUserId(Integer id);
     List<RoleUser> findAllRoleUser();
     RoleUser addRoleUser(RoleUser roleUser);
     boolean editRoleUser(RoleUser srcRoleUser, RoleUser targetRoleUser);

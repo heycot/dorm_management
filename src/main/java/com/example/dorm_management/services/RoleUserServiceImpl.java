@@ -27,7 +27,7 @@ public class RoleUserServiceImpl implements RoleUserService {
     private RoleRepository roleRepository;
 
     @Override
-    public RoleUser findRoleUserByUserId(Integer id) {
+    public List<RoleUser> findRoleUserByUserId(Integer id) {
         return roleUserRepository.findByUserId(id);
     }
 

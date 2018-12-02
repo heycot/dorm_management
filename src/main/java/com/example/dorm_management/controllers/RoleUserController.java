@@ -40,7 +40,7 @@ public class RoleUserController {
     @GetMapping(value = "/{id}")
     public JsonResponse getRoleUserById(@PathVariable(value = "id") Integer id){
         try{
-            RoleUser roleUser = roleUserService.findRoleUserByUserId(id);
+            List<RoleUser> roleUser = roleUserService.findRoleUserByUserId(id);
             return Utility.convertObjectToJSON(API.CODE_API_YES, "successfully", roleUser);
         }catch (Exception e){
             System.out.println(e.getCause());
