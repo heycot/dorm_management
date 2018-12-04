@@ -4,6 +4,7 @@ import com.example.dorm_management.entities.*;
 import com.example.dorm_management.json.API;
 import com.example.dorm_management.json.JsonResponse;
 import com.example.dorm_management.libararies.LogError;
+import com.example.dorm_management.libararies.Utility;
 import com.example.dorm_management.services.*;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -394,6 +395,91 @@ public class RegisterRoomController {
             return jsonResponse;
         }
     }
+
+    @GetMapping(value = "get-time-register")
+    public JsonResponse getAllTimeRegister(){
+        try{
+            List<TimeRegister> timeRegisters = registerRoomService.findAllTimeRegister();
+            return Utility.convertObjectToJSON(API.CODE_API_YES, "get time register success", timeRegisters);
+        }catch (Exception e){
+            return Utility.convertObjectToJSON(API.CODE_API_YES, "get time register fail");
+        }
+    }
+
+    @GetMapping(value = "get-time-register/{id}")
+    public JsonResponse getAllTimeRegisterById(@PathVariable(value = "id") Integer id){
+        try{
+            TimeRegister timeRegister = registerRoomService.findTimeRegisterById(id);
+            return Utility.convertObjectToJSON(API.CODE_API_YES, "get time register success", timeRegister);
+        }catch (Exception e){
+            return Utility.convertObjectToJSON(API.CODE_API_YES, "get time register fail");
+        }
+    }
+
+    @GetMapping(value = "get-time-register-by-semester/{id}")
+    public JsonResponse getAllTimeRegisterBySemesterId(@PathVariable(value = "id") Integer id){
+        try{
+            List<TimeRegister> timeRegister = registerRoomService.findAllTimeRegisterBySemesterId(id);
+            return Utility.convertObjectToJSON(API.CODE_API_YES, "get time register success", timeRegister);
+        }catch (Exception e){
+            return Utility.convertObjectToJSON(API.CODE_API_YES, "get time register fail");
+        }
+    }
+
+    @PostMapping(value = "add-time-register")
+    public JsonResponse addTimeRegister(@RequestBody TimeRegister timeRegister){
+        try{
+            boolean b = registerRoomService.addTimeRegister(timeRegister);
+            if(b){
+                return Utility.convertObjectToJSON(API.CODE_API_YES, "add time reigster success", timeRegister);
+            }
+            return Utility.convertObjectToJSON(API.CODE_API_YES, "add time register fail", timeRegister);
+        }catch (Exception e){
+            return Utility.convertObjectToJSON(API.CODE_API_YES, "add time register fail");
+        }
+    }
+
+    @GetMapping(value = "delete-time-register")
+    public JsonResponse deleteTimeRegister(@PathVariable(value = "id") Integer id){
+        try{
+            boolean b = registerRoomService.deleteTimeRegisterById(id);
+            if(b){
+                return Utility.convertObjectToJSON(API.CODE_API_YES, "delete time register success");
+            }
+            return Utility.convertObjectToJSON(API.CODE_API_YES, "delete time register fail");
+        }catch (Exception e){
+            return Utility.convertObjectToJSON(API.CODE_API_YES, "delete time register fail");
+        }
+    }
+
+    @GetMapping(value = "delete-time-register-by-semester")
+    public JsonResponse deleteTimeRegisterBySemesterId(@PathVariable(value = "id") Integer id){
+        try{
+            boolean b = registerRoomService.deleteTimeRegisterBySemesterId(id);
+            if(b){
+                return Utility.convertObjectToJSON(API.CODE_API_YES, "delete time register success");
+            }
+            return Utility.convertObjectToJSON(API.CODE_API_YES, "delete time register fail");
+        }catch (Exception e){
+            return Utility.convertObjectToJSON(API.CODE_API_YES, "delete time register fail");
+        }
+    }
+
+    @GetMapping(value = "change-status-semester/{id}")
+    public JsonResponse changeStatusSemester(@PathVariable(value = "id") Integer id){
+        try{
+            boolean b = registerRoomService.changeStatusById(id);
+            if(b){
+                return Utility.convertObjectToJSON(API.CODE_API_YES, "change status time register success");
+            }
+            return Utility.convertObjectToJSON(API.CODE_API_YES, "change status time register fail");
+        }catch (Exception e){
+            return Utility.convertObjectToJSON(API.CODE_API_YES, "change status time register fail");
+        }
+    }
+
+
+
 
     public JsonResponse return_No_Object_JsonPresonse(Integer code, String message){
         JsonResponse jsonResponse = new JsonResponse();

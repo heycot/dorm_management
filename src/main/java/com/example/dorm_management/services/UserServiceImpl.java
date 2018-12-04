@@ -204,8 +204,9 @@ public class UserServiceImpl implements UserService {
 
                     StudentCode studentCode = new StudentCode(
                             registerStudentDTO.getNameClass(),
-                            Utility.getEndSchoolYearByMSSV(registerStudentDTO.getMssv()),
-                            registerStudentDTO.getMssv(), user.getId());
+                            registerStudentDTO.getMssv(),
+                            Utility.getEndSchoolYearByMSSV(registerStudentDTO.getMssv())
+                            , user.getId());
 
                     user.setUserDetail(userDetail);
                     user.setStudentCode(studentCode);
@@ -489,7 +490,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User isExistedUserByStudentCodeAndPassword(String studentCode, String password) {
-        return userRepository.getUserByStudentCodeAndPassword(studentCode, password);
+        return userRepository.getUserByStudentCodeAndPassword(studentCode, MD5Utility.encode(password));
     }
 
     @Override

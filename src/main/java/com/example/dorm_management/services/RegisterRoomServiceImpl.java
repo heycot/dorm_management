@@ -1,8 +1,10 @@
 package com.example.dorm_management.services;
 
 import com.example.dorm_management.entities.RegisterRoom;
+import com.example.dorm_management.entities.TimeRegister;
 import com.example.dorm_management.entities.ViewRegisterRoom;
 import com.example.dorm_management.respositories.RegisterRoomRepository;
+import com.example.dorm_management.respositories.TimeRegisterRepository;
 import com.example.dorm_management.respositories.ViewRegisterRoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +14,8 @@ import java.util.List;
 
 @Service
 public class RegisterRoomServiceImpl implements RegisterRoomService {
+    @Autowired
+    private TimeRegisterRepository timeRegisterRepository;
 
     @Autowired
     private RegisterRoomRepository registerRoomRepository;
@@ -125,6 +129,74 @@ public class RegisterRoomServiceImpl implements RegisterRoomService {
     @Override
     public Integer countRegisterByRoomId(Integer roomId) {
         return registerRoomRepository.countRegisterByRoomId(roomId);
+    }
+
+    @Override
+    public List<TimeRegister> findAllTimeRegisterBySemesterId(Integer id) {
+        try{
+            List<TimeRegister> timeRegisters = timeRegisterRepository.findBySemesterId(id);
+            return timeRegisters;
+        }catch (Exception e){
+            return null;
+        }
+    }
+
+    @Override
+    public List<TimeRegister> findAllTimeRegister() {
+        try{
+            List<TimeRegister> timeRegisters = timeRegisterRepository.findAll();
+            return timeRegisters;
+        }catch (Exception e){
+            return null;
+        }
+    }
+
+    @Override
+    public TimeRegister findTimeRegisterById(Integer id) {
+        try{
+            TimeRegister timeRegisters= timeRegisterRepository.findOne(id);
+            return timeRegisters;
+        }catch (Exception e){
+            return null;
+        }
+    }
+
+    @Override
+    public boolean addTimeRegister(TimeRegister timeRegister) {
+        try{
+            timeRegisterRepository.save(timeRegister);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
+    }
+
+    @Override
+    public boolean deleteTimeRegisterById(Integer id) {
+        try{
+            timeRegisterRepository.delete(id);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
+    }
+
+    @Override
+    public boolean deleteTimeRegisterBySemesterId(Integer idSemester) {
+        List<TimeRegister> timeRegister = timeRegisterRepository.findBySemesterId(idSemester);
+        timeRegisterRepository.deleteInBatch(timeRegister);
+        return false;
+    }
+
+    @Override
+    public boolean changeStatusById(Integer id) {
+        TimeRegister timeRegister = timeRegisterRepository.findOne(id);
+        if(timeRegister != null){
+            timeRegister.setStatus(timeRegister.getStatus() == 1 ? 0 : 1);
+            timeRegisterRepository.save(timeRegister);
+            return true;
+        }
+        return false;
     }
 
 }

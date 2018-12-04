@@ -1,6 +1,7 @@
 package com.example.dorm_management.services;
 
 import com.example.dorm_management.entities.RegisterRoom;
+import com.example.dorm_management.entities.TimeRegister;
 import com.example.dorm_management.entities.ViewRegisterRoom;
 import org.springframework.stereotype.Service;
 
@@ -31,5 +32,14 @@ public interface RegisterRoomService {
     List<ViewRegisterRoom> findAllByFloorId(Integer id);
 
     Integer countRegisterByRoomId(Integer roomId);
+
+    List<TimeRegister> findAllTimeRegisterBySemesterId(Integer id);
+    List<TimeRegister> findAllTimeRegister();
+    TimeRegister findTimeRegisterById(Integer id);
+    boolean addTimeRegister(TimeRegister timeRegister);
+    boolean deleteTimeRegisterById(Integer id);
+    boolean deleteTimeRegisterBySemesterId(Integer idSemester);
+    boolean changeStatusById(Integer id);
+
 
 }
