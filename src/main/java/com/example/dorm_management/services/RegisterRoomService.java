@@ -40,6 +40,7 @@ public interface RegisterRoomService {
     boolean deleteTimeRegisterById(Integer id);
     boolean deleteTimeRegisterBySemesterId(Integer idSemester);
     boolean changeStatusById(Integer id);
+    List<TimeRegister> findTimeRegisterByTime(String time);
 
 
 }

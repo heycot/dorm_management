@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -197,6 +198,18 @@ public class RegisterRoomServiceImpl implements RegisterRoomService {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public List<TimeRegister> findTimeRegisterByTime(String time) {
+        List<TimeRegister> timeRegisters = new ArrayList<>(1);
+        List<TimeRegister> allTimeRegisters = timeRegisterRepository.findAll();
+        for(TimeRegister timeRegister: allTimeRegisters){
+            if(timeRegister.onTime(time)){
+                timeRegisters.add(timeRegister);
+            }
+        }
+        return timeRegisters;
     }
 
 }

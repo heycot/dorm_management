@@ -478,6 +478,16 @@ public class RegisterRoomController {
         }
     }
 
+    @GetMapping(value = "get-time-register-by-time/{time}")
+    public JsonResponse changeStatusSemester(@PathVariable(value = "time") String time){
+        try{
+            List<TimeRegister> timeRegisters = registerRoomService.findTimeRegisterByTime(time);
+            return Utility.convertObjectToJSON(API.CODE_API_YES, "get time register bt time success", timeRegisters);
+        }catch (Exception e){
+            return Utility.convertObjectToJSON(API.CODE_API_YES, "get time register bt time fail");
+        }
+    }
+
 
 
 

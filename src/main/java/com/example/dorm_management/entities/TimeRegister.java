@@ -99,6 +99,10 @@ public class TimeRegister {
         this.dateEnd = dateEnd;
     }
 
+    public boolean onTime(String time){
+        return Long.parseLong(time) >= Long.parseLong(dateBegin) && Long.parseLong(time) <= Long.parseLong(dateEnd);
+    }
+
 /*    @Override
     public String toString() {
         return "{ " +
