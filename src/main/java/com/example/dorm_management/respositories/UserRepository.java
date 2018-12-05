@@ -50,5 +50,8 @@ public interface UserRepository extends JpaRepository<User, Integer> {
             + " WHERE groups.id = ?1", nativeQuery = true)
     List<User> getUsersByGroupId(Integer idGroup);
 
+    @Query(value = "SELECT DISTINCT user.* FROM user WHERE user.group_id = ?1", nativeQuery = true)
+    List<User> getUsersByFieldGroupIdInUser(Integer idGroup);
+
 
 }

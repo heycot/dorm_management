@@ -412,7 +412,7 @@ public class UserServiceImpl implements UserService {
                 roleService.addRole(idGroup, action1.getId());
                 Role role = roleService.findByActionIdAndGroupId(action1.getId(), idGroup);
                 if(role != null){
-                    List<User> users = userRepository.getUsersByGroupId(idGroup);
+                    List<User> users = userRepository.getUsersByFieldGroupIdInUser(idGroup);
                     Iterator iterator = users.iterator();
                     while(iterator.hasNext()){
                         User user = (User) iterator.next();
