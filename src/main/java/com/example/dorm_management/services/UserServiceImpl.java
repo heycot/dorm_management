@@ -437,8 +437,9 @@ public class UserServiceImpl implements UserService {
     public boolean deleteAction(Integer idAction, Integer idGroup) {
         try{
             List<User> users = userRepository.getUsersByGroupId(idGroup);
-            if(users.size() == 0) return true;
             Role role = roleService.findByActionIdAndGroupId(idAction, idGroup);
+            roleService.deleteRole(role.getId());
+            if(users.size() == 0) return true;
             List<RoleUser> roleUsers = roleUserService.findRoleUserByRoleId(role.getId());
             Iterator iterator = users.iterator();
             while(iterator.hasNext()){
@@ -457,7 +458,6 @@ public class UserServiceImpl implements UserService {
                 user.setRoleUsers(roleUsersOwned);
                 userRepository.save(user);
             }
-            roleService.deleteRole(role.getId());
             return true;
         }catch(Exception e){
             return false;
