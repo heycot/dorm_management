@@ -1,6 +1,9 @@
 package com.example.dorm_management.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -17,9 +20,9 @@ public class TimeRegister {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @NotNull
-    @Column(name = "semester_id")
-    private Integer semesterId;
+//    @NotNull
+//    @Column(name = "semester_id")
+//    private Integer semesterId;
 
     @Column(name = "status")
     private Integer status;
@@ -30,6 +33,19 @@ public class TimeRegister {
     @Column(name = "date_end")
     private String dateEnd;
 
+    @ManyToOne()
+    @JoinColumn(name = "semester_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private Semester semester;
+
+    public Semester getSemester() {
+        return semester;
+    }
+
+    public void setSemester(Semester semester) {
+        this.semester = semester;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -37,14 +53,14 @@ public class TimeRegister {
     public void setId(Integer id) {
         this.id = id;
     }
-
-    public Integer getSemesterId() {
-        return semesterId;
-    }
-
-    public void setSemesterId(Integer semesterId) {
-        this.semesterId = semesterId;
-    }
+//
+//    public Integer getSemesterId() {
+//        return semesterId;
+//    }
+//
+//    public void setSemesterId(Integer semesterId) {
+//        this.semesterId = semesterId;
+//    }
 
     public Integer getStatus() {
         return status;
@@ -76,9 +92,21 @@ public class TimeRegister {
 
     public TimeRegister(Integer semesterId, Integer status, String dateBegin, String dateEnd) {
 
-        this.semesterId = semesterId;
+        this.semester = new Semester();
+        this.semester.setId(semesterId);
         this.status = status;
         this.dateBegin = dateBegin;
         this.dateEnd = dateEnd;
     }
+
+/*    @Override
+    public String toString() {
+        return "{ " +
+                "\"id\" : " + this.id +
+                "\"status\" : " + this.status +
+                "\"dateBegin\" : " + this.dateBegin +
+                "\"dateEnd\" : " + this.dateEnd +
+                "\"semester\" : " + this.semester +
+                "}";
+    }*/
 }
