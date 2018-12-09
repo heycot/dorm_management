@@ -180,6 +180,15 @@ public class UserController {
             return Utility.convertObjectToJSON(API.CODE_API_ERROR, "gt inf osu, by group error ", id);
         }
     }
+    @GetMapping("/get-info-index")
+    public JsonResponse getInfoIndex(){
+        try{
+            InfoIndex infoIndex = userService.getInfoIndex();
+            return Utility.convertObjectToJSON(API.CODE_API_YES, "get info index success", infoIndex);
+        }catch (Exception e){
+            return Utility.convertObjectToJSON(API.CODE_API_ERROR, "get info index error");
+        }
+    }
 
 
     @GetMapping("/change-group-b-user/{idUser}/{idGroup}")

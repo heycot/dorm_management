@@ -55,5 +55,5 @@ public interface UserService {
     boolean changeGroupByIdUser(Integer idUser, Integer idGroup);
 
     boolean updateUser(Integer uId, UpdateUserDTO updateUserDTO);
-
+    InfoIndex getInfoIndex();
 }

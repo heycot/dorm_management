@@ -6,11 +6,13 @@ import com.example.dorm_management.entities.*;
 import com.example.dorm_management.json.API;
 import com.example.dorm_management.json.JsonResponse;
 import com.example.dorm_management.libararies.*;
+import com.example.dorm_management.libararies.Enum;
 import com.example.dorm_management.respositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 @Service
@@ -18,6 +20,11 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private AreaRepository areaRepository;
+
+    @Autowired RoomRepository roomRepository;
 
     @Autowired
     private RoleService roleService;
@@ -565,6 +572,29 @@ public class UserServiceImpl implements UserService {
             return true;
         }catch (Exception e){
             return false;
+        }
+    }
+
+    @Override
+    public InfoIndex getInfoIndex() {
+        try{
+            InfoIndex infoIndex = new InfoIndex();
+            List<User> users = userRepository.findAll();
+            infoIndex.setSumUser(users.size());
+            List<Area>  areas = areaRepository.findAll();
+            infoIndex.setSumArea(areas.size());
+            List<Group> groups = groupRepository.findAll();
+            HashMap<Integer, Integer> hashMap = new HashMap<>();
+            for(Group group: groups){
+                hashMap.put(group.getId(), group.getUsers().size());
+            }
+            infoIndex.setSumGroup(hashMap);
+            List<Room> rooms = roomRepository.findAll();
+            infoIndex.setSumRoom(rooms.size());
+            return infoIndex;
+
+        }catch (Exception e){
+            return null;
         }
     }
 
