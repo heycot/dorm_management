@@ -35,6 +35,11 @@ public class RegisterRoomServiceImpl implements RegisterRoomService {
     }
 
     @Override
+    public List<ViewRegisterRoom> findAllByUserId(Integer userId) {
+        return viewRegisterRoomRepository.findAllByUserId(userId);
+    }
+
+    @Override
     public RegisterRoom addOne(RegisterRoom registerRoom) {
         return registerRoomRepository.save(registerRoom);
     }

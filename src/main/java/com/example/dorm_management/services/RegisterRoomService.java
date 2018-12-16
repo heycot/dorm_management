@@ -12,6 +12,8 @@ public interface RegisterRoomService {
 
     List<ViewRegisterRoom> findAllByRoomId(Integer roomId);
 
+    List<ViewRegisterRoom> findAllByUserId(Integer userId);
+
     RegisterRoom addOne(RegisterRoom registerRoom);
 
     RegisterRoom editOne(RegisterRoom registerRoom, Integer id);
