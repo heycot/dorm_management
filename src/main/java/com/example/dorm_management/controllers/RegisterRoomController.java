@@ -370,6 +370,7 @@ public class RegisterRoomController {
                             .userId(viewRegisterRoom.getUserId())
                             .roomId(viewRegisterRoom.getRoomId())
                             .year(viewRegisterRoom.getYear())
+                            .number(viewRegisterRoom.getNumber())
                             .status(RentRoom.RENT_ROOM_STATUS_ENABLE)
                             .bail(viewRegisterRoom.getNumber() * cost.getValue()).build();
 

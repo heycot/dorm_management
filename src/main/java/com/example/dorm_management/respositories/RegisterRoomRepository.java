@@ -20,6 +20,6 @@ public interface RegisterRoomRepository extends JpaRepository<RegisterRoom, Inte
     List<RegisterRoom> findAllByRoomIdAndStatus(Integer id, Integer status);
 
 
-    @Query(value = "SELECT COUNT(id) as count FROM `register_room` WHERE room_id = ?1", nativeQuery = true)
+    @Query(value = "SELECT SUM(number) as count FROM `register_room` WHERE room_id = ?1", nativeQuery = true)
     Integer countRegisterByRoomId(Integer roomId);
 }

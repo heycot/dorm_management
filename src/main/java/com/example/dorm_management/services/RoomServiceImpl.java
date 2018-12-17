@@ -69,8 +69,9 @@ public class RoomServiceImpl implements RoomService {
             roomEdit.setStatus(room.getStatus());
             roomEdit.setName(room.getName());
             roomEdit.setStudentMax(room.getStudentMax());
-            roomEdit.setStudentPresent(room.getStudentPresent());
-            roomEdit.setStudentRegister(room.getStudentRegister());
+
+            roomEdit.setStudentRegister(registerRoomService.countRegisterByRoomId(id));
+            roomEdit.setStudentPresent(rentRoomService.countPresentByRoomId(id));
 
             return  roomRepository.save(roomEdit);
         } catch (Exception e){
