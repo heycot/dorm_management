@@ -256,6 +256,18 @@ public class UserController {
             return Utility.convertObjectToJSON(API.CODE_API_NO, e.getMessage());
         }
     }
+    @GetMapping("/get-user-by-mssv/{mssv}")
+    public JsonResponse findUserByMssv(@PathVariable(value = "mssv") String mssv){
+        try{
+            User user = userService.findUserByMssv(mssv);
+            if(user != null){
+                return Utility.convertObjectToJSON(API.CODE_API_YES, "successfully", user);
+            }
+            return Utility.convertObjectToJSON(API.CODE_API_NOTFOUND, "Khong tim thay user");
+        }catch (Exception e){
+            return Utility.convertObjectToJSON(API.CODE_API_NO, e.getMessage());
+        }
+    }
 
     @PostMapping("/edit_user")
     public JsonResponse editUser(@RequestBody User user){

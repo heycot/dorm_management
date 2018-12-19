@@ -62,9 +62,15 @@ public class UserServiceImpl implements UserService {
     public User findUserById(Integer id) {
         return userRepository.findUserById(id);
     }
+
     @Override
     public User findUserByUserName(String name) {
         return userRepository.findUserByUserName(name);
+    }
+
+    @Override
+    public User findUserByMssv(String mssv) {
+        return userRepository.getUserByStudentCode(mssv);
     }
 
     @Override

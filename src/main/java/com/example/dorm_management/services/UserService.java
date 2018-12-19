@@ -14,6 +14,7 @@ public interface UserService {
     List<User> findAllUser();
     User findUserById(Integer id);
     User findUserByUserName(String name);
+    User findUserByMssv(String mssv);
     boolean isExistedUserByNameAndPassword(String name, String password);
     JsonResponse changePassword(String name, String oldPassword, String newPassword);
     JsonResponse resetPassword(String name, String newPassword);
