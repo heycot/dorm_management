@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.validation.constraints.NotNull;
 import java.beans.ConstructorProperties;
 import java.sql.Timestamp;
@@ -45,6 +46,8 @@ public class RentRoom {
     @Column(name = "room_id")
     private Integer roomId;
 
+    private Integer number;
+
     public RentRoom() {
     }
 
@@ -52,14 +55,15 @@ public class RentRoom {
         return new RentRoom.RentRoomBuilder();
     }
 
-    @ConstructorProperties({"semesterId", "userId", "year", "bail", "status", "roomId"})
-    RentRoom(Integer semesterId, Integer userId, String year, Float bail, Integer status, Integer roomId) {
+    @ConstructorProperties({"semesterId", "userId", "year", "bail", "status", "roomId", "number"})
+    RentRoom(Integer semesterId, Integer userId, String year, Float bail, Integer status, Integer roomId, Integer number) {
         this.semesterId = semesterId;
         this.userId = userId;
         this.year = year;
         this.bail = bail;
         this.status = status;
         this.roomId = roomId;
+        this.number = number;
     }
 
     public Integer getId() {
@@ -118,6 +122,14 @@ public class RentRoom {
         this.status = status;
     }
 
+    public Integer getNumber() {
+        return number;
+    }
+
+    public void setNumber(Integer number) {
+        this.number = number;
+    }
+
     //==================================================================================================================
 
     public static class RentRoomBuilder {
@@ -128,6 +140,7 @@ public class RentRoom {
         private Float bail;
         private Integer status;
         private Integer roomId;
+        private Integer number;
 
         RentRoomBuilder() {
         }
@@ -162,8 +175,13 @@ public class RentRoom {
             return this;
         }
 
+        public  RentRoom.RentRoomBuilder number(Integer number) {
+            this.number = number;
+            return this;
+        }
+
         public RentRoom build(){
-            return new RentRoom(this.semesterId, this.userId, this.year, this.bail, this.status, this.roomId);
+            return new RentRoom(this.semesterId, this.userId, this.year, this.bail, this.status, this.roomId, this.number);
         }
     }
 }
