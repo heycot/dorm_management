@@ -1,45 +1,90 @@
 package com.example.dorm_management.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.beans.ConstructorProperties;
+import java.sql.Timestamp;
 
-/**
- * Created by vuong on 10/22/2018.
- */
+
+@Getter
+@Setter
+@Builder
 @Entity
 @Data
 @Table(name = "notification")
 public class Notification {
+    //------------------status ---------------------------
+    public final static Integer NOTIFICATION_STATUS_READED   = 1;
+    public final static Integer NOTIFICATION_STATUS_NOT_READ = 0;
+
+    //-------------------------------------------------------
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+    @NotNull
     private String title;
 
+    @NotNull
     private String content;
 
     private Integer status;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore
-    private User user;
+    @Column(name = "room_id")
+    private Integer roomId;
+
+    @Column(name = "user_id")
+    private Integer userId;
+
+    private Timestamp time;
 
     public Notification() {
     }
 
-    public Notification(String title, String content, Integer status, Integer userId) {
+    public static Notification.NotificationBuilder builder() {
+        return new Notification.NotificationBuilder();
+    }
 
+    @ConstructorProperties({"title", "content", "status", "roomId", "userId", "time"})
+    Notification(String title, String content, Integer status, Integer roomId, Integer userId, Timestamp time) {
         this.title = title;
         this.content = content;
         this.status = status;
-        this.user = new User();
-        this.user.setId(userId);
+        this.roomId = roomId;
+        this.userId = userId;
+        this.time = time;
+    }
+
+    public Integer getRoomId() {
+        return roomId;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public Timestamp getTime() {
+        return time;
+    }
+
+    public void setTime(Timestamp time) {
+        this.time = time;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public void setRoomId(Integer roomId) {
+        this.roomId = roomId;
     }
 
     public Integer getId() {
@@ -74,11 +119,52 @@ public class Notification {
         this.status = status;
     }
 
-    public User getUser() {
-        return user;
-    }
+    //==================================================================================================================
 
-    public void setUser(User user) {
-        this.user = user;
+    public static class NotificationBuilder {
+
+        private String title;
+        private String content;
+        private Integer status;
+        private Integer roomId;
+        private Integer userId;
+        private Timestamp time;
+
+        NotificationBuilder() {
+        }
+
+        public Notification.NotificationBuilder title(String title) {
+            this.title = title;
+            return this;
+        }
+
+        public Notification.NotificationBuilder content(String content) {
+            this.content = content;
+            return this;
+        }
+
+        public Notification.NotificationBuilder status(Integer status) {
+            this.status = status;
+            return this;
+        }
+
+        public Notification.NotificationBuilder roomId(Integer roomId) {
+            this.roomId = roomId;
+            return this;
+        }
+
+        public Notification.NotificationBuilder userId(Integer userId) {
+            this.userId = userId;
+            return this;
+        }
+
+        public Notification.NotificationBuilder time(Timestamp time) {
+            this.time = time;
+            return this;
+        }
+
+        public Notification build(){
+            return new Notification(this.title, this.content, this.status, this.roomId, this.userId, this.time);
+        }
     }
 }

@@ -1,7 +1,6 @@
 package com.example.dorm_management.services;
 
 import com.example.dorm_management.entities.Floor;
-import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
@@ -12,4 +11,10 @@ public interface FloorService  {
     Floor findOneById(Integer id);
 
     Floor addOneFloor(Floor floor);
+
+    Floor editOne(Integer id, Floor floor);
+
+    Floor changeStatus(Integer id, Integer status);
+
+    Integer changeStatusByAreaIdAndStatus(Integer status, Integer areaId);
 }

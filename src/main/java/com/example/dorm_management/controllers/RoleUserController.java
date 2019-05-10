@@ -40,11 +40,24 @@ public class RoleUserController {
     @GetMapping(value = "/{id}")
     public JsonResponse getRoleUserById(@PathVariable(value = "id") Integer id){
         try{
-            RoleUser roleUser = roleUserService.findRoleUserByUserId(id);
+            List<RoleUser> roleUser = roleUserService.findRoleUserByUserId(id);
             return Utility.convertObjectToJSON(API.CODE_API_YES, "successfully", roleUser);
         }catch (Exception e){
             System.out.println(e.getCause());
             return Utility.convertObjectToJSON(API.CODE_API_NOTFOUND, "fail");
+        }
+    }
+    @GetMapping(value = "/change-status/{username}/{idAction}")
+    public JsonResponse changeRoleUser(@PathVariable(value = "username") String username, @PathVariable(value = "idAction") Integer idAction){
+        try{
+            boolean b = roleUserService.changeStatusByUserNameAndIdAction(username, idAction);
+            if(b){
+                return Utility.convertObjectToJSON(API.CODE_API_YES, "change status success");
+            }
+            return Utility.convertObjectToJSON(API.CODE_API_NO, "change status error");
+        }catch (Exception e){
+            System.out.println(e.getCause());
+            return Utility.convertObjectToJSON(API.CODE_API_NO, "change status error");
         }
     }
 }

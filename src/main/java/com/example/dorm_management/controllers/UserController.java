@@ -1,5 +1,7 @@
 package com.example.dorm_management.controllers;
 
+import com.example.dorm_management.DTO.*;
+import com.example.dorm_management.config.Basej4Logger;
 import com.example.dorm_management.entities.*;
 import com.example.dorm_management.json.API;
 import com.example.dorm_management.json.JsonResponse;
@@ -7,6 +9,8 @@ import com.example.dorm_management.libararies.Utility;
 import com.example.dorm_management.respositories.StudentCodeRepository;
 import com.example.dorm_management.respositories.UserRepository;
 import com.example.dorm_management.respositories.RoomRepository;
+import com.example.dorm_management.services.RoleService;
+import com.example.dorm_management.services.RoleUserService;
 import com.example.dorm_management.services.UserService;
 import com.example.dorm_management.services.UserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,13 +18,16 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+
 @CrossOrigin(origins = { "*" }, maxAge = 6000)
 @RestController
 @RequestMapping(UserController.BASE_URL)
 public class UserController {
 
     public final  static String BASE_URL = "/api/user";
-
+    @Autowired
+    private RoleService roleService;
     @Autowired
     private UserRepository userRepository;
 
@@ -29,6 +36,7 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
     private JsonResponse jsonResponse;
 
     @Autowired
@@ -42,49 +50,184 @@ public class UserController {
 //        userRepository.save(user);
 //        StudentCode studentCode = new StudentCode("sadf", "safs", "saf",9);
 //        studentCodeRepository.save(studentCode);
-        StudentCode studentCode = studentCodeRepository.findById(5);
-        System.out.println(studentCode.getUser().getUserName());
-        return Utility.convertObjectToJSON(API.CODE_API_ADD_SUCCESS, "", studentCode);
+        /*StudentCode studentCode = studentCodeRepository.findById(5);
+        System.out.println(studentCode.getUser().getUserName());*/
+//        User user = new User("vuongpq2", "vuongpq2", 1,2);
+//        user.setUserDetail(new UserDetail("sadfsdf", "hue", "phan quang vuong", user.getId()));
+//        UserDetail userDetail = new UserDetail("123123", "hue", "phan quang vuong", 9);
+//        userDetailService.save(userDetail);
+//        User user = userService.findUserById(10);
+//        user.setUserDetail(new UserDetail("123", "asd", "sadfdf", user.getId()));
+//        userService.saveUser(user);
+
+        List<Role> roles = roleService.findAllRoleByGroupId(1);
+        return Utility.convertObjectToJSON(API.CODE_API_ADD_SUCCESS, "dsfsdf", roles);
     }
 
+    @GetMapping
+    public JsonResponse getAllUsers(){
+        List<User> users = userService.findAllUser();
+        return Utility.convertObjectToJSON(API.CODE_API_ADD_SUCCESS, "", users);
+    }
+
+    @PostMapping("/login")
+    public JsonResponse checkLogin(@RequestBody AccountDTO accountDTO){
+        try{
+            boolean b = userService.isExistedUserByNameAndPassword(accountDTO.getUserName(), accountDTO.getPassword());
+            if(b){
+                Basej4Logger.getInstance().info("API: " + API.CODE_API_YES, "Login sucess", accountDTO.getUserName());
+                return Utility.convertObjectToJSON(API.CODE_API_YES, "Login sucess", b);
+            }
+            Basej4Logger.getInstance().info("API: " + API.CODE_API_NO, "User not exist!", accountDTO.getUserName());
+            return Utility.convertObjectToJSON(API.CODE_API_NO, "User not exist!", b);
+        }catch (Exception e){
+            Basej4Logger.getInstance().info("API: " + API.CODE_API_ERROR, "server error", accountDTO.getUserName());
+            return Utility.convertObjectToJSON(API.CODE_API_ERROR, "server error");
+        }
+    }
+
+    @PostMapping("/student/login")
+    public JsonResponse checkLoginWithStudent(@RequestBody AccountDTO accountDTO){
+        try{
+            User user = userService.isExistedUserByStudentCodeAndPassword(accountDTO.getStudentCode(), accountDTO.getPassword());
+            User userRes = userService.findUserById(user.getId());
+            if(user != null){
+                Basej4Logger.getInstance().info("API: " + API.CODE_API_YES, "Login sucess", accountDTO.getUserName());
+                return Utility.convertObjectToJSON(API.CODE_API_YES, "Login sucess", userRes);
+            }
+            Basej4Logger.getInstance().info("API: " + API.CODE_API_NO, "User not exist!", accountDTO.getUserName());
+            return Utility.convertObjectToJSON(API.CODE_API_NO, "User not exist!", false);
+        }catch (Exception e){
+            Basej4Logger.getInstance().info("API: " + API.CODE_API_ERROR, "server error", accountDTO.getUserName());
+            return Utility.convertObjectToJSON(API.CODE_API_ERROR, "server error");
+        }
+    }
 
     @GetMapping("/get_user_detail/{id}")
     public JsonResponse findUserDetailById(@PathVariable(value = "id") Integer id){
+
         try{
             UserDetail userDetail = userDetailService.findUserDetailByUserId(id);
             if(userDetail != null){
                 return Utility.convertObjectToJSON(API.CODE_API_YES, "successfully", userDetail);
             }else{
-                return Utility.convertObjectToJSON(API.CODE_API_ID_NOTFOUND, "Khong duoc tim thay");
+                return Utility.convertObjectToJSON(API.CODE_API_NOTFOUND, "Khong duoc tim thay");
             }
         }catch (Exception e){
             return Utility.convertObjectToJSON(API.CODE_API_NO, e.getMessage());
         }
     }
-
-    @PostMapping("/add_user")
-    public JsonResponse addUser(@RequestBody User user){
+    @RequestMapping(value = "/{userId}/add_user_detail", method = RequestMethod.POST)
+    public JsonResponse addUserDetailById(@RequestBody UserDetail userDetail, @PathVariable(value = "userId") String userId){
         try{
-            if(userService.isExistedUserByNameAndPassword(user.getUserName(), user.getPassword())){
-                return Utility.convertObjectToJSON(API.CODE_API_EXISTED, "Da ton tai user");
+            if(userDetail != null){
+                userDetail.setUser(new User(Integer.parseInt(userId)));
+                userDetailService.save(userDetail);
+                Basej4Logger.getInstance().info("API: " + API.CODE_API_YES, "add user detail successfully", userId);
+                return Utility.convertObjectToJSON(API.CODE_API_YES, "successfully", userDetail);
+            }else{
+                Basej4Logger.getInstance().info("API: " + API.CODE_API_NO, "add user detail null", userId);
+                return Utility.convertObjectToJSON(API.CODE_API_NO, "");
             }
-            if(userService.saveAccount(user)){
-                return Utility.convertObjectToJSON(API.CODE_API_YES, "Them thanh cong", user);
-            }
-            return Utility.convertObjectToJSON(API.CODE_API_NO, "Them khong thanh cong");
         }catch (Exception e){
+            Basej4Logger.getInstance().info("API: " + API.CODE_API_NO, "add user detail fail", userId);
             return Utility.convertObjectToJSON(API.CODE_API_NO, e.getMessage());
+        }
+    }
+
+    @PostMapping("/register")
+    public JsonResponse addUser(@RequestBody RegisterStudentUserDTO registerStudentDTO){
+        return userService.registerUser(registerStudentDTO);
+    }
+
+    @PostMapping("/change-password")
+    public JsonResponse changePassword(@RequestBody ChangePassDTO changePassDTO){
+        return userService.changePassword(changePassDTO.getName(), changePassDTO.getOldPassword(), changePassDTO.getNewPassword());
+    }
+    @PostMapping("/reset-password")
+    public JsonResponse resetPassword(@RequestBody ChangePassDTO changePassDTO){
+        // neu khong dien mat khau moi vao thi mat khau default la name luon
+        if(changePassDTO.getNewPassword() == null)
+            changePassDTO.setNewPassword(changePassDTO.getName());
+        return userService.resetPassword(changePassDTO.getName(), changePassDTO.getNewPassword());
+    }
+
+    @PostMapping("/register-staff/{idGroup}")
+    public JsonResponse addStaff(@RequestBody RegisterUserDTO resgisterStaffDTO, @PathVariable(value = "idGroup") Integer idGroup){
+        return userService.registerUser(resgisterStaffDTO, idGroup);
+    }
+
+    @GetMapping("/get-users-by-groups/{id}")
+    public JsonResponse getUsersByGroupId(@PathVariable(value = "id") Integer id){
+        try{
+            List<User> users = userService.getUsersByGroupId(id);
+            return Utility.convertObjectToJSON(API.CODE_API_YES, "users by group", users);
+        }catch (Exception e){
+            return Utility.convertObjectToJSON(API.CODE_API_ERROR, "users by group error ", id);
+        }
+    }
+
+    @GetMapping("/get-sum-info-by-groups/{id}")
+    public JsonResponse getSumInfoByGroup(@PathVariable(value = "id") Integer id){
+        try{
+            List<User> users = userService.getUsersByGroupId(id);
+            Group group = userService.findGroupById(id);
+            ResCountSumUserActionByGroup resCountSumUserActionByGroup = new ResCountSumUserActionByGroup();
+            resCountSumUserActionByGroup.setSumAction(group.getActions().size());
+            resCountSumUserActionByGroup.setSumUser(users.size());
+            return Utility.convertObjectToJSON(API.CODE_API_YES, "get info sum by group", resCountSumUserActionByGroup);
+        }catch (Exception e){
+            return Utility.convertObjectToJSON(API.CODE_API_ERROR, "gt inf osu, by group error ", id);
+        }
+    }
+    @GetMapping("/get-info-index")
+    public JsonResponse getInfoIndex(){
+        try{
+            InfoIndex infoIndex = userService.getInfoIndex();
+            return Utility.convertObjectToJSON(API.CODE_API_YES, "get info index success", infoIndex);
+        }catch (Exception e){
+            return Utility.convertObjectToJSON(API.CODE_API_ERROR, "get info index error");
+        }
+    }
+
+
+    @GetMapping("/change-group-b-user/{idUser}/{idGroup}")
+    public JsonResponse changeGroupByUser(@PathVariable(value = "idUser") Integer userId, @PathVariable(value = "idGroup") Integer groupId){
+        try{
+            boolean b = userService.changeGroupByIdUser(userId, groupId);
+            if(!b){
+                return Utility.convertObjectToJSON(API.CODE_API_ERROR, "change group by user error", userId);
+            }
+            return Utility.convertObjectToJSON(API.CODE_API_YES, "change group by user successfully", userId);
+        }catch (Exception e){
+            return Utility.convertObjectToJSON(API.CODE_API_ERROR, "change group by user error", userId);
+        }
+    }
+
+    @GetMapping("/is-exist-user/{username}")
+    public JsonResponse isExistUser(@PathVariable(value = "username") String userName){
+        try{
+            boolean b = userService.isExistedUser(userName);
+            if(b){
+                return Utility.convertObjectToJSON(API.CODE_API_YES, "user name existed", userName);
+            }
+            return Utility.convertObjectToJSON(API.CODE_API_NO, "user name not existed", userName);
+        }catch (Exception e){
+            return Utility.convertObjectToJSON(API.CODE_API_ERROR, "check error", userName);
         }
     }
 
     @GetMapping("/delete_user/{id}")
     public JsonResponse deleteUser(@PathVariable(value = "id") Integer id){
         try{
-            if(userService.deleteAccount(id)){
+            if(userService.deleteUser(id)){
+                Basej4Logger.getInstance().info("API: " + API.CODE_API_YES, "delete user success", id);
                 return Utility.convertObjectToJSON(API.CODE_API_YES, "Xoa thanh cong");
             }
+            Basej4Logger.getInstance().info("API: " + API.CODE_API_NO, "delete user fail", id);
             return Utility.convertObjectToJSON(API.CODE_API_NO, "Xoa khong thanh cong");
         }catch (Exception e){
+            Basej4Logger.getInstance().info("API: " + API.CODE_API_NO, "delete user error", id);
             return Utility.convertObjectToJSON(API.CODE_API_NO, e.getMessage());
         }
     }
@@ -101,12 +244,105 @@ public class UserController {
             return Utility.convertObjectToJSON(API.CODE_API_NO, e.getMessage());
         }
     }
+    @GetMapping("/get-user-by-name/{username}")
+    public JsonResponse findUserByUserName(@PathVariable(value = "username") String name){
+        try{
+            User user = userService.findUserByUserName(name);
+            if(user != null){
+                return Utility.convertObjectToJSON(API.CODE_API_YES, "successfully", user);
+            }
+            return Utility.convertObjectToJSON(API.CODE_API_NOTFOUND, "Khong tim thay user");
+        }catch (Exception e){
+            return Utility.convertObjectToJSON(API.CODE_API_NO, e.getMessage());
+        }
+    }
+    @GetMapping("/get-user-by-mssv/{mssv}")
+    public JsonResponse findUserByMssv(@PathVariable(value = "mssv") String mssv){
+        try{
+            User user = userService.findUserByMssv(mssv);
+            if(user != null){
+                return Utility.convertObjectToJSON(API.CODE_API_YES, "successfully", user);
+            }
+            return Utility.convertObjectToJSON(API.CODE_API_NOTFOUND, "Khong tim thay user");
+        }catch (Exception e){
+            return Utility.convertObjectToJSON(API.CODE_API_NO, e.getMessage());
+        }
+    }
+
+    @PostMapping("/edit_user")
+    public JsonResponse editUser(@RequestBody User user){
+        try{
+            User user1 = userService.findUserById(user.getId());
+            if(user1 != null){
+                userService.editUser(user);
+                Basej4Logger.getInstance().info("API: " + API.CODE_API_YES, "edit user success", user.getId());
+                return Utility.convertObjectToJSON(API.CODE_API_YES, "successfully", user);
+            }
+            Basej4Logger.getInstance().info("API: " + API.CODE_API_NOTFOUND, "edit user fail", user.getId());
+            return Utility.convertObjectToJSON(API.CODE_API_NOTFOUND, "Khong tim thay user");
+        }catch (Exception e){
+            Basej4Logger.getInstance().info("API: " + API.CODE_API_NO, "edit user error", user.getId());
+            return Utility.convertObjectToJSON(API.CODE_API_NO, e.getMessage());
+        }
+    }
+
+    @GetMapping("/change-status/{id}/{status}")
+    public JsonResponse changeStatusUser(@PathVariable(value = "id") Integer id, @PathVariable(value = "status") Integer status){
+        try{
+            if(userService.changeStatusUser(id,status)){
+                return Utility.convertObjectToJSON(API.CODE_API_YES, "successfully", status);
+            }
+            return Utility.convertObjectToJSON(API.CODE_API_NO, "error");
+        }catch (Exception e){
+            return Utility.convertObjectToJSON(API.CODE_API_NO, e.getMessage());
+        }
+    }
+
+    @PostMapping("/update-user/{uId}")
+    public JsonResponse updateUserDTO(@RequestBody UpdateUserDTO updateUserDTO, @PathVariable(value = "uId") Integer id){
+        try{
+           boolean b = userService.updateUser(id, updateUserDTO);
+            if(b){
+                return Utility.convertObjectToJSON(API.CODE_API_YES, "update user sucessfully", updateUserDTO);
+            }
+            return Utility.convertObjectToJSON(API.CODE_API_NO, "update user error");
+        }catch (Exception e){
+            return Utility.convertObjectToJSON(API.CODE_API_NO, e.getMessage());
+        }
+    }
 
     //TODO GROUP
-    @GetMapping("/get_group/{id}")
+
+    @GetMapping("/get_group")
+     public JsonResponse findAllGroup(){
+        try{
+            List<Group> groups = userService.findAllGroup();
+            if(groups != null){
+                return Utility.convertObjectToJSON(API.CODE_API_YES, "successfully", groups);
+            }
+            return Utility.convertObjectToJSON(API.CODE_API_NO, "");
+        }catch (Exception e){
+            return Utility.convertObjectToJSON(API.CODE_API_NO, e.getMessage());
+        }
+    }
+
+    @GetMapping("/get-group-by-id/{id}")
     public JsonResponse findGroupById(@PathVariable(value = "id") Integer id){
         try{
-            List<Group> groups = userService.findGroupByUserId(id);
+            Group groups = userService.findGroupById(id);
+            if(groups != null){
+                return Utility.convertObjectToJSON(API.CODE_API_YES, "successfully", groups);
+            }
+            return Utility.convertObjectToJSON(API.CODE_API_NO, "");
+        }catch (Exception e){
+            return Utility.convertObjectToJSON(API.CODE_API_NO, e.getMessage());
+        }
+    }
+
+    @GetMapping("/get_group/{id}")
+     public JsonResponse findGroupByUserId(@PathVariable(value = "id") Integer id){
+        try{
+            List<GroupResult> groups = userService.findGroupByUserId(id);
             if(groups != null){
                 return Utility.convertObjectToJSON(API.CODE_API_YES, "successfully", groups);
             }
@@ -116,24 +352,27 @@ public class UserController {
         }
     }
 
-    @GetMapping("/add_group")
+    @PostMapping("/add_group")
     public JsonResponse addGroup(@RequestBody Group group){
         try{
             boolean b = userService.addGroup(group);
             if(b){
+                Basej4Logger.getInstance().info("API: " + API.CODE_API_ADD_SUCCESS, "add group success", group.getName());
                 return Utility.convertObjectToJSON(API.CODE_API_ADD_SUCCESS, "");
             }else{
+                Basej4Logger.getInstance().info("API: " + API.CODE_API_NO, "add group fail", group.getName());
                 return Utility.convertObjectToJSON(API.CODE_API_NO, "");
             }
         }catch (Exception e){
-            return Utility.convertObjectToJSON(API.CODE_API_ERROR, e.getMessage());
+            Basej4Logger.getInstance().info("API: " + API.CODE_API_NO, "add group error", group.getName());
+            return Utility.convertObjectToJSON(API.CODE_API_NO, e.getMessage());
         }
     }
 
-    @GetMapping("/edit_group/{id}/{name}")
-    public JsonResponse editGroup(@PathVariable(value = "id") Integer groupId, String name){
+    @PostMapping("/edit_group")
+    public JsonResponse editGroup(@RequestBody Group group){
         try{
-            boolean b = userService.updateGroup(groupId, new Group(name));
+            boolean b = userService.updateGroup(group.getId(), group);
             if(b){
                 return Utility.convertObjectToJSON(API.CODE_API_EDIT_SUCCESS, "");
             }else{
@@ -149,34 +388,129 @@ public class UserController {
         try{
             boolean b = userService.deleteGroup(id);
             if(b){
+                Basej4Logger.getInstance().info("API: " + API.CODE_API_DEL_SUCCESS, "delete group error", id);
                 return Utility.convertObjectToJSON(API.CODE_API_DEL_SUCCESS, "");
             }else{
+                Basej4Logger.getInstance().info("API: " + API.CODE_API_NO, "delete group fail", id);
                 return Utility.convertObjectToJSON(API.CODE_API_NO, "");
             }
         }catch (Exception e){
-            return Utility.convertObjectToJSON(API.CODE_API_ERROR, e.getMessage());
+            Basej4Logger.getInstance().info("API: " + API.CODE_API_NO, "delete group error", id);
+            return Utility.convertObjectToJSON(API.CODE_API_NO, e.getMessage());
         }
     }
 
     //TODO action
-    @GetMapping("/add_action")
+    @GetMapping("/get_action")
+    public JsonResponse findAllActions(){
+        try{
+            List<Action> actions = userService.findAllAction();
+            for(Action action: actions){
+//                System.out.println("sf" + action.toString());
+            }
+            if(actions != null){
+                return Utility.convertObjectToJSON(API.CODE_API_YES, "successfully", actions);
+            }
+            return Utility.convertObjectToJSON(API.CODE_API_NO, "");
+        }catch (Exception e){
+            return Utility.convertObjectToJSON(API.CODE_API_NO, e.getMessage());
+        }
+    }
+    @GetMapping("/get_action/{id}")
+    public JsonResponse findActionByUserId(@PathVariable(value = "id") Integer id){
+        try{
+            List<ActionResult> actions = userService.findActionByUserId(id);
+            if(actions != null){
+                return Utility.convertObjectToJSON(API.CODE_API_YES, "successfully", actions);
+            }
+            return Utility.convertObjectToJSON(API.CODE_API_NOTFOUND, "Khong tim thay action");
+        }catch (Exception e){
+            return Utility.convertObjectToJSON(API.CODE_API_NO, e.getMessage());
+        }
+    }
+    @GetMapping("/get-action-by-name/{username}")
+    public JsonResponse findActionByUserName(@PathVariable(value = "username") String username){
+        try{
+            List<ActionResult> actions = userService.findActionByUserName(username);
+            if(actions != null){
+                return Utility.convertObjectToJSON(API.CODE_API_YES, "successfully", actions);
+            }
+            return Utility.convertObjectToJSON(API.CODE_API_NOTFOUND, "Khong tim thay action");
+        }catch (Exception e){
+            return Utility.convertObjectToJSON(API.CODE_API_NO, e.getMessage());
+        }
+    }
+
+    @GetMapping("/get-action-by-group/{idGroup}")
+    public JsonResponse findActionByGroupId(@PathVariable(value = "idGroup") Integer idGroup){
+        try{
+            List<ActionResult> actions = userService.findActionByGroupId(idGroup);
+            if(actions != null){
+                return Utility.convertObjectToJSON(API.CODE_API_YES, "successfully", actions);
+            }
+            return Utility.convertObjectToJSON(API.CODE_API_NOTFOUND, "Khong tim thay action");
+        }catch (Exception e){
+            return Utility.convertObjectToJSON(API.CODE_API_NO, e.getMessage());
+        }
+    }
+
+
+
+    @PostMapping("/add_action")
     public JsonResponse addAction(@RequestBody Action action){
         try{
-            boolean b = userService.addAction(action);
+            boolean b = userService.addAction(new Action(action.getName(), action.getCode()));
             if(b){
+                Basej4Logger.getInstance().info("API: " + API.CODE_API_ADD_SUCCESS, "add action success", action.getName());
                 return Utility.convertObjectToJSON(API.CODE_API_ADD_SUCCESS, "");
             }else{
+                Basej4Logger.getInstance().info("API: " + API.CODE_API_NO, "add action fail", action.getName());
                 return Utility.convertObjectToJSON(API.CODE_API_NO, "");
             }
         }catch (Exception e){
+            Basej4Logger.getInstance().info("API: " + API.CODE_API_NO, "add action error", action.getName());
             return Utility.convertObjectToJSON(API.CODE_API_ERROR, e.getMessage());
         }
     }
 
-    @GetMapping("/edit_action/{id}/{name}")
-    public JsonResponse editAction(@PathVariable(value = "id") Integer actionId, String name){
+    @PostMapping("/add-action-for-group/{idGroup}")
+    public JsonResponse addActionForGroup(@RequestBody Action action, @PathVariable(value = "idGroup") Integer idGroup){
         try{
-            boolean b = userService.updateAction(actionId, new Action(name));
+            boolean b = userService.addActionForGroup(new Action(action.getName(), action.getCode()), idGroup);
+            if(b){
+                Basej4Logger.getInstance().info("API: " + API.CODE_API_ADD_SUCCESS, "add action for group success", action.getName());
+                return Utility.convertObjectToJSON(API.CODE_API_ADD_SUCCESS, "");
+            }else{
+                Basej4Logger.getInstance().info("API: " + API.CODE_API_NO, "add action for group  fail", action.getName());
+                return Utility.convertObjectToJSON(API.CODE_API_NO, "");
+            }
+        }catch (Exception e){
+            Basej4Logger.getInstance().info("API: " + API.CODE_API_NO, "add action for group  error", action.getName());
+            return Utility.convertObjectToJSON(API.CODE_API_ERROR, e.getMessage());
+        }
+    }
+
+    @GetMapping("/add-action-for-group-available/{idAction}/{idGroup}")
+    public JsonResponse addActionForGroupAvailable(@PathVariable(value = "idAction") Integer idAction, @PathVariable(value = "idGroup") Integer idGroup){
+        try{
+            boolean b = userService.addActionForGroup(idAction, idGroup);
+            if(b){
+                Basej4Logger.getInstance().info("API: " + API.CODE_API_ADD_SUCCESS, "add action for group success", idAction);
+                return Utility.convertObjectToJSON(API.CODE_API_ADD_SUCCESS, "");
+            }else{
+                Basej4Logger.getInstance().info("API: " + API.CODE_API_NO, "add action for group  fail", idAction);
+                return Utility.convertObjectToJSON(API.CODE_API_NO, "");
+            }
+        }catch (Exception e){
+            Basej4Logger.getInstance().info("API: " + API.CODE_API_NO, "add action for group  error", idAction);
+            return Utility.convertObjectToJSON(API.CODE_API_ERROR, e.getMessage());
+        }
+    }
+
+    @PostMapping("/edit_action")
+    public JsonResponse editAction(@RequestBody Action action){
+        try{
+            boolean b = userService.updateAction(action.getId(), action);
             if(b){
                 return Utility.convertObjectToJSON(API.CODE_API_EDIT_SUCCESS, "");
             }else{
@@ -187,16 +521,19 @@ public class UserController {
         }
     }
 
-    @GetMapping("/delete_action/{id}")
-    public JsonResponse deleteAction(@PathVariable(value = "id") Integer id){
+    @GetMapping("/delete_action/{idAction}/{idGroup}")
+    public JsonResponse deleteAction(@PathVariable(value = "idAction") Integer idAction, @PathVariable(value = "idGroup") Integer idGroup){
         try{
-            boolean b = userService.deleteAction(id);
+            boolean b = userService.deleteAction(idAction, idGroup);
             if(b){
+                Basej4Logger.getInstance().info("API: " + API.CODE_API_DEL_SUCCESS, "add action error", idAction);
                 return Utility.convertObjectToJSON(API.CODE_API_DEL_SUCCESS, "");
             }else{
+                Basej4Logger.getInstance().info("API: " + API.CODE_API_NO, "delete action error", idAction);
                 return Utility.convertObjectToJSON(API.CODE_API_NO, "");
             }
         }catch (Exception e){
+            Basej4Logger.getInstance().info("API: " + API.CODE_API_ERROR, "delete action error", idAction);
             return Utility.convertObjectToJSON(API.CODE_API_ERROR, e.getMessage());
         }
     }
@@ -224,7 +561,47 @@ public class UserController {
                 }
             }
         } catch (Exception e) {
-            jsonResponse = return_No_Object_JsonPresonse(API.CODE_API_NO, "Lỗi format id room");
+            jsonResponse = return_No_Object_JsonPresonse(API.CODE_API_NO, "error exception");
+
+            return jsonResponse;
+        }
+    }
+
+    @GetMapping("/floor/{id}")
+    public JsonResponse findStudentsbyFloorId(@PathVariable(value = "id") Integer id) {
+        try{
+            List<User> users = userService.findUserByFloorId(id);
+            if (users.size() > 0) {
+                jsonResponse = return_List_Object_JsonPresonse(API.CODE_API_YES, "success", users);
+
+            } else {
+                jsonResponse = return_No_Object_JsonPresonse(API.CODE_API_NOTFOUND, "Không tìm thấy dữ liệu");
+
+            }
+            return jsonResponse;
+
+        } catch (Exception e) {
+            jsonResponse = return_No_Object_JsonPresonse(API.CODE_API_NO, "error exception");
+
+            return jsonResponse;
+        }
+    }
+
+    @GetMapping("/area/{id}")
+    public JsonResponse findStudentsbyAreaId(@PathVariable(value = "id") Integer id) {
+        try{
+            List<User> users = userService.findUserByAreaId(id);
+            if (users.size() > 0) {
+                jsonResponse = return_List_Object_JsonPresonse(API.CODE_API_YES, "success", users);
+
+            } else {
+                jsonResponse = return_No_Object_JsonPresonse(API.CODE_API_NOTFOUND, "Không tìm thấy dữ liệu");
+
+            }
+            return jsonResponse;
+
+        } catch (Exception e) {
+            jsonResponse = return_No_Object_JsonPresonse(API.CODE_API_NO, "error exception");
 
             return jsonResponse;
         }

@@ -2,6 +2,7 @@ package com.example.dorm_management.respositories;
 
 import com.example.dorm_management.entities.RoleUser;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -11,5 +12,6 @@ import java.util.List;
  */
 @Repository
 public interface RoleUserRepository extends JpaRepository<RoleUser, Integer> {
-    RoleUser findByUserId(Integer id);
+    List<RoleUser> findByUserId(Integer id);
+    List<RoleUser> findByRoleId(Integer id);
 }

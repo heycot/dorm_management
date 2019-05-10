@@ -1,28 +1,54 @@
 package com.example.dorm_management.entities;
 
 
+import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.validation.constraints.NotNull;
+import java.beans.ConstructorProperties;
 
-
+@Getter
+@Setter
+@Builder
 @Entity
 @Data
 @Table(name = "area")
 public class Area {
+    //------------------status ---------------------------
+    public final static Integer AREA_STATUS_ENABLE  = 1;
+    public final static Integer AREA_STATUS_DISABLE = 0;
+
+    //-------------------------------------------------------
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @NotNull
     private String name;
 
+    @NotNull
     @Column(name = "number_floor")
     private Integer numberFloor;
 
     private Integer status;
 
+    @ConstructorProperties({"name", "numberFloor", "status"})
+    Area(String name, Integer numberFloor, Integer status) {
+        this.name = name;
+        this.numberFloor = numberFloor;
+        this.status = status;
+    }
+
+    public static Area.AreaBuilder builder(){
+        return new Area.AreaBuilder();
+    }
+
     public Integer getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(Integer id) {
@@ -30,7 +56,7 @@ public class Area {
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public void setName(String name) {
@@ -38,25 +64,51 @@ public class Area {
     }
 
     public Integer getNumberFloor() {
-        return numberFloor;
+        return this.numberFloor;
     }
 
     public void setNumberFloor(Integer numberFloor) {
         this.numberFloor = numberFloor;
     }
 
-    public Integer getStatus() { return status; }
+    public Integer getStatus() {
+        return this.status;
+    }
 
     public void setStatus(Integer status) {
         this.status = status;
     }
 
-    public Area(String name, Integer numberFloor, Integer status) {
-        this.name = name;
-        this.numberFloor = numberFloor;
-        this.status = status;
+    public Area() {
     }
 
-    public Area() {
+    //==================================================================================================================
+
+    public static class AreaBuilder {
+        private String name;
+        private Integer numberFloor;
+        private Integer status;
+
+        AreaBuilder() {
+        }
+
+        public Area.AreaBuilder name(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public Area.AreaBuilder numberFloor(Integer numberFloor) {
+            this.numberFloor = numberFloor;
+            return this;
+        }
+
+        public Area.AreaBuilder status(Integer status) {
+            this.status = status;
+            return this;
+        }
+
+        public Area build(){
+            return new Area(this.name, this.numberFloor, this.status);
+        }
     }
 }

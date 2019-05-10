@@ -16,7 +16,7 @@ import java.util.List;
  * Created by vuong on 10/24/2018.
  */
 @RestController
-@RequestMapping(AreaController.BASE_URL)
+@RequestMapping(RoleController.BASE_URL)
 public class RoleController {
     public final static String BASE_URL = "/api/role";
 
@@ -24,7 +24,7 @@ public class RoleController {
     private RoleService roleService;
 
     @GetMapping
-    public JsonResponse getAllAreas(){
+    public JsonResponse getAllRole(){
         try {
             List<Role> roles = roleService.getAllRoles();
             return Utility.convertObjectToJSON(API.CODE_API_YES, "sucess", roles);
@@ -32,8 +32,34 @@ public class RoleController {
             return Utility.convertObjectToJSON(API.CODE_API_NOTFOUND, e.getMessage());
         }
     }
+    @GetMapping("/delete/{id}")
+    public JsonResponse deleteRole(@PathVariable(value = "id") Integer id){
+        try {
+            boolean b = roleService.deleteRole(id);
+            return Utility.convertObjectToJSON(API.CODE_API_YES, "sucess");
+        } catch (Exception e) {
+            return Utility.convertObjectToJSON(API.CODE_API_NOTFOUND, e.getMessage());
+        }
+    }
 
-    @GetMapping(value = "/edit_group/{role_id}/{group_id}")
+    @GetMapping("/delete-buy-action-group/{idAction}/{idGroup}")
+    public JsonResponse deleteRoleByActionAndGroup(@PathVariable(value = "idAction") Integer idAction, @PathVariable(value = "idGroup") Integer idGroup){
+        try {
+            Role role = roleService.findByActionIdAndGroupId(idAction, idGroup);
+            if(role == null){
+                return Utility.convertObjectToJSON(API.CODE_API_NOTFOUND, "khong tim thay role");
+            }
+            boolean b = roleService.deleteRole(role.getId());
+            if(b){
+                return Utility.convertObjectToJSON(API.CODE_API_YES, "sucess");
+            }
+            return Utility.convertObjectToJSON(API.CODE_API_NOTFOUND, "xoa khong thanh cong");
+        } catch (Exception e) {
+            return Utility.convertObjectToJSON(API.CODE_API_NOTFOUND, e.getMessage());
+        }
+    }
+
+/*    @PostMapping(value = "/edit_group/{role_id}/{group_id}")
     public JsonResponse editRoleByGroupId(@PathVariable(value = "role_id") Integer roleId, @PathVariable(value = "group_id") Integer groupId){
         try{
             boolean b = roleService.editRoleByGroupId(roleId, groupId);
@@ -45,12 +71,12 @@ public class RoleController {
         }catch (Exception e){
             return Utility.convertObjectToJSON(API.CODE_API_NOTFOUND, e.getMessage());
         }
-    }
+    }*/
 
-    @GetMapping(value = "/edit_action/{role_id}/{action_id}")
-    public JsonResponse editRoleByAction(@PathVariable(value = "role_id") Integer roleId, @PathVariable(value = "action_id") Integer actionId){
+    @PostMapping(value = "/edit_role")
+    public JsonResponse editRoleByAction(@RequestBody Role role){
         try{
-            boolean b = roleService.editRoleByActionId(roleId, actionId);
+            boolean b = roleService.editRole(role.getId(), role);
             if(b){
                 return Utility.convertObjectToJSON(API.CODE_API_EDIT_SUCCESS, "");
             }else{
@@ -61,14 +87,14 @@ public class RoleController {
         }
     }
 
-    @GetMapping(value = "/add/{role_id}/{action_id}")
-    public JsonResponse editRoleByAction(@RequestBody Role role){
+    @PostMapping(value = "/add")
+    public JsonResponse addRole(@RequestBody Role role){
         try{
             boolean b = roleService.addRole(role.getGroupId(), role.getActionId());
             if(b){
-                return Utility.convertObjectToJSON(API.CODE_API_EDIT_SUCCESS, "");
+                return Utility.convertObjectToJSON(API.CODE_API_EDIT_SUCCESS, "add role sucess", b);
             }else{
-                return Utility.convertObjectToJSON(API.CODE_API_ERROR, "");
+                return Utility.convertObjectToJSON(API.CODE_API_ERROR, "add role error", b);
             }
         }catch (Exception e){
             return Utility.convertObjectToJSON(API.CODE_API_NOTFOUND, e.getMessage());

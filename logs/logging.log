@@ -1,0 +1,84 @@
+2018-11-03 20:19:50 INFO  QUERY_LOOGER:62 - [Role(id=1, actionId=1, groupId=1), Role(id=2, actionId=3, groupId=1)]
+2018-11-03 20:20:45 INFO  QUERY_LOOGER:62 - [Role(id=1, actionId=1, groupId=1), Role(id=2, actionId=3, groupId=1)]
+2018-11-03 20:23:48 INFO  QUERY_LOOGER:62 - [Role(id=1, actionId=1, groupId=1), Role(id=2, actionId=3, groupId=1)]
+2018-11-03 20:24:01 INFO  QUERY_LOOGER:62 - [Role(id=1, actionId=1, groupId=1), Role(id=2, actionId=3, groupId=1)]
+2018-11-03 20:33:07 INFO  QUERY_LOOGER:48 - sdfsdf | sdfsdsssssssssssssssf
+2018-11-03 20:33:24 INFO  QUERY_LOOGER:48 - sdfsdf | sdfsdsssssssssssssssf
+2018-11-03 20:48:11 INFO  QUERY_LOOGER:48 - API: 200 | register user successfully | test4
+2018-11-03 20:48:42 INFO  QUERY_LOOGER:48 - API: 200 | register user successfully | test5
+2018-11-13 21:06:38 INFO  QUERY_LOOGER:48 - API: 200 | find all area success | total :8
+2018-11-13 21:09:39 INFO  QUERY_LOOGER:48 - API: 200 | find all area success | total :8
+2018-11-13 21:14:37 INFO  QUERY_LOOGER:48 - API: 200 | change status one area success | successfully
+2018-11-13 21:23:45 INFO  QUERY_LOOGER:48 - API: 200 | service: find all area  | status: SUCCESS | total :8
+2018-11-13 22:46:07 INFO  QUERY_LOOGER:48 - API code: 200 | service: find all area  | status: SUCCESS | total :8
+2018-11-13 22:46:15 INFO  QUERY_LOOGER:48 - API code: 200 | service: add one register | status: SUCCESS | 10
+2018-11-13 22:46:21 INFO  QUERY_LOOGER:48 - API code: 200 | service: edit one area | status: SUCCESS | Nha 6666
+2018-11-13 22:46:24 INFO  QUERY_LOOGER:48 - API code: 200 | service: edit one sub | status: SUCCESS | 
+2018-11-13 22:46:26 INFO  QUERY_LOOGER:48 - API code: 200 | service: find sub in room | status: SUCCESS | total: 5
+2018-11-13 22:46:56 INFO  QUERY_LOOGER:48 - API code: 200 | service: add one sub | status: SUCCESS | 11/2018
+2018-11-14 15:55:48 INFO  QUERY_LOOGER:48 - API code: 202 | service: change status one floor | status: ERROR EXCEPTION | 
+2018-11-14 15:57:21 INFO  QUERY_LOOGER:48 - API code: 201 | service: change status one floor | status: FAIL | 
+2018-11-14 16:35:44 INFO  QUERY_LOOGER:48 - API code: 200 | service: change status one floor | status: SUCCESS | Tầng 4
+2018-11-14 16:36:13 INFO  QUERY_LOOGER:48 - API code: 200 | service: change status one floor | status: SUCCESS | Tầng 4
+2018-11-14 16:41:35 INFO  QUERY_LOOGER:48 - API code: 200 | service: change status one floor | status: SUCCESS | Tầng 4
+2018-11-14 16:41:37 INFO  QUERY_LOOGER:48 - API code: 200 | service: change status one floor | status: SUCCESS | Tầng 4
+2018-11-14 16:41:39 INFO  QUERY_LOOGER:48 - API code: 200 | service: change status one floor | status: SUCCESS | Tầng 4
+2018-11-14 16:41:44 INFO  QUERY_LOOGER:48 - API code: 200 | service: change status one floor | status: SUCCESS | Tầng 4
+2018-11-14 16:53:47 INFO  QUERY_LOOGER:48 - API code: 200 | service: change status one area | status: SUCCESS | Nhà 4
+2018-11-14 16:55:02 INFO  QUERY_LOOGER:48 - API code: 200 | service: find all notification by user | status: SUCCESS | total: 12
+2018-11-14 17:00:52 INFO  QUERY_LOOGER:48 - API code: 200 | service: change status one area | status: SUCCESS | Nhà 4
+2018-11-14 17:01:10 INFO  QUERY_LOOGER:48 - API code: 200 | service: change status one area | status: SUCCESS | Nhà 4
+2018-11-14 17:01:28 INFO  QUERY_LOOGER:48 - API code: 200 | service: change status one area | status: SUCCESS | Nhà 4
+2018-11-14 17:06:53 INFO  QUERY_LOOGER:48 - API code: 200 | service: find all notification by user | status: SUCCESS | total: 12
+2018-11-15 10:42:11 INFO  QUERY_LOOGER:48 - API code: 200 | service: find register by area | status: SUCCESS | total: 5
+2018-11-16 16:48:54 INFO  QUERY_LOOGER:48 - API code: 202 | service: accept list register | status: ERROR EXCEPTION | 
+2018-11-16 16:53:12 INFO  QUERY_LOOGER:48 - API code: 202 | service: accept list register | status: ERROR EXCEPTION | 
+2018-11-16 16:56:25 INFO  QUERY_LOOGER:48 - API code: 202 | service: accept list register | status: ERROR EXCEPTION | 
+2018-11-16 16:59:37 INFO  QUERY_LOOGER:48 - API code: 202 | service: accept list register | status: ERROR EXCEPTION | 
+2018-11-16 17:01:41 INFO  QUERY_LOOGER:48 - API code: 202 | service: accept list register | status: ERROR EXCEPTION | 
+2018-11-16 17:02:43 INFO  QUERY_LOOGER:48 - API code: 202 | service: accept list register | status: ERROR EXCEPTION | 
+2018-11-16 17:03:11 INFO  QUERY_LOOGER:48 - API code: 202 | service: accept list register | status: ERROR EXCEPTION | 
+2018-11-16 17:05:09 INFO  QUERY_LOOGER:48 - API code: 202 | service: accept list register | status: ERROR EXCEPTION | 
+2018-11-20 20:55:57 INFO  QUERY_LOOGER:48 - API code: 200 | service: accept list register | status: SUCCESS | total: 2
+2018-11-20 20:57:03 INFO  QUERY_LOOGER:48 - API code: 201 | service: find room in floor by month and year | status: FAIL | 
+2018-11-20 20:57:34 INFO  QUERY_LOOGER:48 - API code: 200 | service: find room in floor by month and year | status: SUCCESS | total: 1
+2018-11-20 22:25:15 INFO  QUERY_LOOGER:48 - API code: 200 | service: find all time register | status: SUCCESS | total: 2
+2018-11-20 22:25:25 INFO  QUERY_LOOGER:48 - API code: 204 | service: find one time register current | status: NOT FOUND | 
+2018-11-20 22:26:16 INFO  QUERY_LOOGER:48 - API code: 202 | service: find one time register current | status: ERROR EXCEPTION | 
+2018-11-20 22:26:50 INFO  QUERY_LOOGER:48 - API code: 202 | service: find one time register current | status: ERROR EXCEPTION | 
+2018-11-20 23:04:26 INFO  QUERY_LOOGER:48 - API code: 202 | service: find one time register current | status: ERROR EXCEPTION | 
+2018-11-20 23:05:23 INFO  QUERY_LOOGER:48 - API code: 204 | service: find one time register current | status: NOT FOUND | 
+2018-11-20 23:06:48 INFO  QUERY_LOOGER:48 - API code: 200 | service: find one time register current | status: SUCCESS | begin: 2018-11-19 00:00:00.0
+2018-11-20 23:12:09 INFO  QUERY_LOOGER:48 - API code: 200 | service: find one time register current | status: SUCCESS | begin: 2018-11-19 00:00:00.0
+2018-11-20 23:14:10 INFO  QUERY_LOOGER:48 - API code: 200 | service: add one time register | status: SUCCESS | begin: 2018-11-19 00:00:00.0
+2018-11-20 23:15:07 INFO  QUERY_LOOGER:48 - API code: 200 | service: add one time register | status: SUCCESS | begin: 2018-11-19 00:00:00.0
+2018-11-21 20:47:28 INFO  QUERY_LOOGER:48 - API code: 200 | service: find register by room | status: SUCCESS | total: 4
+2018-11-21 20:51:25 INFO  QUERY_LOOGER:48 - API code: 200 | service: accept list register | status: SUCCESS | total: 1
+2018-11-21 20:51:44 INFO  QUERY_LOOGER:48 - API code: 200 | service: find room by id | status: SUCCESS | Phòng 101
+2018-11-21 20:53:09 INFO  QUERY_LOOGER:48 - API code: 201 | service: delete list register | status: FAIL | 
+2018-11-21 20:53:41 INFO  QUERY_LOOGER:48 - API code: 201 | service: delete list register | status: FAIL | 
+2018-11-21 21:03:37 INFO  QUERY_LOOGER:48 - API code: 201 | service: delete list register | status: FAIL | 
+2018-11-21 21:07:31 INFO  QUERY_LOOGER:48 - API code: 200 | service: delete register | status: SUCCESS | 
+2018-11-21 21:07:38 INFO  QUERY_LOOGER:48 - API code: 200 | service: find room by id | status: SUCCESS | Phòng 101
+2018-11-21 21:11:00 INFO  QUERY_LOOGER:48 - API code: 202 | service: rent bail list | status: ERROR EXCEPTION | 
+2018-11-21 21:18:15 INFO  QUERY_LOOGER:48 - API code: 201 | service: rent bail list | status: FAIL | 
+2018-11-21 21:22:17 INFO  QUERY_LOOGER:48 - API code: 202 | service: rent bail list | status: ERROR EXCEPTION | 
+2018-11-21 21:22:55 INFO  QUERY_LOOGER:48 - API code: 202 | service: rent bail list | status: ERROR EXCEPTION | 
+2018-11-21 21:36:49 INFO  QUERY_LOOGER:48 - API code: 202 | service: rent bail list | status: ERROR EXCEPTION | 
+2018-11-21 21:43:07 INFO  QUERY_LOOGER:48 - API code: 202 | service: rent bail list | status: ERROR EXCEPTION | 
+2018-11-21 21:46:00 INFO  QUERY_LOOGER:48 - API code: 202 | service: rent bail list | status: ERROR EXCEPTION | 
+2018-11-21 21:52:07 INFO  QUERY_LOOGER:48 - API code: 202 | service: rent bail list | status: ERROR EXCEPTION | 
+2018-11-21 21:58:39 INFO  QUERY_LOOGER:48 - API code: 202 | service: rent bail list | status: ERROR EXCEPTION | 
+2018-11-21 22:05:24 INFO  QUERY_LOOGER:48 - API code: 202 | service: rent bail list | status: ERROR EXCEPTION | 
+2018-11-21 22:07:08 INFO  QUERY_LOOGER:48 - API code: 202 | service: rent bail list | status: ERROR EXCEPTION | 
+2018-11-21 22:39:51 INFO  QUERY_LOOGER:48 - API code: 200 | service: find room by id | status: SUCCESS | Phòng 101
+2018-11-22 00:45:53 INFO  QUERY_LOOGER:48 - API: 200 | Login sucess | null
+2018-11-22 19:39:54 INFO  QUERY_LOOGER:48 - API code: 200 | service: find sub in room | status: SUCCESS | total: 6
+2018-11-22 19:42:16 INFO  QUERY_LOOGER:48 - API code: 200 | service: edit one sub | status: SUCCESS | 
+2018-11-22 20:02:22 INFO  QUERY_LOOGER:48 - API code: 200 | service: edit one sub | status: SUCCESS | 
+2018-11-22 22:46:12 INFO  QUERY_LOOGER:48 - API code: 200 | service: edit one sub | status: SUCCESS | 
+2018-11-22 23:04:20 INFO  QUERY_LOOGER:48 - API code: 200 | service: edit one sub | status: SUCCESS | 
+2018-11-22 23:07:51 INFO  QUERY_LOOGER:48 - API code: 200 | service: edit one sub | status: SUCCESS | 
+2018-11-22 23:08:07 INFO  QUERY_LOOGER:48 - API code: 200 | service: edit one sub | status: SUCCESS | 
+2018-11-22 23:09:11 INFO  QUERY_LOOGER:48 - API code: 200 | service: edit one sub | status: SUCCESS | 
+2018-11-22 23:09:25 INFO  QUERY_LOOGER:48 - API code: 200 | service: edit one sub | status: SUCCESS | 

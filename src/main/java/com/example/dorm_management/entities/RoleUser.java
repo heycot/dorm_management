@@ -1,6 +1,9 @@
 package com.example.dorm_management.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -9,29 +12,36 @@ import java.util.Set;
  * Created by vuong on 10/12/2018.
  */
 @Data
+
 @Entity
 @Table(name = "role_user")
 public class RoleUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(name = "status")
 
+    @Column(name = "status")
     private Integer status;
 
-    @Column(name = "user_id")
-    private Integer userId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.NO_ACTION)
+    @JsonIgnore
+    private User user;
 
     @Column(name = "role_id")
     private Integer roleId;
 
-   /* @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+    public RoleUser() {
+    }
 
-    @OneToMany
-    @JoinColumn(name = "role_id")
-    private Set<Role> role;*/
+    public RoleUser(Integer status, Integer userId, Integer roleId) {
+
+        this.status = status;
+        this.user = new User();
+        user.setId(userId);
+        this.roleId = roleId;
+    }
 
     public Integer getId() {
         return id;
@@ -44,17 +54,8 @@ public class RoleUser {
     public Integer getStatus() {
         return status;
     }
-
     public void setStatus(Integer status) {
         this.status = status;
-    }
-
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
     }
 
     public Integer getRoleId() {
@@ -65,33 +66,11 @@ public class RoleUser {
         this.roleId = roleId;
     }
 
-   /* public User getUser() {
+    public User getUser() {
         return user;
     }
 
     public void setUser(User user) {
         this.user = user;
-    }
-
-    public Set<Role> getRole() {
-        return role;
-    }
-
-    public void setRole(Set<Role> role) {
-        this.role = role;
-    }*/
-
-   /* public RoleUser(Integer status, User user, Set<Role> role) {
-
-        this.status = status;
-        this.user = user;
-        this.role = role;
-    }*/
-
-    public RoleUser(Integer status, Integer userId, Integer roleId) {
-
-        this.status = status;
-        this.userId = userId;
-        this.roleId = roleId;
     }
 }
